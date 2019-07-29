@@ -5,7 +5,7 @@ import java.util.Optional;
 import ballblast.model.levels.Level;
 
 /**
- * The class represents a macro class, containing levels and game objects.
+ * It represents a macro class, containing levels and game objects.
  * It can be seen as an entry point because delegates its tasks to the Level class.
  */
 public interface Model {

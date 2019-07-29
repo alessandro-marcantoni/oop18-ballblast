@@ -1,23 +1,31 @@
 package ballblast.model.components;
+
+import ballblast.model.gameobjects.GameObject;
+
 /**
  * Interface used to implement Composite pattern.
  */
 public interface Component {
     /**
-     * Updates component status.
+     * Updates Component status.
      * @param elapsed
-     *        Time elapsed since last update.
+     *      the time elapsed since last update.
      */
     void update(double elapsed);
     /**
-     * Returns a boolean which notifies if the component is destroyed.
+     * Returns a boolean which notifies if the Component is destroyed.
      * @return
-     *      True if component is destroyed, false otherwise.
+     *      true if Component is destroyed, false otherwise.
      */
     boolean isDestroyed();
     /**
      * @return
-     *      Return an enum which defines the component type.
+     *      the tag which defines the {@link ComponentType}.
      */
     ComponentTypes getComponentType();
+    /**
+     * @return
+     *      the {@link GameObject} attached to the {@link Component}.
+     */
+    GameObject getParent();
 }

@@ -8,16 +8,15 @@ import ballblast.model.gameobjects.GameObject;
  */
 public abstract class AbstractComponent implements Component {
     private final ComponentTypes type;
-    @SuppressWarnings("unused")
     private final GameObject parent;
     private boolean isDestroyed;
 
     /**
-     * Constructor for class AbstractComponent.
+     * Create a new instance of AbstractComponent.
      * @param type
-     *        It's the type of a specific component.
+     *       the type of a specific component.
      * @param parent
-     *        It's the game object to which the component is attached.
+     *       the {@link GameObject} to which the {@link Component} is attached.
      */
     public AbstractComponent(final ComponentTypes type, final GameObject parent) {
         this.type = type;
@@ -40,8 +39,8 @@ public abstract class AbstractComponent implements Component {
         return type;
     }
 
-    @SuppressWarnings("unused")
-    private void destroy() {
-        this.isDestroyed = true;
+    @Override
+    public final GameObject getParent() {
+        return this.parent;
     }
 }

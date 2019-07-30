@@ -44,6 +44,22 @@ public class GameObjectManager {
                 .build();
     }
     /**
+     * Gets the {@link GameObject} player.
+     * @return
+     *      the player.
+     */
+    public GameObject getPlayer() {
+        return player;
+    }
+    /**
+     * Gets the {@link List} containing all {@link GameObject}s.
+     * @return
+     *      the {@link List} containing all {@link GameObject}s.. 
+     */
+    public List<GameObject> getGameObjects() {
+        return ImmutableList.copyOf(this.gameObjects);
+    }
+    /**
      * Concatenates the main {@link GameObject} {@link List} 
      * with the {@link GameObject} {@link List} to be added.
      */
@@ -59,15 +75,7 @@ public class GameObjectManager {
      */
     private void removeDestoyedObjects() {
         this.gameObjects = gameObjects.stream()
-                .filter(o -> o.isDestroyed())
+                .filter(o -> !o.isDestroyed())
                 .collect(ImmutableList.toImmutableList());
-    }
-    /**
-     * Gets the {@link GameObject} player.
-     * @return
-     *      the player.
-     */
-    public GameObject getPlayer() {
-        return player;
     }
 }

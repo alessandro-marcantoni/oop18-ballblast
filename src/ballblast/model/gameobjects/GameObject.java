@@ -1,6 +1,8 @@
 package ballblast.model.gameobjects;
 
 import ballblast.model.components.Component;
+import ballblast.model.components.ComponentTypes;
+
 import java.util.List;
 import ballblast.utils.Point2D;
 
@@ -15,11 +17,23 @@ public interface GameObject {
      */
     int getHeight();
     /**
+     * Sets the {@link GameObject} height.
+     * @param height
+     *     the height {@link GameObject}.
+     */
+    void setHeight(int height);
+    /**
      * Gets the {@link GameObject} width.
      * @return
      *      the width of {@link GameObject}.
      */
     int getWidth();
+    /**
+     * Sets the {@link GameObject} width.
+     * @param width
+     *     the width of {@link GameObject}.
+     */
+    void setWidth(int width);
     /**
      * Gets the GameObject position.
      * @return
@@ -52,14 +66,20 @@ public interface GameObject {
     void addComponent(Component component);
     /**
      * Removes a specific {@link Component} attached to the {@link GameObject}.
-     * @param component
+     * @param type
      *      {@link Component} to be removed.
      */
-    void removeComponent(Component component);
+    void removeComponent(ComponentTypes type);
     /**
      * Gets the {@link List} of all components attached to the {@link GameObject}.
      * @return
      *      the {@link List} of all components attached to the {@link GameObject}. 
      */
     List<Component> getComponents();
+    /**
+     * Gets the {@link GameObjectTypes}.
+     * @return
+     *      the tag which specifies the {@link GameObjectTypes}.
+     */
+    GameObjectTypes getType();
 }

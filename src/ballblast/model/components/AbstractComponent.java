@@ -25,9 +25,7 @@ public abstract class AbstractComponent implements Component {
     }
 
     @Override
-    public void update(final double elapsed) {
-        // TODO implemented by sub-classes
-    }
+    public abstract void update(double elapsed);
 
     @Override
     public final boolean isDestroyed() {

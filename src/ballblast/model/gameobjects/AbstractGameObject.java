@@ -13,7 +13,7 @@ import ballblast.utils.Point2D;
  * Defines base behavior that all game objects share.
  *
  */
-public class AbstractGameObject implements GameObject {
+public abstract class AbstractGameObject implements GameObject {
     private final GameObjectTypes type;
     private int height;
     private int width;
@@ -26,7 +26,7 @@ public class AbstractGameObject implements GameObject {
      * @param type
      *     the type of {@link GameObject}.
      */
-    public AbstractGameObject(final GameObjectTypes type) {
+    protected AbstractGameObject(final GameObjectTypes type) {
         this.type = type;
         this.isDestroyed = false;
     }
@@ -96,4 +96,89 @@ public class AbstractGameObject implements GameObject {
         return this.type;
     }
 
+    /**
+     * Generic builder class for {@link GameObject} creation.
+     * @param <A>
+     *     the {@link GameObject} to be built.
+     * @param <B>
+     *     the concrete {@link AbstractBuilder} to be used.
+     */
+    protected abstract static class AbstractBuilder<A extends AbstractGameObject, B extends AbstractBuilder<?, ?>> {
+        /**
+         * The initial {@link GameObject} to be set.
+         */
+        protected final A gameObject;
+        private final B builder;
+        /**
+         * Creates an AbstractBuilder instance.
+         */
+        protected AbstractBuilder() {
+            this.gameObject = getGameObject();
+            this.builder = getBuilder();
+        }
+        /**
+         * Gets the {@link GameObject} to be set.
+         * @return
+         *     the {@link GameObject} to be set.
+         */
+        protected abstract A getGameObject();
+        /**
+         * Gets the concrete {@link AbstractBuilder}.
+         * @return
+         *     the concrete {@link AbstractBuilder}.
+         */
+        protected abstract B getBuilder();
+        /**
+         * Gets the set {@link GameObject}.
+         * @return
+         *     the set {@link GameObject}.
+         */
+        public A build() {
+            return this.gameObject;
+        }
+        /**
+         * Sets the {@link GameObject} height.
+         * @param height
+         *     the {@link GameObject} height.
+         * @return
+         *     the concrete {@link AbstractBuilder}.
+         */
+        public B setHeight(final int height) {
+            this.gameObject.setHeight(height);
+            return this.builder;
+        }
+        /**
+         * Sets the {@link GameObject} width.
+         * @param width
+         *     the {@link GameObject} width.
+         * @return
+         *     the concrete {@link AbstractBuilder}.
+         */
+        public B setWidth(final int width) {
+            this.gameObject.setWidth(width);
+            return this.builder;
+        }
+        /**
+         * Sets the {@link GameObject} position.
+         * @param position
+         *     the {@link GameObject} {@link Point2D} position.
+         * @return
+         *     the concrete {@link AbstractBuilder}.
+         */
+        public B setPostion(final Point2D position) {
+            this.gameObject.setPosition(position);
+            return this.builder;
+        }
+        /**
+         * Adds a {@link Component} inside the {@link GameObject}.
+         * @param component
+         *     the {@link Component} to be added.
+         * @return
+         *     the concrete {@link AbstractBuilder}.
+         */
+        public B addComponent(final Component component) {
+            this.gameObject.addComponent(component);
+            return this.builder;
+        }
+    }
 }

@@ -5,6 +5,7 @@ package ballblast.model.gameobjects;
  * based on its size and not depending on gravity values.
  */
 public final class Ball extends AbstractGameObject {
+    private static final BallTypes DEFAULT_BALL_TYPE = BallTypes.LARGE;
     private BallTypes ballType;
     private int life;
     /**
@@ -14,6 +15,7 @@ public final class Ball extends AbstractGameObject {
      */
     private Ball(final GameObjectTypes type) {
         super(type);
+        this.ballType = DEFAULT_BALL_TYPE;
     }
     /**
      * Sets the {@link Ball} life.

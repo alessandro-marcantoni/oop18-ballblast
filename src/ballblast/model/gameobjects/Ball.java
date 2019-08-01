@@ -10,11 +10,9 @@ public final class Ball extends AbstractGameObject {
     private int life;
     /**
      * Creates a Ball instance.
-     * @param type
-     *     the type of {@link GameObject}.
      */
-    private Ball(final GameObjectTypes type) {
-        super(type);
+    protected Ball() {
+        super(GameObjectTypes.BALL);
         this.ballType = DEFAULT_BALL_TYPE;
     }
     /**
@@ -78,7 +76,7 @@ public final class Ball extends AbstractGameObject {
 
         @Override
         protected final Ball initGameObject() {
-            return new Ball(GameObjectTypes.BALL);
+            return new Ball();
         }
 
         @Override

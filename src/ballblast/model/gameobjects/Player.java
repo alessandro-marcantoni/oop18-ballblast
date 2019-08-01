@@ -10,7 +10,7 @@ public class Player extends AbstractGameObject {
     /**
      * Creates a Player instance.
      */
-    public Player() {
+    protected Player() {
         super(GameObjectTypes.PLAYER);
         this.setHeight(DEFAULT_HEIGHT);
         this.setWidth(DEFAULT_WIDTH);

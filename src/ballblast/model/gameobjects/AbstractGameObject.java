@@ -107,13 +107,13 @@ public abstract class AbstractGameObject implements GameObject {
         /**
          * The initial {@link GameObject} to be set.
          */
-        protected final A gameObject;
+        private final A gameObject;
         private final B builder;
         /**
          * Creates an AbstractBuilder instance.
          */
         protected AbstractBuilder() {
-            this.gameObject = getGameObject();
+            this.gameObject = initGameObject();
             this.builder = getBuilder();
         }
         /**
@@ -121,7 +121,15 @@ public abstract class AbstractGameObject implements GameObject {
          * @return
          *     the {@link GameObject} to be set.
          */
-        protected abstract A getGameObject();
+        protected A getGameObject() {
+            return this.gameObject;
+        }
+        /**
+         * Gets the initial {@link GameObject} to be set.
+         * @return
+         *     the initial {@link GameObject} to be set.
+         */
+        protected abstract A initGameObject();
         /**
          * Gets the concrete {@link AbstractBuilder}.
          * @return

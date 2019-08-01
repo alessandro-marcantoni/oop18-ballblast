@@ -1,9 +1,11 @@
 package ballblast.model.gameobjects;
+
 /**
  * Implements the GameObject Ball. It bounces always at same height 
  * based on its size and not depending on gravity values.
  */
 public final class Ball extends AbstractGameObject {
+    private BallTypes ballType;
     private int life;
     /**
      * Creates a Ball instance.
@@ -30,6 +32,22 @@ public final class Ball extends AbstractGameObject {
         return this.life;
     }
     /**
+     * Gets the {@link Ball}'s type.
+     * @return
+     *     the {@link Ball}'s type.
+     */
+    public BallTypes getBallType() {
+        return this.ballType;
+    }
+    /**
+     * Sets the {@link Ball}'s type.
+     * @param ballType
+     *     the {@link Ball}'s type.
+     */
+    public void setBallTypes(final BallTypes ballType) {
+        this.ballType = ballType;
+    }
+    /**
      * Concrete implementation of {@link AbstractGameObject.AbstractBuilder}.
      */
     public static class Builder extends AbstractGameObject.AbstractBuilder<Ball, Builder> {
@@ -41,11 +59,23 @@ public final class Ball extends AbstractGameObject {
          *     the {@link Builder}.
          */
         public Builder setLife(final int life) {
-            super.gameObject.setLife(life);
+            this.getGameObject().setLife(life);
             return this;
         }
+        /**
+         * Sets the {@link Ball}'s type.
+         * @param ballType
+         *     the {@link Ball}'s type.
+         * @return
+         *     the {@link Builder}.
+         */
+        public Builder setBallType(final BallTypes ballType) {
+            this.getGameObject().setBallTypes(ballType);
+            return this;
+        }
+
         @Override
-        protected final Ball getGameObject() {
+        protected final Ball initGameObject() {
             return new Ball(GameObjectTypes.BALL);
         }
 

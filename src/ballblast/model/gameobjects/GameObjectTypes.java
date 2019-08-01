@@ -1,7 +1,7 @@
 package ballblast.model.gameobjects;
 
 /**
- * Component types which can be used.
+ * All different types of {@link GameObject}.
  *
  */
 public enum GameObjectTypes {

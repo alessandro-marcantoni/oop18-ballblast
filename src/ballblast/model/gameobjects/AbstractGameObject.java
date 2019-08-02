@@ -15,8 +15,6 @@ import ballblast.utils.Point2D;
  */
 public abstract class AbstractGameObject implements GameObject {
     private final GameObjectTypes type;
-    private int height;
-    private int width;
     private Point2D position;
     private boolean isDestroyed;
     private ImmutableList<Component> components;
@@ -32,24 +30,10 @@ public abstract class AbstractGameObject implements GameObject {
     }
 
     @Override
-    public final int getHeight() {
-        return this.height;
-    }
+    public abstract int getHeight();
 
     @Override
-    public final int getWidth() {
-        return this.width;
-    }
-
-    @Override
-    public final void setHeight(final int height) {
-        this.height = height;
-    }
-
-    @Override
-    public final void setWidth(final int width) {
-        this.width = width;
-    }
+    public abstract int getWidth();
 
     @Override
     public final Point2D getPosition() {
@@ -145,35 +129,13 @@ public abstract class AbstractGameObject implements GameObject {
             return this.gameObject;
         }
         /**
-         * Sets the {@link GameObject} height.
-         * @param height
-         *     the {@link GameObject} height.
-         * @return
-         *     the concrete {@link AbstractBuilder}.
-         */
-        public B setHeight(final int height) {
-            this.gameObject.setHeight(height);
-            return this.builder;
-        }
-        /**
-         * Sets the {@link GameObject} width.
-         * @param width
-         *     the {@link GameObject} width.
-         * @return
-         *     the concrete {@link AbstractBuilder}.
-         */
-        public B setWidth(final int width) {
-            this.gameObject.setWidth(width);
-            return this.builder;
-        }
-        /**
          * Sets the {@link GameObject} position.
          * @param position
          *     the {@link GameObject} {@link Point2D} position.
          * @return
          *     the concrete {@link AbstractBuilder}.
          */
-        public B setPostion(final Point2D position) {
+        public B setPosition(final Point2D position) {
             this.gameObject.setPosition(position);
             return this.builder;
         }

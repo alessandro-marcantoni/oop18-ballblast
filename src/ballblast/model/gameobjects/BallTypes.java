@@ -1,4 +1,7 @@
 package ballblast.model.gameobjects;
+
+import java.util.Optional;
+
 /**
  * All different types of {@link Ball}.
  */
@@ -6,55 +9,45 @@ public enum BallTypes {
         /**
          * small.
          */
-        SMALL(false, 40, 80),
+        SMALL(20),
         /**
          * medium.
          */
-        MEDIUM(true, 40, 70),
+        MEDIUM(25),
         /**
          * large.
          */
-        LARGE(true, 40, 60);
+        LARGE(30);
+        private BallTypes child;
+        private int diameter;
 
-        private final boolean divisible;
-        private final int minBounce;
-        private final int maxBounce;
-        /**
-         * Creates a BallTypes instance.
-         * @param divisible
-         *     the boolean specifies if the object is divisible or not.
-         * @param minBounce
-         *     the minimum ball's bounce.
-         * @param maxBounce
-         *     the maximum ball's bounce.
-         */
-        BallTypes(final boolean divisible, final int minBounce, final int maxBounce) {
-            this.divisible = divisible;
-            this.minBounce = minBounce;
-            this.maxBounce = maxBounce;
+        static {
+            SMALL.child = null;
+            MEDIUM.child = SMALL;
+            LARGE.child = MEDIUM;
         }
         /**
-         * Gets the boolean specifies if the object is divisible or not.
-         * @return
-         *     true if the object is divisible, false otherwise.
+         * Create a {@link BallTypes} instance.
+         * @param diameter
+         *     the diameter of the {@link Ball}.
          */
-        public boolean isDivisible() {
-            return this.divisible;
+        BallTypes(final int diameter) {
+            this.diameter = diameter;
         }
         /**
-         * Gets the minimum ball's bounce.
+         * Gets the {@link Optional} represents the {@link BallTypes} to split into.
          * @return
-         *     the the minimum ball's bounce.
+         *     an empty {@link Optional} if the {@link Ball} is not divisible, an {@link BallTypes} otherwise.
          */
-        public int getMinBounce() {
-            return this.minBounce;
+        public Optional<BallTypes> getChild() {
+            return Optional.of(child);
         }
         /**
-         * Gets the maximum ball's bounce.
+         * Gets the {@link Ball}'s diameter.
          * @return
-         *     the maximum ball's bounce.
+         *     the diameter of the {@link Ball}.
          */
-        public int getMaxBounce() {
-            return this.maxBounce;
+        public int getDiameter() {
+            return this.diameter;
         }
 } 

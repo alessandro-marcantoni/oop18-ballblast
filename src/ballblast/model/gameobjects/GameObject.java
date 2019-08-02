@@ -17,23 +17,11 @@ public interface GameObject {
      */
     int getHeight();
     /**
-     * Sets the {@link GameObject} height.
-     * @param height
-     *     the height {@link GameObject}.
-     */
-    void setHeight(int height);
-    /**
      * Gets the {@link GameObject} width.
      * @return
      *      the width of {@link GameObject}.
      */
     int getWidth();
-    /**
-     * Sets the {@link GameObject} width.
-     * @param width
-     *     the width of {@link GameObject}.
-     */
-    void setWidth(int width);
     /**
      * Gets the GameObject position.
      * @return

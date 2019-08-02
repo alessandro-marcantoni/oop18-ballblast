@@ -1,5 +1,7 @@
 package ballblast;
 
+import ballblast.test.TestCollision;
+
 /**
  * The class containing the main method to start the application.
  */
@@ -11,6 +13,7 @@ public final class BallBlast {
      *      CLI arguments.
      */
     public static void main(final String [] args) {
-        System.out.println("Hello World");
+        //System.out.println("Hello World!\n");
+        TestCollision test = new TestCollision();
     }
 }

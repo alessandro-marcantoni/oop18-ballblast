@@ -20,7 +20,8 @@ public class GameObjectManager {
      */
     public GameObjectManager(final GameObject player) {
         this.player = player;
-        this.gameObjects = ImmutableList.of();
+        this.gameObjects = ImmutableList.of(player);
+        this.toBeAdded = ImmutableList.of();
     }
     /**
      * Updates the status of every {@link GameObject}.

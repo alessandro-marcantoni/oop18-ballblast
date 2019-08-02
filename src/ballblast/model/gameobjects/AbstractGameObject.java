@@ -27,6 +27,7 @@ public abstract class AbstractGameObject implements GameObject {
     protected AbstractGameObject(final GameObjectTypes type) {
         this.type = type;
         this.isDestroyed = false;
+        this.components = ImmutableList.of();
     }
 
     @Override

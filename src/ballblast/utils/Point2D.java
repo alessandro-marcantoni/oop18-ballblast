@@ -1,10 +1,15 @@
 package ballblast.utils;
 
+import com.google.common.base.MoreObjects;
+
 /**
  * Defines a point representing a location in (x,y) coordinate space.
  */
 public class Point2D {
-
+    /**
+     * Default {@link Point2D} position.
+     */
+    public static final Point2D ZERO = new Point2D(0.0, 0.0);
     private final double x;
     private final double y;
     /**
@@ -33,5 +38,13 @@ public class Point2D {
      */
     public double getY() {
         return y;
+    }
+
+    @Override
+    public final String toString() {
+       return MoreObjects.toStringHelper(this)
+               .add("X", this.getX())
+               .add("Y", this.getY())
+               .toString();
     }
 }

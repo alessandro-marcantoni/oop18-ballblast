@@ -15,8 +15,8 @@ import ballblast.utils.Point2D;
  */
 public class TestCollision {
 
-    private GameObject ball = new Ball(GameObjectTypes.BALL);
-    private GameObject player = new Ball(GameObjectTypes.PLAYER);
+    private GameObject ball = new Ball();
+    private GameObject player = new Player());
     private CollisionManager cm = new CollisionManager();
 
     private Collidable c1 = new CollisionComponent(cm, ComponentTypes.COLLISION, ball, CollisionTag.BALL);

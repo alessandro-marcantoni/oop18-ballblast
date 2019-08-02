@@ -117,4 +117,9 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
         behavior.execute();
     }
+
+    @Override
+    public void update(final double elapsed) {
+
+    }
 }

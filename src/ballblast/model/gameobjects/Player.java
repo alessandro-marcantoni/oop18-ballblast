@@ -21,14 +21,17 @@ public class Player extends AbstractGameObject {
         this.height = DEFAULT_HEIGHT;
         this.width = DEFAULT_WIDTH;
     }
+
     @Override
     public final int getHeight() {
         return this.height;
     }
+
     @Override
     public final int getWidth() {
         return this.width;
     }
+
     @Override
     public final boolean equals(final Object obj) {
        if (obj == null || getClass() != obj.getClass()) {
@@ -37,10 +40,12 @@ public class Player extends AbstractGameObject {
        final Player other = (Player) obj;
        return Objects.equal(this.getType(), other.getType());
     }
+
     @Override
     public final int hashCode() {
        return Objects.hashCode(this.getType());
     }
+
     @Override
     public final String toString() {
        return MoreObjects.toStringHelper(this)

@@ -59,10 +59,12 @@ public final class Ball extends AbstractGameObject {
     public int getHeight() {
         return this.diameter;
     }
+
     @Override
     public int getWidth() {
         return this.diameter;
     }
+
     @Override
     public boolean equals(final Object obj) {
        if (obj == null || getClass() != obj.getClass()) {
@@ -79,6 +81,7 @@ public final class Ball extends AbstractGameObject {
     public int hashCode() {
        return Objects.hashCode(this.getType(), this.ballType);
     }
+
     @Override
     public String toString() {
        return MoreObjects.toStringHelper(this)

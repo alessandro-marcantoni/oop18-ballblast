@@ -2,20 +2,23 @@ package ballblast.model.gameobjects;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+
 /**
- * Represents a wall object used to create the level's boundaries. 
+ * Represents a bullet that can be shot by the player to hit the balls.
+ * It can collide whit walls and balls, not with the player.
+ *
  */
-public class Wall extends AbstractGameObject {
-    private static final int DEFAULT_WIDTH = 5;
-    private static final int DEFAULT_HEIGHT = 5;
+public class Bullet extends AbstractGameObject {
+    private static final int DEFAULT_WIDTH = 12;
+    private static final int DEFAULT_HEIGHT = 15;
 
     private final int height;
     private final int width;
     /**
-     * Creates a {@link Wall} instance.
+     * Create a {@link Bullet} instance.
      */
-    protected Wall() {
-        super(GameObjectTypes.WALL);
+    protected Bullet() {
+        super(GameObjectTypes.BULLET);
         this.height = DEFAULT_HEIGHT;
         this.width = DEFAULT_WIDTH;
     }
@@ -35,7 +38,7 @@ public class Wall extends AbstractGameObject {
        if (obj == null || getClass() != obj.getClass()) {
           return false;
        }
-       final Wall other = (Wall) obj;
+       final Bullet other = (Bullet) obj;
        return Objects.equal(this.getType(), other.getType())
                && Objects.equal(this.getPosition(), other.getPosition());
     }
@@ -56,10 +59,10 @@ public class Wall extends AbstractGameObject {
     /**
      * Concrete implementation of {@link AbstractGameObject.AbstractBuilder}.
      */
-    public static class Builder extends AbstractGameObject.AbstractBuilder<Wall, Builder> {
+    public static class Builder extends AbstractGameObject.AbstractBuilder<Bullet, Builder> {
         @Override
-        protected final Wall initGameObject() {
-            return new Wall();
+        protected final Bullet initGameObject() {
+            return new Bullet();
         }
 
         @Override
@@ -68,4 +71,3 @@ public class Wall extends AbstractGameObject {
         }
     }
 }
-

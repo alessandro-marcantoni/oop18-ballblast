@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import ballblast.model.levels.BasicLevel;
 import ballblast.model.levels.Level;
+import ballblast.model.levels.SurvivalLevelDecorator;
 
 /**
  * This is the concrete implementation of model interface.
@@ -18,7 +19,6 @@ public final class ModelImpl implements Model {
 
     @Override
     public void startSurvival() {
-        this.currentLevel = new BasicLevel();
+        this.currentLevel = new SurvivalLevelDecorator(new BasicLevel());
     }
-
 }

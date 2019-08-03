@@ -123,7 +123,7 @@ public final class Ball extends AbstractGameObject {
         @Override
         public final Ball build() {
             if (!getGameObject().getBallType().isPresent()) {
-                throw new InvalidParameterException("Ball type has to be set!");
+                throw new InvalidParameterException("BallType has to be set!");
             }
             return this.getGameObject();
         }

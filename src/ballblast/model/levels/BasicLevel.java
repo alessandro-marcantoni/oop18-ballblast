@@ -1,38 +1,35 @@
 package ballblast.model.levels;
 
-import java.util.List;
-
-import com.google.common.collect.ImmutableList;
-
-import ballblast.model.gameobjects.GameObject;
+import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.gameobjects.Player;
 /**
- * The BasicLevel class implements the Level interface.
+ * Generic implementation of the {@link Level} interface.
+ * Defines base behavior that all levels share.
  */
-public class BasicLevel implements Level {
-
-    private ImmutableList<GameObject> gameObjects;
+public final class BasicLevel implements Level {
+    private final GameObjectManager gameObjectManager;
     private int gameScore;
 
     /**
      * Creates a new instance of BasicLevel.
      */
     public BasicLevel() {
-        this.gameObjects = ImmutableList.of();
+        this.gameObjectManager = new GameObjectManager(new Player.Builder().build());
         this.gameScore = 0;
     }
 
     @Override
-    public final void update(final double elapsed) {
-        this.gameObjects.forEach(o -> o.update(elapsed));
+    public void update(final double elapsed) {
+        this.gameObjectManager.getGameObjects().forEach(o -> o.update(elapsed));
     }
 
     @Override
-    public final List<GameObject> getGameObjects() {
-        return ImmutableList.copyOf(gameObjects);
+    public GameObjectManager getGameObjectManager() {
+        return this.gameObjectManager;
     }
 
     @Override
-    public final int getGameScore() {
+    public int getGameScore() {
         return this.gameScore;
     }
 }

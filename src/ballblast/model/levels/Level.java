@@ -1,8 +1,6 @@
 package ballblast.model.levels;
 
-import java.util.List;
-
-import ballblast.model.gameobjects.GameObject;
+import ballblast.model.gameobjects.GameObjectManager;
 /**
  * Represents a level and it is responsible for the game logic. 
  *
@@ -15,11 +13,11 @@ public interface Level {
      */
     void update(double elapsed);
     /**
-     * Gets all Level's {@link GameObejct}s.
+     * Gets the {@link GameObjectManager}.
      * @return
-     *      the {@link List} containing all Level's {@link GameObejct}s.
+     *      the {@link GameObjectManager}.
      */
-    List<GameObject> getGameObjects();
+    GameObjectManager getGameObjectManager();
     /**
      * Gets the Level's score.
      * @return

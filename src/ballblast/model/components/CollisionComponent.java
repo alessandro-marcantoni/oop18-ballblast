@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
 
+import com.google.common.base.MoreObjects;
+
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.physics.Behavior;
 import ballblast.model.physics.Collidable;
@@ -110,6 +112,13 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
         }
 
         behavior.execute();
+    }
+
+    @Override
+    public final String toString() {
+        return MoreObjects.toStringHelper(this)
+                          .add("AttachedTo", this.getAttachedGameObject().get())
+                          .toString();
     }
 
     @Override

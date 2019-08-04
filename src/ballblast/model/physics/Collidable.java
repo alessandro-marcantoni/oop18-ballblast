@@ -35,4 +35,11 @@ public interface Collidable {
      */
     void notifyCollision(Collision collision);
 
+    /**
+     * Get all the component information under string format.
+     * @return
+     *       the string with informations.
+     */
+    String toString();
+
 }

@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 /**
- * Implements the GameObject Ball. It bounces always at same height 
+ * Implements the GameObject {@link Ball}. It bounces always at same height 
  * based on its size and not depending on gravity values.
  */
 public final class Ball extends AbstractGameObject {

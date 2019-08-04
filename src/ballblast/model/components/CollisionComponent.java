@@ -19,22 +19,16 @@ import ballblast.utils.Point2D;
 public class CollisionComponent extends AbstractComponent implements Collidable {
 
     private CollisionTag collisionTag;
-    private GameObject parent;
     private CollisionManager manager;
     /**
-     * The costructor for the CollisionComponent.
+     * The constructor for the CollisionComponent.
      * @param man
      *       the collision manager.
-     * @param type
-     *       the type of the component to attach on the game object.
-     * @param obj
-     *       the game object where this component is attached to.
      * @param tag
      *       the type of the collision component, chosen by the game object type.
      */
-    public CollisionComponent(final CollisionManager man, final ComponentTypes type, final GameObject obj, final CollisionTag tag) {
-        super(type, obj);
-        this.parent = obj;
+    public CollisionComponent(final CollisionManager man, final CollisionTag tag) {
+        super(ComponentTypes.COLLISION);
         this.collisionTag = tag;
         this.manager = man;
         this.manager.addCollidable(this);
@@ -42,8 +36,8 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     @Override
     public final Envelope generateShape() {
-        Coordinate coordinateX = this.generateCoordinateX(this.parent.getPosition(), this.getParent());
-        Coordinate coordinateY = this.generateCoordinateY(this.parent.getPosition(), this.getParent());
+        Coordinate coordinateX = this.generateCoordinateX(this.getParent().getPosition(), this.getParent());
+        Coordinate coordinateY = this.generateCoordinateY(this.getParent().getPosition(), this.getParent());
         return new Envelope(coordinateX.x, coordinateX.y, coordinateY.x, coordinateY.y);
     }
 
@@ -62,7 +56,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     @Override
     public final Optional<GameObject> getAttachedGameObject() {
-        return Optional.of(this.parent);
+        return Optional.of(this.getParent());
     }
 
     // da capire come e dove usarla

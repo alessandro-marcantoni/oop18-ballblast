@@ -20,5 +20,9 @@ public enum ComponentTypes {
     /**
      * CollisionComponent.
      */
-    COLLISION
+    COLLISION,
+    /**
+     * ShooterComponent.
+     */
+    SHOOTER
 }

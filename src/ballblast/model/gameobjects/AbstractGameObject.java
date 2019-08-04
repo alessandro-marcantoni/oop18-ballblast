@@ -58,6 +58,7 @@ public abstract class AbstractGameObject implements GameObject {
 
     @Override
     public final void addComponent(final Component component) {
+        component.setParent(this);
         this.components = ImmutableList.<Component>builder()
                 .addAll(this.components)
                 .add(component)

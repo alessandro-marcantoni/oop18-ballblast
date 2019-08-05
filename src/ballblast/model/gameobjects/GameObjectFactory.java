@@ -3,6 +3,7 @@ package ballblast.model.gameobjects;
 import org.locationtech.jts.geom.Coordinate;
 
 import ballblast.model.components.CollisionComponent;
+import ballblast.model.components.MovementComponent;
 import ballblast.model.components.ShooterComponent;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.CollisionTag;
@@ -24,8 +25,11 @@ public final class GameObjectFactory {
      */
     public static GameObject createPlayer(final GameObjectManager gameObjectManager,
             final CollisionManager collisionManager) {
-        return new Player.Builder().addComponent(new ShooterComponent(gameObjectManager, collisionManager))
-                .addComponent(new CollisionComponent(collisionManager, CollisionTag.PLAYER)).build();
+        return new Player.Builder()
+                .addComponent(new ShooterComponent(gameObjectManager, collisionManager))
+                .addComponent(new CollisionComponent(collisionManager, CollisionTag.PLAYER))
+                .addComponent(new MovementComponent(Player.VELOCITY))
+                .build();
     }
 
     /**
@@ -39,8 +43,12 @@ public final class GameObjectFactory {
      */
     public static GameObject createWall(final double height, final double width, final Coordinate position,
             final CollisionManager collisionManager) {
-        return new Wall.Builder().setHeight(height).setWidth(width).setPosition(position)
-                .addComponent(new CollisionComponent(collisionManager, CollisionTag.WALL)).build();
+        return new Wall.Builder()
+                .setHeight(height)
+                .setWidth(width)
+                .setPosition(position)
+                .addComponent(new CollisionComponent(collisionManager, CollisionTag.WALL))
+                .build();
     }
 
     /**
@@ -51,8 +59,11 @@ public final class GameObjectFactory {
      * @return the {@link GameObject} created.
      */
     public static GameObject createBullet(final Coordinate position, final CollisionManager collisionManager) {
-        return new Bullet.Builder().setPosition(position)
-                .addComponent(new CollisionComponent(collisionManager, CollisionTag.BULLET)).build();
+        return new Bullet.Builder()
+                .setPosition(position)
+                .addComponent(new CollisionComponent(collisionManager, CollisionTag.BULLET))
+                .addComponent(new MovementComponent(Bullet.VELOCITY))
+                .build();
     }
 
     /**
@@ -66,7 +77,12 @@ public final class GameObjectFactory {
      */
     public static GameObject createBall(final BallTypes ballType, final int life, final Coordinate position,
             final CollisionManager collisionManager) {
-        return new Ball.Builder().setBallType(ballType).setLife(life).setPosition(position)
-                .addComponent(new CollisionComponent(collisionManager, CollisionTag.BALL)).build();
+        return new Ball.Builder()
+                .setBallType(ballType)
+                .setLife(life)
+                .setPosition(position)
+                .addComponent(new CollisionComponent(collisionManager, CollisionTag.BALL))
+                .addComponent(new MovementComponent(Ball.VELOCITY))
+                .build();
     }
 }

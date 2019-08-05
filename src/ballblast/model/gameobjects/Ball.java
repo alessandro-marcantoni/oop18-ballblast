@@ -2,12 +2,18 @@ package ballblast.model.gameobjects;
 
 import java.util.Optional;
 
+import org.locationtech.jts.math.Vector2D;
+
 import com.google.common.base.MoreObjects;
 /**
  * Implements the GameObject {@link Ball}. It bounces always at same height 
  * based on its size and not depending on gravity values.
  */
 public final class Ball extends AbstractGameObject {
+    /**
+     * the {@link Ball}'s velocity.
+     */
+    public static final Vector2D VELOCITY = new Vector2D();
     private BallTypes ballType;
     private int life;
     /**

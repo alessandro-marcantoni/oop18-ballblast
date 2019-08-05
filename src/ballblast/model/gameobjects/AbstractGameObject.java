@@ -18,6 +18,8 @@ public abstract class AbstractGameObject implements GameObject {
     private Point2D position;
     private boolean isDestroyed;
     private ImmutableList<Component> components;
+    private double width;
+    private double height;
 
     /**
      * Creates a AbstractGameObject instance.
@@ -29,12 +31,31 @@ public abstract class AbstractGameObject implements GameObject {
         this.isDestroyed = false;
         this.components = ImmutableList.of();
     }
+    /**
+     * Sets the {@link GameObject}'s height.
+     * @param height
+     *     the height of the {@link GameObject}.
+     */
+    protected void setHeight(final double height) {
+        this.height = height;
+    }
+    /**
+     * Sets the {@link GameObject}'s width.
+     * @param width
+     *     the width of the {@link GameObject}.
+     */
+    protected void setWidth(final double width) {
+        this.width = width;
+    }
 
     @Override
-    public abstract int getHeight();
-
+    public final double getWidth() { 
+        return this.width; 
+    }
     @Override
-    public abstract int getWidth();
+    public final double getHeight() { 
+        return this.height;
+    }
 
     @Override
     public final Point2D getPosition() {

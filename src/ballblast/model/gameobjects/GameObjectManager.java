@@ -11,16 +11,11 @@ public class GameObjectManager {
 
     private ImmutableList<GameObject> gameObjects;
     private ImmutableList<GameObject> toBeAdded;
-    private final GameObject player;
-
     /**
      * Creates a new instance of GameObjectManager.
-     * @param player
-     *      the {@link GameObject} handled by the User.
      */
-    public GameObjectManager(final GameObject player) {
-        this.player = player;
-        this.gameObjects = ImmutableList.of(player);
+    public GameObjectManager() {
+        this.gameObjects = ImmutableList.of();
         this.toBeAdded = ImmutableList.of();
     }
     /**
@@ -43,14 +38,6 @@ public class GameObjectManager {
                 .addAll(toBeAdded)
                 .addAll(gameObjects)
                 .build();
-    }
-    /**
-     * Gets the {@link GameObject} player.
-     * @return
-     *      the player.
-     */
-    public GameObject getPlayer() {
-        return player;
     }
     /**
      * Gets the {@link List} containing all {@link GameObject}s.

@@ -32,17 +32,17 @@ public class SurvivalLevelDecorator extends LevelDecorator {
         super.update(elapsed);
         this.currentSpawnTime -= elapsed;
         if (this.currentSpawnTime <= 0) {
-            this.spawnEnemy();
+            this.spawnBall();
             this.currentSpawnTime = SPAWN_TIME;
         }
     }
 
-    private void spawnEnemy() {
-        final GameObject enemy = new Ball.Builder()
+    private void spawnBall() {
+        final GameObject ball = new Ball.Builder()
                 .setBallType(BallTypes.LARGE)
                 .setPosition(ENEMY_SPAWN_POSITION)
                 .build();
-        this.getGameObjectManager().addGameObjects(ImmutableList.of(enemy));
+        this.getGameObjectManager().addGameObjects(ImmutableList.of(ball));
     }
 
 }

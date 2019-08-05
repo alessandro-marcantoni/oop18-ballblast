@@ -15,13 +15,13 @@ public interface GameObject {
      * @return
      *      the height of game object.
      */
-    int getHeight();
+    double getHeight();
     /**
      * Gets the {@link GameObject} width.
      * @return
      *      the width of {@link GameObject}.
      */
-    int getWidth();
+    double getWidth();
     /**
      * Gets the GameObject position.
      * @return

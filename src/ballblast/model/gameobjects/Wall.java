@@ -6,28 +6,11 @@ import com.google.common.base.Objects;
  * Represents a wall object used to create the level's boundaries. 
  */
 public class Wall extends AbstractGameObject {
-    private static final int DEFAULT_WIDTH = 5;
-    private static final int DEFAULT_HEIGHT = 5;
-
-    private final int height;
-    private final int width;
     /**
      * Creates a {@link Wall} instance.
      */
     protected Wall() {
         super(GameObjectTypes.WALL);
-        this.height = DEFAULT_HEIGHT;
-        this.width = DEFAULT_WIDTH;
-    }
-
-    @Override
-    public final int getHeight() {
-        return this.height;
-    }
-
-    @Override
-    public final int getWidth() {
-        return this.width;
     }
 
     @Override
@@ -57,6 +40,29 @@ public class Wall extends AbstractGameObject {
      * Concrete implementation of {@link AbstractGameObject.AbstractBuilder}.
      */
     public static class Builder extends AbstractGameObject.AbstractBuilder<Wall, Builder> {
+        /**
+         * Sets the {@link Wall}'s height.
+         * @param height
+         *     the height of the {@link Wall}.
+         * @return
+         *     the {@link Builder}.
+         */
+        public Builder setHeight(final double height) {
+            this.getGameObject().setHeight(height);
+            return this;
+        }
+        /**
+         * Sets the {@link Wall}'s width.
+         * @param width
+         *     the width of the {@link Wall}.
+         * @return
+         *     the {@link Builder}.
+         */
+        public Builder setWidth(final double width) {
+            this.getGameObject().setWidth(width);
+            return this;
+        }
+
         @Override
         protected final Wall initGameObject() {
             return new Wall();

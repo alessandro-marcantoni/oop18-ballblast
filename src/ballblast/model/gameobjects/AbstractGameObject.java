@@ -31,10 +31,10 @@ public abstract class AbstractGameObject implements GameObject {
     }
 
     @Override
-    public abstract int getHeight();
+    public abstract double getHeight();
 
     @Override
-    public abstract int getWidth();
+    public abstract double getWidth();
 
     @Override
     public final Point2D getPosition() {

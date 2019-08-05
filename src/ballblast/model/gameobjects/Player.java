@@ -8,11 +8,11 @@ import com.google.common.base.Objects;
  * which can shoot to destroy objects and dies when hit by a ball.
  */
 public class Player extends AbstractGameObject {
-    private static final int DEFAULT_WIDTH = 12;
-    private static final int DEFAULT_HEIGHT = 15;
+    private static final double DEFAULT_WIDTH = 12;
+    private static final double DEFAULT_HEIGHT = 15;
 
-    private final int height;
-    private final int width;
+    private final double height;
+    private final double width;
     /**
      * Creates a Player instance.
      */
@@ -23,12 +23,12 @@ public class Player extends AbstractGameObject {
     }
 
     @Override
-    public final int getHeight() {
+    public final double getHeight() {
         return this.height;
     }
 
     @Override
-    public final int getWidth() {
+    public final double getWidth() {
         return this.width;
     }
 

@@ -14,7 +14,7 @@ public final class Ball extends AbstractGameObject {
     //private static final int MIN_BOUNCE = 50;
     private BallTypes ballType;
     private int life;
-    private int diameter;
+    private double diameter;
     /**
      * Creates a Ball instance.
      */
@@ -56,12 +56,12 @@ public final class Ball extends AbstractGameObject {
     }
 
     @Override
-    public int getHeight() {
+    public double getHeight() {
         return this.diameter;
     }
 
     @Override
-    public int getWidth() {
+    public double getWidth() {
         return this.diameter;
     }
 

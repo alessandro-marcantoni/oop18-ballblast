@@ -1,6 +1,7 @@
 package ballblast.model.levels;
 
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.physics.CollisionManager;
 /**
  * Represents an abstraction for all level decorators. Every method of the {@link Level} 
  * interface is implemented by delegating to the decorated instance of level.
@@ -29,6 +30,13 @@ public abstract class LevelDecorator implements Level {
     @Override
     public final GameObjectManager getGameObjectManager() {
         return this.innerLevel.getGameObjectManager();
+    }
+    /**
+     * Standard implementation delegates to innerLevel.
+     */
+    @Override
+    public final CollisionManager getCollisionManager() {
+        return this.innerLevel.getCollisionManager();
     }
     /**
      * Standard implementation delegates to innerLevel.

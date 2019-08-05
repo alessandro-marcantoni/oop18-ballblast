@@ -4,7 +4,8 @@ import ballblast.model.components.Component;
 import ballblast.model.components.ComponentTypes;
 
 import java.util.List;
-import ballblast.utils.Point2D;
+
+import org.locationtech.jts.geom.Coordinate;
 
 /**
  * Represent a general entity of the game.
@@ -27,13 +28,13 @@ public interface GameObject {
      * @return
      *      {@link Point2d} of {@link GameObject}.
      */
-    Point2D getPosition();
+    Coordinate getPosition();
     /**
      * Sets the GameObject position.
      * @param position
      *      the new {@link Point2d} of {@link GameObject}.
      */
-    void setPosition(Point2D position);
+    void setPosition(Coordinate position);
     /**
      * Returns a boolean which notifies if the {@link GameObject} is destroyed.
      * @return

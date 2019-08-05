@@ -15,7 +15,6 @@ import ballblast.model.physics.Collidable;
 import ballblast.model.physics.Collision;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.CollisionTag;
-import ballblast.utils.Point2D;
 
 /**
  * Represents the collision component of a {@link GameObject}.
@@ -45,11 +44,11 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
         return new GeometryFactory().toGeometry(new Envelope(coordinateX.x, coordinateX.y, coordinateY.x, coordinateY.y));
     }
 
-    private Coordinate generateCoordinateX(final Point2D pos, final GameObject obj) {
+    private Coordinate generateCoordinateX(final Coordinate pos, final GameObject obj) {
         return new Coordinate(pos.getY() - obj.getHeight() / 2, pos.getY() + obj.getHeight() / 2);
     }
 
-    private Coordinate generateCoordinateY(final Point2D pos, final GameObject obj) {
+    private Coordinate generateCoordinateY(final Coordinate pos, final GameObject obj) {
         return new Coordinate(pos.getX() - obj.getWidth() / 2, pos.getX() + obj.getWidth() / 2);
     }
 

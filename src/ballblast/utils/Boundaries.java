@@ -1,5 +1,7 @@
 package ballblast.utils;
 
+import org.locationtech.jts.geom.Coordinate;
+
 import ballblast.model.Model;
 /**
  * Represents the game's boundaries.
@@ -22,23 +24,23 @@ public enum Boundaries {
      */
     BOTTOM;
     static {
-        LEFT.position = new Point2D(0, -Model.WALL_OFFSET / 2);
+        LEFT.position = new Coordinate(0, -Model.WALL_OFFSET / 2);
         LEFT.width = Model.WORLD_WIDTH + Model.WALL_OFFSET * 2;
         LEFT.height = Model.WALL_OFFSET;
 
-        RIGHT.position = new Point2D(0, Model.WORLD_HEIGHT + Model.WALL_OFFSET / 2);
+        RIGHT.position = new Coordinate(0, Model.WORLD_HEIGHT + Model.WALL_OFFSET / 2);
         RIGHT.width = Model.WORLD_WIDTH + Model.WALL_OFFSET * 2;
         RIGHT.height = Model.WALL_OFFSET; 
 
-        TOP.position = new Point2D(-(Model.WORLD_WIDTH / 2 + Model.WALL_OFFSET / 2), Model.WORLD_HEIGHT / 2);
+        TOP.position = new Coordinate(-(Model.WORLD_WIDTH / 2 + Model.WALL_OFFSET / 2), Model.WORLD_HEIGHT / 2);
         TOP.width = Model.WALL_OFFSET;
         TOP.height = Model.WORLD_HEIGHT;
 
-        BOTTOM.position = new Point2D(Model.WORLD_WIDTH / 2 + Model.WALL_OFFSET / 2, Model.WORLD_HEIGHT / 2);
+        BOTTOM.position = new Coordinate(Model.WORLD_WIDTH / 2 + Model.WALL_OFFSET / 2, Model.WORLD_HEIGHT / 2);
         BOTTOM.width = Model.WALL_OFFSET;
         BOTTOM.height = Model.WORLD_HEIGHT; 
     }
-    private Point2D position;
+    private Coordinate position;
     private double width;
     private double height;
     /**
@@ -46,7 +48,7 @@ public enum Boundaries {
      * @return
      *     the position of the boundary.
      */
-    public Point2D getPosition() {
+    public Coordinate getPosition() {
         return position;
     }
     /**

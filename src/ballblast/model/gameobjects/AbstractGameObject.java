@@ -2,20 +2,19 @@ package ballblast.model.gameobjects;
 
 import java.util.List;
 
+import org.locationtech.jts.geom.Coordinate;
 import com.google.common.collect.ImmutableList;
-
 import ballblast.model.components.Component;
 import ballblast.model.components.ComponentTypes;
-import ballblast.utils.Point2D;
-
 /**
  * Generic implementation of the {@link GameObject} interface.
  * Defines base behavior that all game objects share.
  *
  */
 public abstract class AbstractGameObject implements GameObject {
+    private static final Coordinate ZERO = new Coordinate(0, 0);
     private final GameObjectTypes type;
-    private Point2D position;
+    private Coordinate position;
     private boolean isDestroyed;
     private ImmutableList<Component> components;
     private double width;
@@ -30,6 +29,7 @@ public abstract class AbstractGameObject implements GameObject {
         this.type = type;
         this.isDestroyed = false;
         this.components = ImmutableList.of();
+        this.position = ZERO;
     }
     /**
      * Sets the {@link GameObject}'s height.
@@ -58,12 +58,12 @@ public abstract class AbstractGameObject implements GameObject {
     }
 
     @Override
-    public final Point2D getPosition() {
+    public final Coordinate getPosition() {
         return this.position;
     }
 
     @Override
-    public final void setPosition(final Point2D position) {
+    public final void setPosition(final Coordinate position) {
         this.position = position;
     }
 
@@ -154,11 +154,11 @@ public abstract class AbstractGameObject implements GameObject {
         /**
          * Sets the {@link GameObject} position.
          * @param position
-         *     the {@link GameObject} {@link Point2D} position.
+         *     the {@link GameObject} {@link Coordinate} position.
          * @return
          *     the concrete {@link AbstractBuilder}.
          */
-        public B setPosition(final Point2D position) {
+        public B setPosition(final Coordinate position) {
             this.gameObject.setPosition(position);
             return this.builder;
         }

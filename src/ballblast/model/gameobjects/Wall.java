@@ -1,35 +1,19 @@
 package ballblast.model.gameobjects;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 /**
  * Represents a wall object used to create the level's boundaries. 
  */
-public class Wall extends AbstractGameObject {
+public final class Wall extends AbstractGameObject {
     /**
      * Creates a {@link Wall} instance.
      */
-    protected Wall() {
+    private Wall() {
         super(GameObjectTypes.WALL);
     }
 
     @Override
-    public final boolean equals(final Object obj) {
-       if (obj == null || getClass() != obj.getClass()) {
-          return false;
-       }
-       final Wall other = (Wall) obj;
-       return Objects.equal(this.getType(), other.getType())
-               && Objects.equal(this.getPosition(), other.getPosition());
-    }
-
-    @Override
-    public final int hashCode() {
-       return Objects.hashCode(this.getType());
-    }
-
-    @Override
-    public final String toString() {
+    public String toString() {
        return MoreObjects.toStringHelper(this)
                .add("GameObjectType", this.getType())
                .add("Position", this.getPosition())

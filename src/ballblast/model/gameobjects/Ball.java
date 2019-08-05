@@ -3,7 +3,6 @@ package ballblast.model.gameobjects;
 import java.util.Optional;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 /**
  * Implements the GameObject {@link Ball}. It bounces always at same height 
  * based on its size and not depending on gravity values.
@@ -14,7 +13,7 @@ public final class Ball extends AbstractGameObject {
     /**
      * Creates a Ball instance.
      */
-    protected Ball() {
+    private Ball() {
         super(GameObjectTypes.BALL);
     }
     /**
@@ -50,23 +49,6 @@ public final class Ball extends AbstractGameObject {
         this.ballType = ballType;
         this.setHeight(ballType.getDiameter());
         this.setWidth(ballType.getDiameter());
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-       if (obj == null || getClass() != obj.getClass()) {
-          return false;
-       }
-       final Ball other = (Ball) obj;
-       return Objects.equal(this.getType(), other.getType())
-               && Objects.equal(this.ballType, other.ballType)
-               && Objects.equal(this.life, other.life)
-               && Objects.equal(this.getPosition(), other.getPosition());
-    }
-
-    @Override
-    public int hashCode() {
-       return Objects.hashCode(this.getType(), this.ballType);
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.security.InvalidParameterException;
 import java.util.List;
 
 import org.junit.Test;
+import org.locationtech.jts.geom.Coordinate;
 
 import com.google.common.collect.ImmutableList;
 
@@ -19,7 +20,6 @@ import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.model.gameobjects.Player;
 import ballblast.model.gameobjects.Wall;
-import ballblast.utils.Point2D;
 /**
  * JUnit test for {@link GameObject}s.
  */
@@ -29,7 +29,7 @@ public class TestGameObjects {
      */
     @Test
     public void testPlayer() {
-        final Player player = new Player.Builder().setPosition(Point2D.ZERO).build();
+        final Player player = new Player.Builder().setPosition(new Coordinate(0, 0)).build();
         assertEquals(player.toString(), "Player{GameObjectType=PLAYER, Position=Point2D{X=0.0, Y=0.0}, IsDestroyed=false}");
         assertTrue(player.getComponents().isEmpty());
         assertTrue(player.getHeight() != 0);
@@ -42,7 +42,7 @@ public class TestGameObjects {
      */
     @Test(expected = InvalidParameterException.class)
     public void testBall() {
-        final Ball ball = new Ball.Builder().setBallType(BallTypes.LARGE).setLife(4).setPosition(Point2D.ZERO).build();
+        final Ball ball = new Ball.Builder().setBallType(BallTypes.LARGE).setLife(4).setPosition(new Coordinate(0, 0)).build();
         assertEquals(ball.toString(), "Ball{GameObjectType=BALL, BallType=LARGE, Diameter=30, Life=4, Position=Point2D{X=0.0, Y=0.0}, IsDestroyed=false}");
         assertTrue(ball.getComponents().isEmpty());
         assertTrue(ball.getHeight() != 0);
@@ -55,7 +55,7 @@ public class TestGameObjects {
      */
     @Test
     public void testBullet() {
-        final Bullet bullet = new Bullet.Builder().setPosition(Point2D.ZERO).build();
+        final Bullet bullet = new Bullet.Builder().setPosition(new Coordinate(0, 0)).build();
         assertEquals(bullet.toString(), "Bullet{GameObjectType=BULLET, Position=Point2D{X=0.0, Y=0.0}, IsDestroyed=false}");
         assertTrue(bullet.getComponents().isEmpty());
         assertTrue(bullet.getHeight() != 0);
@@ -68,7 +68,7 @@ public class TestGameObjects {
      */
     @Test
     public void testWall() {
-        final Wall wall = new Wall.Builder().setPosition(Point2D.ZERO).build();
+        final Wall wall = new Wall.Builder().setPosition(new Coordinate(0, 0)).build();
         assertEquals(wall.toString(), "Wall{GameObjectType=WALL, Position=Point2D{X=0.0, Y=0.0}, IsDestroyed=false}");
         assertTrue(wall.getComponents().isEmpty());
         assertTrue(wall.getHeight() != 0);

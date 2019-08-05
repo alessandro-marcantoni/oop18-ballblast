@@ -1,11 +1,12 @@
 package ballblast.model.levels;
 
+import org.locationtech.jts.geom.Coordinate;
+
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.utils.Point2D;
 
 /**
  * Represents a concrete implementation of {@link LevelDecorator}.
@@ -13,7 +14,7 @@ import ballblast.utils.Point2D;
 public class SurvivalLevelDecorator extends LevelDecorator {
     private static final int SPAWN_TIME = 10;
     //private static final int ENABLE_TIME = 2;
-    private static final Point2D ENEMY_SPAWN_POSITION = Point2D.ZERO;
+    private static final Coordinate ENEMY_SPAWN_POSITION = new Coordinate(0, 0);
 
     //TODO private int totalTime; used to increase the survival's difficult.
     private int currentSpawnTime;

@@ -10,26 +10,13 @@ import com.google.common.base.Objects;
 public class Player extends AbstractGameObject {
     private static final double DEFAULT_WIDTH = 12;
     private static final double DEFAULT_HEIGHT = 15;
-
-    private final double height;
-    private final double width;
     /**
      * Creates a Player instance.
      */
     protected Player() {
         super(GameObjectTypes.PLAYER);
-        this.height = DEFAULT_HEIGHT;
-        this.width = DEFAULT_WIDTH;
-    }
-
-    @Override
-    public final double getHeight() {
-        return this.height;
-    }
-
-    @Override
-    public final double getWidth() {
-        return this.width;
+        this.setHeight(DEFAULT_HEIGHT);
+        this.setWidth(DEFAULT_WIDTH);
     }
 
     @Override

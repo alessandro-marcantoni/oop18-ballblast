@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.security.InvalidParameterException;
@@ -82,11 +81,8 @@ public class TestGameObjects {
      */
     @Test(expected = UnsupportedOperationException.class)
     public void testGameObjectManager() {
-        final Player player = new Player.Builder().setPosition(Point2D.ZERO).build();
-        final GameObjectManager objManager = new GameObjectManager(player);
-        assertFalse(objManager.getGameObjects().isEmpty());
-        //There must be only the Player inside the manager.
-        assertTrue(objManager.getGameObjects().stream().filter(g -> g.getType() != GameObjectTypes.PLAYER).count() == 0);
+        final GameObjectManager objManager = new GameObjectManager();
+        assertTrue(objManager.getGameObjects().isEmpty());
         //Adds some GameObject to the GameObjectManager.
         objManager.addGameObjects(ImmutableList.of(
                 new Ball.Builder().setBallType(BallTypes.LARGE).build(),
@@ -97,7 +93,7 @@ public class TestGameObjects {
         objManager.update(0);
         assertTrue(objManager.getGameObjects().size() > 0);
         //Variable to avoid magic number.
-        final int totObjects = 7;
+        final int totObjects = 6;
         objManager.addGameObjects(ImmutableList.of(
                 new Ball.Builder().setBallType(BallTypes.MEDIUM).build(),
                 new Wall.Builder().build()));

@@ -1,6 +1,5 @@
 package ballblast.model.gameobjects;
 
-import java.security.InvalidParameterException;
 import java.util.Optional;
 
 import com.google.common.base.MoreObjects;
@@ -10,11 +9,8 @@ import com.google.common.base.Objects;
  * based on its size and not depending on gravity values.
  */
 public final class Ball extends AbstractGameObject {
-    //private static final int MAX_BOUNCE = 80;
-    //private static final int MIN_BOUNCE = 50;
     private BallTypes ballType;
     private int life;
-    private double diameter;
     /**
      * Creates a Ball instance.
      */
@@ -50,19 +46,10 @@ public final class Ball extends AbstractGameObject {
      * @param ballType
      *     the {@link Ball}'s type.
      */
-    public void setBallTypes(final BallTypes ballType) {
+    private void setBallTypes(final BallTypes ballType) {
         this.ballType = ballType;
-        this.diameter = ballType.getDiameter();
-    }
-
-    @Override
-    public double getHeight() {
-        return this.diameter;
-    }
-
-    @Override
-    public double getWidth() {
-        return this.diameter;
+        this.setHeight(ballType.getDiameter());
+        this.setWidth(ballType.getDiameter());
     }
 
     @Override
@@ -87,7 +74,7 @@ public final class Ball extends AbstractGameObject {
        return MoreObjects.toStringHelper(this)
                .add("GameObjectType", this.getType())
                .add("BallType", this.ballType)
-               .add("Diameter", this.diameter)
+               .add("Diameter", this.ballType.getDiameter())
                .add("Life", this.life)
                .add("Position", this.getPosition())
                .add("IsDestroyed", this.isDestroyed())
@@ -123,7 +110,7 @@ public final class Ball extends AbstractGameObject {
         @Override
         public final Ball build() {
             if (!getGameObject().getBallType().isPresent()) {
-                throw new InvalidParameterException("BallType has to be set!");
+                throw new IllegalStateException("BallType unset!");
             }
             return this.getGameObject();
         }

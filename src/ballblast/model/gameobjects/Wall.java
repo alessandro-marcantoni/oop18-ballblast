@@ -6,44 +6,11 @@ import com.google.common.base.Objects;
  * Represents a wall object used to create the level's boundaries. 
  */
 public class Wall extends AbstractGameObject {
-    //To remove
-    private static final int DEFAULT_SIZE = 5;
-    private double height;
-    private double width;
     /**
      * Creates a {@link Wall} instance.
      */
     protected Wall() {
         super(GameObjectTypes.WALL);
-        //To remove
-        this.height = DEFAULT_SIZE;
-        this.width = DEFAULT_SIZE;
-    }
-    /**
-     * Sets the {@link Wall}'s height.
-     * @param height
-     *     the height of the {@link Wall}.
-     */
-    public void setHeight(final double height) {
-        this.height = height;
-    }
-    /**
-     * Sets the {@link Wall}'s width.
-     * @param width
-     *     the width of the {@link Wall}.
-     */
-    public void setWidth(final double width) {
-        this.width = width;
-    }
-
-    @Override
-    public final double getHeight() {
-        return this.height;
-    }
-
-    @Override
-    public final double getWidth() {
-        return this.width;
     }
 
     @Override

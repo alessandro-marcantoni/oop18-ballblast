@@ -7,13 +7,13 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import ballblast.model.components.CollisionComponent;
+import ballblast.model.components.Component;
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.Player;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.CollisionTag;
-import ballblast.utils.Point2D;
 
 /**
  * JUnit test for {@link Collidable}s.
@@ -25,12 +25,15 @@ public class TestCollision {
      */
     @Test
     public void testCollisionComponent() {
-        final Player player = new Player.Builder().setPosition(Point2D.ZERO).build();
-        final Collidable collisionComponent = new CollisionComponent(new CollisionManager(), CollisionTag.PLAYER);
+        final Player player = new Player.Builder().addComponent(new CollisionComponent(new CollisionManager(), CollisionTag.PLAYER)).build();
+        final Component collisionComponent = new CollisionComponent(new CollisionManager(), CollisionTag.PLAYER);
+        //final Component collisionComponent = new CollisionComponent(new CollisionManager(), CollisionTag.PLAYER);
+        //Component collisionComponent = player.getComponents().stream().filter(c -> c.getComponentType() == ComponentTypes.COLLISION).findFirst().get();
+        collisionComponent.setParent(player);
 
-        assertEquals(collisionComponent.toString(), "CollisionComponent{AttachedTo=PLAYER}");
-        assertTrue(collisionComponent.getCollisionTag() == CollisionTag.PLAYER);
-        assertFalse(!collisionComponent.getAttachedGameObject().get().equals(player));
+        assertEquals(((CollisionComponent) collisionComponent).toString(), "CollisionComponent{AttachedTo=PLAYER}");
+        assertTrue(((CollisionComponent) collisionComponent).getCollisionTag() == CollisionTag.PLAYER);
+        assertFalse(!((CollisionComponent) collisionComponent).getAttachedGameObject().get().equals(player));
     }
 
     /**

@@ -3,6 +3,7 @@ package ballblast.model.physics;
 import java.util.Optional;
 
 import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
 
 import ballblast.model.gameobjects.GameObject;
 
@@ -15,7 +16,7 @@ public interface Collidable {
      * @return
      *      the shape of the object.
      */
-    Envelope generateShape();
+    Geometry generateShape();
     /**
      * Returns the {@link CollisionTag} for this collidable.
      * @return
@@ -34,12 +35,5 @@ public interface Collidable {
      *      the {@link Collision} data for this collision.
      */
     void notifyCollision(Collision collision);
-
-    /**
-     * Get all the component information under string format.
-     * @return
-     *       the string with informations.
-     */
-    String toString();
 
 }

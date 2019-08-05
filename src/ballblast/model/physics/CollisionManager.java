@@ -1,6 +1,9 @@
 package ballblast.model.physics;
 
+import java.util.List;
+
 import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
 
 import com.google.common.collect.ImmutableList;
 
@@ -37,11 +40,11 @@ public class CollisionManager {
         final CollisionTag t2 = c2.getCollisionTag();
 
         if (t1.canCollideWith(t2)) {
-            final Envelope s1 = c1.generateShape();
-            final Envelope s2 = c2.generateShape();
+            final Geometry s1 = c1.generateShape();
+            final Geometry s2 = c2.generateShape();
             if (s1.intersects(s2)) {
                 c1.notifyCollision(new Collision(c1, c2));
-                //c2.notifyCollision(new Collision(c2.getCollisionTag(), c1));
+                //c2.notifyCollision(new Collision(c2, c1));
             }
         }
     }
@@ -71,6 +74,15 @@ public class CollisionManager {
         this.collidables = this.collidables.stream()
                                            .filter(c -> !c.equals(coll))
                                            .collect(ImmutableList.toImmutableList());
+    }
+
+    /**
+     * The getter for the alive collidables list.
+     * @return
+     *      the list of collidables.
+     */
+    public List<Collidable> getCollidables() {
+        return ImmutableList.copyOf(this.collidables);
     }
 
 }

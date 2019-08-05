@@ -28,11 +28,6 @@ public enum CollisionTag {
         public boolean canCollideWith(final CollisionTag other) {
             return other == WALL || other == PLAYER || other == BULLET;
         }
-
-        @Override
-        public boolean isStaticWith(final CollisionTag other) {
-            return other == PLAYER || other == BULLET;
-        }
     },
 
     /**

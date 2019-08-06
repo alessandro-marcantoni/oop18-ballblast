@@ -1,7 +1,5 @@
 package ballblast.model.gameobjects;
 
-import org.locationtech.jts.math.Vector2D;
-
 import com.google.common.base.MoreObjects;
 
 /**
@@ -11,9 +9,9 @@ import com.google.common.base.MoreObjects;
  */
 public final class Bullet extends AbstractGameObject {
     /**
-     * the {@link Bullet}'s velocity.
+     * the default {@link Bullet}'s speed.
      */
-    public static final Vector2D VELOCITY = new Vector2D();
+    public static final double SPEED = 30;
     private static final double DEFAULT_WIDTH = 4;
     private static final double DEFAULT_HEIGHT = 4;
     /**
@@ -29,7 +27,7 @@ public final class Bullet extends AbstractGameObject {
     public String toString() {
        return MoreObjects.toStringHelper(this)
                .add("GameObjectType", this.getType())
-               .add("Position", this.getPosition())
+               .add("Position", this.getPosition().toString())
                .add("IsDestroyed", this.isDestroyed())
                .toString();
     }

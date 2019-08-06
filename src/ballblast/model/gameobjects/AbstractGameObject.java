@@ -73,6 +73,11 @@ public abstract class AbstractGameObject implements GameObject {
     }
 
     @Override
+    public final void destroy() {
+        this.isDestroyed = true;
+    }
+
+    @Override
     public final void update(final double elapsed) {
         components.forEach(c -> c.update(elapsed));
     }
@@ -102,7 +107,6 @@ public abstract class AbstractGameObject implements GameObject {
     public final GameObjectTypes getType() {
         return this.type;
     }
-
     /**
      * Generic builder class for {@link GameObject} creation.
      * @param <A>

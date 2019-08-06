@@ -1,7 +1,6 @@
 package ballblast.model.gameobjects;
 
 import org.locationtech.jts.geom.Coordinate;
-
 import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.MovementComponent;
 import ballblast.model.components.ShooterComponent;
@@ -28,7 +27,7 @@ public final class GameObjectFactory {
         return new Player.Builder()
                 .addComponent(new ShooterComponent(gameObjectManager, collisionManager))
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.PLAYER))
-                .addComponent(new MovementComponent(Player.VELOCITY))
+                .addComponent(new MovementComponent())
                 .build();
     }
 
@@ -62,7 +61,7 @@ public final class GameObjectFactory {
         return new Bullet.Builder()
                 .setPosition(position)
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.BULLET))
-                .addComponent(new MovementComponent(Bullet.VELOCITY))
+                .addComponent(new MovementComponent())
                 .build();
     }
 
@@ -82,7 +81,7 @@ public final class GameObjectFactory {
                 .setLife(life)
                 .setPosition(position)
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.BALL))
-                .addComponent(new MovementComponent(Ball.VELOCITY))
+                .addComponent(new MovementComponent())
                 .build();
     }
 }

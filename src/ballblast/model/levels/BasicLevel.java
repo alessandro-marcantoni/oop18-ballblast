@@ -12,6 +12,7 @@ import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.Wall;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.CollisionTag;
+import ballblast.model.physics.SimpleCollisionManager;
 import ballblast.utils.Boundaries;
 
 /**
@@ -29,7 +30,7 @@ public final class BasicLevel implements Level {
      */
     public BasicLevel() {
         this.gameObjectManager = new GameObjectManager();
-        this.collisionManager = new CollisionManager();
+        this.collisionManager = new SimpleCollisionManager();
         this.gameScore = INITIAL_GAME_SCORE;
         this.createBoundaries();
         this.addPlayer();

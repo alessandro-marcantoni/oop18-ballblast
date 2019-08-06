@@ -2,7 +2,6 @@ package ballblast.model.physics;
 
 import java.util.Optional;
 
-import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
 
 import ballblast.model.gameobjects.GameObject;

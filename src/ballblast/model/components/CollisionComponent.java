@@ -10,7 +10,7 @@ import org.locationtech.jts.geom.GeometryFactory;
 import com.google.common.base.MoreObjects;
 
 import ballblast.model.gameobjects.GameObject;
-//import ballblast.model.physics.Behavior;
+import ballblast.model.physics.CollisionHandler;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.Collision;
 import ballblast.model.physics.CollisionManager;
@@ -21,7 +21,7 @@ import ballblast.model.physics.CollisionTag;
  */
 public class CollisionComponent extends AbstractComponent implements Collidable {
 
-    private CollisionTag collisionTag;
+    private final CollisionTag collisionTag;
     private CollisionManager manager;
     /**
      * The constructor for the CollisionComponent.
@@ -39,17 +39,18 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     @Override
     public final Geometry generateShape() {
-        Coordinate coordinateX = this.generateCoordinateX(this.getParent().getPosition(), this.getParent());
-        Coordinate coordinateY = this.generateCoordinateY(this.getParent().getPosition(), this.getParent());
-        return new GeometryFactory().toGeometry(new Envelope(coordinateX.x, coordinateX.y, coordinateY.x, coordinateY.y));
+        final Coordinate coordinateX = this.generateCoordinateX(this.getParent());
+        final Coordinate coordinateY = this.generateCoordinateY(this.getParent());
+        return new GeometryFactory().toGeometry(new Envelope(coordinateX.getX(), coordinateX.getY(), coordinateY.getX(), coordinateY.getY()))
+                                    .getEnvelope();
     }
 
-    private Coordinate generateCoordinateX(final Coordinate pos, final GameObject obj) {
-        return new Coordinate(pos.getY() - obj.getHeight() / 2, pos.getY() + obj.getHeight() / 2);
+    private Coordinate generateCoordinateX(final GameObject obj) {
+        return new Coordinate(obj.getPosition().getX() - obj.getWidth() / 2, obj.getPosition().getX() + obj.getWidth() / 2);
     }
 
-    private Coordinate generateCoordinateY(final Coordinate pos, final GameObject obj) {
-        return new Coordinate(pos.getX() - obj.getWidth() / 2, pos.getX() + obj.getWidth() / 2);
+    private Coordinate generateCoordinateY(final GameObject obj) {
+        return new Coordinate(obj.getPosition().getY() - obj.getHeight() / 2, obj.getPosition().getY() + obj.getHeight() / 2);
     }
 
     @Override
@@ -83,20 +84,21 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     @Override
     public final void notifyCollision(final Collision coll) {
-        // TODO 
+        // TODO
         /*
         Collidable col1 = coll.getObj();
         Collidable col2 = coll.getOther();
 
-        Behavior behavior = () -> Optional.empty();
+        CollisionHandler behavior = () -> Optional.empty();
 
         if ((col1.getCollisionTag() == CollisionTag.BALL && col2.getCollisionTag() == CollisionTag.PLAYER)
          || (col2.getCollisionTag() == CollisionTag.BALL && col1.getCollisionTag() == CollisionTag.PLAYER)) {
                 behavior = () -> {
-                    System.out.println(col1.getCollisionTag().toString() + " collides in position " + col1.getAttachedGameObject().get().getPosition().getX() + "\n");
-                    System.out.println(col2.getCollisionTag().toString() + " collides");
+                    System.out.println(col1.getCollisionTag().toString() + " collides with " + col2.getCollisionTag().toString() + "\n");
+
                 };
         }
+        /*
         if (col1.getCollisionTag() == CollisionTag.BALL
                 && col2.getCollisionTag() == CollisionTag.BULLET) {
                 behavior = () -> {
@@ -127,5 +129,6 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
         }
         behavior.execute();
         */
+
     }
 }

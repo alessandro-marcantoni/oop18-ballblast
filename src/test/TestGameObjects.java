@@ -23,6 +23,7 @@ import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.model.gameobjects.Player;
 import ballblast.model.gameobjects.Wall;
 import ballblast.model.physics.CollisionManager;
+import ballblast.model.physics.SimpleCollisionManager;
 /**
  * JUnit test for {@link GameObject}s.
  */
@@ -35,7 +36,7 @@ public class TestGameObjects {
     @Before
     public void initTest() {
         this.gameObjectManager = new GameObjectManager();
-        this.collisionManager = new CollisionManager();
+        this.collisionManager = new SimpleCollisionManager();
     }
     /**
      * Tests {@link Player}.

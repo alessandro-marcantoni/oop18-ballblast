@@ -6,6 +6,8 @@ import org.locationtech.jts.geom.Coordinate;
 import com.google.common.collect.ImmutableList;
 import ballblast.model.components.Component;
 import ballblast.model.components.ComponentTypes;
+import ballblast.model.physics.Collidable;
+import ballblast.model.physics.CollisionHandler;
 /**
  * Generic implementation of the {@link GameObject} interface.
  * Defines base behavior that all game objects share.
@@ -19,7 +21,7 @@ public abstract class AbstractGameObject implements GameObject {
     private ImmutableList<Component> components;
     private double width;
     private double height;
-
+    private CollisionHandler<GameObject> collisionHandler;
     /**
      * Creates a AbstractGameObject instance.
      * @param type
@@ -107,6 +109,19 @@ public abstract class AbstractGameObject implements GameObject {
     public final GameObjectTypes getType() {
         return this.type;
     }
+
+    @Override
+    public final void handleCollision(final Collidable collidable) {
+        this.collisionHandler.execute(collidable, this);
+    }
+    /**
+     * Sets the {@link CollisionHandler}.
+     * @param handler
+     *     the delegate {@link CollisionHandler} used to handle the {@link Collision}s.
+     */
+    protected final void setCollisionHandler(final CollisionHandler<GameObject> handler) {
+        this.collisionHandler = handler;
+    }
     /**
      * Generic builder class for {@link GameObject} creation.
      * @param <A>
@@ -175,6 +190,17 @@ public abstract class AbstractGameObject implements GameObject {
          */
         public B addComponent(final Component component) {
             this.gameObject.addComponent(component);
+            return this.builder;
+        }
+        /**
+         * Sets the {@link CollisionHandler}.
+         * @param handler
+         *     the delegate {@link CollisionHandler} used to handle the {@link Collision}s.
+         * @return
+         *     the concrete {@link AbstractBuilder}.
+         */
+        public B setCollisionHandler(final CollisionHandler<GameObject> handler) {
+            this.getGameObject().setCollisionHandler(handler);
             return this.builder;
         }
     }

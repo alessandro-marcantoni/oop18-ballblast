@@ -1,17 +1,16 @@
 package ballblast.model.gameobjects;
 
-import org.locationtech.jts.math.Vector2D;
-
 import com.google.common.base.MoreObjects;
+
 /**
  * This class implements the Player object. It represents the entity controlled by the user 
  * which can shoot to destroy objects and dies when hit by a ball.
  */
 public final class Player extends AbstractGameObject {
     /**
-     * the {@link Player}'s velocity.
+     * the default {@link Player}'s movement speed.
      */
-    public static final Vector2D VELOCITY = new Vector2D();
+    public static final double SPEED = 5;
     private static final double DEFAULT_WIDTH = 12;
     private static final double DEFAULT_HEIGHT = 16;
     /**

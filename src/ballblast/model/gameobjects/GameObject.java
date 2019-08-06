@@ -42,6 +42,10 @@ public interface GameObject {
      */
     boolean isDestroyed();
     /**
+     * Destroys the {@link GameObject}.
+     */
+    void destroy();
+    /**
      * Updates {@link GameObject} status.
      * @param elapsed
      *      time elapsed since last update.

@@ -10,7 +10,6 @@ import org.locationtech.jts.geom.GeometryFactory;
 import com.google.common.base.MoreObjects;
 
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.physics.CollisionHandler;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.Collision;
 import ballblast.model.physics.CollisionManager;
@@ -84,51 +83,8 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     @Override
     public final void notifyCollision(final Collision coll) {
-        // TODO
-        /*
-        Collidable col1 = coll.getObj();
-        Collidable col2 = coll.getOther();
-
-        CollisionHandler behavior = () -> Optional.empty();
-
-        if ((col1.getCollisionTag() == CollisionTag.BALL && col2.getCollisionTag() == CollisionTag.PLAYER)
-         || (col2.getCollisionTag() == CollisionTag.BALL && col1.getCollisionTag() == CollisionTag.PLAYER)) {
-                behavior = () -> {
-                    System.out.println(col1.getCollisionTag().toString() + " collides with " + col2.getCollisionTag().toString() + "\n");
-
-                };
+        if (this.getAttachedGameObject().get().equals(coll.getObj().getAttachedGameObject().get())) {
+            this.getParent().handleCollision(coll.getOther());
         }
-        /*
-        if (col1.getCollisionTag() == CollisionTag.BALL
-                && col2.getCollisionTag() == CollisionTag.BULLET) {
-                behavior = () -> {
-                    System.out.println(col1.getCollisionTag().toString() + " collides in position " + col1.getAttachedGameObject().get().getPosition().toString() + "\n");
-                    System.out.println(col2.getCollisionTag().toString() + " collides in position " + col2.getAttachedGameObject().get().getPosition().toString() + "\n");
-                };
-        }
-        if (col1.getCollisionTag() == CollisionTag.POWERUP
-                && col2.getCollisionTag() == CollisionTag.PLAYER) {
-                behavior = () -> {
-                    System.out.println(col1.getCollisionTag().toString() + " collides in position " + col1.getAttachedGameObject().get().getPosition().toString() + "\n");
-                    System.out.println(col2.getCollisionTag().toString() + " collides in position " + col2.getAttachedGameObject().get().getPosition().toString() + "\n");
-                };
-        }
-        if (col1.getCollisionTag() == CollisionTag.WALL
-                && col2.getCollisionTag() == CollisionTag.PLAYER) {
-                behavior = () -> {
-                    System.out.println(col1.getCollisionTag().toString() + " collides in position " + col1.getAttachedGameObject().get().getPosition().toString() + "\n");
-                    System.out.println(col2.getCollisionTag().toString() + " collides in position " + col2.getAttachedGameObject().get().getPosition().toString() + "\n");
-                };
-        }
-        if (col1.getCollisionTag() == CollisionTag.BALL
-                && col2.getCollisionTag() == CollisionTag.WALL) {
-                behavior = () -> {
-                    System.out.println(col1.getCollisionTag().toString() + " collides in position " + col1.getAttachedGameObject().get().getPosition().toString() + "\n");
-                    System.out.println(col2.getCollisionTag().toString() + " collides in position " + col2.getAttachedGameObject().get().getPosition().toString() + "\n");
-                };
-        }
-        behavior.execute();
-        */
-
     }
 }

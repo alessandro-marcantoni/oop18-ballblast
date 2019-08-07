@@ -13,6 +13,7 @@ import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.Player;
+import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.CollisionTag;
 import ballblast.model.physics.SimpleCollisionManager;
@@ -36,9 +37,9 @@ public class TestCollisions {
     }
 
     /**
-     * Tests {@link CollisionManager} object.
+     * Tests {@link SimpleCollisionManager} object.
      */
-    @Test
+    @Test(expected = UnsupportedOperationException.class)
     public void testCollisionManager() {
         final CollisionManager manager = new SimpleCollisionManager();
         final int ballLife = 24;
@@ -47,5 +48,14 @@ public class TestCollisions {
 
         assertTrue(manager.getCollidables().size() == 2);
         assertFalse(manager.getCollidables().isEmpty());
+        manager.addCollidable(new CollisionComponent(new SimpleCollisionManager(), CollisionTag.BULLET));
+        assertTrue(manager.getCollidables().size() == 3);
+        for (Collidable coll : manager.getCollidables()) {
+            manager.removeCollidable(coll);
+        }
+        assertTrue(manager.getCollidables().size() == 0);
+        assertTrue(manager.getCollidables().isEmpty());
+        // Throws an UnsupportedOperationException because cannot remove an object from an empty list.
+        manager.removeCollidable(new CollisionComponent(new SimpleCollisionManager(), CollisionTag.POWERUP));
     }
 }

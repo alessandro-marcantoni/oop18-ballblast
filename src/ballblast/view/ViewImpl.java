@@ -54,16 +54,4 @@ public class ViewImpl implements View {
         return this.controller;
     }
 
-    @Override
-    public Controller getController() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Controller getController() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

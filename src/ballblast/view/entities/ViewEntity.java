@@ -31,5 +31,5 @@ public interface ViewEntity {
      * @return 
      *          the entity image.
      */
-    Image getPicture();
+    Image getImage();
 }

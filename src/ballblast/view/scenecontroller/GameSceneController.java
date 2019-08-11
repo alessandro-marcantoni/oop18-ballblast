@@ -11,7 +11,8 @@ public interface GameSceneController {
 
     /**
      * 
-     * @return the game page canvas.
+     * @return 
+     *          the game page canvas.
      */
     Canvas getCanvas();
     

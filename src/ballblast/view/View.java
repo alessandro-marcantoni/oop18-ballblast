@@ -17,26 +17,30 @@ public interface View {
 
     /**
      * 
-     * @param controller the controller
+     * @param controller 
+     *          the controller
      */
     void viewLauncher(Controller controller);
     
     /**
      * 
-     * @return the scene factory.
+     * @return 
+     *          the scene factory.
      */
     SceneFactory getSceneFactory();
     
     /**
      * Start a new match.
      * 
-     * @param gameSceneController the game scene controller
+     * @param gameSceneController 
+     *          the game scene controller
      */
     void startGame(GameSceneController gameSceneController);
     
     /**
      * 
-     * @param viewEntities entities in the view
+     * @param viewEntities 
+     *          entities in the view
      */
     void render(List<Optional<ViewEntity>> viewEntities);
     

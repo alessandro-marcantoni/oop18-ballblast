@@ -9,6 +9,9 @@ import ballblast.view.scenefactory.SceneFactory;
 
 public class ViewImpl implements View {
 
+    private Controller controller;
+    private Render viewRender;
+    private List<Optional<ViewEntity>> viewEntities;
     @Override
     public SceneFactory getSceneFactory() {
         // TODO Auto-generated method stub
@@ -37,6 +40,18 @@ public class ViewImpl implements View {
     public void stopRender() {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void viewLauncher(Controller controller) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public Controller getController() {
+        // TODO Auto-generated method stub
+        return this.co;
     }
 
 }

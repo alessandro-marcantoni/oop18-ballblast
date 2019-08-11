@@ -1,5 +1,5 @@
 package ballblast.view.utilities;
 
-public class ViewUtility {
-
+public enum ViewUtilities {
+    
 }

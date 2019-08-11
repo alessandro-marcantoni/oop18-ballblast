@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ballblast.view.entities.ViewEntity;
+import ballblast.view.render.Render;
 import ballblast.view.scenecontroller.GameSceneController;
 import ballblast.view.scenefactory.SceneFactory;
 
@@ -50,8 +51,19 @@ public class ViewImpl implements View {
 
     @Override
     public Controller getController() {
+        return this.controller;
+    }
+
+    @Override
+    public Controller getController() {
         // TODO Auto-generated method stub
-        return this.co;
+        return null;
+    }
+
+    @Override
+    public Controller getController() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

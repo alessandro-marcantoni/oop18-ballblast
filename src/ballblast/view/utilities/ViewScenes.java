@@ -22,7 +22,7 @@ public enum ViewScenes {
      */
     SETTINGS("Settings.fxml"),
     /**
-     * The leaderboard scene.
+     * The leader board scene.
      */
     LEADERBOARD("Leaderboard.fxml"),
     /**
@@ -30,13 +30,15 @@ public enum ViewScenes {
      */
     MANUAL("Manual.fxml"),
     /**
-     * The gameover scene.
+     * The game over scene.
      */
     GAMEOVER("Gameover.fxml");
-    //LOGIN
-    //REGISTER
-    //SELECTMODE
     
+    /* OPZIONALI
+     * LOGIN
+     * REGISTER
+     * SELECTMODE
+     */
     
     private static final String PATH = "/view/scenes";
     private final String selectedScene;

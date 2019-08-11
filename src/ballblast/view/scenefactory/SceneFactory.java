@@ -31,7 +31,7 @@ public interface SceneFactory {
      */
     void openSettingsScene();
     /**
-     * Open the leaderboard scene.
+     * Open the leader board scene.
      */
     void openLeaderboardScene();
     /**
@@ -49,7 +49,6 @@ public interface SceneFactory {
     
 /* OPZIONALI    
  *    void openRegisterScene();
- *
  *    void openLoginScene();
  *    void openSelectModeScene();
  */

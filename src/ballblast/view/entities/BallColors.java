@@ -1,9 +1,5 @@
 package ballblast.view.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import javafx.scene.image.Image;
 
 /**
@@ -15,46 +11,54 @@ public enum BallColors {
     /**
      * Ball color blue
      */
-    BALL_BLUE("ballBlue.png"),
+    BALL_BLUE("blue.png"),
     /**
      * Ball color red
      */
-    BALL_RED("ballRed.png"),
+    BALL_RED("red.png"),
     /**
      * Ball color green
      */
-    BALL_GREEN("ballGreen.png"),
+    BALL_GREEN("green.png"),
     /**
      * Ball color yellow
      */
-    BALL_YELLOW("ballYellow.png"),
+    BALL_YELLOW("yellow.png"),
     /**
      * Ball color pink
      */
-    BALL_PINK("ballPink.png"),
+    BALL_PINK("pink.png"),
     /**
      * Ball color lightblue
      */
-    BALL_LIGHTBLUE("ballLightblue.png"),
+    BALL_LIGHTBLUE("lightblue.png"),
     /**
      * Ball color purple
      */
-    BALL_PURPLE("ballPurple.png"),
+    BALL_PURPLE("purple.png"),
     /**
      * Ball color brown
      */
-    BALL_BROWN("ballBrown.png"),
+    BALL_BROWN("brown.png"),
     /**
      * Ball color orange
      */
-    BALL_ORANGE("ballOrange.png");
+    BALL_ORANGE("orange.png");
     
     private static final String PATH = "/view/balls/";
     private Image image;
     
     private BallColors(final String ballColor) {
-
         this.image = new Image(getClass().getResourceAsStream(PATH + ballColor));
+    }
+    
+    /**
+     * 
+     * @return
+     *          the ball image
+     */
+    public Image getImage() {
+        return this.image;
     }
     
 }

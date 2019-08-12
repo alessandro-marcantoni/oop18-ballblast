@@ -1,9 +1,20 @@
 package ballblast.view.scenefactory;
 
+import ballblast.view.View;
+import ballblast.view.sceneloader.SceneLoader;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * A simple implementation of {@link SceneFactory} interface.
+ * 
+ */
 public class SceneFactoryImpl implements SceneFactory {
 
+    private Stage stage;
+    private final View view;
+    private final SceneLoader sceneLoader;
+    
     @Override
     public void setStage(Stage stage) {
         // TODO Auto-generated method stub

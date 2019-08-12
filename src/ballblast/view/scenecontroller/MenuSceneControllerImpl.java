@@ -9,6 +9,10 @@ import javafx.fxml.FXML;
  */
 public class MenuSceneControllerImpl extends AbstractSceneController {
 
+    @FXML
+    protected void openGameMode() {
+        this.getSceneFactory().openGameSelection();
+    }
     /**
      * Open leader board scene.
      */

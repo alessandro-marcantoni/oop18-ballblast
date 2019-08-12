@@ -27,6 +27,10 @@ public interface SceneFactory {
      */
     void openMenuScene();
     /**
+     * Open the game mode selection.
+     */
+    void openGameSelection();
+    /**
      * Open the settings scene.
      */
     void openSettingsScene();

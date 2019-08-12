@@ -10,6 +10,10 @@ public enum ViewScenes {
      */
     GAME("Game.fxml"),
     /**
+     * The game mode selection menu scene.
+     */
+    GAME_MODE("GameSelection.fxml"),
+    /**
      * The main menu scene.
      */
     MENU("Menu.fxml"),

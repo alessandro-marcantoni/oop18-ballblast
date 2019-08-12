@@ -3,6 +3,7 @@ package ballblast.view.sceneloader;
 import ballblast.settings.SettingsImpl;
 import ballblast.view.View;
 import ballblast.view.scenecontroller.GameSceneController;
+import ballblast.view.scenecontroller.SceneController;
 import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -46,7 +47,7 @@ public class SceneLoaderImpl implements SceneLoader {
             root = loader.load();
             
             controller = loader.getController();
-         //   controller.setSceneFactory(this.view.getSceneFactory());
+            controller.setSceneFactory(this.view.getSceneFactory());
             
             root.setPrefSize(SettingsImpl.getSettings().getSelectedResolution().getKey(),
                              SettingsImpl.getSettings().getSelectedResolution().getValue());
@@ -63,7 +64,7 @@ public class SceneLoaderImpl implements SceneLoader {
             stage.getIcons().add(new Image(LOGO_PATH));
             
             /**
-             * Control if the view is fullscreen.
+             * Control if the view is full screen mode.
              *         If true nothing changes.
              *         If false, it center the view.
              */

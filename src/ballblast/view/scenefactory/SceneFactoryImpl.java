@@ -47,38 +47,32 @@ public class SceneFactoryImpl implements SceneFactory {
 
     @Override
     public void openSettingsScene() {
-        // TODO Auto-generated method stub
-
+        this.openNewScene(ViewScenes.SETTINGS);
     }
 
     @Override
     public void openLeaderboardScene() {
-        // TODO Auto-generated method stub
-
+        this.openNewScene(ViewScenes.LEADERBOARD);
     }
 
     @Override
     public void openManualScene() {
-        // TODO Auto-generated method stub
-
+        this.openNewScene(ViewScenes.MANUAL);
     }
 
     @Override
     public void openGameOverScene() {
-        // TODO Auto-generated method stub
-
+        this.openNewScene(ViewScenes.GAMEOVER);
     }
 
     @Override
     public void openPauseScene() {
-        // TODO Auto-generated method stub
-
+        this.openNewScene(ViewScenes.PAUSE);
     }
 
     @Override
     public void openGameSelection() {
-        // TODO Auto-generated method stub
-        
+        this.openNewScene(ViewScenes.GAME_MODE);
     }
     
     private void openNewScene(ViewScenes scene) {

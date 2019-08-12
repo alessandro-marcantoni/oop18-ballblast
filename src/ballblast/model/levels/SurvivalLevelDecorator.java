@@ -1,11 +1,15 @@
 package ballblast.model.levels;
 
+import java.util.Optional;
+
 import org.locationtech.jts.geom.Coordinate;
 
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.gameobjects.BallTypes;
+import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
+
 /**
  * Represents a concrete implementation of {@link LevelDecorator}.
  */
@@ -16,6 +20,7 @@ public class SurvivalLevelDecorator extends LevelDecorator {
 
     // TODO private int totalTime; used to increase the survival's difficult.
     private int currentSpawnTime;
+    private Optional<GameObject> spawnedBall;
 
     /**
      * Creates a {@link SurvivalLevelDecorator} instance.
@@ -38,7 +43,8 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     }
 
     private void spawnBall() {
-        this.getGameObjectManager().addGameObjects(ImmutableList.of(
-                GameObjectFactory.createBall(BallTypes.LARGE, 100, ENEMY_SPAWN_POSITION, this.getCollisionManager())));
+        this.spawnedBall = Optional.of(
+                GameObjectFactory.createBall(BallTypes.LARGE, 100, ENEMY_SPAWN_POSITION, this.getCollisionManager()));
+        this.getGameObjectManager().addGameObjects(ImmutableList.of(spawnedBall.get()));
     }
 }

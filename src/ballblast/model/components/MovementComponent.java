@@ -17,7 +17,9 @@ public class MovementComponent extends AbstractComponent {
 
     @Override
     public final void update(final double elapsed) {
-        this.translate(this.velocity.multiply(elapsed), this.getParent().getPosition());
+        if (isEnabled()) {
+            this.translate(this.velocity.multiply(elapsed), this.getParent().getPosition());
+        }
     }
 
     /**

@@ -9,7 +9,7 @@ import ballblast.model.gameobjects.GameObject;
 public abstract class AbstractComponent implements Component {
     private final ComponentTypes type;
     private GameObject parent;
-    private boolean isDestroyed;
+    private boolean isEnable;
 
     /**
      * Create a new instance of AbstractComponent.
@@ -18,15 +18,24 @@ public abstract class AbstractComponent implements Component {
      */
     public AbstractComponent(final ComponentTypes type) {
         this.type = type;
-        this.isDestroyed = false;
     }
 
     @Override
     public abstract void update(double elapsed);
 
     @Override
-    public final boolean isDestroyed() {
-        return isDestroyed;
+    public final void enable() {
+        this.isEnable = true;
+    }
+
+    @Override
+    public final void disable() {
+        this.isEnable = false;
+    }
+
+    @Override
+    public final boolean isEnabled() {
+        return this.isEnable;
     }
 
     @Override

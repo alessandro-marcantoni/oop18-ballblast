@@ -30,7 +30,7 @@ public class ShooterComponent extends AbstractComponent {
 
     @Override
     public final void update(final double elapsed) {
-        if (this.shootingState) {
+        if (this.shootingState && isEnabled()) {
             this.shoot();
             this.shootingState = false;
         }

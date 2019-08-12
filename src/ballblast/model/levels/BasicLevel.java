@@ -32,8 +32,7 @@ public final class BasicLevel implements Level {
         this.gameObjectManager = new GameObjectManager();
         this.collisionManager = new SimpleCollisionManager();
         this.gameScore = INITIAL_GAME_SCORE;
-        this.createBoundaries();
-        this.addPlayer();
+        this.fillGameObjectManager();
     }
 
     @Override
@@ -68,5 +67,13 @@ public final class BasicLevel implements Level {
                         .addComponent(new CollisionComponent(collisionManager, CollisionTag.WALL)).build())
                 .collect(ImmutableList.toImmutableList());
         this.gameObjectManager.addGameObjects(boundaries);
+    }
+
+    private void fillGameObjectManager() {
+        this.createBoundaries();
+        this.addPlayer();
+        this.gameObjectManager.getGameObjects().stream()
+            .forEach(g -> g.getComponents().stream()
+                    .forEach(c -> c.enable()));
     }
 }

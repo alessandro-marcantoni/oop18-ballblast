@@ -7,11 +7,6 @@ package ballblast.view.scenecontroller;
  */
 
 
-/**
- * MODIFICA PER GIT PROVA
- * @author eliam
- *
- */
 public class ManualSceneControllerImpl extends AbstractSubSceneController {
     /**
      * No other methods needed.

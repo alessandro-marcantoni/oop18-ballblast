@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -22,6 +23,7 @@ public class SceneLoaderImpl implements SceneLoader {
     private final View view;
     private static final String STYLE_CSS_PATH = "/view/style/style.css";
     private static final String LOGO_PATH = "/view/logo/ballblast.png";
+    private static final String BACKGROUND_PATH = "/view/background/background.png";
     
     /**
      * 
@@ -117,9 +119,20 @@ public class SceneLoaderImpl implements SceneLoader {
     private void addEventHandler(final Stage stage) {
         
     }
-    
+    /**
+     * Sets the background.
+     * @param controller
+     *          reference to game scene controller.
+     */
     private void drawBackground(final GameSceneController controller) {
-        
+        final ImageView backgroundImage = new ImageView(new Image(getClass().getResourceAsStream(BACKGROUND_PATH),
+                                                        SettingsImpl.getSettings().getSelectedResolution().getKey(),
+                                                        SettingsImpl.getSettings().getSelectedResolution().getValue(),
+                                                        false, false));
+        controller.getCanvas().getGraphicsContext2D().drawImage(backgroundImage.getImage(), 0, 0, 
+                                                                SettingsImpl.getSettings().getSelectedResolution().getKey(),
+                                                                SettingsImpl.getSettings().getSelectedResolution().getValue());
+        backgroundImage.setPreserveRatio(true);
     }
 
 }

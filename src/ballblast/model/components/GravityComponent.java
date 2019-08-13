@@ -32,7 +32,7 @@ public class GravityComponent extends AbstractComponent {
     @Override
     public final void update(final double elapsed) {
         final Vector2D dV = gravity.multiply(elapsed);
-        this.getParent().setVelocity(this.getParent().getVelocity().sumVector(dV));
+        this.getParent().setVelocity(this.getParent().getVelocity().add(dV));
     }
 
     /**

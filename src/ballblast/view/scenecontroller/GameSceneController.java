@@ -1,5 +1,6 @@
 package ballblast.view.scenecontroller;
 
+import ballblast.model.levels.Level;
 import javafx.scene.canvas.Canvas;
 
 /**
@@ -15,5 +16,12 @@ public interface GameSceneController {
      *          the game page canvas.
      */
     Canvas getCanvas();
+    
+    /**
+     * 
+     * @param level
+     *          the game level.
+     */
+    void setGameData(Level level);
     
 }

@@ -33,7 +33,6 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
         super(ComponentTypes.COLLISION);
         this.collisionTag = tag;
         this.manager = man;
-        this.manager.addCollidable(this);
     }
 
     @Override
@@ -62,12 +61,17 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
         return Optional.of(this.getParent());
     }
 
-    // da capire come e dove usarla
-//    private void removeComponent() {
-//        if (this.getAttachedGameObject().get().isDestroyed()) {
-//            manager.removeCollidable(this);
-//        }
-//    }
+    @Override
+    public final void enable() {
+        super.enable();
+        this.manager.addCollidable(this);
+    }
+
+    @Override
+    public final void disable() {
+        super.disable();
+        this.manager.removeCollidable(this);
+    }
 
     @Override
     public final String toString() {

@@ -24,12 +24,12 @@ public abstract class AbstractComponent implements Component {
     public abstract void update(double elapsed);
 
     @Override
-    public final void enable() {
+    public void enable() {
         this.isEnable = true;
     }
 
     @Override
-    public final void disable() {
+    public void disable() {
         this.isEnable = false;
     }
 

@@ -1,6 +1,5 @@
 package ballblast.view.scenefactory;
 
-import ballblast.settings.SettingsImpl;
 import ballblast.view.View;
 import ballblast.view.sceneloader.SceneLoader;
 import ballblast.view.sceneloader.SceneLoaderImpl;

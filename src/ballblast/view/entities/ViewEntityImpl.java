@@ -4,7 +4,7 @@ import org.locationtech.jts.geom.Coordinate;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Shape;
 
-public final class ViewEntityImpl implements ViewEntity {
+public class ViewEntityImpl implements ViewEntity {
 
     private final Shape shape;
     private final Image image;

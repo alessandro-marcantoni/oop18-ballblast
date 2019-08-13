@@ -1,5 +1,7 @@
 package ballblast.view.entities;
 
+import java.util.Random;
+
 import javafx.scene.image.Image;
 
 /**
@@ -59,6 +61,11 @@ public enum BallColors {
      */
     public Image getImage() {
         return this.image;
+    }
+    
+    public static BallColors randomColor() {
+        Random random = new Random();
+        return values()[random.nextInt(values().length)];
     }
     
 }

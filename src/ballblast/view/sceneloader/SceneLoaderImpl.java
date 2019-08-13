@@ -1,5 +1,7 @@
 package ballblast.view.sceneloader;
 
+import java.util.Optional;
+
 import ballblast.settings.SettingsImpl;
 import ballblast.view.View;
 import ballblast.view.scenecontroller.GameSceneController;
@@ -11,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -87,7 +90,9 @@ public class SceneLoaderImpl implements SceneLoader {
              */
             switch (viewScene) {
             case GAME:
-                //
+                this.addEventHandler(stage);
+                this.drawBackground((GameSceneController) controller);
+                this.view.startGame((GameSceneController) controller);
                 break;
             case MENU:
                 //
@@ -116,9 +121,18 @@ public class SceneLoaderImpl implements SceneLoader {
         
         
     }
-    
+    /**
+     * Add and event handler to the stage passed.
+     * 
+     * @param stage
+     *          the view stage.
+     */
     private void addEventHandler(final Stage stage) {
-        
+        stage.getScene().addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+           /*
+            * Da implementare            
+            */
+        });
     }
     /**
      * Sets the background.

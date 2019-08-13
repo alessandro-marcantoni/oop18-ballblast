@@ -1,6 +1,7 @@
-package ballblast.utils;
+package ballblast.model.constants;
 
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.math.Vector2D;
 
 import ballblast.model.Model;
 /**
@@ -23,6 +24,7 @@ public enum Boundaries {
      * the bottom boundary.
      */
     BOTTOM;
+
     static {
         LEFT.position = new Coordinate(0, -Model.WALL_OFFSET / 2);
         LEFT.width = Model.WORLD_WIDTH + Model.WALL_OFFSET * 2;
@@ -40,6 +42,8 @@ public enum Boundaries {
         BOTTOM.width = Model.WALL_OFFSET;
         BOTTOM.height = Model.WORLD_HEIGHT; 
     }
+
+    private final Vector2D velocity = Vector2D.create(0, 0);
     private Coordinate position;
     private double width;
     private double height;
@@ -66,5 +70,13 @@ public enum Boundaries {
      */
     public double getHeight() {
         return height;
+    }
+    /**
+     * Gets boundary's velocity.
+     * @return
+     *     the velcoity of the boundary.
+     */
+    public Vector2D getVelocity() {
+        return velocity;
     }
 }

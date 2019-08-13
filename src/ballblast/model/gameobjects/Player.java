@@ -7,10 +7,6 @@ import com.google.common.base.MoreObjects;
  * which can shoot to destroy objects and dies when hit by a ball.
  */
 public final class Player extends AbstractGameObject {
-    /**
-     * the default {@link Player}'s movement speed.
-     */
-    public static final double SPEED = 5;
     private static final double DEFAULT_WIDTH = 12;
     private static final double DEFAULT_HEIGHT = 16;
     /**

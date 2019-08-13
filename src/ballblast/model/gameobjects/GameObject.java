@@ -7,33 +7,46 @@ import ballblast.model.physics.Collidable;
 import java.util.List;
 
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.math.Vector2D;
 
 /**
  * Represent a general entity of the game.
  */
 public interface GameObject {
     /**
-     * Gets the {@link GameObject} height.
+     * Gets the {@link GameObject}'s height.
      * @return
      *     the height of game object.
      */
     double getHeight();
     /**
-     * Gets the {@link GameObject} width.
+     * Gets the {@link GameObject}'s width.
      * @return
      *     the width of {@link GameObject}.
      */
     double getWidth();
     /**
+     * Sets the {@link GameObject}'s velocity.
+     * @param velocity
+     *     the velocity of the {@link GameObject}.
+     */
+    void setVelocity(Vector2D velocity);
+    /**
+     * Gets the {@link GameObject}'s velocity.
+     * @return
+     *     the velocity of the {@link GameObject}.
+     */
+    Vector2D getVelocity();
+    /**
      * Gets the GameObject position.
      * @return
-     *     {@link Point2d} of {@link GameObject}.
+     *     {@link Point2d} of the {@link GameObject}.
      */
     Coordinate getPosition();
     /**
-     * Sets the GameObject position.
+     * Sets the {@link GameObject}'s position.
      * @param position
-     *     the new {@link Point2d} of {@link GameObject}.
+     *     the new {@link Point2d} of the {@link GameObject}.
      */
     void setPosition(Coordinate position);
     /**

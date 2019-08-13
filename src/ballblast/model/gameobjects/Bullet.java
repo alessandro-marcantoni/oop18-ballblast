@@ -8,10 +8,6 @@ import com.google.common.base.MoreObjects;
  *
  */
 public final class Bullet extends AbstractGameObject {
-    /**
-     * the default {@link Bullet}'s speed.
-     */
-    public static final double SPEED = 30;
     private static final double DEFAULT_WIDTH = 4;
     private static final double DEFAULT_HEIGHT = 4;
     /**

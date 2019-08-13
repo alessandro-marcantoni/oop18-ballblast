@@ -3,6 +3,8 @@ package ballblast.model.gameobjects;
 import java.util.List;
 
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.math.Vector2D;
+
 import com.google.common.collect.ImmutableList;
 import ballblast.model.components.Component;
 import ballblast.model.components.ComponentTypes;
@@ -21,6 +23,7 @@ public abstract class AbstractGameObject implements GameObject {
     private ImmutableList<Component> components;
     private double width;
     private double height;
+    private Vector2D velocity;
     private CollisionHandler<GameObject> collisionHandler;
     /**
      * Creates a AbstractGameObject instance.
@@ -54,9 +57,20 @@ public abstract class AbstractGameObject implements GameObject {
     public final double getWidth() { 
         return this.width; 
     }
+
     @Override
     public final double getHeight() { 
         return this.height;
+    }
+    
+    @Override
+    public final Vector2D getVelocity() { 
+        return this.velocity; 
+    }
+
+    @Override
+    public final void setVelocity(final Vector2D velocity) { 
+        this.velocity = velocity;
     }
 
     @Override
@@ -77,11 +91,12 @@ public abstract class AbstractGameObject implements GameObject {
     @Override
     public final void destroy() {
         this.isDestroyed = true;
+        this.components.stream().forEach(c -> c.disable());
     }
 
     @Override
     public final void update(final double elapsed) {
-        components.forEach(c -> c.update(elapsed));
+        components.stream().forEach(c -> c.update(elapsed));
     }
 
     @Override
@@ -171,9 +186,20 @@ public abstract class AbstractGameObject implements GameObject {
             return this.gameObject;
         }
         /**
-         * Sets the {@link GameObject} position.
+         * Sets the {@link GameObject}'s velocity.
+         * @param velocity
+         *     the {@link GameObject}'s velocity.
+         * @return
+         *     the concrete {@link AbstractBuilder}.
+         */
+        public B setVelocity(final Vector2D velocity) {
+            this.gameObject.setVelocity(velocity);
+            return this.builder;
+        }
+        /**
+         * Sets the {@link GameObject}'s position.
          * @param position
-         *     the {@link GameObject} {@link Coordinate} position.
+         *     the {@link GameObject}'s position.
          * @return
          *     the concrete {@link AbstractBuilder}.
          */

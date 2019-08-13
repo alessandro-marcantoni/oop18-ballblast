@@ -3,17 +3,16 @@ package ballblast.model.levels;
 import java.util.Arrays;
 import java.util.List;
 
+import org.locationtech.jts.math.Vector2D;
+
 import com.google.common.collect.ImmutableList;
 
-import ballblast.model.components.CollisionComponent;
+import ballblast.model.constants.Boundaries;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
-import ballblast.model.gameobjects.Wall;
 import ballblast.model.physics.CollisionManager;
-import ballblast.model.physics.CollisionTag;
 import ballblast.model.physics.SimpleCollisionManager;
-import ballblast.utils.Boundaries;
 
 /**
  * Generic implementation of the {@link Level} interface. Defines base behavior
@@ -56,15 +55,13 @@ public final class BasicLevel implements Level {
     }
 
     private void addPlayer() {
-        this.gameObjectManager
-                .addGameObjects(ImmutableList.of(GameObjectFactory.createPlayer(gameObjectManager, collisionManager)));
+        this.gameObjectManager.addGameObjects(ImmutableList
+                .of(GameObjectFactory.createPlayer(gameObjectManager, collisionManager, Vector2D.create(0, 0))));
     }
 
     private void createBoundaries() {
-        List<GameObject> boundaries = Arrays.stream(Boundaries.values())
-                .map(b -> new Wall.Builder().setHeight(b.getHeight()).setWidth(b.getWidth())
-                        .setPosition(b.getPosition())
-                        .addComponent(new CollisionComponent(collisionManager, CollisionTag.WALL)).build())
+        List<GameObject> boundaries = Arrays.stream(Boundaries.values()).map(b -> GameObjectFactory
+                .createWall(b.getHeight(), b.getWidth(), b.getPosition(), b.getVelocity(), collisionManager))
                 .collect(ImmutableList.toImmutableList());
         this.gameObjectManager.addGameObjects(boundaries);
     }
@@ -73,7 +70,6 @@ public final class BasicLevel implements Level {
         this.createBoundaries();
         this.addPlayer();
         this.gameObjectManager.getGameObjects().stream()
-            .forEach(g -> g.getComponents().stream()
-                    .forEach(c -> c.enable()));
+                .forEach(g -> g.getComponents().stream().forEach(c -> c.enable()));
     }
 }

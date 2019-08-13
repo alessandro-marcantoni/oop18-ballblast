@@ -3,6 +3,7 @@ package ballblast.model.levels;
 import java.util.Optional;
 
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
@@ -20,6 +21,7 @@ public class SurvivalLevelDecorator extends LevelDecorator {
 
     // TODO private int totalTime; used to increase the survival's difficult.
     private int currentSpawnTime;
+    // TODO meglio togliere Optional e usare Optinal.of(spawnedBall).isPresent().
     private Optional<GameObject> spawnedBall;
 
     /**
@@ -43,8 +45,8 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     }
 
     private void spawnBall() {
-        this.spawnedBall = Optional.of(
-                GameObjectFactory.createBall(BallTypes.LARGE, 100, ENEMY_SPAWN_POSITION, this.getCollisionManager()));
+        this.spawnedBall = Optional.of(GameObjectFactory.createBall(BallTypes.LARGE, 100, ENEMY_SPAWN_POSITION,
+                Vector2D.create(0, 0), this.getCollisionManager()));
         this.getGameObjectManager().addGameObjects(ImmutableList.of(spawnedBall.get()));
     }
 }

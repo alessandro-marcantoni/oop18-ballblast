@@ -13,11 +13,19 @@ public interface Component {
      */
     void update(double elapsed);
     /**
-     * Returns a boolean which notifies if the Component is destroyed.
-     * @return
-     *     true if Component is destroyed, false otherwise.
+     * Enables the {@link Component}.
      */
-    boolean isDestroyed();
+    void enable();
+    /**
+     * Disables the {@link Component}.
+     */
+    void disable();
+    /**
+     * Returns a boolean which notifies if the Component is enabled.
+     * @return
+     *     true if Component is enabled, false otherwise.
+     */
+    boolean isEnabled();
     /**
      * @return
      *     the tag which defines the {@link ComponentType}.

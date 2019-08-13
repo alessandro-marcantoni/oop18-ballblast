@@ -10,6 +10,7 @@ public class BallCollisionHandler implements CollisionHandler<Ball> {
 
     /**
      * Empty costructor because {@link CollisionHandler} is a functional interface.
+     * Only the method implementation needed.
      */
     public BallCollisionHandler() {
 

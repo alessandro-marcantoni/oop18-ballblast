@@ -9,24 +9,33 @@ import ballblast.model.gameobjects.GameObject;
 public abstract class AbstractComponent implements Component {
     private final ComponentTypes type;
     private GameObject parent;
-    private boolean isDestroyed;
+    private boolean isEnable;
 
     /**
      * Create a new instance of AbstractComponent.
-     * @param type
-     *     the type of a specific component.
+     * @param 
+     *     type the type of a specific component.
      */
     public AbstractComponent(final ComponentTypes type) {
         this.type = type;
-        this.isDestroyed = false;
     }
 
     @Override
     public abstract void update(double elapsed);
+    /** {@inheritDoc} */
+    @Override
+    public void enable() {
+        this.isEnable = true;
+    }
+    /** {@inheritDoc} */
+    @Override
+    public void disable() {
+        this.isEnable = false;
+    }
 
     @Override
-    public final boolean isDestroyed() {
-        return isDestroyed;
+    public final boolean isEnabled() {
+        return this.isEnable;
     }
 
     @Override

@@ -10,6 +10,7 @@ public class BulletCollisionHandler implements CollisionHandler<Bullet> {
 
     /**
      * Empty costructor because {@link CollisionHandler} is a functional interface.
+     * Only the method implementation needed.
      */
     public BulletCollisionHandler() {
 

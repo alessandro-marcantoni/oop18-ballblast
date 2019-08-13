@@ -1,7 +1,5 @@
 package ballblast.view.scenecontroller;
 
-import com.google.common.base.Strings;
-
 import ballblast.model.levels.Level;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;

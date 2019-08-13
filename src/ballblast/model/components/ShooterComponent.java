@@ -14,7 +14,7 @@ import ballblast.model.physics.CollisionManager;
  *
  */
 public class ShooterComponent extends AbstractComponent {
-    private final static Vector2D BULLET_VELOCITY = Vector2D.create(0, -70);
+    private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -70);
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private boolean shootingState;

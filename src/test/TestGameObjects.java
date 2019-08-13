@@ -9,7 +9,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
-
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.components.ComponentTypes;
@@ -17,33 +16,29 @@ import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.Bullet;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.model.gameobjects.Player;
 import ballblast.model.gameobjects.Wall;
-import ballblast.model.physics.CollisionManager;
-import ballblast.model.physics.SimpleCollisionManager;
 /**
  * JUnit test for {@link GameObject}s.
  */
 public class TestGameObjects {
-    private GameObjectManager gameObjectManager;
-    private CollisionManager collisionManager;
+    //private GameObjectManager gameObjectManager;
+    //private CollisionManager collisionManager;
     /**
      * Initializes attributes.
      */
     @Before
     public void initTest() {
-        this.gameObjectManager = new GameObjectManager();
-        this.collisionManager = new SimpleCollisionManager();
+        //this.gameObjectManager = new GameObjectManager();
+        //this.collisionManager = new SimpleCollisionManager();
     }
     /**
      * Tests {@link Player}.
      */
     @Test
     public void testPlayer() {
-        GameObjectFactory.createPlayer(gameObjectManager, collisionManager);
         final Player player = new Player.Builder().setPosition(new Coordinate(0, 0)).build();
         assertEquals(player.toString(), "Player{GameObjectType=PLAYER, Position=Point2D{X=0.0, Y=0.0}, IsDestroyed=false}");
         assertTrue(player.getComponents().isEmpty());

@@ -62,7 +62,7 @@ public abstract class AbstractGameObject implements GameObject {
     public final double getHeight() { 
         return this.height;
     }
-    
+
     @Override
     public final Vector2D getVelocity() { 
         return this.velocity; 

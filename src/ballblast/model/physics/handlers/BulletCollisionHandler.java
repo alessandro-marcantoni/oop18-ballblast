@@ -1,5 +1,7 @@
-package ballblast.model.gameobjects;
+package ballblast.model.physics.handlers;
 
+import ballblast.model.gameobjects.Ball;
+import ballblast.model.gameobjects.Bullet;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
 
@@ -22,6 +24,9 @@ public class BulletCollisionHandler implements CollisionHandler<Bullet> {
             case BALL:
                 Ball ball = ((Ball) coll.getAttachedGameObject().get());
                 ball.setLife(ball.getLife() - 1);
+                if (ball.getLife() == 0) {
+                    ball.destroy();
+                }
                 obj.destroy();
             case WALL:
                 obj.destroy();

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane fx:id="borderPane" opacity="0.45" prefHeight="1080.0" prefWidth="1920.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="PauseSceneControllerImpl">
+   <top>
+      <Label text="ACTUAL SCORE" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="100.0" />
+         </padding>
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <Label fx:id="actualScoreLabel" text="0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </Label>
+         </graphic>
+      </Label>
+   </top>
+   <center>
+      <Button mnemonicParsing="false" text="RESUME" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </center>
+   <bottom>
+      <Button fx:id="backToMenu" mnemonicParsing="false" onAction="#backToMenu" text="BACK TO MENU" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="100.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+</BorderPane>

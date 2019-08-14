@@ -109,7 +109,6 @@ public class ViewImpl implements View {
         
 //        private final Controller controller;
         
-//        private final GameMode gameMode;
         
         
         
@@ -130,7 +129,7 @@ public class ViewImpl implements View {
         
         
         public void run() {
-//            controller.initModel(gameMode);
+//            controller.initModel();
 //            controller.initGameLoop();
 //            controller.startGameLoop();
             

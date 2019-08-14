@@ -1,4 +1,4 @@
-package ballblast.model.physics.handler;
+package ballblast.model.physics.handlers;
 
 import ballblast.model.gameobjects.Player;
 import ballblast.model.physics.Collidable;

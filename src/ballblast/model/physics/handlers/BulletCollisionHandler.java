@@ -1,4 +1,4 @@
-package ballblast.model.physics.handler;
+package ballblast.model.physics.handlers;
 
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.Bullet;

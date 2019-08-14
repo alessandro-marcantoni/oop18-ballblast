@@ -16,6 +16,5 @@ public class ViewBall {
         int radius = dimension.getDiameter();
         Paint cc = BallColors.randomColor().getColor();
         return new Circle(radius, cc);
-       
     }
 }

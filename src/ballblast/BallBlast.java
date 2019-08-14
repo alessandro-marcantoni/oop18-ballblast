@@ -7,7 +7,7 @@ import javafx.stage.Stage;
  * The class containing the main method to start the application.
  */
 public final class BallBlast extends Application{
-    //private BallBlast() { };
+    private BallBlast() { };
 
     @Override
     public void start(final Stage stage) throws Exception {

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.math.Vector2D;
 
 import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.Component;
@@ -28,7 +29,7 @@ public class TestCollisions {
     @Test
     public void testCollisionComponent() {
         final Component collisionComponent = new CollisionComponent(new SimpleCollisionManager(), CollisionTag.PLAYER);
-        final Player player = (Player) GameObjectFactory.createPlayer(new GameObjectManager(), new SimpleCollisionManager());
+        final Player player = (Player) GameObjectFactory.createPlayer(new GameObjectManager(), new SimpleCollisionManager(), Vector2D.create(new Coordinate(0, 0)));
         collisionComponent.setParent(player);
 
         assertEquals(((CollisionComponent) collisionComponent).toString(), "CollisionComponent{AttachedTo=PLAYER}");
@@ -43,8 +44,8 @@ public class TestCollisions {
     public void testCollisionManager() {
         final CollisionManager manager = new SimpleCollisionManager();
         final int ballLife = 24;
-        GameObjectFactory.createPlayer(new GameObjectManager(), manager);
-        GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), manager);
+        GameObjectFactory.createPlayer(new GameObjectManager(), manager, Vector2D.create(new Coordinate(0, 0)));
+        GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), Vector2D.create(new Coordinate(0, 0)), manager);
 
         assertTrue(manager.getCollidables().size() == 2);
         assertFalse(manager.getCollidables().isEmpty());

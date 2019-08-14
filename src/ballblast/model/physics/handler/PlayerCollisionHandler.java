@@ -1,5 +1,6 @@
-package ballblast.model.gameobjects;
+package ballblast.model.physics.handler;
 
+import ballblast.model.gameobjects.Player;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
 

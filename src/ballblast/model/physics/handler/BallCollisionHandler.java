@@ -1,5 +1,6 @@
-package ballblast.model.gameobjects;
+package ballblast.model.physics.handler;
 
+import ballblast.model.gameobjects.Ball;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
 
@@ -25,6 +26,9 @@ public class BallCollisionHandler implements CollisionHandler<Ball> {
                 // metodo bounce()
             case BULLET:
                 obj.setLife(obj.getLife() - 1);
+                if (obj.getLife() == 0) {
+                    obj.destroy();
+                }
             default:
                 break;
         }

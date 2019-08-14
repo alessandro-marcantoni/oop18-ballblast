@@ -14,19 +14,22 @@ public interface ViewEntity {
     
     /**
      * 
-     * @return the entity position.
+     * @return 
+     *          the entity position.
      */
     Coordinate getPosition();
     
     /**
      * 
-     * @return the entity shape.
+     * @return 
+     *          the entity shape.
      */
     Shape getShape();
     
     /**
      * 
-     * @return the entity image.
+     * @return 
+     *          the entity image.
      */
-    Image getPicture();
+    Image getImage();
 }

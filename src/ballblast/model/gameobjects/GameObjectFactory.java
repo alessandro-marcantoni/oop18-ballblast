@@ -4,6 +4,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
 import ballblast.model.components.CollisionComponent;
+import ballblast.model.components.GravityComponent;
 import ballblast.model.components.MovementComponent;
 import ballblast.model.components.ShooterComponent;
 import ballblast.model.physics.CollisionManager;
@@ -90,6 +91,7 @@ public final class GameObjectFactory {
                 .setLife(life)
                 .setPosition(position)
                 .setVelocity(velocity)
+                .addComponent(new GravityComponent())
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.BALL))
                 .addComponent(new MovementComponent())
                 .build();

@@ -1,8 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<StackPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameSceneControllerImpl">
+   <children>
+      <BorderPane fx:id="game" prefHeight="1080.0" prefWidth="1920.0">
+         <center>
+            <Canvas fx:id="canvas" height="1080.0" pickOnBounds="true" width="1920.0" />
+         </center>
+         <top>
+            <HBox fx:id="topHBox" alignment="TOP_RIGHT" maxHeight="100.0" maxWidth="1920.0" prefHeight="0.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="140.0" text="Time Score">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="timeScoreGameLabel" prefHeight="27.0" prefWidth="120.0" text="00:00:00">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <HBox fx:id="BottomHBox" alignment="BOTTOM_RIGHT" maxHeight="100.0" maxWidth="1920.0" prefHeight="0.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="140.0" text="Balls">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="ballsScoreGameLabel" prefHeight="27.0" prefWidth="120.0" text="0000">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
 </StackPane>
-

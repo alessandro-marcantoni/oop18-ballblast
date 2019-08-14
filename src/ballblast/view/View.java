@@ -3,6 +3,7 @@ package ballblast.view;
 import java.util.List;
 import java.util.Optional;
 
+import ballblast.model.levels.Level;
 import ballblast.view.entities.ViewEntity;
 import ballblast.view.scenecontroller.GameSceneController;
 import ballblast.view.scenefactory.SceneFactory;
@@ -17,28 +18,32 @@ public interface View {
 
     /**
      * 
-     * @param controller the controller
+     * @param controller 
+     *          the controller
      */
-    void viewLauncher(Controller controller);
+   // void viewLauncher(Controller controller);
     
     /**
      * 
-     * @return the scene factory.
+     * @return 
+     *          the scene factory.
      */
     SceneFactory getSceneFactory();
     
     /**
      * Start a new match.
      * 
-     * @param gameSceneController the game scene controller
+     * @param gameSceneController 
+     *          the game scene controller
      */
     void startGame(GameSceneController gameSceneController);
     
     /**
      * 
-     * @param viewEntities entities in the view
+     * @param viewEntities 
+     *          entities in the view
      */
-    void render(List<Optional<ViewEntity>> viewEntities);
+    void render(List<Optional<ViewEntity>> viewEntities, Level level);
     
     /**
      * Start the view thread.
@@ -54,5 +59,7 @@ public interface View {
      * 
      * @return the controller.
      */
-    Controller getController();
+//    Controller getController();
+    
+    
 }

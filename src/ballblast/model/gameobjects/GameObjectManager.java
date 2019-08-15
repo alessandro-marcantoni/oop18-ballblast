@@ -4,7 +4,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 /**
- * Interface that handles all objects on a specific {@link Level}.
+ * Handles all {@link GameObject}s of a specific {@link Level}.
  *
  */
 public class GameObjectManager {

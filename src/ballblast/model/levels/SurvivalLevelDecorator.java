@@ -49,4 +49,8 @@ public class SurvivalLevelDecorator extends LevelDecorator {
                 Vector2D.create(0, 0), this.getCollisionManager()));
         this.getGameObjectManager().addGameObjects(ImmutableList.of(spawnedBall.get()));
     }
+
+    /*private int generateBallLife() {
+        return 0;
+    }*/
 }

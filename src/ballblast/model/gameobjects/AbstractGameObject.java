@@ -96,7 +96,7 @@ public abstract class AbstractGameObject implements GameObject {
 
     @Override
     public final void update(final double elapsed) {
-        components.stream().forEach(c -> c.update(elapsed));
+        components.forEach(c -> c.update(elapsed));
     }
 
     @Override
@@ -111,7 +111,7 @@ public abstract class AbstractGameObject implements GameObject {
     @Override
     public final void removeComponent(final ComponentTypes type) {
         this.components = this.components.stream()
-                .filter(c -> c.getComponentType() != type)
+                .filter(c -> c.getType() != type)
                 .collect(ImmutableList.toImmutableList());
     }
 

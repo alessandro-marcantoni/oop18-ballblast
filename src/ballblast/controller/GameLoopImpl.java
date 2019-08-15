@@ -49,7 +49,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private void updateGame(final double elapsed) {
-        this.model.update(elapsed);
+        this.model.getCurrentLevel().get().update(elapsed);
     }
 
     private void render() {

@@ -6,7 +6,6 @@ package ballblast.view.scenecontroller;
  * 
  */
 
-
 public class ManualSceneControllerImpl extends AbstractSubSceneController {
     /**
      * No other methods needed.

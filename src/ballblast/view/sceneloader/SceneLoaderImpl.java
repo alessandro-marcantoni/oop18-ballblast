@@ -112,6 +112,10 @@ public class SceneLoaderImpl implements SceneLoader {
             case GAMEOVER:
                 //
                 break;
+            case GAME_MODE:
+                break;
+            default:
+                break;
             }
             
             

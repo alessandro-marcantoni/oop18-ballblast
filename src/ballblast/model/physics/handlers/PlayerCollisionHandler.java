@@ -22,7 +22,9 @@ public class PlayerCollisionHandler implements CollisionHandler {
         // obj is a Player object.
         switch (coll.getCollisionTag()) {
             case BALL:
+                // Destroy the Player and finish the game session.
                 obj.destroy();
+                // TODO metodo endGameSession()
             case WALL:
 
             case POWERUP:

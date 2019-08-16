@@ -128,6 +128,9 @@ public class TestCollisions {
         // Move the Ball forward the Bullet.
         balls.setPosition(new Coordinate(pos, pos));
         manager.checkLoop();
+        // Expected a collision between the ball and the bullet.
+        // Bullet ---> destroy.
+        // Ball ---> decrement life but still alive.
         assertTrue(bullets.isDestroyed());
         assertFalse(balls.isDestroyed());
         // The Ball object is still alive but his life has been decremented.

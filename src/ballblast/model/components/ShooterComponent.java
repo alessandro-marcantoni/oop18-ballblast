@@ -17,8 +17,6 @@ public class ShooterComponent extends AbstractComponent {
     private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -70);
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
-    private boolean shootingState;
-
     /**
      * Creates a {@link ShooterComponent} instance.
      * 
@@ -35,29 +33,10 @@ public class ShooterComponent extends AbstractComponent {
 
     @Override
     public final void update(final double elapsed) {
-        if (this.shootingState && this.isEnabled()) {
+        if (this.isEnabled()) {
             this.shoot();
-            this.shootingState = false;
+            this.disable();
         }
-    }
-
-    /**
-     * Sets the {@link ShooterComponent}'s state.
-     * 
-     * @param shootingState the boolean indicates if the {@link Shooter} has to
-     *                      shot.
-     */
-    public void setShootingState(final boolean shootingState) {
-        this.shootingState = shootingState;
-    }
-
-    /**
-     * Gets the {@link ShooterComponent}'s state.
-     * 
-     * @return the true if the {@link Shooter} has to shot, false otherwise.
-     */
-    public boolean getShootingState() {
-        return this.shootingState;
     }
 
     /**

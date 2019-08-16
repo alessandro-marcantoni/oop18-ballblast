@@ -35,7 +35,7 @@ public class ShooterComponent extends AbstractComponent {
 
     @Override
     public final void update(final double elapsed) {
-        if (this.shootingState && isEnabled()) {
+        if (this.shootingState && this.isEnabled()) {
             this.shoot();
             this.shootingState = false;
         }
@@ -66,7 +66,7 @@ public class ShooterComponent extends AbstractComponent {
     private void shoot() {
         final GameObject bullet = GameObjectFactory.createBullet(this.getParent().getPosition(), BULLET_VELOCITY,
                 collisionManager);
-        bullet.getComponents().stream().forEach(c -> c.enable());
+        bullet.getComponents().forEach(c -> c.enable());
         this.gameObjectManager.addGameObjects(ImmutableList.of(bullet));
     }
 }

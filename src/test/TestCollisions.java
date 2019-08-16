@@ -50,14 +50,14 @@ public class TestCollisions {
         GameObjectFactory.createPlayer(new GameObjectManager(), manager, new Vector2D())
                          .getComponents()
                          .stream()
-                         .filter(c -> c.getComponentType() == ComponentTypes.COLLISION)
+                         .filter(c -> c.getType() == ComponentTypes.COLLISION)
                          .findFirst()
                          .get()
                          .enable();
         GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), new Vector2D(), manager)
                          .getComponents()
                          .stream()
-                         .filter(c -> c.getComponentType() == ComponentTypes.COLLISION)
+                         .filter(c -> c.getType() == ComponentTypes.COLLISION)
                          .findFirst()
                          .get()
                          .enable();
@@ -128,6 +128,9 @@ public class TestCollisions {
         // Move the Ball forward the Bullet.
         balls.setPosition(new Coordinate(pos, pos));
         manager.checkLoop();
+        // Expected a collision between the ball and the bullet.
+        // Bullet ---> destroy.
+        // Ball ---> decrement life but still alive.
         assertTrue(bullets.isDestroyed());
         assertFalse(balls.isDestroyed());
         // The Ball object is still alive but his life has been decremented.

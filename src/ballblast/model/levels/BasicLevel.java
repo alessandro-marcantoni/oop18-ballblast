@@ -7,6 +7,7 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
+import ballblast.model.components.Component;
 import ballblast.model.constants.Boundaries;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
@@ -31,7 +32,7 @@ public final class BasicLevel implements Level {
         this.gameObjectManager = new GameObjectManager();
         this.collisionManager = new SimpleCollisionManager();
         this.gameScore = INITIAL_GAME_SCORE;
-        this.fillGameObjectManager();
+        this.initGameObjectManager();
     }
 
     @Override
@@ -66,10 +67,13 @@ public final class BasicLevel implements Level {
         this.gameObjectManager.addGameObjects(boundaries);
     }
 
-    private void fillGameObjectManager() {
+    private void initGameObjectManager() {
         this.createBoundaries();
         this.addPlayer();
-        this.gameObjectManager.getGameObjects().stream()
-                .forEach(g -> g.getComponents().stream().forEach(c -> c.enable()));
+        this.gameObjectManager.getGameObjects().forEach(g -> this.activeComponents(g));
+    }
+
+    private void activeComponents(final GameObject gameObject) {
+        gameObject.getComponents().forEach(Component::enable);
     }
 }

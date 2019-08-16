@@ -21,16 +21,10 @@ public interface Component {
      */
     void disable();
     /**
-     * Returns a boolean which notifies if the Component is enabled.
-     * @return
-     *     true if Component is enabled, false otherwise.
-     */
-    boolean isEnabled();
-    /**
      * @return
      *     the tag which defines the {@link ComponentType}.
      */
-    ComponentTypes getComponentType();
+    ComponentTypes getType();
     /**
      * Sets the {@link Component}'s parent.
      * @param parent

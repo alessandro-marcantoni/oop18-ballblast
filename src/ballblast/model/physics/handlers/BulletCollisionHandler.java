@@ -21,14 +21,18 @@ public class BulletCollisionHandler implements CollisionHandler {
     @Override
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Bullet object.
+        final int decLife = 1;
         switch (coll.getCollisionTag()) {
             case BALL:
+                // Decrement the Ball life by 'decLife' and destroy if life = 0.
                 Ball ball = ((Ball) coll.getAttachedGameObject().get());
-                ball.setLife(ball.getLife() - 1);
+                ball.setLife(ball.getLife() - decLife);
                 if (ball.getLife() == 0) {
                     ball.destroy();
                 }
+                // Destroy the Bullet after the collision with the Ball.
                 obj.destroy();
+                // TODO handle score
             case WALL:
                 obj.destroy();
             default:

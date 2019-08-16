@@ -24,7 +24,7 @@ public abstract class AbstractGameObject implements GameObject {
     private double width;
     private double height;
     private Vector2D velocity;
-    private CollisionHandler<GameObject> collisionHandler;
+    private CollisionHandler collisionHandler;
     /**
      * Creates a AbstractGameObject instance.
      * @param type
@@ -134,7 +134,7 @@ public abstract class AbstractGameObject implements GameObject {
      * @param handler
      *     the delegate {@link CollisionHandler} used to handle the {@link Collision}s.
      */
-    protected final void setCollisionHandler(final CollisionHandler<GameObject> handler) {
+    protected final void setCollisionHandler(final CollisionHandler handler) {
         this.collisionHandler = handler;
     }
     /**
@@ -225,7 +225,7 @@ public abstract class AbstractGameObject implements GameObject {
          * @return
          *     the concrete {@link AbstractBuilder}.
          */
-        public B setCollisionHandler(final CollisionHandler<GameObject> handler) {
+        public B setCollisionHandler(final CollisionHandler handler) {
             this.getGameObject().setCollisionHandler(handler);
             return this.builder;
         }

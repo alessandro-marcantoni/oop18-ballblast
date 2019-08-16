@@ -1,3 +1,5 @@
+package ballblast.model.components;
+
 import org.locationtech.jts.math.Vector2D;
 
 /**

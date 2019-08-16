@@ -12,6 +12,8 @@ import ballblast.model.constants.Boundaries;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.inputs.InputManager;
+import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
 
@@ -23,12 +25,15 @@ public final class BasicLevel implements Level {
     private static final int INITIAL_GAME_SCORE = 0;
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
+    private final InputManager inputManager;
+
     /**
      * Creates a new instance of BasicLevel.
      */
     public BasicLevel() {
         this.gameObjectManager = new GameObjectManager();
         this.collisionManager = new SimpleCollisionManager();
+        this.inputManager = new InputManager();
         this.initGameObjectManager();
     }
 
@@ -53,8 +58,8 @@ public final class BasicLevel implements Level {
     }
 
     private void addPlayer() {
-        this.gameObjectManager.addGameObjects(ImmutableList
-                .of(GameObjectFactory.createPlayer(gameObjectManager, collisionManager, Vector2D.create(0, 0))));
+        this.gameObjectManager.addGameObjects(ImmutableList.of(GameObjectFactory.createPlayer(gameObjectManager,
+                inputManager, PlayerTags.FIRST, collisionManager, Vector2D.create(0, 0))));
     }
 
     private void createBoundaries() {

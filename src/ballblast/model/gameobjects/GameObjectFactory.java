@@ -5,8 +5,11 @@ import org.locationtech.jts.math.Vector2D;
 
 import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.GravityComponent;
+import ballblast.model.components.InputComponent;
 import ballblast.model.components.MovementComponent;
 import ballblast.model.components.ShooterComponent;
+import ballblast.model.inputs.InputManager;
+import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.CollisionTag;
 import ballblast.model.physics.handlers.BallCollisionHandler;
@@ -23,20 +26,20 @@ public final class GameObjectFactory {
     /**
      * Creates {@link Player} game object.
      * 
-     * @param collisionManager  the {@link CollisionManager}.
      * @param gameObjectManager the {@link GameObjectManager}.
+     * @param inputManager      the {@link InputManager}.
+     * @param tag               the {@link PlayerTags}.
+     * @param collisionManager  the {@link CollisionManager}.
      * @param velocity          the {@link Player}'s velocity.
-     * @return                  the {@link GameObject} created.
+     * @return the {@link GameObject} created.
      */
-    public static GameObject createPlayer(final GameObjectManager gameObjectManager,
-            final CollisionManager collisionManager, final Vector2D velocity) {
-        return new Player.Builder()
-                .setVelocity(velocity)
-                .setCollisionHandler(new PlayerCollisionHandler())
+    public static GameObject createPlayer(final GameObjectManager gameObjectManager, final InputManager inputManager,
+            final PlayerTags tag, final CollisionManager collisionManager, final Vector2D velocity) {
+        return new Player.Builder().setVelocity(velocity).setCollisionHandler(new PlayerCollisionHandler())
+                .addComponent(new InputComponent(inputManager, tag))
                 .addComponent(new ShooterComponent(gameObjectManager, collisionManager))
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.PLAYER))
-                .addComponent(new MovementComponent())
-                .build();
+                .addComponent(new MovementComponent()).build();
     }
 
     /**
@@ -47,17 +50,12 @@ public final class GameObjectFactory {
      * @param width            the {@link Wall}'s width.
      * @param velocity         the {@link Wall}'s velocity.
      * @param position         the {@link Wall}'s position.
-     * @return                 the {@link GameObject} created.
+     * @return the {@link GameObject} created.
      */
     public static GameObject createWall(final double height, final double width, final Coordinate position,
             final Vector2D velocity, final CollisionManager collisionManager) {
-        return new Wall.Builder()
-                .setHeight(height)
-                .setWidth(width)
-                .setPosition(position)
-                .setVelocity(velocity)
-                .addComponent(new CollisionComponent(collisionManager, CollisionTag.WALL))
-                .build();
+        return new Wall.Builder().setHeight(height).setWidth(width).setPosition(position).setVelocity(velocity)
+                .addComponent(new CollisionComponent(collisionManager, CollisionTag.WALL)).build();
     }
 
     /**
@@ -66,17 +64,14 @@ public final class GameObjectFactory {
      * @param collisionManager the {@link CollisionManager}.
      * @param position         the {@link Bullet}'s position.
      * @param velocity         the {@link Bullet}'s velocity.
-     * @return                 the {@link GameObject} created.
+     * @return the {@link GameObject} created.
      */
     public static GameObject createBullet(final Coordinate position, final Vector2D velocity,
             final CollisionManager collisionManager) {
-        return new Bullet.Builder()
-                .setPosition(position)
-                .setVelocity(velocity)
+        return new Bullet.Builder().setPosition(position).setVelocity(velocity)
                 .setCollisionHandler(new BulletCollisionHandler())
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.BULLET))
-                .addComponent(new MovementComponent())
-                .build();
+                .addComponent(new MovementComponent()).build();
     }
 
     /**
@@ -87,19 +82,13 @@ public final class GameObjectFactory {
      * @param life             the {@link Ball}'s life.
      * @param position         the {@link Ball}'s position.
      * @param velocity         the {@link Ball}'s velocity.
-     * @return                 the {@link GameObject created}.
+     * @return the {@link GameObject created}.
      */
     public static GameObject createBall(final BallTypes ballType, final int life, final Coordinate position,
             final Vector2D velocity, final CollisionManager collisionManager) {
-        return new Ball.Builder()
-                .setBallType(ballType)
-                .setLife(life)
-                .setPosition(position)
-                .setVelocity(velocity)
-                .setCollisionHandler(new BallCollisionHandler())
-                .addComponent(new GravityComponent())
+        return new Ball.Builder().setBallType(ballType).setLife(life).setPosition(position).setVelocity(velocity)
+                .setCollisionHandler(new BallCollisionHandler()).addComponent(new GravityComponent())
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.BALL))
-                .addComponent(new MovementComponent())
-                .build();
+                .addComponent(new MovementComponent()).build();
     }
 }

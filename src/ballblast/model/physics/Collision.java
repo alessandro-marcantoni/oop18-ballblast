@@ -5,8 +5,8 @@ package ballblast.model.physics;
  */
 public class Collision {
 
-    private Collidable obj;
-    private Collidable other;
+    private final Collidable obj;
+    private final Collidable other;
 
     /**
      * The costructor for the collision.

@@ -6,7 +6,14 @@ import org.locationtech.jts.math.Vector2D;
 import javafx.geometry.Point2D;
 
 /**
- * 
+ * Represents an image that can be rendered on the screen at a certain position on the screen
+ * and with some rotation. 
+ * The position specifies the pixel at which the pivot of the sprite will be positioned
+ * relative to the bottom left corner of the canvas.
+ * The pivot is the point relative to the center of the image that is used as the center for positioning.
+ * It can be set as a vector starting from the center of the image.
+ * Coordinates in the range [-1,1] indicate a pivot inside the rectangle of the image.
+ * The image source is specified as an {@link ImagePath}.
  * 
  */
 public interface Sprite extends Renderer{

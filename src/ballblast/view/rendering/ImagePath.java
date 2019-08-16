@@ -4,9 +4,13 @@ package ballblast.view.rendering;
  */
 public enum ImagePath {
     /**
-     * The image prova.
+     * The image for balls.
      */
-    PROVA("/prove/prova.png");
+    BALL("/balls/balls.png"),
+    /**
+     * The image for cannon.
+     */
+    PLAYER("/players/cannon.png");
     private static final String IMAGE_PATH = "/images";
     private final String path;
 

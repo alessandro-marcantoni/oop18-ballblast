@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 /**
  * The class containing the main method to start the application.
  */
-public final class BallBlast extends Application{
+public final class BallBlast extends Application {
     private BallBlast() { };
 
     @Override
@@ -14,9 +14,7 @@ public final class BallBlast extends Application{
         //final View view = new ViewImpl(stage);
         //final Controller controller = new ControllerImpl(() -> new ModelImpl(), view);
         //view.viewLauncher(controller);
-          
     }
-    
     /**
      * The main entry point of the application.
      * @param args

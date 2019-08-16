@@ -10,14 +10,6 @@ import ballblast.model.physics.CollisionHandler;
  */
 public class BallCollisionHandler implements CollisionHandler {
 
-    /**
-     * Empty costructor because {@link CollisionHandler} is a functional interface.
-     * Only the method implementation needed.
-     */
-    public BallCollisionHandler() {
-
-    }
-
     @Override
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Ball object.

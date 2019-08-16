@@ -1,30 +1,18 @@
 package ballblast.view;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.Semaphore;
-
 import ballblast.controller.Controller;
-import ballblast.model.levels.BasicLevel;
-import ballblast.model.levels.Level;
-import ballblast.settings.SettingsImpl;
-import ballblast.view.entities.ViewEntity;
 import ballblast.view.scenecontroller.AbstractSceneController;
-import ballblast.view.scenecontroller.GameSceneController;
-import ballblast.view.scenefactory.SceneFactory;
-import ballblast.view.scenefactory.SceneFactoryImpl;
 import ballblast.view.sceneloader.SceneLoader;
 import ballblast.view.sceneloader.SceneWrapper;
 import ballblast.view.utilities.ViewScenes;
 import javafx.application.Platform;
 import javafx.scene.Parent;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * 
+ */
 public class ViewImpl implements View {
 
     private static final String GAME_TITLE = "BALL BLAST";
@@ -36,18 +24,22 @@ public class ViewImpl implements View {
     private final Stage stage;
 
 //    private static final int GREEN_SEMAPHORE = 1;
-    
+
 
 //    private Render viewRender;
 //    private List<Optional<ViewEntity>> viewEntities;
 //    private GameData gameData;
 //    private final Semaphore mutex;
-    
+
 //    private final SceneFactory sceneFactory;
 //    private GameMode gameMode;
 //    private Level level;
 //    private int score = 0;
-    
+    /**
+     * 
+     * @param primaryStage
+     *          primaryStage
+     */
     public ViewImpl(final Stage primaryStage) {
         super();
         this.stage = primaryStage;
@@ -56,7 +48,7 @@ public class ViewImpl implements View {
 //        this.sceneFactory = new SceneFactoryImpl(this);
 //        this.level = new BasicLevel();
     }
-    
+
 //    @Override
 //    public void startGame(GameSceneController gameSceneController) {
 ////        this.gameMode = gameMode;
@@ -64,10 +56,9 @@ public class ViewImpl implements View {
 //    }
 
     @Override
-    public void render() {
-        
+    public final void render() {
         Platform.runLater(() -> this.currentScene.render());
-        
+
 //        try {
 //            this.mutex.acquire();
 //            this.viewEntities = viewEntities;
@@ -89,9 +80,9 @@ public class ViewImpl implements View {
 //        this.viewRender.stopRender();
 //    }
 
-    
+
     @Override
-    public void launch(final Controller controller) {
+    public final void launch(final Controller controller) {
        this.control = controller;
        this.stage.setTitle(GAME_TITLE);
        this.stage.setMinHeight(MIN_HEIGHT);
@@ -102,17 +93,20 @@ public class ViewImpl implements View {
 //       this.sceneFactory.setStage(this.stage);
 //       this.sceneFactory.openMenuScene();
     }
-    
+    /**
+     * @param scene
+     *          scene
+     */
     public void loadScene(final ViewScenes scene) {
         try {
             final SceneWrapper wrapper = SceneLoader.getLoader().getScene(scene);
-            //wrapper.getController().init(control, this);
+            //swrapper.getController().init(control, this);
             this.currentScene = wrapper.getController();
-            
+
             final Parent root = wrapper.getScene().getRoot();
             root.requestFocus();
             root.setOnKeyPressed(wrapper.getController()::onKeyPressed);
-            
+
             Platform.runLater(() -> {
                 final double oldWidth = this.stage.getWidth();
                 final double oldHeigth = this.stage.getHeight();
@@ -124,46 +118,46 @@ public class ViewImpl implements View {
                     this.viewStarted = true;
                 }
             });
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
 //    @Override
 //    public Controller getController() {
 //        return this.controller;
 //    }
-//    
-//    
+//
+//
 //    @Override
 //    public SceneFactory getSceneFactory() {
 //        return this.sceneFactory;
 //    }
-    
+
 //    /**
 //     * 
 //     * 
 //     * 
 //     */
-//    
+//
 //    private class Render extends Thread{
-//        
+//
 //        private static final int FPS = 60;
 //        private static final int MILLISECONDS = 1000/FPS;
-//        
+//
 //        private boolean running, end;
 //        private final int period;
 //        private List<Optional<ViewEntity>> viewEntitiesGame;
-//        
+//
 //        private Level level;
 //        private int score = 0;
-//        
+//
 //        private final GameSceneController gameSceneController;
 //        private GraphicsContext canvas;
 //        private final ImageView backgroundImage;
-//        
-//        
+//
+//
 //        Render(final GameSceneController gameSceneController) {
 //            super();
 //            this.period = MILLISECONDS;
@@ -171,50 +165,50 @@ public class ViewImpl implements View {
 //            this.canvas = this.gameSceneController.getCanvas().getGraphicsContext2D();
 //            this.running = true;
 ////            this.gameMode = SURVIVAL;
-//            
+//
 //            this.backgroundImage = new ImageView(new Image(getClass().getResourceAsStream("/view/background/background.png"),
 //                                                           SettingsImpl.getSettings().getSelectedResolution().getKey(),
 //                                                           SettingsImpl.getSettings().getSelectedResolution().getValue(),
 //                                                           false, false));
-//            
-//        }
-//        
-//        
+//
+//       }
+//
+//
 //        public void run() {
 ////            controller.initModel();
 ////            controller.initGameLoop();
 ////            controller.startGameLoop();
-//            
+//
 //            while (this.running) {
 //                try {
 //                    mutex.acquire();
-//                    
+//
 //                    this.viewEntitiesGame = viewEntities;
 //                    this.score = level.getGameScore();
-//                    
+//
 //                    mutex.release();
-//                    
+//
 //                } catch (InterruptedException e) {
 //                    e.printStackTrace();
 //                }
-//                
+//
 //                final long currentTime = System.currentTimeMillis();
-//                
+//
 //                Platform.runLater(() -> {
 ////                    this.gameSceneController.setPausePanelVisibility(getController().isGameLoopPaused());
-//                    
+//
 //                    this.gameSceneController.setGameData(this.level);
-//                    
+//
 //                    for (final Optional<ViewEntity> viewEntity : this.viewEntitiesGame) {
 //                        if (viewEntity.isPresent() && viewEntity.get().getShape() instanceof Circle) {
 //                            final ViewEntity ve = viewEntity.get();
 //                            final Shape circle = ve.getShape();
-//                                            
+//
 //                        }
 //                    }
 //                });
 //            }
-//            
+//
 //        }
 //        public void endGame() {
 //            this.end = true;
@@ -226,10 +220,8 @@ public class ViewImpl implements View {
 //            this.running = true;
 //            super.start();
 //        }
-//        
-//        
+//
+//
 //    }
-
-
 
 }

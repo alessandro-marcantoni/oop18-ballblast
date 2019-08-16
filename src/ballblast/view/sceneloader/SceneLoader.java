@@ -1,23 +1,10 @@
 package ballblast.view.sceneloader;
 
 import java.io.IOException;
-import java.util.Optional;
-
-import ballblast.settings.SettingsImpl;
-import ballblast.view.View;
-import ballblast.view.scenecontroller.GameSceneController;
-import ballblast.view.scenecontroller.SceneController;
 import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 
 /**
  * 
@@ -27,56 +14,66 @@ import javafx.stage.Stage;
 public final class SceneLoader {
 
     private static final SceneLoader SINGLETON = new SceneLoader();
-    private static final String PATH= "/view/scenes";
-    
+    private static final String PATH = "/view/scenes";
+
+    /**
+     * 
+     * @return
+     *          pippo
+     */
     public static SceneLoader getLoader() {
         return SINGLETON;
     }
 
-    public SceneWrapper getScene(ViewScenes scene) throws IOException {
+    /**
+     * 
+     * @param scene
+     *          scene
+     * @return
+     *          pippo
+     * @throws IOException
+     *          help
+     */
+    public SceneWrapper getScene(final ViewScenes scene) throws IOException {
         final FXMLLoader loader = new FXMLLoader();
         final String path = scene.getPath();
         final Parent parent = loader.load(this.getClass().getResourceAsStream(path));
         return new SceneWrapperImpl(new Scene(parent), loader.getController());
     }
-    
-    
-    
-    
+
 //    private final View view;
 //    private static final String STYLE_CSS_PATH = "/view/style/style.css";
 //    private static final String LOGO_PATH = "/view/logo/ballblast.png";
 //    private static final String BACKGROUND_PATH = "/view/background/background.png";
-    
-    
+
 //    @Override
 //    public void loadScene(Stage stage, ViewScenes viewScene) {
 //        final Region root;
 //        final FXMLLoader loader = new FXMLLoader();
 //        final SceneController controller;
 //        final Scene scene;
-//        
+//
 //        try {
 //            loader.setLocation(getClass().getResource(viewScene.getPath()));
 //            root = loader.load();
-//            
+//
 //            controller = loader.getController();
 //            controller.setSceneFactory(this.view.getSceneFactory());
-//            
+//
 //            root.setPrefSize(SettingsImpl.getSettings().getSelectedResolution().getKey(),
 //                             SettingsImpl.getSettings().getSelectedResolution().getValue());
-//            
+//
 //            root.getChildrenUnmodifiable().stream().forEach( e -> {
 //                    // Da implementare
 //            });
-//            
+//
 //            scene = new Scene(root);
 //            scene.getStylesheets().add(STYLE_CSS_PATH);
-//            
+//
 //            stage.setScene(scene);
 //            stage.setResizable(false);
 //            stage.getIcons().add(new Image(LOGO_PATH));
-//            
+//
 //            /**
 //             * Control if the view is full screen mode.
 //             *         If true nothing changes.
@@ -86,7 +83,7 @@ public final class SceneLoader {
 //                stage.sizeToScene();
 //                stage.centerOnScreen();
 //            }
-//            
+//
 //            /**
 //             * Control if the view if showing properly.
 //             *          If not, it forces the showing.
@@ -94,8 +91,8 @@ public final class SceneLoader {
 //            if (!stage.isShowing()) {
 //                stage.show();
 //            }
-//            
-//            
+//
+//
 //            /**
 //             * Various scenes.
 //             */
@@ -128,13 +125,13 @@ public final class SceneLoader {
 //            default:
 //                break;
 //            }
-//            
-//            
+//
+//
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-//        
-//        
+//
+//
 //    }
 //    /**
 //     * Add and event handler to the stage passed.
@@ -145,7 +142,7 @@ public final class SceneLoader {
 //    private void addEventHandler(final Stage stage) {
 //        stage.getScene().addEventHandler(KeyEvent.KEY_PRESSED, e -> {
 //           /*
-//            * Da implementare            
+//            * Da implementare
 //            */
 //        });
 //    }

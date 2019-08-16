@@ -50,14 +50,14 @@ public class TestCollisions {
         GameObjectFactory.createPlayer(new GameObjectManager(), manager, new Vector2D())
                          .getComponents()
                          .stream()
-                         .filter(c -> c.getComponentType() == ComponentTypes.COLLISION)
+                         .filter(c -> c.getType() == ComponentTypes.COLLISION)
                          .findFirst()
                          .get()
                          .enable();
         GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), new Vector2D(), manager)
                          .getComponents()
                          .stream()
-                         .filter(c -> c.getComponentType() == ComponentTypes.COLLISION)
+                         .filter(c -> c.getType() == ComponentTypes.COLLISION)
                          .findFirst()
                          .get()
                          .enable();

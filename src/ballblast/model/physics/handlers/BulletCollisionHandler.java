@@ -10,14 +10,6 @@ import ballblast.model.physics.CollisionHandler;
  */
 public class BulletCollisionHandler implements CollisionHandler {
 
-    /**
-     * Empty costructor because {@link CollisionHandler} is a functional interface.
-     * Only the method implementation needed.
-     */
-    public BulletCollisionHandler() {
-
-    }
-
     @Override
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Bullet object.
@@ -25,7 +17,7 @@ public class BulletCollisionHandler implements CollisionHandler {
         switch (coll.getCollisionTag()) {
             case BALL:
                 // Decrement the Ball life by 'decLife' and destroy if life = 0.
-                Ball ball = ((Ball) coll.getAttachedGameObject().get());
+                final Ball ball = ((Ball) coll.getAttachedGameObject().get());
                 ball.setLife(ball.getLife() - decLife);
                 if (ball.getLife() == 0) {
                     ball.destroy();

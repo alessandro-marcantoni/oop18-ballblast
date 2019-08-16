@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -36,8 +37,8 @@ public class TestCollisions {
         collisionComponent.setParent(player);
 
         assertEquals(((CollisionComponent) collisionComponent).toString(), "CollisionComponent{AttachedTo=PLAYER}");
-        assertTrue(((CollisionComponent) collisionComponent).getCollisionTag() == CollisionTag.PLAYER);
-        assertFalse(!((CollisionComponent) collisionComponent).getAttachedGameObject().get().equals(player));
+        assertSame(((CollisionComponent) collisionComponent).getCollisionTag(), CollisionTag.PLAYER);
+        assertTrue(((CollisionComponent) collisionComponent).getAttachedGameObject().get().equals(player));
     }
 
     /**
@@ -62,15 +63,15 @@ public class TestCollisions {
                          .get()
                          .enable();
 
-        assertTrue(manager.getCollidables().size() == 2);
+        assertEquals(manager.getCollidables().size(), 2);
         assertFalse(manager.getCollidables().isEmpty());
         manager.addCollidable(new CollisionComponent(new SimpleCollisionManager(), CollisionTag.BULLET));
-        assertTrue(manager.getCollidables().size() == 3);
+        assertEquals(manager.getCollidables().size(), 3);
         // Remove all the collidables from the list.
-        for (Collidable coll : manager.getCollidables()) {
+        for (final Collidable coll : manager.getCollidables()) {
             manager.removeCollidable(coll);
         }
-        assertTrue(manager.getCollidables().size() == 0);
+        assertEquals(manager.getCollidables().size(), 0);
         assertTrue(manager.getCollidables().isEmpty());
         // Throws an UnsupportedOperationException because cannot remove an object from an empty list.
         manager.removeCollidable(new CollisionComponent(new SimpleCollisionManager(), CollisionTag.POWERUP));
@@ -84,9 +85,9 @@ public class TestCollisions {
         final CollisionManager manager = new SimpleCollisionManager();
         final int ballLife = 1;
         final int pos = 20;
-        GameObject player = GameObjectFactory.createPlayer(new GameObjectManager(), manager, Vector2D.create(new Coordinate(0, 0)));
-        GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), Vector2D.create(new Coordinate(0, 0)), manager);
-        GameObject bullet = GameObjectFactory.createBullet(new Coordinate(pos, pos), new Vector2D(), manager);
+        final GameObject player = GameObjectFactory.createPlayer(new GameObjectManager(), manager, Vector2D.create(new Coordinate(0, 0)));
+        final GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), Vector2D.create(new Coordinate(0, 0)), manager);
+        final GameObject bullet = GameObjectFactory.createBullet(new Coordinate(pos, pos), new Vector2D(), manager);
         player.setPosition(new Coordinate(0, 0));
 
         // Enable all the game object's components.
@@ -94,7 +95,7 @@ public class TestCollisions {
         ball.getComponents().forEach(c -> c.enable());
         bullet.getComponents().forEach(c -> c.enable());
 
-        assertTrue(manager.getCollidables().size() == 3);
+        assertEquals(manager.getCollidables().size(), 3);
         assertFalse(player.isDestroyed());
         assertFalse(ball.isDestroyed());
         assertFalse(bullet.isDestroyed());
@@ -105,7 +106,7 @@ public class TestCollisions {
         assertTrue(player.isDestroyed());
         assertFalse(ball.isDestroyed());
         assertFalse(bullet.isDestroyed());
-        assertTrue(manager.getCollidables().size() == 2);
+        assertEquals(manager.getCollidables().size(), 2);
         ball.setPosition(new Coordinate(pos, pos));
         manager.checkLoop();
         // Expected a collision between the bullet and the ball.
@@ -115,13 +116,13 @@ public class TestCollisions {
         assertTrue(ball.isDestroyed());
         assertEquals(manager.getCollidables().size(), 0);
 
-        GameObject balls = GameObjectFactory.createBall(BallTypes.SMALL, ballLife + 1, new Coordinate(0, 0), Vector2D.create(new Coordinate(0, 0)), manager);
-        GameObject bullets = GameObjectFactory.createBullet(new Coordinate(pos, pos), new Vector2D(), manager);
+        final GameObject balls = GameObjectFactory.createBall(BallTypes.SMALL, ballLife + 1, new Coordinate(0, 0), Vector2D.create(new Coordinate(0, 0)), manager);
+        final GameObject bullets = GameObjectFactory.createBullet(new Coordinate(pos, pos), new Vector2D(), manager);
 
         balls.getComponents().forEach(c -> c.enable());
         bullets.getComponents().forEach(c -> c.enable());
 
-        assertTrue(manager.getCollidables().size() == 2);
+        assertEquals(manager.getCollidables().size(), 2);
         manager.checkLoop();
         assertFalse(balls.isDestroyed());
         assertFalse(bullets.isDestroyed());
@@ -135,6 +136,6 @@ public class TestCollisions {
         assertFalse(balls.isDestroyed());
         // The Ball object is still alive but his life has been decremented.
         assertEquals(((Ball) balls).getLife(), 1);
-        assertTrue(manager.getCollidables().size() == 1);
+        assertEquals(manager.getCollidables().size(), 1);
     }
 }

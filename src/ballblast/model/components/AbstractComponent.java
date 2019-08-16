@@ -9,7 +9,7 @@ import ballblast.model.gameobjects.GameObject;
 public abstract class AbstractComponent implements Component {
     private final ComponentTypes type;
     private GameObject parent;
-    private boolean isEnabled;
+    private boolean isAvailable;
     /**
      * Create a new instance of AbstractComponent.
      * @param type 
@@ -24,12 +24,12 @@ public abstract class AbstractComponent implements Component {
     /** {@inheritDoc} */
     @Override
     public void enable() {
-        this.isEnabled = true;
+        this.isAvailable = true;
     }
     /** {@inheritDoc} */
     @Override
     public void disable() {
-        this.isEnabled = false;
+        this.isAvailable = false;
     }
 
     @Override
@@ -52,6 +52,6 @@ public abstract class AbstractComponent implements Component {
      *     true if Component is enabled, false otherwise.
      */
     protected final boolean isEnabled() {
-        return this.isEnabled;
+        return this.isAvailable;
     }
 }

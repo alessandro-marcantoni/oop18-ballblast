@@ -23,15 +23,12 @@ public final class BasicLevel implements Level {
     private static final int INITIAL_GAME_SCORE = 0;
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
-    private int gameScore;
-
     /**
      * Creates a new instance of BasicLevel.
      */
     public BasicLevel() {
         this.gameObjectManager = new GameObjectManager();
         this.collisionManager = new SimpleCollisionManager();
-        this.gameScore = INITIAL_GAME_SCORE;
         this.initGameObjectManager();
     }
 
@@ -52,7 +49,7 @@ public final class BasicLevel implements Level {
 
     @Override
     public int getGameScore() {
-        return this.gameScore;
+        return INITIAL_GAME_SCORE;
     }
 
     private void addPlayer() {

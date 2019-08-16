@@ -6,7 +6,7 @@ import com.google.common.base.MoreObjects;
  * This class implements the Player object. It represents the entity controlled by the user 
  * which can shoot to destroy objects and dies when hit by a ball.
  */
-public final class Player extends AbstractGameObject {
+public final class Player extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
     private static final double DEFAULT_WIDTH = 12;
     private static final double DEFAULT_HEIGHT = 16;
     /**

@@ -58,7 +58,7 @@ public final class BasicLevel implements Level {
     }
 
     private void createBoundaries() {
-        List<GameObject> boundaries = Arrays.stream(Boundaries.values()).map(b -> GameObjectFactory
+        final List<GameObject> boundaries = Arrays.stream(Boundaries.values()).map(b -> GameObjectFactory
                 .createWall(b.getHeight(), b.getWidth(), b.getPosition(), b.getVelocity(), collisionManager))
                 .collect(ImmutableList.toImmutableList());
         this.gameObjectManager.addGameObjects(boundaries);

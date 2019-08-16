@@ -7,7 +7,7 @@ import com.google.common.base.MoreObjects;
  * It can collide whit walls and balls, not with the player.
  *
  */
-public final class Bullet extends AbstractGameObject {
+public final class Bullet extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
     private static final double DEFAULT_WIDTH = 4;
     private static final double DEFAULT_HEIGHT = 4;
     /**

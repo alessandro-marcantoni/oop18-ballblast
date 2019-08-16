@@ -1,6 +1,8 @@
 package ballblast.view.scenecontroller;
 
+import ballblast.view.View;
 import ballblast.view.scenefactory.SceneFactory;
+import javafx.scene.input.KeyEvent;
 
 /**
  * 
@@ -10,6 +12,7 @@ import ballblast.view.scenefactory.SceneFactory;
 public abstract class AbstractSceneController implements SceneController {
 
     private SceneFactory sceneFactory;
+    private View view;
     
     @Override
     public void setSceneFactory(SceneFactory sceneFactory) {
@@ -19,6 +22,22 @@ public abstract class AbstractSceneController implements SceneController {
     @Override
     public SceneFactory getSceneFactory() {
         return this.sceneFactory;
+    }
+    
+    /**
+     * Redraws the scene on the screen.
+     */
+    public void render() {
+        // Empty for subclasses.
+    }
+    
+    protected View getView() {
+        return this.view;
+    }
+    
+    
+    public void onKeyPressed(final KeyEvent event) {
+        // Empty for subclasses.
     }
 
 }

@@ -22,46 +22,46 @@ public interface View {
      * @param controller 
      *          the controller
      */
-    void viewLauncher(Controller controller);
+    void launch(Controller controller);
     
-    /**
-     * 
-     * @return 
-     *          the scene factory.
-     */
-    SceneFactory getSceneFactory();
-    
-    /**
-     * Start a new match.
-     * 
-     * @param gameSceneController 
-     *          the game scene controller
-     */
-    void startGame(GameSceneController gameSceneController);
+//    /**
+//     * 
+//     * @return 
+//     *          the scene factory.
+//     */
+//    SceneFactory getSceneFactory();
+//    
+//    /**
+//     * Start a new match.
+//     * 
+//     * @param gameSceneController 
+//     *          the game scene controller
+//     */
+//    void startGame(GameSceneController gameSceneController);
     
     /**
      * 
      * @param viewEntities 
      *          entities in the view
      */
-    void render(List<Optional<ViewEntity>> viewEntities, Level level);
+    void render();
     
-    /**
-     * Start the view thread.
-     */
-    void startRender();
-    
-    /**
-     * Stop the view thread.
-     */
-    void stopRender();
+//    /**
+//     * Start the view thread.
+//     */
+//    void startRender();
+//    
+//    /**
+//     * Stop the view thread.
+//     */
+//    void stopRender();
+//
 
-
-    /**
-     * 
-     * @return the controller.
-     */
-    Controller getController();
-    
+//    /**
+//     * 
+//     * @return the controller.
+//     */
+//    Controller getController();
+//    
     
 }

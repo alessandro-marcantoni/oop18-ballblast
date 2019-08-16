@@ -21,4 +21,9 @@ public interface SceneController {
      *          scene factory used to change the scenes.
      */
     SceneFactory getSceneFactory();
+    
+    /**
+     * Redraw the menu on the screen.
+     */
+    void render();
 }

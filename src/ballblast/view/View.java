@@ -3,6 +3,7 @@ package ballblast.view;
 import java.util.List;
 import java.util.Optional;
 
+import ballblast.controller.Controller;
 import ballblast.model.levels.Level;
 import ballblast.view.entities.ViewEntity;
 import ballblast.view.scenecontroller.GameSceneController;
@@ -21,7 +22,7 @@ public interface View {
      * @param controller 
      *          the controller
      */
-   // void viewLauncher(Controller controller);
+    void viewLauncher(Controller controller);
     
     /**
      * 
@@ -54,12 +55,13 @@ public interface View {
      * Stop the view thread.
      */
     void stopRender();
-   
+
+
     /**
      * 
      * @return the controller.
      */
-//    Controller getController();
+    Controller getController();
     
     
 }

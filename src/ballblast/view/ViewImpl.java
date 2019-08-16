@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Semaphore;
 
+import ballblast.controller.Controller;
 import ballblast.model.levels.BasicLevel;
 import ballblast.model.levels.Level;
 import ballblast.settings.SettingsImpl;
@@ -21,7 +22,7 @@ public class ViewImpl implements View {
     private static final String GAME_TITLE = "BALL BLAST";
     private static final int GREEN_SEMAPHORE = 1;
     
-//    private Controller controller;
+    private Controller controller;
     private Render viewRender;
     private List<Optional<ViewEntity>> viewEntities;
 //    private GameData gameData;
@@ -44,7 +45,7 @@ public class ViewImpl implements View {
     @Override
     public void startGame(GameSceneController gameSceneController) {
 //        this.gameMode = gameMode;
-//        this.viewRender = new Render(gameSceneController, controller, mutex);
+        this.viewRender = new Render(gameSceneController);
     }
 
     @Override
@@ -72,18 +73,18 @@ public class ViewImpl implements View {
     }
 
     
-//    @Override
-//    public void viewLauncher(final Controller controller) {
-//       this.controller = controller;
-//       this.stage.setTitle(GAME_TITLE);
-//       this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
-//       this.sceneFactory.setStage(this.stage);
-//       this.sceneFactory.openMenuScene();
-//    }
-//    @Override
-//    public Controller getController() {
-//        return this.controller;
-//    }
+    @Override
+    public void viewLauncher(final Controller controller) {
+       this.controller = controller;
+       this.stage.setTitle(GAME_TITLE);
+       this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
+       this.sceneFactory.setStage(this.stage);
+       this.sceneFactory.openMenuScene();
+    }
+    @Override
+    public Controller getController() {
+        return this.controller;
+    }
     
     
     @Override
@@ -107,7 +108,7 @@ public class ViewImpl implements View {
         private GraphicsContext canvas;
         private final ImageView backgroundImage;
         
-//        private final Controller controller;
+        private final Controller controller;
         
         
         
@@ -129,9 +130,9 @@ public class ViewImpl implements View {
         
         
         public void run() {
-//            controller.initModel();
-//            controller.initGameLoop();
-//            controller.startGameLoop();
+            controller.initModel();
+            controller.initGameLoop();
+            controller.startGameLoop();
             
             while (this.running) {
                 try {

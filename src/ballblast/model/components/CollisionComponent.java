@@ -21,7 +21,7 @@ import ballblast.model.physics.CollisionTag;
 public class CollisionComponent extends AbstractComponent implements Collidable {
 
     private final CollisionTag collisionTag;
-    private CollisionManager manager;
+    private final CollisionManager manager;
     /**
      * The constructor for the CollisionComponent.
      * @param man

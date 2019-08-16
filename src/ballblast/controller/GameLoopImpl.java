@@ -53,7 +53,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private void render() {
-        this.view.render(null, this.model.getCurrentLevel().get());
+        this.view.render();
     }
 
     private void processInput() {

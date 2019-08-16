@@ -10,8 +10,9 @@ import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.components.ComponentTypes;
+import ballblast.model.components.Component;
 import ballblast.model.components.InputComponent;
-import ballblast.model.components.ShooterComponent;
+
 /**
  * Manages inputs and redirects them to the right player.
  */
@@ -21,11 +22,10 @@ public class InputManager {
     private ImmutableBiMap<PlayerTags, InputComponent> inputHandlers;
 
     static {
-        COMMANDS_MAP = ImmutableBiMap.of(
-                InputTypes.MOVE_LEFT, g -> g.setVelocity(Vector2D.create(-MOVEMENT_SPEED, 0)),
+        COMMANDS_MAP = ImmutableBiMap.of(InputTypes.MOVE_LEFT, g -> g.setVelocity(Vector2D.create(-MOVEMENT_SPEED, 0)),
                 InputTypes.MOVE_RIGHT, g -> g.setVelocity(Vector2D.create(MOVEMENT_SPEED, 0)), 
                 InputTypes.SHOOT, g -> g.getComponents().stream().filter(c -> c.getType() == ComponentTypes.SHOOTER)
-                    .map(c -> (ShooterComponent) c).findFirst().ifPresent(c -> c.setShootingState(true)));
+                    .findFirst().ifPresent(Component::enable));
     }
 
     /**

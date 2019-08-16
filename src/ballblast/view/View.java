@@ -1,13 +1,7 @@
 package ballblast.view;
 
-import java.util.List;
-import java.util.Optional;
-
 import ballblast.controller.Controller;
-import ballblast.model.levels.Level;
-import ballblast.view.entities.ViewEntity;
-import ballblast.view.scenecontroller.GameSceneController;
-import ballblast.view.scenefactory.SceneFactory;
+import ballblast.view.utilities.ViewScenes;
 
 /**
  * 
@@ -23,14 +17,14 @@ public interface View {
      *          the controller
      */
     void launch(Controller controller);
-    
+
 //    /**
 //     * 
 //     * @return 
 //     *          the scene factory.
 //     */
 //    SceneFactory getSceneFactory();
-//    
+//
 //    /**
 //     * Start a new match.
 //     * 
@@ -38,19 +32,24 @@ public interface View {
 //     *          the game scene controller
 //     */
 //    void startGame(GameSceneController gameSceneController);
-    
+
     /**
-     * 
-     * @param viewEntities 
-     *          entities in the view
+     * Render method.
      */
     void render();
     
+    /**
+     * 
+     * @param scene
+     *          scene
+     */
+    void loadScene(ViewScenes scene);
+
 //    /**
 //     * Start the view thread.
 //     */
 //    void startRender();
-//    
+//
 //    /**
 //     * Stop the view thread.
 //     */
@@ -62,6 +61,5 @@ public interface View {
 //     * @return the controller.
 //     */
 //    Controller getController();
-//    
-    
+//
 }

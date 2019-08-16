@@ -8,7 +8,7 @@ import javafx.stage.Stage;
  * 
  */
 public interface SceneFactory {
-    
+
     /**
      * Set a new game stage.
      * 
@@ -50,8 +50,8 @@ public interface SceneFactory {
      * Open the pause scene.
      */
     void openPauseScene();
-    
-/* OPZIONALI    
+
+/* OPZIONALI
  *    void openRegisterScene();
  *    void openLoginScene();
  *    void openSelectModeScene();

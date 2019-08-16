@@ -2,7 +2,6 @@ package ballblast.view.scenefactory;
 
 import ballblast.view.View;
 import ballblast.view.sceneloader.SceneLoader;
-import ballblast.view.sceneloader.SceneLoaderImpl;
 import ballblast.view.utilities.ViewScenes;
 import javafx.stage.Stage;
 
@@ -16,7 +15,7 @@ public class SceneFactoryImpl implements SceneFactory {
     private Stage stage;
     private final View view;
     private final SceneLoader sceneLoader;
-    
+
     /**
      * Public constructor for SceneFactory.
      * 
@@ -25,15 +24,13 @@ public class SceneFactoryImpl implements SceneFactory {
      */
     public SceneFactoryImpl(View view) {
         this.view = view;
-        this.sceneLoader = new SceneLoaderImpl(this.view);
+        this.sceneLoader = new SceneLoader();
     }
 
-    @Override
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
-    @Override
     public Stage getStage() {
         return this.stage;
     }
@@ -73,16 +70,16 @@ public class SceneFactoryImpl implements SceneFactory {
     public void openGameSelection() {
         this.openNewScene(ViewScenes.GAME_MODE);
     }
-    
+
     private void openNewScene(ViewScenes scene) {
         this.checkFullScreen();
-        this.sceneLoader.loadScene(this.stage, scene);
+       //this.sceneLoader.loadScene(this.stage, scene);
     }
 
     private void checkFullScreen() {
         // DA IMPLEMENTARE
     }
-    
+
     private void createNewStage() {
         // DA IMPLEMENTARE
     }

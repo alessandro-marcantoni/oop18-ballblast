@@ -23,8 +23,8 @@ public final class DirectoryManager {
      * The path to the scoreboard directory.
      */
     public static final String SCOREBOARD_DIR = APP_PATH
-                                                 + SEPARATOR
-                                                 + "scoreboard";
+                                                + SEPARATOR
+                                                + "scoreboard";
 
     /**
      * The path to the users directory.

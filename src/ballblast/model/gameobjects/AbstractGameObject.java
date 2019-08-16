@@ -19,7 +19,7 @@ public abstract class AbstractGameObject implements GameObject {
     private static final Coordinate ZERO = new Coordinate(0, 0);
     private final GameObjectTypes type;
     private Coordinate position;
-    private boolean isDestroyed;
+    private boolean isAvailable;
     private ImmutableList<Component> components;
     private double width;
     private double height;
@@ -32,7 +32,7 @@ public abstract class AbstractGameObject implements GameObject {
      */
     protected AbstractGameObject(final GameObjectTypes type) {
         this.type = type;
-        this.isDestroyed = false;
+        this.isAvailable = false;
         this.components = ImmutableList.of();
         this.position = ZERO;
     }
@@ -85,12 +85,12 @@ public abstract class AbstractGameObject implements GameObject {
 
     @Override
     public final boolean isDestroyed() {
-        return this.isDestroyed;
+        return this.isAvailable;
     }
 
     @Override
     public final void destroy() {
-        this.isDestroyed = true;
+        this.isAvailable = true;
         this.components.stream().forEach(c -> c.disable());
     }
 

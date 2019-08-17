@@ -83,6 +83,7 @@ public class GUISceneController extends AbstractSceneController {
         this.pausedState = new PausedState(this, controller, this.pausePane);
         this.userInterface = new UIFactory();
         this.resetGameCanvasCoordinates();
+        this.canvasDrawer = new CanvasDrawer(this.canvas);
         // this.getController().registerSurvivalModeStarted( e -> {
            // this.canvasDrawer = new CanvasDrawer(this.canvas);
             // background
@@ -128,7 +129,7 @@ public class GUISceneController extends AbstractSceneController {
     protected final ViewScenes getPreviousScene() {
         return ViewScenes.MENU;
     }
-    
+
     /**
      * POWER UP DA IMPLEMENTARE
      */
@@ -170,6 +171,5 @@ public class GUISceneController extends AbstractSceneController {
     public GUIState getIdleState() {
         return this.idleState;
     }
-    
 
 }

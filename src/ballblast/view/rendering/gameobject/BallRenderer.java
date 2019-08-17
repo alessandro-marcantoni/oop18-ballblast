@@ -16,7 +16,6 @@ public class BallRenderer extends GameObjectRenderer<Ball> {
     private static final int COLUMNS = 3;
     private static final int ROWS = 2;
     /**
-     * 
      * @param sprite
      *          the {@link Sprite} used to render.
      * @param gameObject

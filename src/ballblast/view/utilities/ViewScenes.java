@@ -36,22 +36,36 @@ public enum ViewScenes {
     /**
      * The game over scene.
      */
-    GAMEOVER("Gameover.fxml");
-    
-    /* OPZIONALI
-     * LOGIN
-     * REGISTER
-     * SELECTMODE
+    GAMEOVER("Gameover.fxml"),
+    /**
+     * The login scene.
      */
-    
+    LOGIN("Login.fxml"),
+    /**
+     * The initial scene.
+     */
+    MAIN("Main.fxml");
+
+    /* OPZIONALI
+     * REGISTER
+     */
+
     private static final String PATH = "/view/scenes";
     private final String selectedScene;
-    
-    private ViewScenes(final String scene) {
+    /**
+     * 
+     * @param scene
+     *          the scene.
+     */
+    ViewScenes(final String scene) {
         this.selectedScene = scene;
     }
-    
-    public String getPath(){
+    /**
+     * 
+     * @return
+     *          the Path where the scene is stored.
+     */
+    public String getPath() {
         return ViewScenes.PATH + this.selectedScene;
     }
 }

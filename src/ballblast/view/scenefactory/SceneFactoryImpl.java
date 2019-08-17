@@ -63,7 +63,7 @@ public class SceneFactoryImpl implements SceneFactory {
 
     @Override
     public void openPauseScene() {
-        this.openNewScene(ViewScenes.PAUSE);
+       this.openNewScene(ViewScenes.PAUSE);
     }
 
     @Override

@@ -1,43 +1,85 @@
 package ballblast.view.scenecontroller;
 
+import ballblast.controller.Controller;
 import ballblast.view.View;
-import ballblast.view.scenefactory.SceneFactory;
+import ballblast.view.utilities.ViewScenes;
+import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 
 /**
  * 
- * Abstract class which partial implements {@link SceneController} interface.
- * 
+ * A simple scene controller.
  */
-public abstract class AbstractSceneController implements SceneController {
+public abstract class AbstractSceneController {
 
-    private SceneFactory sceneFactory;
+    private Controller controller;
     private View view;
-    
-    @Override
-    public void setSceneFactory(SceneFactory sceneFactory) {
-        this.sceneFactory = sceneFactory;
+    /**
+     * Method that initialized the controller and the view.
+     * @param controller
+     *          the controller of the game.
+     * @param view
+     *          the controller of the view.
+     */
+    public void init(final Controller controller, final View view) {
+        this.controller = controller;
+        this.view = view;
     }
-
-    @Override
-    public SceneFactory getSceneFactory() {
-        return this.sceneFactory;
+    /**
+     * 
+     * @return
+     *          The {@link Controller}.
+     */
+    protected Controller getController() {
+        return this.controller;
     }
-    
+    /**
+     * 
+     * @return
+     *          The {@link View}.
+     */
+    protected View getView() {
+        return this.view;
+    }
     /**
      * Redraws the scene on the screen.
      */
     public void render() {
         // Empty for subclasses.
     }
-    
-    protected View getView() {
-        return this.view;
+    /**
+     * Loads the next scene.
+     */
+    @FXML
+    public void nextScene() {
+        this.view.loadScene(this.getNextScene());
     }
-    
-    
+    /**
+     * 
+     * @return
+     *          The next {@link ViewScenes}.
+     */
+    protected abstract ViewScenes getNextScene();
+    /**
+     * Go to the previous scene.
+     */
+    @FXML
+    public void backScene() {
+        this.view.loadScene(this.getPreviousScene());
+    }
+    /**
+     * 
+     * @return
+     *          The previous {@link ViewScenes}.
+     */
+    protected abstract ViewScenes getPreviousScene();
+    /**
+     * Event handler.
+     * @param event
+     *          the information about the event.
+     */
+    @FXML
     public void onKeyPressed(final KeyEvent event) {
         // Empty for subclasses.
     }
-
 }

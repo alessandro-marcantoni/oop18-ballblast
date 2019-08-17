@@ -3,6 +3,7 @@ package ballblast.model.inputs;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import org.locationtech.jts.math.Vector2D;
 
@@ -10,8 +11,9 @@ import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.components.ComponentTypes;
-import ballblast.model.components.Component;
 import ballblast.model.components.InputComponent;
+import ballblast.model.components.ShooterComponent;
+import ballblast.model.gameobjects.GameObject;
 
 /**
  * Manages inputs and redirects them to the right player.
@@ -22,10 +24,18 @@ public class InputManager {
     private ImmutableBiMap<PlayerTags, InputComponent> inputHandlers;
 
     static {
-        COMMANDS_MAP = ImmutableBiMap.of(InputTypes.MOVE_LEFT, g -> g.setVelocity(Vector2D.create(-MOVEMENT_SPEED, 0)),
+        COMMANDS_MAP = ImmutableBiMap.of(
+                InputTypes.MOVE_LEFT, g -> g.setVelocity(Vector2D.create(-MOVEMENT_SPEED, 0)),
                 InputTypes.MOVE_RIGHT, g -> g.setVelocity(Vector2D.create(MOVEMENT_SPEED, 0)), 
-                InputTypes.SHOOT, g -> g.getComponents().stream().filter(c -> c.getType() == ComponentTypes.SHOOTER)
-                    .findFirst().ifPresent(Component::enable));
+                InputTypes.SHOOT, g -> findShooter(g).ifPresent(ShooterComponent::loadShooter)
+        );
+    }
+
+    private static Optional<ShooterComponent> findShooter(final GameObject g) {
+        return g.getComponents().stream()
+                .filter(c -> c.getType() == ComponentTypes.SHOOTER)
+                .map(c -> (ShooterComponent) c)
+                .findFirst();
     }
 
     /**

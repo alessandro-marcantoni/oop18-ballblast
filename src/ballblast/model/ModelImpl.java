@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import ballblast.model.levels.BasicLevel;
 import ballblast.model.levels.Level;
+import ballblast.model.levels.SinglePlayerDecorator;
 import ballblast.model.levels.SurvivalLevelDecorator;
 
 /**
@@ -19,6 +20,7 @@ public final class ModelImpl implements Model {
 
     @Override
     public void startSurvival() {
-        this.currentLevel = new SurvivalLevelDecorator(new BasicLevel());
+        this.currentLevel = new SurvivalLevelDecorator(new SinglePlayerDecorator(new BasicLevel()));
+        this.currentLevel.start();
     }
 }

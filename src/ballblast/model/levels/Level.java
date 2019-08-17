@@ -1,12 +1,17 @@
 package ballblast.model.levels;
 
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.inputs.InputManager;
 import ballblast.model.physics.CollisionManager;
 /**
  * Represents a level and it is responsible for the game logic. 
  *
  */
 public interface Level {
+    /**
+     * Enables all {@link GameObject}s.
+     */
+    void start();
     /**
      * Updates the game status.
      * @param elapsed
@@ -25,6 +30,12 @@ public interface Level {
      *     the {@link CollisionManager}.
      */
     CollisionManager getCollisionManager();
+    /**
+     * Gets the {@link InputManager}.
+     * @return
+     *     the {@link InputManager}.
+     */
+    InputManager getInputManager();
     /**
      * Gets the Level's score.
      * @return

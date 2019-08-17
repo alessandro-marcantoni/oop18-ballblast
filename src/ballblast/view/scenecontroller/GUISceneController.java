@@ -1,33 +1,44 @@
 package ballblast.view.scenecontroller;
 
+import ballblast.controller.Controller;
 import ballblast.model.levels.Level;
+import ballblast.view.View;
+import ballblast.view.states.GUIState;
 import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+/**
+ * 
+ * Graphical User Interface scene controller.
+ * 
+ */
+public class GUISceneController extends AbstractSceneController {
 
-public class GameSceneControllerImpl extends AbstractSceneController implements GameSceneController {
-    
     @FXML // fx:id game
     private BorderPane game;
-    
+
     @FXML // fx:id timeScoreGameLabel
     private Label timeScoreGameLabel;
-    
+
     @FXML // fx:id ballsScoreGameLabel
     private Label ballsScoreGameLabel;
-    
+
     @FXML // fx:id topHBox
     private HBox topHBox;
-    
+
     @FXML // fx:id bottomHBox
     private HBox bottomHBox;
-    
+
     @FXML // fx:id canvas
     private Canvas canvas;
-    
+    private GUIState currentState;
+    private GUIState idleState;
+    private GUIState inGameState;
+    private GUIState pausedState;
+
     /**
      * Initialize the FXML components.
      */
@@ -40,18 +51,28 @@ public class GameSceneControllerImpl extends AbstractSceneController implements 
         assert bottomHBox != null : "fx:id bottomHBox was not injected: check FXML file 'Game.fxml'";
         assert canvas != null : "fx:id canvas was not injected: check FXML file 'Game.fxml'";
     }
-    
-    public GameSceneControllerImpl() {
+    /**
+     * @param controller
+     *          the {@link Controller}.
+     * @param view
+     *          the {@link View}.
+     */
+    public void init(final Controller controller, final View view) {
+        super.init(controller, view);
+
     }
 
-    @Override
-    public Canvas getCanvas() {
-        this.canvas.setWidth(this.game.getWidth());
-        this.canvas.setHeight(this.game.getHeight());
-        return this.canvas;
-    }
 
-    @Override
+//    /**
+//     * 
+//     * @return
+//     */
+//    public final Canvas getCanvas() {
+//        this.canvas.setWidth(this.game.getWidth());
+//        this.canvas.setHeight(this.game.getHeight());
+//        return this.canvas;
+//    }
+
     public void setGameData(Level level) {
         this.timeScoreGameLabel.setText(String.valueOf(level.getGameScore()));
         /**
@@ -60,15 +81,37 @@ public class GameSceneControllerImpl extends AbstractSceneController implements 
     }
 
     @Override
-    protected ViewScenes getNextScene() {
-        // TODO Auto-generated method stub
+    protected final ViewScenes getNextScene() {
         return null;
     }
 
     @Override
-    protected ViewScenes getPreviousScene() {
-        // TODO Auto-generated method stub
+    protected final ViewScenes getPreviousScene() {
         return null;
+    }
+    /**
+     * 
+     * @return
+     *          the in game state.
+     */
+    public GUIState getInGameState() {
+        return this.inGameState;
+    }
+    /**
+     * 
+     * @param state
+     *          the state.
+     */
+    public void setState(final GUIState state) {
+
+    }
+    /**
+     * 
+     * @return
+     *          the paused state.
+     */
+    public GUIState getPausedState() {
+        return this.pausedState;
     }
 
 }

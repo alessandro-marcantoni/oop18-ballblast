@@ -1,6 +1,8 @@
 package ballblast.view.scenecontroller;
 
 import ballblast.view.utilities.ViewScenes;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /**
  * 
@@ -11,12 +13,19 @@ import ballblast.view.utilities.ViewScenes;
 public class ManualSceneController extends AbstractSubSceneController {
 
     @Override
-    protected ViewScenes getNextScene() {
+    protected final ViewScenes getNextScene() {
         return ViewScenes.MENU;
     }
 
     @Override
-    protected ViewScenes getPreviousScene() {
+    protected final ViewScenes getPreviousScene() {
         return ViewScenes.MENU;
+    }
+
+    @Override
+    public final void onKeyPressed(final KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            this.nextScene();
+        }
     }
 }

@@ -10,7 +10,11 @@ public enum ImagePath {
     /**
      * The image for cannon.
      */
-    PLAYER("/players/cannon.png");
+    PLAYER("/players/cannon.png"),
+    /**
+     * The image for bullet.
+     */
+    BULLET("/bullets/bullet.png");
     private static final String IMAGE_PATH = "/images";
     private final String path;
 

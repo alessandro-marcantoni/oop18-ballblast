@@ -36,7 +36,7 @@ public class TestCollisions {
     public void testCollisionComponent() {
         final Component collisionComponent = new CollisionComponent(new SimpleCollisionManager(), CollisionTag.PLAYER);
         final Player player = (Player) GameObjectFactory.createPlayer(new GameObjectManager(), new InputManager(),
-                PlayerTags.FIRST, new SimpleCollisionManager(), Vector2D.create(new Coordinate(0, 0)));
+                PlayerTags.FIRST, new SimpleCollisionManager(), Vector2D.create(new Coordinate(0, 0)), null);
         collisionComponent.setParent(player);
 
         assertEquals(((CollisionComponent) collisionComponent).toString(), "CollisionComponent{AttachedTo=PLAYER}");
@@ -52,7 +52,7 @@ public class TestCollisions {
         final CollisionManager manager = new SimpleCollisionManager();
         final int ballLife = 24;
         GameObjectFactory
-                .createPlayer(new GameObjectManager(), new InputManager(), PlayerTags.FIRST, manager, new Vector2D())
+                .createPlayer(new GameObjectManager(), new InputManager(), PlayerTags.FIRST, manager, new Vector2D(), null)
                 .getComponents().stream().filter(c -> c.getType() == ComponentTypes.COLLISION).findFirst().get()
                 .enable();
         GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), new Vector2D(), manager)
@@ -83,7 +83,7 @@ public class TestCollisions {
         final int ballLife = 1;
         final int pos = 20;
         final GameObject player = GameObjectFactory.createPlayer(new GameObjectManager(), new InputManager(),
-                PlayerTags.FIRST, manager, Vector2D.create(new Coordinate(0, 0)));
+                PlayerTags.FIRST, manager, Vector2D.create(new Coordinate(0, 0)), null);
         final GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0),
                 Vector2D.create(new Coordinate(0, 0)), manager);
         final GameObject bullet = GameObjectFactory.createBullet(new Coordinate(pos, pos), new Vector2D(), manager);

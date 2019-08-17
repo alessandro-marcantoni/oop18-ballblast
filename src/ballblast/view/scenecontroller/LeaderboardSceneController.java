@@ -10,7 +10,11 @@ import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+/**
+ * 
+ * Scene controller for Leaderboard scene.
+ * 
+ */
 public class LeaderboardSceneController extends AbstractSubSceneController {
 
 
@@ -84,7 +88,7 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
         private Button backToMenuBtn; // Value injected by FXMLLoader
 
         @FXML // This method is called by the FXMLLoader when initialization is complete
-        void initialize() {
+        final void initialize() {
             assert player1label != null : "fx:id=\"player1label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
             assert score1label != null : "fx:id=\"score1label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
             assert player2label != null : "fx:id=\"player2label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
@@ -110,14 +114,12 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
         }
 
         @Override
-        protected ViewScenes getNextScene() {
-            // TODO Auto-generated method stub
-            return null;
+        protected final ViewScenes getNextScene() {
+            return ViewScenes.MENU;
         }
 
         @Override
-        protected ViewScenes getPreviousScene() {
-            // TODO Auto-generated method stub
-            return null;
+        protected final ViewScenes getPreviousScene() {
+            return ViewScenes.MENU;
         }
     }

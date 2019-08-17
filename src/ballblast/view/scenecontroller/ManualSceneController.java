@@ -12,16 +12,11 @@ public class ManualSceneController extends AbstractSubSceneController {
 
     @Override
     protected ViewScenes getNextScene() {
-        // TODO Auto-generated method stub
-        return null;
+        return ViewScenes.MENU;
     }
 
     @Override
     protected ViewScenes getPreviousScene() {
-        // TODO Auto-generated method stub
-        return null;
+        return ViewScenes.MENU;
     }
-    /**
-     * No other methods needed.
-     */
 }

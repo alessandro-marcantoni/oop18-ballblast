@@ -2,6 +2,8 @@ package ballblast.view.scenecontroller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,7 +13,7 @@ import javafx.scene.layout.BorderPane;
  * Sample Skeleton for 'Pause.fxml' Controller Class.
  */
 
-public class PauseSceneControllerImpl extends AbstractSubSceneController {
+public class PauseSceneController extends AbstractSubSceneController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
         private ResourceBundle resources;
@@ -34,5 +36,17 @@ public class PauseSceneControllerImpl extends AbstractSubSceneController {
             assert actualScoreLabel != null : "fx:id=\"actualScoreLabel\" was not injected: check your FXML file 'Pause.fxml'.";
             assert backToMenu != null : "fx:id=\"backToMenu\" was not injected: check your FXML file 'Pause.fxml'.";
 
+        }
+
+        @Override
+        protected ViewScenes getNextScene() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        protected ViewScenes getPreviousScene() {
+            // TODO Auto-generated method stub
+            return null;
         }
     }

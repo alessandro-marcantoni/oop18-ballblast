@@ -1,6 +1,7 @@
 package ballblast.view.scenecontroller;
 
 import ballblast.model.levels.Level;
+import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
@@ -56,6 +57,18 @@ public class GameSceneControllerImpl extends AbstractSceneController implements 
         /**
          * Gli score da memorizzare sono due: time e balls. Da modificare quando ci sarà modo di tener traccia dei diversi score.
          */
+    }
+
+    @Override
+    protected ViewScenes getNextScene() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    protected ViewScenes getPreviousScene() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

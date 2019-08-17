@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
  * Simple implementation for "Menu.fxml" controller class.
  * 
  */
-public class MenuSceneControllerImpl extends AbstractSceneController {
+public class MenuSceneController extends AbstractSceneController {
 
     private boolean gameMode = false;
     private boolean leaderboard = false;

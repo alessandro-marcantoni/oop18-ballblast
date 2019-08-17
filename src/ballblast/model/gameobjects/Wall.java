@@ -4,7 +4,7 @@ import com.google.common.base.MoreObjects;
 /**
  * Represents a wall object used to create the level's boundaries. 
  */
-public final class Wall extends AbstractGameObject {
+public final class Wall extends AbstractGameObject {  // NOPMD This class is usable only trought a Builder.
     /**
      * Creates a {@link Wall} instance.
      */

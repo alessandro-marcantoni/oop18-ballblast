@@ -20,7 +20,7 @@ public interface Model {
     /**
      * Default {@link Wall} width for external boundaries.
      */
-    double WALL_OFFSET = 5.5;
+    double WALL_OFFSET = 3;
     /**
      * Returns the current level, it can be null, this is the reason of Optional.
      * @return 

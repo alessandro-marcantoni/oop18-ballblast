@@ -7,7 +7,7 @@ import com.google.common.base.MoreObjects;
  * which can shoot to destroy objects and dies when hit by a ball.
  */
 public final class Player extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
-    private static final double DEFAULT_WIDTH = 12;
+    private static final double DEFAULT_WIDTH = 10;
     private static final double DEFAULT_HEIGHT = 16;
     /**
      * Creates a Player instance.

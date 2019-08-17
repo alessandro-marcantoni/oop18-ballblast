@@ -10,11 +10,12 @@ import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.inputs.InputManager.PlayerTags;
 
 /**
- * 
+ * Represents a decorator for levels which add the player object and ends when the player is dead.
  */
 public class SinglePlayerDecorator extends LevelDecorator {
     private static final Coordinate INITIAL_PLAYER_POSITION = new Coordinate(100, 86);
     private static final Vector2D INITIAL_PLAYER_VELOCITY = new Vector2D(0, 0);
+    private final GameObject player;
 
     /**
      * Creates a {@link SinglePlayerDecorator} instance.
@@ -23,13 +24,31 @@ public class SinglePlayerDecorator extends LevelDecorator {
      */
     public SinglePlayerDecorator(final Level level) {
         super(level);
-        this.addPlayer();
+        this.player = this.createPlayer();
+        this.addPlayer(player);
     }
 
-    private void addPlayer() {
-        final GameObject player = GameObjectFactory.createPlayer(this.getGameObjectManager(), this.getInputManager(),
-                PlayerTags.FIRST, this.getCollisionManager(), INITIAL_PLAYER_VELOCITY, INITIAL_PLAYER_POSITION);
+    @Override
+    public final void update(final double elapsed) {
+        if (this.getGameStatus() != GameStatus.OVER) {
+            super.update(elapsed);
+            this.checkGameOver();
+        }
+    }
+
+    private void addPlayer(final GameObject player) {
         this.getGameObjectManager().addGameObjects(ImmutableList.of(player));
+    }
+
+    private GameObject createPlayer() {
+        return GameObjectFactory.createPlayer(this.getGameObjectManager(), this.getInputManager(), PlayerTags.FIRST,
+                this.getCollisionManager(), INITIAL_PLAYER_VELOCITY, INITIAL_PLAYER_POSITION);
+    }
+
+    private void checkGameOver() {
+        if (this.player.isDestroyed()) {
+            this.setGameStatus(GameStatus.OVER);
+        }
     }
 
 }

@@ -23,11 +23,13 @@ public final class BasicLevel implements Level {
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
+    private GameStatus gameStatus;
 
     /**
      * Creates a new instance of BasicLevel.
      */
     public BasicLevel() {
+        this.gameStatus = GameStatus.PAUSE;
         this.gameObjectManager = new GameObjectManager();
         this.collisionManager = new SimpleCollisionManager();
         this.inputManager = new InputManager();
@@ -37,11 +39,25 @@ public final class BasicLevel implements Level {
     @Override
     public void start() {
         this.gameObjectManager.getGameObjects().forEach(g -> this.activeComponents(g));
+        this.gameStatus = GameStatus.RUNNING;
     }
 
     @Override
     public void update(final double elapsed) {
-        this.gameObjectManager.getGameObjects().forEach(o -> o.update(elapsed));
+        if (gameStatus == GameStatus.RUNNING) {
+            this.gameObjectManager.getGameObjects().forEach(o -> o.update(elapsed));
+            this.collisionManager.checkLoop();
+        }
+    }
+
+    @Override
+    public GameStatus getGameStatus() {
+        return this.gameStatus;
+    }
+
+    @Override
+    public void setGameStatus(final GameStatus gameStatus) {
+        this.gameStatus = gameStatus;
     }
 
     @Override

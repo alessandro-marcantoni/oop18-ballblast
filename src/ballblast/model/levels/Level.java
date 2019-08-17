@@ -19,6 +19,18 @@ public interface Level {
      */
     void update(double elapsed);
     /**
+     * Gets the {@link GameStatus}.
+     * @return
+     *     the current {@link GameStatus}.
+     */
+    GameStatus getGameStatus();
+    /**
+     * Sets the {@link GameStatus}.
+     * @param gameStatus
+     *     the {@link GameStatus} to be set.
+     */
+    void setGameStatus(GameStatus gameStatus);
+    /**
      * Gets the {@link GameObjectManager}.
      * @return
      *      the {@link GameObjectManager}.

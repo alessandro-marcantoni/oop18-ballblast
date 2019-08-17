@@ -1,12 +1,12 @@
 package ballblast.view.rendering.gameobject;
 
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
 import ballblast.model.gameobjects.Bullet;
 import ballblast.view.rendering.ImagePath;
 import ballblast.view.rendering.Layers;
 import ballblast.view.rendering.Sprite;
-import javafx.geometry.Point2D;
 
 /**
  * 
@@ -36,7 +36,7 @@ public class BulletRenderer extends GameObjectRenderer<Bullet> {
     public final void render() {
         final double width = getSprite().getSourceWidth();
         final double height = getGameObject().getHeight() * getSprite().getSourceHeight() / MAX_SHOT_HEIGHT;
-        getSprite().setSourceWindow(new Point2D(0, 0), new Vector2D(width, height));
+        getSprite().setSourceWindow(new Coordinate(0, 0), new Vector2D(width, height));
         this.getSprite().setHeight(this.getGameObject().getHeight());
         this.getSprite().setWidth(this.getGameObject().getWidth() + OFFSET);
         this.getSprite().setPosition(this.getGameObject().getPosition());

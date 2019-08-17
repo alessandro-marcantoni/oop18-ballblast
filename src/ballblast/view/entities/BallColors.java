@@ -3,7 +3,6 @@ package ballblast.view.entities;
 import java.util.Random;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.image.Image;
 
 /**
  * 
@@ -12,49 +11,49 @@ import javafx.scene.image.Image;
 public enum BallColors {
 
     /**
-     * Ball color blue
+     * Ball color blue.
      */
     BALL_BLUE(Color.BLUE),
     /**
-     * Ball color red
+     * Ball color red.
      */
     BALL_RED(Color.RED),
     /**
-     * Ball color green
+     * Ball color green.
      */
     BALL_GREEN(Color.GREEN),
     /**
-     * Ball color yellow
+     * Ball color yellow.
      */
     BALL_YELLOW(Color.YELLOW),
     /**
-     * Ball color pink
+     * Ball color pink.
      */
     BALL_PINK(Color.PINK),
     /**
-     * Ball color lightblue
+     * Ball color light blue.
      */
     BALL_LIGHTBLUE(Color.LIGHTBLUE),
     /**
-     * Ball color purple
+     * Ball color purple.
      */
     BALL_PURPLE(Color.PURPLE),
     /**
-     * Ball color brown
+     * Ball color brown.
      */
     BALL_BROWN(Color.BROWN),
     /**
-     * Ball color orange
+     * Ball color orange.
      */
     BALL_ORANGE(Color.ORANGE);
-    
+
 //    private static final String PATH = "/view/balls/";
 //    private Image image;
-//    
+//
 //    private BallColors(final String ballColor) {
 //        this.image = new Image(getClass().getResourceAsStream(PATH + ballColor));
 //    }
-//    
+//
 //    /**
 //     * 
 //     * @return
@@ -63,18 +62,25 @@ public enum BallColors {
 //    public Image getImage() {
 //        return this.image;
 //    }
-    
-    private BallColors(Color color) {
-        
+
+    BallColors(final Color color) {
+
     }
+    /**
+     * 
+     * @return
+     *          {@link Paint} color.
+     */
     public Paint getColor() {
-return null;
-        
+         return null;
     }
-    
+    /**
+     * 
+     * @return
+     *          A random {@link BallColors} color.
+     */
     public static BallColors randomColor() {
-        Random random = new Random();
+        final Random random = new Random();
         return values()[random.nextInt(values().length)];
     }
-    
 }

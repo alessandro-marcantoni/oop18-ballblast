@@ -56,6 +56,19 @@ public class ViewImpl implements View {
 //    }
 
     @Override
+    public final void launch(final Controller controller) {
+       this.control = controller;
+       this.stage.setTitle(GAME_TITLE);
+       this.stage.setMinHeight(MIN_HEIGHT);
+       this.stage.setMinWidth(MIN_WIDTH);
+       this.stage.setMaximized(true);
+       this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
+       this.loadScene(ViewScenes.MENU);
+//       this.sceneFactory.setStage(this.stage);
+//       this.sceneFactory.openMenuScene();
+    }
+
+    @Override
     public final void render() {
         Platform.runLater(() -> this.currentScene.render());
 
@@ -70,34 +83,8 @@ public class ViewImpl implements View {
 //        }
     }
 
-//    @Override
-//    public void startRender() {
-//       this.viewRender.start();
-//    }
-//
-//    @Override
-//    public void stopRender() {
-//        this.viewRender.stopRender();
-//    }
-
-
     @Override
-    public final void launch(final Controller controller) {
-       this.control = controller;
-       this.stage.setTitle(GAME_TITLE);
-       this.stage.setMinHeight(MIN_HEIGHT);
-       this.stage.setMinWidth(MIN_WIDTH);
-       this.stage.setMaximized(true);
-       this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
-       this.loadScene(ViewScenes.MENU);
-//       this.sceneFactory.setStage(this.stage);
-//       this.sceneFactory.openMenuScene();
-    }
-    /**
-     * @param scene
-     *          scene
-     */
-    public void loadScene(final ViewScenes scene) {
+    public final void loadScene(final ViewScenes scene) {
         try {
             final SceneWrapper wrapper = SceneLoader.getLoader().getScene(scene);
             //swrapper.getController().init(control, this);
@@ -123,6 +110,15 @@ public class ViewImpl implements View {
             e.printStackTrace();
         }
     }
+//    @Override
+//    public void startRender() {
+//       this.viewRender.start();
+//    }
+//
+//    @Override
+//    public void stopRender() {
+//        this.viewRender.stopRender();
+//    }
 
 //    @Override
 //    public Controller getController() {

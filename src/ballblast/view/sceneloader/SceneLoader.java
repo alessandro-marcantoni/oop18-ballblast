@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 public final class SceneLoader {
 
     private static final SceneLoader SINGLETON = new SceneLoader();
-    private static final String PATH = "/view/scenes";
 
     /**
      * 

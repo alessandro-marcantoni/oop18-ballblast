@@ -16,16 +16,16 @@ public class SettingsImpl implements Settings {
     private static final int DEFAULT_X_RES = (int) Screen.getPrimary().getBounds().getWidth();
     private static final int DEFAULT_Y_RES = (int) Screen.getPrimary().getBounds().getHeight();
     private static final Pair<Integer, Integer> DEFAULT_RES = new Pair<>(DEFAULT_X_RES, DEFAULT_Y_RES);
-    
+
     private static final Pair<Integer, Integer> SCREEN_RES = DEFAULT_RES;
-    
+
     private final Pair<Integer, Integer> selectedResolution = new Pair<>(SettingsImpl.SCREEN_RES.getKey(), 
                                                                          SettingsImpl.SCREEN_RES.getValue());
-    
+
     private boolean fullScreen = true;
-    
+
     private static SettingsImpl singleton;
-          
+
     /**
      * 
      * @return
@@ -37,30 +37,30 @@ public class SettingsImpl implements Settings {
         }
         return singleton;
     }
-    
+
     @Override
-    public Pair<Integer, Integer> getDefaultResolution() {
+    public final Pair<Integer, Integer> getDefaultResolution() {
         return this.DEFAULT_RES;
     }
 
     @Override
-    public Pair<Integer, Integer> getSelectedResolution() {
+    public final Pair<Integer, Integer> getSelectedResolution() {
         return this.selectedResolution;
     }
 
     @Override
-    public double getScaleFactor() {
-        return Math.min((double) this.selectedResolution.getValue()/SettingsImpl.PREF_Y_RES,
-                        (double) this.selectedResolution.getKey()/SettingsImpl.PREF_X_RES);
+    public final double getScaleFactor() {
+        return Math.min((double) this.selectedResolution.getValue() / SettingsImpl.PREF_Y_RES,
+                        (double) this.selectedResolution.getKey() / SettingsImpl.PREF_X_RES);
     }
 
     @Override
-    public boolean isFullScreen() {
+    public final boolean isFullScreen() {
         return this.fullScreen;
     }
 
     @Override
-    public void setFullScreen(boolean fullScreen) {
+    public final void setFullScreen(final boolean fullScreen) {
         this.fullScreen = fullScreen;
     }
 

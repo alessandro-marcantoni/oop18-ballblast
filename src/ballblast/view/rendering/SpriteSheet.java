@@ -1,8 +1,8 @@
 package ballblast.view.rendering;
 
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
-import javafx.geometry.Point2D;
 /**
  * 
  * 
@@ -35,7 +35,7 @@ public final class SpriteSheet {
      */
     public void setCell(final int x, final int y) {
         this.sprite.setSourceWindow(
-                                    new Point2D(x * this.cellWidth, y * this.cellHeight),
+                                    new Coordinate(x * this.cellWidth, y * this.cellHeight),
                                     new Vector2D(this.cellWidth, this.cellHeight));
     }
 }

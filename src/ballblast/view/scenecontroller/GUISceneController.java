@@ -3,6 +3,7 @@ package ballblast.view.scenecontroller;
 import ballblast.controller.Controller;
 import ballblast.model.levels.Level;
 import ballblast.view.View;
+import ballblast.view.scenefactory.UIFactory;
 import ballblast.view.states.GUIState;
 import ballblast.view.states.IdleState;
 import ballblast.view.states.InGameState;
@@ -49,7 +50,8 @@ public class GUISceneController extends AbstractSceneController {
     private GUIState idleState;
     private GUIState inGameState;
     private GUIState pausedState;
-    private UIFactory = userInterface;
+    private UIFactory userInterface;
+    
 
     /**
      * Initialize the FXML components.
@@ -76,11 +78,17 @@ public class GUISceneController extends AbstractSceneController {
         this.idleState = new IdleState(this, controller, this.message);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
+        this.userInterface = new UIFactory();
+        this.resetGameCanvasCoordinates();
+        this.getController().startSurvivalMode();
         
 
     }
 
 
+    private void resetGameCanvasCoordinates() {
+        
+    }
 //    /**
 //     * 
 //     * @return

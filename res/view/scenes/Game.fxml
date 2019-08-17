@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
@@ -59,5 +60,7 @@
             </HBox>
          </bottom>
       </BorderPane>
+      <Pane fx:id="message" opacity="0.66" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="pausePane" opacity="0.77" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </StackPane>

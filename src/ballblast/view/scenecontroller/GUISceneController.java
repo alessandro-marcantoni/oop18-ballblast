@@ -4,12 +4,16 @@ import ballblast.controller.Controller;
 import ballblast.model.levels.Level;
 import ballblast.view.View;
 import ballblast.view.states.GUIState;
+import ballblast.view.states.IdleState;
+import ballblast.view.states.InGameState;
+import ballblast.view.states.PausedState;
 import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 /**
  * 
  * Graphical User Interface scene controller.
@@ -34,10 +38,18 @@ public class GUISceneController extends AbstractSceneController {
 
     @FXML // fx:id canvas
     private Canvas canvas;
+
+    @FXML // fx:id message
+    private Pane message;
+
+    @FXML // fx:id pausePane
+    private Pane pausePane;
+
     private GUIState currentState;
     private GUIState idleState;
     private GUIState inGameState;
     private GUIState pausedState;
+    private UIFactory = userInterface;
 
     /**
      * Initialize the FXML components.
@@ -50,6 +62,8 @@ public class GUISceneController extends AbstractSceneController {
         assert topHBox != null : "fx:id topHBox was not injected: check FXML file 'Game.fxml'";
         assert bottomHBox != null : "fx:id bottomHBox was not injected: check FXML file 'Game.fxml'";
         assert canvas != null : "fx:id canvas was not injected: check FXML file 'Game.fxml'";
+        assert message != null : "fx:id message was not injected: check FXML file 'Game.fxml'";
+        assert pausePane != null : "fx:id message was not injected: check FXML file 'Game.fxml'";
     }
     /**
      * @param controller
@@ -59,6 +73,10 @@ public class GUISceneController extends AbstractSceneController {
      */
     public void init(final Controller controller, final View view) {
         super.init(controller, view);
+        this.idleState = new IdleState(this, controller, this.message);
+        this.inGameState = new InGameState(this, controller);
+        this.pausedState = new PausedState(this, controller, this.pausePane);
+        
 
     }
 

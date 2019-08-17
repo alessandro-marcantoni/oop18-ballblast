@@ -28,7 +28,7 @@ public interface Sprite extends Renderer{
      * @return
      *          pippo
      */
-    Point2D getPosition();
+    Coordinate getPosition();
     /**
      * 
      * @param pivot
@@ -72,7 +72,7 @@ public interface Sprite extends Renderer{
      * @param offset
      *          pippo
      */
-    void setSourceWindow(Point2D topLeft, Vector2D offset);
+    void setSourceWindow(Coordinate topLeft, Vector2D offset);
     /**
      * 
      * @return

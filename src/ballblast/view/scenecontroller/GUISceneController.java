@@ -3,6 +3,7 @@ package ballblast.view.scenecontroller;
 import ballblast.controller.Controller;
 import ballblast.model.levels.Level;
 import ballblast.view.View;
+import ballblast.view.rendering.CanvasDrawer;
 import ballblast.view.scenefactory.UIFactory;
 import ballblast.view.states.GUIState;
 import ballblast.view.states.IdleState;
@@ -11,7 +12,9 @@ import ballblast.view.states.PausedState;
 import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -51,7 +54,7 @@ public class GUISceneController extends AbstractSceneController {
     private GUIState inGameState;
     private GUIState pausedState;
     private UIFactory userInterface;
-    
+    private CanvasDrawer canvasDrawer;
 
     /**
      * Initialize the FXML components.
@@ -80,40 +83,76 @@ public class GUISceneController extends AbstractSceneController {
         this.pausedState = new PausedState(this, controller, this.pausePane);
         this.userInterface = new UIFactory();
         this.resetGameCanvasCoordinates();
-        this.getController().startSurvivalMode();
-        
+        // this.getController().registerSurvivalModeStarted( e -> {
+           // this.canvasDrawer = new CanvasDrawer(this.canvas);
+            // background
+            // [..]
+           // this.level
+      //  });
+
+        // DA IMPLEMENTARE
 
     }
 
+    @Override
+    public final void onKeyPressed(final KeyEvent event) {
+        this.currentState.onKeyPressed(event);
+    }
+    /**
+     * Method to handle the onKeyRelease.
+     * @param event
+     *          the key released.
+     */
+    public void handleReleased(final KeyEvent event) {
+        this.currentState.onKeyReleased(event);
+    }
+
+    @Override
+    public final void render() {
+        // SCORE DA IMPLEMENTARE!!!
+        //this.timeScoreGameLabel.setText(Integer.toString(this.getController().getTimeScore()));
+        //this.ballsScoreGameLabel.setText(Integer.toString(this.getController().getBallsScore()));
+        this.canvasDrawer.draw();
+    }
 
     private void resetGameCanvasCoordinates() {
-        
-    }
-//    /**
-//     * 
-//     * @return
-//     */
-//    public final Canvas getCanvas() {
-//        this.canvas.setWidth(this.game.getWidth());
-//        this.canvas.setHeight(this.game.getHeight());
-//        return this.canvas;
-//    }
-
-    public void setGameData(Level level) {
-        this.timeScoreGameLabel.setText(String.valueOf(level.getGameScore()));
-        /**
-         * Gli score da memorizzare sono due: time e balls. Da modificare quando ci sarà modo di tener traccia dei diversi score.
-         */
+        // DA IMPLEMENTARE
     }
 
     @Override
     protected final ViewScenes getNextScene() {
-        return null;
+        return ViewScenes.GAMEOVER;
     }
 
     @Override
     protected final ViewScenes getPreviousScene() {
-        return null;
+        return ViewScenes.MENU;
+    }
+    
+    /**
+     * POWER UP DA IMPLEMENTARE
+     */
+    // private void handlePickupEvent(final PowerUp powerUp, final Player player) {}
+
+    /**
+     * 
+     * @param state
+     *          the state.
+     */
+    public void setState(final GUIState state) {
+        if (this.currentState != null) {
+            this.currentState.onStateExit();
+        }
+        this.currentState = state;
+        this.currentState.onStateEntry();
+    }
+    /**
+     * 
+     * @return
+     *          the paused state.
+     */
+    public GUIState getPausedState() {
+        return this.pausedState;
     }
     /**
      * 
@@ -125,19 +164,12 @@ public class GUISceneController extends AbstractSceneController {
     }
     /**
      * 
-     * @param state
-     *          the state.
-     */
-    public void setState(final GUIState state) {
-
-    }
-    /**
-     * 
      * @return
-     *          the paused state.
+     *          the idle state.
      */
-    public GUIState getPausedState() {
-        return this.pausedState;
+    public GUIState getIdleState() {
+        return this.idleState;
     }
+    
 
 }

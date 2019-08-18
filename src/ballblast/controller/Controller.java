@@ -10,4 +10,14 @@ public interface Controller {
      */
     void startSurvivalMode();
 
+    /**
+     * Pauses the game.
+     */
+    void pauseGame();
+
+    /**
+     * Resumes the paused game.
+     */
+    void resume();
+
 }

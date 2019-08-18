@@ -9,7 +9,6 @@ import javafx.scene.layout.Pane;
  * It is active for default at the start of a new game.
  */
 public class IdleState extends GUIState {
-    
     private boolean keyPressed;
     private final Pane message;
     /**
@@ -26,25 +25,26 @@ public class IdleState extends GUIState {
         this.keyPressed = false;
         this.message = message;
     }
+
     @Override
-    public void onStateEntry() {
+    public final void onStateEntry() {
         //this.getController().pauseGame();
         this.message.setVisible(true);
     }
 
     @Override
-    public void onStateExit() {
+    public final void onStateExit() {
         //this.getController().resume();
         this.message.setVisible(false);
     }
 
     @Override
-    public void onKeyPressed(KeyEvent event) {
+    public final void onKeyPressed(final KeyEvent event) {
         this.keyPressed = true;
     }
 
     @Override
-    public void onKeyReleased(KeyEvent event) {
+    public final void onKeyReleased(final KeyEvent event) {
         if (this.keyPressed) {
             this.getGUI().setState(this.getGUI().getInGameState());
         }

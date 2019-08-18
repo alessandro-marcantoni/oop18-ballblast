@@ -22,4 +22,5 @@ public interface Renderer extends Comparable<Renderer> {
      *          the layer.
      */
     int getLayer();
+
 }

@@ -40,7 +40,7 @@ public class SettingsImpl implements Settings {
 
     @Override
     public final Pair<Integer, Integer> getDefaultResolution() {
-        return this.DEFAULT_RES;
+        return DEFAULT_RES;
     }
 
     @Override

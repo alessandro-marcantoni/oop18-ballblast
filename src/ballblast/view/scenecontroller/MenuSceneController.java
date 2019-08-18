@@ -10,10 +10,10 @@ import javafx.fxml.FXML;
  */
 public class MenuSceneController extends AbstractSceneController {
 
-    private boolean gameMode = false;
-    private boolean leaderboard = false;
-    private boolean settings = false;
-    private boolean manual = false;
+    private boolean gameMode;
+    private boolean leaderboard;
+    private boolean settings;
+    private boolean manual;
     /**
      * Open the game mode selection scene.
      */
@@ -71,4 +71,5 @@ public class MenuSceneController extends AbstractSceneController {
         return ViewScenes.LOGIN;
     }
 }
+
  

@@ -18,7 +18,7 @@ public interface Settings {
     /**
      * 
      * @return
-     *          selected screen resolution          
+     *          selected screen resolution.
      */
     Pair<Integer, Integer> getSelectedResolution();
     /**
@@ -43,6 +43,4 @@ public interface Settings {
      *          false otherwise
      */
     void setFullScreen(boolean fullScreen);
-    
-    
 }

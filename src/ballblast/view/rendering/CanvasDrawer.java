@@ -3,66 +3,44 @@ package ballblast.view.rendering;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.math.Vector2D;
+import com.google.common.collect.ImmutableBiMap;
 
-import ballblast.controller.Controller;
-import ballblast.model.gameobjects.Ball;
-import ballblast.model.gameobjects.BallTypes;
-import ballblast.model.gameobjects.Bullet;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectTypes;
-import ballblast.model.gameobjects.Player;
-import ballblast.model.physics.CollisionManager;
-import ballblast.model.physics.SimpleCollisionManager;
-import ballblast.view.rendering.gameobject.BallRenderer;
-import ballblast.view.rendering.gameobject.BulletRenderer;
-import ballblast.view.rendering.gameobject.PlayerRenderer;
-import ballblast.view.scenefactory.RendererFactory;
+import ballblast.view.rendering.gameobject.RendererFactory;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.util.Pair;
 
 /**
  * A canvas drawer.
  */
 public class CanvasDrawer {
-
+    private static final ImmutableBiMap<GameObjectTypes, Function<Pair<Sprite, GameObject>, Renderer>> RENDERER_MAP;
     private final List<Renderer> renderers;
     private final Canvas canvas;
-    // private final RendererFactory factory;
-    private final List<GameObject> gameObjects;
-    //private final Controller controller;
-    // TESTING
-    private final CollisionManager manager = new SimpleCollisionManager();
-    private final Ball ball = (Ball) GameObjectFactory.createBall(BallTypes.MEDIUM, 20, new Coordinate(0, 0),
-                                                                new Vector2D(1, 1),  manager);
-    private final Player player = (Player) GameObjectFactory.createPlayer(null, null, null, null, null, null);
-    private final Bullet bullet = (Bullet) GameObjectFactory.createBullet(null, null, null);
+
+    static {
+        RENDERER_MAP = ImmutableBiMap.of(
+                GameObjectTypes.BALL,   p -> RendererFactory.createBallRenderer(p.getKey(), p.getValue()),
+                GameObjectTypes.BULLET, p -> RendererFactory.createBulletRenderer(p.getKey(), p.getValue()),
+                GameObjectTypes.PLAYER, p -> RendererFactory.createPlayerRenderer(p.getKey(), p.getValue())
+                //GameObjectTypes.WALL, c -> new WallRenderer(generateSprite(c), player)
+        );
+    }
     /**
      * @param canvas
      *          the canvas
      */
     public CanvasDrawer(final Canvas canvas) {
         this.renderers = new ArrayList<>();
-        this.gameObjects = new ArrayList<>();
         this.canvas = canvas;
-        //gameObjects.addAll(controller.getGameObjects());
-
-        gameObjects.add(ball);
-        gameObjects.add(player);
-        gameObjects.add(bullet);
-        for (GameObject object:gameObjects) {
-            if (object.getType().equals(GameObjectTypes.BALL)) {
-                renderers.add(new BallRenderer(generateSprite(), ball));
-            } else if (object.getType().equals(GameObjectTypes.PLAYER)) {
-                renderers.add(new PlayerRenderer(generateSprite(), player));
-            } else if (object.getType().equals(GameObjectTypes.BULLET)) {
-                renderers.add(new BulletRenderer(generateSprite(), bullet));
-            }
-        }
+        //TODO.
+        final List<GameObject> gameObjects = new ArrayList<>();
+        gameObjects.forEach(g -> this.renderers.add(this.getRenderer(g)));
     }
     /**
      * 
@@ -123,16 +101,17 @@ public class CanvasDrawer {
      *          a Sprite
      */
     public final Sprite createSprite() {
-        final Sprite sprite = this.generateSprite();
+        final Sprite sprite = generateSprite();
         this.addRenderer(sprite);
         return sprite;
     }
-    /**
-     * 
-     * @return
-     *          a Sprite
-     */
-    protected Sprite generateSprite() {
-        return new ImageSprite(this.getCanvas().getGraphicsContext2D());
+
+    private Sprite generateSprite() {
+        return new ImageSprite(this.canvas.getGraphicsContext2D());
+    }
+
+    private Renderer getRenderer(final GameObject gameObject) {
+        final Pair<Sprite, GameObject> p = new Pair<>(this.generateSprite(), gameObject);
+        return RENDERER_MAP.get(gameObject.getType()).apply(p);
     }
 }

@@ -22,7 +22,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     private Image image;
     private final GraphicsContext gc;
     /**
-     * 
+     * @param gc TODO
      */
     public ImageSprite(final GraphicsContext gc) {
         super();
@@ -38,7 +38,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     }
 
     @Override
-    public void render() {
+    public final void render() {
         this.gc.translate(this.getPosition().getX(), this.getPosition().getY());
         this.gc.scale(1, -1);
         this.gc.setGlobalAlpha(this.getAlpha());
@@ -140,11 +140,17 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     public final double getAlpha() {
         return this.alpha;
     }
-    
+    /**
+     * 
+     * @return TO DO.
+     */
     protected final Coordinate getSourceTopLeftCorner() {
         return this.sourceTopLeft;
     }
-    
+    /**
+     * 
+     * @return TO DO.
+     */
     protected final Vector2D getSourceOffset() {
         return this.sourceOffset;
     }

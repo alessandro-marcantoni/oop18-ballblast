@@ -11,21 +11,18 @@ import javafx.scene.shape.Shape;
  * 
  */
 public interface ViewEntity {
-    
     /**
      * 
      * @return 
      *          the entity position.
      */
     Coordinate getPosition();
-    
     /**
      * 
      * @return 
      *          the entity shape.
      */
     Shape getShape();
-    
     /**
      * 
      * @return 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import org.locationtech.jts.math.Vector2D;
 
@@ -19,7 +20,7 @@ import ballblast.model.gameobjects.GameObject;
  * Manages inputs and redirects them to the right player.
  */
 public class InputManager {
-    private static final ImmutableBiMap<InputTypes, Command> COMMANDS_MAP;
+    private static final ImmutableBiMap<InputTypes, Consumer<GameObject>> COMMANDS_MAP;
     private static final int MOVEMENT_SPEED = 5;
     private ImmutableBiMap<PlayerTags, InputComponent> inputHandlers;
 
@@ -77,7 +78,7 @@ public class InputManager {
         inputs.forEach((k, v) -> this.inputHandlers.get(k).receiveCommands(this.translateInputs(v)));
     }
 
-    private List<Command> translateInputs(final List<InputTypes> toBeTranslated) {
+    private List<Consumer<GameObject>> translateInputs(final List<InputTypes> toBeTranslated) {
         return toBeTranslated.stream().map(i -> COMMANDS_MAP.get(i)).collect(ImmutableList.toImmutableList());
     }
 

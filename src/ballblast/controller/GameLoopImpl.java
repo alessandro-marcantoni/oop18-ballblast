@@ -57,7 +57,6 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private void processInput() {
-
     }
 
 }

@@ -1,7 +1,7 @@
 package ballblast.view.states;
 
 import ballblast.controller.Controller;
-import ballblast.model.inputs.Command;
+import ballblast.model.commons.Command;
 import ballblast.view.scenecontroller.GUISceneController;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

@@ -1,6 +1,13 @@
 package ballblast.view.states;
 
+import java.util.Map;
+import java.util.function.Consumer;
+
+import com.google.common.collect.ImmutableBiMap;
+
 import ballblast.controller.Controller;
+import ballblast.model.inputs.InputTypes;
+import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.view.scenecontroller.GUISceneController;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -9,7 +16,17 @@ import javafx.scene.input.KeyEvent;
  * It is the state which comes when the player is interacting with the game.
  */
 public class InGameState extends GUIState {
+    private static final Map<KeyCode, Consumer<GUIState>> INPUT_MAP;
 
+    static {
+        INPUT_MAP = ImmutableBiMap.of(
+                KeyCode.LEFT,   g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_LEFT),
+                KeyCode.RIGHT,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_RIGHT),
+                KeyCode.SPACE,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.SHOOT),
+                KeyCode.P,      g -> g.getGUI().setState(g.getGUI().getPausedState()),
+                KeyCode.ESCAPE, g -> g.getGUI().setState(g.getGUI().getPausedState())
+        );
+    }
     /**
      * Initialize a new in game state.
      * @param gui
@@ -33,30 +50,12 @@ public class InGameState extends GUIState {
 
     @Override
     public final void onKeyPressed(final KeyEvent event) {
-        if (event.getCode() == KeyCode.LEFT) {
-            // Moving left
-            // this.getController().sendCommand(...)
-        } else if (event.getCode() == KeyCode.RIGHT) {
-            // Moving right
-            // this.getController().sendCommand(...)
-        } else if (event.getCode() == KeyCode.P) {
-            // Sets the pause state
-            this.getGUI().setState(this.getGUI().getPausedState());
-        } else if (event.getCode() == KeyCode.ESCAPE) {
-            // Sets the pause state
-            this.getGUI().setState(this.getGUI().getPausedState());
-        } 
+        INPUT_MAP.get(event.getCode()).accept(this);
     }
 
     @Override
     public final void onKeyReleased(final KeyEvent event) {
-        if (event.getCode() == KeyCode.LEFT) {
-            // Moving left
-            // this.getController().sendCommand(...)
-        } else if (event.getCode() == KeyCode.RIGHT){
-            // Moving right
-            // this.getController().sendCommand(...)
-        }
+        //TODO?
     }
 
 }

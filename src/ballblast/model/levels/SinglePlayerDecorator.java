@@ -25,7 +25,7 @@ public class SinglePlayerDecorator extends LevelDecorator {
     public SinglePlayerDecorator(final Level level) {
         super(level);
         this.player = this.createPlayer();
-        this.addPlayer(player);
+        this.addPlayer(this.player);
     }
 
     @Override

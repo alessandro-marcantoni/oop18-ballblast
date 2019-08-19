@@ -13,11 +13,6 @@ public enum CollisionTag {
         public boolean canCollideWith(final CollisionTag other) {
             return other == WALL || other == BALL || other == POWERUP;
         }
-
-        @Override
-        public boolean isStaticWith(final CollisionTag other) {
-            return other != WALL;
-        }
     },
 
     /**
@@ -48,11 +43,6 @@ public enum CollisionTag {
         public boolean canCollideWith(final CollisionTag other) {
             return other == WALL || other == PLAYER;
         }
-
-        @Override
-        public boolean isStaticWith(final CollisionTag other) {
-            return other != WALL;
-        }
     },
 
     /**
@@ -73,19 +63,6 @@ public enum CollisionTag {
      *      true if the objects can collide.
      */
     public boolean canCollideWith(final CollisionTag other) {
-        return true;
-    }
-
-    /**
-     * Returns false if the collision between this type and the given one should force this
-     * object to be moved so that the two objects don't overlap. If the result is true this object
-     * should not move.
-     * @param other
-     *      the other type.
-     * @return
-     *      a boolean indicating the type of collision solving method.
-     */
-    public boolean isStaticWith(final CollisionTag other) {
         return true;
     }
 }

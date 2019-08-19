@@ -45,7 +45,7 @@ public final class DirectoryManager {
      */
     public static final String SURVIVAL_FILE = SCOREBOARD_DIR
                                                + SEPARATOR
-                                               + "survival.bin";
+                                               + "survival.xml";
 
     private DirectoryManager() {
         // Cannot create a DirectroyManager object.
@@ -62,7 +62,7 @@ public final class DirectoryManager {
         return USERS_DIR
                + SEPARATOR
                + userName
-               + ".bin";
+               + ".xml";
     }
 
     /**

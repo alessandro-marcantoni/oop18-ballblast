@@ -158,6 +158,7 @@ public class TestCollisions {
         wall.getComponents().forEach(c -> c.enable());
 
         manager.checkLoop();
+        // Expected floor bounce.
         assertTrue(ball.getVelocity().getY() == y * -1);
         assertTrue(ball.getVelocity().getX() == x);
 
@@ -165,6 +166,7 @@ public class TestCollisions {
         wall.setPosition(Boundaries.LEFT.getPosition());
 
         manager.checkLoop();
+        // Expected wall bounce.
         assertTrue(ball.getVelocity().getY() == y * -1);
         assertTrue(ball.getVelocity().getX() == x * -1);
     }

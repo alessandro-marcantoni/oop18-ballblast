@@ -37,7 +37,7 @@ public interface View {
      * Render method.
      */
     void render();
-    
+
     /**
      * 
      * @param scene

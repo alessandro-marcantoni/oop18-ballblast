@@ -62,9 +62,10 @@ public enum BallColors {
 //    public Image getImage() {
 //        return this.image;
 //    }
+    private final Color color;
 
     BallColors(final Color color) {
-
+        this.color = color;
     }
     /**
      * 
@@ -72,7 +73,7 @@ public enum BallColors {
      *          {@link Paint} color.
      */
     public Paint getColor() {
-         return null;
+         return this.color;
     }
     /**
      * 

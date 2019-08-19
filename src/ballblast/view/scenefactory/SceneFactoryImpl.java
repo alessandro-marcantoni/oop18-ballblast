@@ -22,15 +22,19 @@ public class SceneFactoryImpl implements SceneFactory {
      * @param view
      *          the view of the game.
      */
-    public SceneFactoryImpl(View view) {
+    public SceneFactoryImpl(final View view) {
         this.view = view;
         this.sceneLoader = new SceneLoader();
     }
-
-    public void setStage(Stage stage) {
+    /**
+     * @param stage TODO.
+     */
+    public void setStage(final Stage stage) {
         this.stage = stage;
     }
-
+    /**
+     * @return TODO.
+     */
     public Stage getStage() {
         return this.stage;
     }
@@ -42,46 +46,50 @@ public class SceneFactoryImpl implements SceneFactory {
 
 
     @Override
-    public void openSettingsScene() {
+    public final void openSettingsScene() {
         this.openNewScene(ViewScenes.SETTINGS);
     }
 
     @Override
-    public void openLeaderboardScene() {
+    public final void openLeaderboardScene() {
         this.openNewScene(ViewScenes.LEADERBOARD);
     }
 
     @Override
-    public void openManualScene() {
+    public final void openManualScene() {
         this.openNewScene(ViewScenes.MANUAL);
     }
 
     @Override
-    public void openGameOverScene() {
+    public final void openGameOverScene() {
         this.openNewScene(ViewScenes.GAMEOVER);
     }
 
     @Override
-    public void openPauseScene() {
+    public final void openPauseScene() {
        this.openNewScene(ViewScenes.PAUSE);
     }
 
     @Override
-    public void openGameSelection() {
+    public final void openGameSelection() {
         this.openNewScene(ViewScenes.GAME_MODE);
     }
 
-    private void openNewScene(ViewScenes scene) {
+    private void openNewScene(final ViewScenes scene) {
         this.checkFullScreen();
+        scene.compareTo(scene); //to delete.
        //this.sceneLoader.loadScene(this.stage, scene);
     }
 
     private void checkFullScreen() {
         // DA IMPLEMENTARE
+        view.notifyAll(); //To delete.
+        createNewStage(); //To delete.
     }
 
     private void createNewStage() {
         // DA IMPLEMENTARE
+        sceneLoader.notifyAll();
     }
 
 }

@@ -1,4 +1,4 @@
-package ballblast.model.constants;
+package ballblast.model.levels;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;

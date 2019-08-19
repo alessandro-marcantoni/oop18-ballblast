@@ -1,7 +1,6 @@
 package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
-import ballblast.model.levels.Level;
 import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
 import ballblast.view.scenefactory.UIFactory;
@@ -12,7 +11,6 @@ import ballblast.view.states.PausedState;
 import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -92,6 +90,7 @@ public class GUISceneController extends AbstractSceneController {
       //  });
 
         // DA IMPLEMENTARE
+        userInterface.notifyAll(); //toDelete.
 
     }
 

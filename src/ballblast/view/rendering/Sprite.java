@@ -2,9 +2,6 @@ package ballblast.view.rendering;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
-
-import javafx.geometry.Point2D;
-
 /**
  * Represents an image that can be rendered on the screen at a certain position on the screen
  * and with some rotation. 
@@ -16,7 +13,7 @@ import javafx.geometry.Point2D;
  * The image source is specified as an {@link ImagePath}.
  * 
  */
-public interface Sprite extends Renderer{
+public interface Sprite extends Renderer {
     /**
      * 
      * @param coordinate

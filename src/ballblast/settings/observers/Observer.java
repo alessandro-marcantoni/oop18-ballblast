@@ -3,7 +3,7 @@ package ballblast.settings.observers;
 /**
  * 
  * 
- * Interface
+ * Interface.
  * 
  */
 public interface Observer {

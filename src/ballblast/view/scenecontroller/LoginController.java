@@ -43,7 +43,7 @@ public class LoginController extends AbstractSceneController {
         if (!this.userTextField.getText().equals("")) {
             nextScene();
         } else {
-            Alert alert = new Alert(AlertType.WARNING);
+            final Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("DANGER");
             alert.setHeaderText(null);
             alert.setContentText("Insert a user name");

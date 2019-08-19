@@ -10,18 +10,17 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 /**
- * 
- * 
+ * TODO.
  */
 public class ViewImpl implements View {
 
     private static final String GAME_TITLE = "BALL BLAST";
     private static final double MIN_WIDTH = 384;
     private static final double MIN_HEIGHT = 200;
-    private Controller control;
+    private final Stage stage;
+    private Controller controller;
     private AbstractSceneController currentScene;
     private boolean viewStarted;
-    private final Stage stage;
 
 //    private static final int GREEN_SEMAPHORE = 1;
 
@@ -57,7 +56,7 @@ public class ViewImpl implements View {
 
     @Override
     public final void launch(final Controller controller) {
-       this.control = controller;
+       this.controller = controller;
        this.stage.setTitle(GAME_TITLE);
        this.stage.setMinHeight(MIN_HEIGHT);
        this.stage.setMinWidth(MIN_WIDTH);
@@ -71,7 +70,8 @@ public class ViewImpl implements View {
     @Override
     public final void render() {
         Platform.runLater(() -> this.currentScene.render());
-
+        //To delete.
+        this.controller.notifyAll();
 //        try {
 //            this.mutex.acquire();
 //            this.viewEntities = viewEntities;

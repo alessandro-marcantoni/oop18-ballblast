@@ -1,7 +1,6 @@
 package ballblast.view.states;
 
 import ballblast.controller.Controller;
-import ballblast.model.inputs.Command;
 import ballblast.view.scenecontroller.GUISceneController;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -28,10 +27,10 @@ public class PausedState extends GUIState {
 
     @Override
     public final void onStateEntry() {
-        final Command noInput = e -> {
+        //final Command noInput = e -> {
           // Annulla tutti i movimenti in atto
           // Toglie lo shooting
-        };
+        //};
         // this.getController().sendCommand(noInput);
 
         // this.getController().pauseGame();
@@ -49,6 +48,7 @@ public class PausedState extends GUIState {
         if (event.getCode() == KeyCode.P) {
             this.getGUI().setState(this.getGUI().getInGameState());
         } else if (event.getCode() == KeyCode.Q) {
+            this.getController();
             // this.getController().closeGameSession();
         }
 

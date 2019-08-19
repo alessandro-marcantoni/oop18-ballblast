@@ -37,14 +37,15 @@ public final class BasicLevel implements Level {
 
     @Override
     public void start() {
-        this.gameObjectManager.getGameObjects().forEach(g -> this.activeComponents(g));
         this.gameStatus = GameStatus.RUNNING;
+        this.update(0);
+        this.gameObjectManager.getGameObjects().forEach(g -> this.activeComponents(g));
     }
 
     @Override
     public void update(final double elapsed) {
-        if (gameStatus == GameStatus.RUNNING) {
-            this.gameObjectManager.getGameObjects().forEach(o -> o.update(elapsed));
+        if (this.gameStatus == GameStatus.RUNNING) {
+            this.gameObjectManager.update(elapsed);
             this.collisionManager.checkLoop();
         }
     }
@@ -81,7 +82,7 @@ public final class BasicLevel implements Level {
 
     private void createBoundaries() {
         final List<GameObject> boundaries = Arrays.stream(Boundaries.values()).map(b -> GameObjectFactory
-                .createWall(b.getHeight(), b.getWidth(), b.getPosition(), b.getVelocity(), collisionManager))
+                .createWall(b.getHeight(), b.getWidth(), b.getPosition(), b.getVelocity(), this.collisionManager))
                 .collect(ImmutableList.toImmutableList());
         this.gameObjectManager.addGameObjects(boundaries);
     }

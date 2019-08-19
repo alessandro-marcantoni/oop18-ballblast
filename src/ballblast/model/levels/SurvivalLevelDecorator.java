@@ -18,7 +18,7 @@ import ballblast.model.gameobjects.GameObjectFactory;
  * Represents a concrete implementation of {@link LevelDecorator}.
  */
 public class SurvivalLevelDecorator extends LevelDecorator {
-    private static final int SPAWN_TIME = 10;
+    private static final int SPAWN_TIME = 5;
     private static final int ENABLE_TIME = 2;
     private static final Vector2D INITIAL_BALL_VELOCITY = Vector2D.create(16, 0);
     private static final double SPAWN_HEIGHT = 90;

@@ -90,8 +90,6 @@ public class GUISceneController extends AbstractSceneController {
       //  });
 
         // DA IMPLEMENTARE
-        userInterface.notifyAll(); //toDelete.
-
     }
 
     @Override
@@ -117,6 +115,7 @@ public class GUISceneController extends AbstractSceneController {
 
     private void resetGameCanvasCoordinates() {
         // DA IMPLEMENTARE
+        userInterface.notifyAll(); //toDelete.
     }
 
     @Override

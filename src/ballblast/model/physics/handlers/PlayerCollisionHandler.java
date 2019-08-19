@@ -17,10 +17,12 @@ public class PlayerCollisionHandler implements CollisionHandler {
                 // Destroy the Player and finish the game session.
                 obj.destroy();
                 // TODO metodo endGameSession()
+                break;
             case WALL:
-
+                break;
             case POWERUP:
                 obj.toString();
+                break;
             default:
                 break;
         }

@@ -1,9 +1,11 @@
 package ballblast.model.physics.handlers;
 
+import ballblast.model.levels.Boundaries;
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
+import ballblast.model.physics.utilities.Bounce;
 
 /**
  * Represents the handler for the behavior of the {@link Ball} after a collision.
@@ -19,8 +21,14 @@ public class BallCollisionHandler implements CollisionHandler {
                 // Destroy the Player and finish the game session.
                 coll.getAttachedGameObject().get().destroy();
                 // TODO metodo endGameSession()
+                break;
             case WALL:
-                // TODO metodo bounce()
+                if (coll.getAttachedGameObject().get().getPosition().equals(Boundaries.BOTTOM.getPosition())) {
+                    Bounce.floorBounce(obj);
+                } else {
+                    Bounce.wallBounce(obj);
+                }
+                break;
             case BULLET:
                 // Decrement the Ball life by 'decLife' and destroy if life = 0.
                 ((Ball) obj).setLife(((Ball) obj).getLife() - decLife);
@@ -30,6 +38,7 @@ public class BallCollisionHandler implements CollisionHandler {
                 // Destroy the Bullet that collide with the Ball.
                 coll.getAttachedGameObject().get().destroy();
                 // TODO handle score
+                break;
             default:
                 break;
         }

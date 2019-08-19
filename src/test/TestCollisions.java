@@ -12,6 +12,7 @@ import org.locationtech.jts.math.Vector2D;
 import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.Component;
 import ballblast.model.components.ComponentTypes;
+import ballblast.model.levels.Boundaries;
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
@@ -137,5 +138,34 @@ public class TestCollisions {
         // The Ball object is still alive but his life has been decremented.
         assertEquals(((Ball) balls).getLife(), 1);
         assertEquals(manager.getCollidables().size(), 1);
+    }
+
+    /**
+     * Test the correct behavior after the collision with a Wall object.
+     * The Ball has to bounce correctly.
+     * The Player has to stop.
+     */
+    @Test
+    public void testBounce() {
+        final int ballLife = 3;
+        final double x = 5;
+        final double y = 5;
+        final CollisionManager manager = new SimpleCollisionManager();
+        final GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, Boundaries.BOTTOM.getPosition(), Vector2D.create(new Coordinate(x, y)), manager);
+        final GameObject wall = GameObjectFactory.createWall(x, y, Boundaries.BOTTOM.getPosition(), new Vector2D(), manager);
+
+        ball.getComponents().forEach(c -> c.enable());
+        wall.getComponents().forEach(c -> c.enable());
+
+        manager.checkLoop();
+        assertTrue(ball.getVelocity().getY() == y * -1);
+        assertTrue(ball.getVelocity().getX() == x);
+
+        ball.setPosition(Boundaries.LEFT.getPosition());
+        wall.setPosition(Boundaries.LEFT.getPosition());
+
+        manager.checkLoop();
+        assertTrue(ball.getVelocity().getY() == y * -1);
+        assertTrue(ball.getVelocity().getX() == x * -1);
     }
 }

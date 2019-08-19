@@ -1,6 +1,6 @@
 package ballblast.model.physics.handlers;
 
-import ballblast.model.constants.Boundaries;
+import ballblast.model.levels.Boundaries;
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.physics.Collidable;

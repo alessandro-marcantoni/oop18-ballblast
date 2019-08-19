@@ -12,7 +12,7 @@ import org.locationtech.jts.math.Vector2D;
 import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.Component;
 import ballblast.model.components.ComponentTypes;
-import ballblast.model.constants.Boundaries;
+import ballblast.model.levels.Boundaries;
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;

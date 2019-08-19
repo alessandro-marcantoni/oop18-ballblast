@@ -54,7 +54,8 @@ public class InputManager {
      *                       {@link Player}.
      */
     public void addInputHandler(final PlayerTags tag, final InputComponent inputComponent) {
-        this.inputHandlers = ImmutableBiMap.<PlayerTags, InputComponent>builder().putAll(this.inputHandlers)
+        this.inputHandlers = ImmutableBiMap.<PlayerTags, InputComponent>builder()
+                .putAll(this.inputHandlers)
                 .put(tag, inputComponent).build();
     }
 

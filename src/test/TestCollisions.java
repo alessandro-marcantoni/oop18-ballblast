@@ -164,8 +164,6 @@ public class TestCollisions {
         ball.setPosition(Boundaries.LEFT.getPosition());
         wall.setPosition(Boundaries.LEFT.getPosition());
 
-        wall.getComponents().forEach(c -> c.enable()); // dopo la collisione il componente collision del muro si diabilita...perche'??
-
         manager.checkLoop();
         assertTrue(ball.getVelocity().getY() == y * -1);
         assertTrue(ball.getVelocity().getX() == x * -1);

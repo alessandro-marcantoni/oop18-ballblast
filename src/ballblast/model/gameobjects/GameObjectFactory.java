@@ -15,6 +15,7 @@ import ballblast.model.physics.CollisionTag;
 import ballblast.model.physics.handlers.BallCollisionHandler;
 import ballblast.model.physics.handlers.BulletCollisionHandler;
 import ballblast.model.physics.handlers.PlayerCollisionHandler;
+import ballblast.model.physics.handlers.WallCollisionHandler;
 
 /**
  * Represents a factory used to instantiate new {@link GameObject}s.
@@ -64,6 +65,7 @@ public final class GameObjectFactory {
                 .setWidth(width)
                 .setPosition(position)
                 .setVelocity(velocity)
+                .setCollisionHandler(new WallCollisionHandler())
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.WALL)).build();
     }
 

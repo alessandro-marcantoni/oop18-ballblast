@@ -21,12 +21,14 @@ public class BallCollisionHandler implements CollisionHandler {
                 // Destroy the Player and finish the game session.
                 coll.getAttachedGameObject().get().destroy();
                 // TODO metodo endGameSession()
+                break;
             case WALL:
                 if (coll.getAttachedGameObject().get().getPosition().equals(Boundaries.BOTTOM.getPosition())) {
                     Bounce.floorBounce(obj);
                 } else {
                     Bounce.wallBounce(obj);
                 }
+                break;
             case BULLET:
                 // Decrement the Ball life by 'decLife' and destroy if life = 0.
                 ((Ball) obj).setLife(((Ball) obj).getLife() - decLife);
@@ -36,6 +38,7 @@ public class BallCollisionHandler implements CollisionHandler {
                 // Destroy the Bullet that collide with the Ball.
                 coll.getAttachedGameObject().get().destroy();
                 // TODO handle score
+                break;
             default:
                 break;
         }

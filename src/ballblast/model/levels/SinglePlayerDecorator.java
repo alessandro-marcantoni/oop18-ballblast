@@ -5,6 +5,7 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
+import ballblast.model.Model;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.inputs.InputManager.PlayerTags;
@@ -13,7 +14,7 @@ import ballblast.model.inputs.InputManager.PlayerTags;
  * Represents a decorator for levels which add the player object and ends when the player is dead.
  */
 public class SinglePlayerDecorator extends LevelDecorator {
-    private static final Coordinate INITIAL_PLAYER_POSITION = new Coordinate(100, 86);
+    private static final Coordinate INITIAL_PLAYER_POSITION = calculatePosition();
     private static final Vector2D INITIAL_PLAYER_VELOCITY = new Vector2D(0, 0);
     private final GameObject player;
 
@@ -49,6 +50,13 @@ public class SinglePlayerDecorator extends LevelDecorator {
         if (this.player.isDestroyed()) {
             this.setGameStatus(GameStatus.OVER);
         }
+    }
+
+    private static Coordinate calculatePosition() {
+        final double playerOffSet = 9;
+        final double x = Model.WORLD_WIDTH / 2;
+        final double y = Model.WORLD_HEIGHT - Model.WALL_OFFSET * 2 - playerOffSet;
+        return new Coordinate(x, y);
     }
 
 }

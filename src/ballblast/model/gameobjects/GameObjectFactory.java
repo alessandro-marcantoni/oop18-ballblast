@@ -43,9 +43,9 @@ public final class GameObjectFactory {
                 .setPosition(position)
                 .setCollisionHandler(new PlayerCollisionHandler())
                 .addComponent(new InputComponent(inputManager, tag))
-                .addComponent(new ShooterComponent(gameObjectManager, collisionManager))
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.PLAYER))
-                .addComponent(new MovementComponent()).build();
+                .addComponent(new MovementComponent())
+                .addComponent(new ShooterComponent(gameObjectManager, collisionManager)).build();
     }
 
     /**

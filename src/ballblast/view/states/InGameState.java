@@ -16,15 +16,21 @@ import javafx.scene.input.KeyEvent;
  * It is the state which comes when the player is interacting with the game.
  */
 public class InGameState extends GUIState {
-    private static final Map<KeyCode, Consumer<GUIState>> INPUT_MAP;
+    private static final Map<KeyCode, Consumer<GUIState>> PRESSED_INPUT_MAP;
+    private static final Map<KeyCode, Consumer<GUIState>> RELEASED_INPUT_MAP;
 
     static {
-        INPUT_MAP = ImmutableBiMap.of(
+        PRESSED_INPUT_MAP = ImmutableBiMap.of(
                 KeyCode.LEFT,   g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_LEFT),
                 KeyCode.RIGHT,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_RIGHT),
                 KeyCode.SPACE,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.SHOOT),
                 KeyCode.P,      g -> g.getGUI().setState(g.getGUI().getPausedState()),
                 KeyCode.ESCAPE, g -> g.getGUI().setState(g.getGUI().getPausedState())
+        );
+        RELEASED_INPUT_MAP = ImmutableBiMap.of(
+                KeyCode.LEFT,   g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING),
+                KeyCode.RIGHT,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING),
+                KeyCode.SPACE,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING)
         );
     }
     /**
@@ -50,12 +56,12 @@ public class InGameState extends GUIState {
 
     @Override
     public final void onKeyPressed(final KeyEvent event) {
-        INPUT_MAP.get(event.getCode()).accept(this);
+        PRESSED_INPUT_MAP.get(event.getCode()).accept(this);
     }
 
     @Override
     public final void onKeyReleased(final KeyEvent event) {
-        //TODO?
+        RELEASED_INPUT_MAP.get(event.getCode()).accept(this);
     }
 
 }

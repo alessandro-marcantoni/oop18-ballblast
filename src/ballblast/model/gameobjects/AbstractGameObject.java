@@ -75,7 +75,7 @@ public abstract class AbstractGameObject implements GameObject {
 
     @Override
     public final Coordinate getPosition() {
-        return this.position;
+        return this.position.copy();
     }
 
     @Override

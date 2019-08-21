@@ -15,7 +15,7 @@ import ballblast.model.inputs.InputManager.PlayerTags;
 public class InputComponent extends AbstractComponent {
     private final InputManager inputManager;
     private final PlayerTags tag;
-    private ImmutableList<Consumer<GameObject>> commands;
+    private List<Consumer<GameObject>> commands;
     /**
      * Creats an {@link InputComponent} instance.
      * @param inputManager
@@ -59,5 +59,10 @@ public class InputComponent extends AbstractComponent {
 
     private void resolveCommands() {
         this.commands.forEach(c -> c.accept(this.getParent()));
+        this.emptyCommands();
+    }
+
+    private void emptyCommands() {
+        this.commands = ImmutableList.of();
     }
 }

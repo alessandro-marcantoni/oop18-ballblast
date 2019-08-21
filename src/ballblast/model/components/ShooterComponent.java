@@ -17,7 +17,7 @@ public class ShooterComponent extends AbstractComponent {
     private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -70);
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
-    private boolean isLoaded;
+    private boolean isShooting;
 
     /**
      * Creates a {@link ShooterComponent} instance.
@@ -31,31 +31,33 @@ public class ShooterComponent extends AbstractComponent {
         super(ComponentTypes.SHOOTER);
         this.gameObjectManager = gameObjectManager;
         this.collisionManager = collisionManager;
-        this.isLoaded = false;
+        this.isShooting = false;
     }
 
     @Override
     public final void update(final double elapsed) {
-        if (this.isEnabled() && this.isLoaded) {
+        if (this.isEnabled() && this.isShooting) {
             this.shoot(this.spawnBullet());
-            this.unloadShooter();
         }
     }
 
     /**
-     * Creates a {@link Bullet} for the next update.
+     * Enables the component to fire.
      */
-    public void loadShooter() {
-        this.isLoaded = true;
+    public void startShooting() {
+        this.isShooting = true;
+    }
+
+    /**
+     * Disables the component to fire.
+     */
+    public void stopShooting() {
+        this.isShooting = false;
     }
 
     private void shoot(final GameObject bullet) {
         bullet.getComponents().forEach(Component::enable);
         this.gameObjectManager.addGameObjects(ImmutableList.of(bullet));
-    }
-
-    private void unloadShooter() {
-        this.isLoaded = false;
     }
 
     private GameObject spawnBullet() {

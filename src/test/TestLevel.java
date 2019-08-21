@@ -20,7 +20,7 @@ class TestLevel {
     private static final double SAMPLE_ELAPSED = 0.1;
 
     @Test
-    public void basicLevelTest() {
+    public void testBasicLevel() {
         final Level level = new BasicLevel();
         assertTrue(level.getGameObjectManager().getGameObjects().isEmpty());
         level.start();
@@ -29,7 +29,7 @@ class TestLevel {
     }
 
     @Test
-    public void singlePlayerLevelTest() {
+    public void testSinglePlayerLevel() {
         final Level level = new SinglePlayerDecorator(new BasicLevel());
         assertSame(level.getGameStatus(), GameStatus.PAUSE);
         assertTrue(level.getGameObjectManager().getGameObjects().isEmpty());
@@ -44,7 +44,7 @@ class TestLevel {
     }
 
     @Test
-    public void survivalLevelTest() {
+    public void testSurvivalLevel() {
         final Level level = new SurvivalLevelDecorator(new SinglePlayerDecorator(new BasicLevel()));
         assertSame(level.getGameStatus(), GameStatus.PAUSE);
         assertTrue(level.getGameObjectManager().getGameObjects().isEmpty());

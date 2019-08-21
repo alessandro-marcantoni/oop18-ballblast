@@ -9,18 +9,25 @@ import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
+import com.google.common.collect.ImmutableList;
+
 import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.Component;
 import ballblast.model.components.ComponentTypes;
+import ballblast.model.levels.BasicLevel;
 import ballblast.model.levels.Boundaries;
+import ballblast.model.levels.Level;
+import ballblast.model.levels.SinglePlayerDecorator;
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.model.gameobjects.Player;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
+import ballblast.model.inputs.InputTypes;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.CollisionTag;
@@ -141,9 +148,8 @@ public class TestCollisions {
     }
 
     /**
-     * Test the correct behavior after the collision with a Wall object.
+     * Tests the correct behavior after the collision with a Wall object.
      * The Ball has to bounce correctly.
-     * The Player has to stop.
      */
     @Test
     public void testBounce() {
@@ -169,5 +175,29 @@ public class TestCollisions {
         // Expected wall bounce.
         assertTrue(ball.getVelocity().getY() == y * -1);
         assertTrue(ball.getVelocity().getX() == x * -1);
+    }
+
+    /**
+     * Tests the correct behavior after the collision with a Wall object.
+     * The Player hasn't to change his position.
+     */
+    @Test
+    public void testStop() {
+        Level lvl = new SinglePlayerDecorator(new BasicLevel());
+        lvl.start();
+        final int steps = 19;
+        final GameObject player = lvl.getGameObjectManager()
+                                     .getGameObjects()
+                                     .stream()
+                                     .filter(obj -> obj.getType() == GameObjectTypes.PLAYER)
+                                     .findFirst()
+                                     .get();
+        Coordinate pos = player.getPosition();
+        lvl.getInputManager().processInputs(InputManager.PlayerTags.FIRST, ImmutableList.of(InputTypes.MOVE_RIGHT));
+        lvl.update(steps);
+        assertFalse(pos.equals(player.getPosition()));
+        pos = player.getPosition();
+        lvl.update(1);
+        //assertTrue(pos.equals(player.getPosition()));
     }
 }

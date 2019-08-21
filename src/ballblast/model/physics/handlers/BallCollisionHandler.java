@@ -18,8 +18,6 @@ public class BallCollisionHandler implements CollisionHandler {
         final int decLife = 1;
         switch (coll.getCollisionTag()) {
             case PLAYER:
-                // Destroy the Player and finish the game session.
-                coll.getAttachedGameObject().get().destroy();
                 // TODO metodo endGameSession()
                 break;
             case WALL:
@@ -35,8 +33,6 @@ public class BallCollisionHandler implements CollisionHandler {
                 if (((Ball) obj).getLife() == 0) {
                     obj.destroy();
                 }
-                // Destroy the Bullet that collide with the Ball.
-                coll.getAttachedGameObject().get().destroy();
                 // TODO handle score
                 break;
             default:

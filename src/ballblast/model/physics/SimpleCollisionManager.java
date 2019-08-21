@@ -41,6 +41,7 @@ public class SimpleCollisionManager implements CollisionManager {
             final Geometry s2 = c2.generateShape();
             if (s1.intersects(s2)) {
                 c1.notifyCollision(new Collision(c1, c2));
+                c2.notifyCollision(new Collision(c2, c1));
             }
         }
     }

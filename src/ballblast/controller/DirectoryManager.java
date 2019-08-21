@@ -13,7 +13,7 @@ public final class DirectoryManager {
     private static final String SEPARATOR = System.getProperty("file.separator");
 
     /**
-     * Static field that contains the route path of the user.
+     * Static field that contains the route path of the application.
      */
     public static final String APP_PATH = System.getProperty("user.home")
                                           + SEPARATOR

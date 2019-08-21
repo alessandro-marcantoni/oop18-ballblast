@@ -2,6 +2,7 @@ package ballblast.controller.leaderboard;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -16,6 +17,9 @@ public class Leaderboard implements Serializable {
     private static final long serialVersionUID = 1104832498325739739L;
     private static final int MAX_SCORES = 10;
     private ImmutableList<Record> recordList;
+    private static final Comparator<Record> COMPARATOR = (o1, o2) -> {
+        return o2.getScore() - o1.getScore();
+    };
     // Don't serialize this field.
     private transient Optional<Integer> lastIndex;
 
@@ -71,6 +75,25 @@ public class Leaderboard implements Serializable {
         return this.recordList.stream();
     }
 
-    // MANCANO I METODI PER SCRIVERE E LEGGERE SU FILE. ASPETTO SCELTA DEL TIPO DI FILE
-    // POSSIBILE SCELTA XML.
+    /**
+     * Verify if a record is an high score.
+     * @param score
+     *          the score to verify.
+     * @return
+     *          true if the score is the high score.
+     */
+    public boolean isHighScore(final Record score) {
+        return score.getScore() > this.recordList.stream().max(COMPARATOR).get().getScore();
+    }
+
+    /**
+     * Getter for the highscore.
+     * @return
+     *          the score of the record with the highest score.
+     */
+    public Integer getHighScore() {
+        //Collections.sort(recordList, (a, b) -> b.compareTo(a));
+        return Integer.valueOf(this.recordList.stream().max((a, b) -> b.compareTo(a)).get().getScore());
+    }
+
 }

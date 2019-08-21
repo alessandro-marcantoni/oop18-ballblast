@@ -38,8 +38,7 @@ public final class BasicLevel implements Level {
     @Override
     public void start() {
         this.gameStatus = GameStatus.RUNNING;
-        this.update(0);
-        this.gameObjectManager.getGameObjects().forEach(g -> this.activeComponents(g));
+        this.initGameObjectManager();
     }
 
     @Override
@@ -89,5 +88,10 @@ public final class BasicLevel implements Level {
 
     private void activeComponents(final GameObject gameObject) {
         gameObject.getComponents().forEach(Component::enable);
+    }
+
+    private void initGameObjectManager() {
+        this.gameObjectManager.update(0);
+        this.gameObjectManager.getGameObjects().forEach(g -> this.activeComponents(g));
     }
 }

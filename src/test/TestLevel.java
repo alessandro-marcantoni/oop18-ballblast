@@ -58,6 +58,18 @@ class TestLevel {
         assertSame(level.getGameStatus(), GameStatus.OVER);
     }
 
+    private void ballSpawnerTest(final Level level) {
+        final int spawnTime = 50;
+        final int enableTime = 20;
+        final long oldCount = this.getCollidablesCount(level);
+        level.update(SAMPLE_ELAPSED * spawnTime);
+        assertFalse(this.getCollidablesCount(level) > oldCount);
+        assertFalse(this.findBall(level).isPresent());
+        level.update(SAMPLE_ELAPSED * enableTime);
+        assertTrue(this.findBall(level).isPresent());
+        assertTrue(this.getCollidablesCount(level) > oldCount);
+    }
+
     private Optional<GameObject> findPlayer(final Level level) {
         return level.getGameObjectManager().getGameObjects().stream()
                 .filter(g -> g.getType() == GameObjectTypes.PLAYER).findFirst();
@@ -70,18 +82,6 @@ class TestLevel {
 
     private long getCollidablesCount(final Level level) {
         return level.getCollisionManager().getCollidables().stream().count();
-    }
-
-    private void ballSpawnerTest(final Level level) {
-        final int spawnTime = 50;
-        final int enableTime = 20;
-        final long oldCount = this.getCollidablesCount(level);
-        level.update(SAMPLE_ELAPSED * spawnTime);
-        assertFalse(this.getCollidablesCount(level) > oldCount);
-        assertFalse(this.findBall(level).isPresent());
-        level.update(SAMPLE_ELAPSED * enableTime);
-        assertTrue(this.findBall(level).isPresent());
-        assertTrue(this.getCollidablesCount(level) > oldCount);
     }
 }
 

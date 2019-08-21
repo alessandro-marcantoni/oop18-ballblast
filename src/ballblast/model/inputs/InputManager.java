@@ -20,15 +20,17 @@ import ballblast.model.gameobjects.GameObject;
  * Manages inputs and redirects them to the right player.
  */
 public class InputManager {
-    private static final ImmutableBiMap<InputTypes, Consumer<GameObject>> COMMANDS_MAP;
+    private static final Map<InputTypes, Consumer<GameObject>> COMMANDS_MAP;
     private static final int MOVEMENT_SPEED = 5;
-    private ImmutableBiMap<PlayerTags, InputComponent> inputHandlers;
+    private Map<PlayerTags, InputComponent> inputHandlers;
 
     static {
         COMMANDS_MAP = ImmutableBiMap.of(
                 InputTypes.MOVE_LEFT, g -> g.setVelocity(Vector2D.create(-MOVEMENT_SPEED, 0)),
-                InputTypes.MOVE_RIGHT, g -> g.setVelocity(Vector2D.create(MOVEMENT_SPEED, 0)), 
-                InputTypes.SHOOT, g -> findShooter(g).ifPresent(ShooterComponent::loadShooter)
+                InputTypes.MOVE_RIGHT, g -> g.setVelocity(Vector2D.create(MOVEMENT_SPEED, 0)),
+                InputTypes.STOP_MOVING, g -> g.setVelocity(Vector2D.create(0, 0)),
+                InputTypes.STOP_SHOOTING, g -> findShooter(g).ifPresent(ShooterComponent::stopShooting),
+                InputTypes.SHOOT, g -> findShooter(g).ifPresent(ShooterComponent::startShooting)
         );
     }
 
@@ -49,9 +51,10 @@ public class InputManager {
     /**
      * Adds a inputHandler for a new {@link Player}.
      * 
-     * @param tag            the tag identifies a specific {@link Player}.
-     * @param inputComponent the {@link InputComponent} of a specific
-     *                       {@link Player}.
+     * @param tag
+     *     the tag identifies a specific {@link Player}.
+     * @param inputComponent 
+     *     the {@link InputComponent} of a specific {@link Player}.
      */
     public void addInputHandler(final PlayerTags tag, final InputComponent inputComponent) {
         this.inputHandlers = ImmutableBiMap.<PlayerTags, InputComponent>builder()
@@ -62,7 +65,8 @@ public class InputManager {
     /**
      * Removes a inputHandler associated with a specific {@link PlayerTags}.
      * 
-     * @param tag the tag which identifies the inputhandler to be removed.
+     * @param tag 
+     *     the tag which identifies the inputhandler to be removed.
      */
     public void removeInputHandler(final PlayerTags tag) {
         this.inputHandlers = this.inputHandlers.entrySet().stream().filter(e -> e.getKey() != tag)
@@ -73,10 +77,13 @@ public class InputManager {
      * Translates received inputs into {@link Command}s and sends them to the right
      * {@link InputComponent}.
      * 
-     * @param inputs the inputs to be trnasled.
+     * @param tag
+     *     the tag which identifes the right {@link Player}.
+     * @param inputs 
+     *     the inputs to be translated.
      */
-    public void processInputs(final Map<PlayerTags, List<InputTypes>> inputs) {
-        inputs.forEach((k, v) -> this.inputHandlers.get(k).receiveCommands(this.translateInputs(v)));
+    public void processInputs(final PlayerTags tag, final List<InputTypes> inputs) {
+        this.inputHandlers.get(tag).receiveCommands(this.translateInputs(inputs));
     }
 
     private List<Consumer<GameObject>> translateInputs(final List<InputTypes> toBeTranslated) {

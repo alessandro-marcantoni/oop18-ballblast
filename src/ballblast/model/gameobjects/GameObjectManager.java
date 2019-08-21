@@ -9,8 +9,8 @@ import com.google.common.collect.ImmutableList;
  */
 public class GameObjectManager {
 
-    private ImmutableList<GameObject> gameObjects;
-    private ImmutableList<GameObject> toBeAdded;
+    private List<GameObject> gameObjects;
+    private List<GameObject> toBeAdded;
     /**
      * Creates a new instance of GameObjectManager.
      */
@@ -24,9 +24,9 @@ public class GameObjectManager {
      *      the time elapsed since last update.
      */
     public void update(final double elapsed) {
+        this.gameObjects.forEach(o -> o.update(elapsed));
         this.joinGameObjects();
         this.removeDestoyedObjects();
-        this.gameObjects.forEach(o -> o.update(elapsed));
     }
     /**
      * Adds a {@link GameObject} {@link List}.

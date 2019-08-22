@@ -1,5 +1,8 @@
 package ballblast.controller;
 
+import java.util.List;
+
+import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
 
@@ -31,4 +34,18 @@ public interface Controller {
      *     the input to be resolved.
      */
     void sendInput(PlayerTags tag, InputTypes input);
+
+    /**
+     * Returns the list of active {@link GameObjects} to be rendered.
+     * @return
+     *       A list of {@link GameObject}.
+     */
+    List<GameObject> getGameObjects();
+
+    /**
+     * Gives the player's score based on the game time.
+     * @return
+     *       The score.
+     */
+    int getTimeScore();
 }

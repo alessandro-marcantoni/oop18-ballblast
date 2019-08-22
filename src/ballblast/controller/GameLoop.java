@@ -11,6 +11,16 @@ public interface GameLoop {
     void start();
 
     /**
+     * Pauses the game loop.
+     */
+    void pause();
+
+    /**
+     * Resumes the game loop.
+     */
+    void resumeLoop();
+
+    /**
      * Stops the game loop.
      */
     void stopLoop();

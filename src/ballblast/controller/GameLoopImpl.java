@@ -1,6 +1,7 @@
 package ballblast.controller;
 
 import ballblast.model.Model;
+import ballblast.model.levels.GameStatus;
 import ballblast.view.View;
 
 /**
@@ -10,6 +11,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
 
     private boolean stopped;
+    private boolean paused;
     private final View view;
     private final Model model;
 
@@ -30,14 +32,20 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     @Override
     public final void run() {
+        if (this.model.getCurrentLevel().isPresent()) {
+            this.model.getCurrentLevel().get().setGameStatus(GameStatus.RUNNING);
+        }
+        this.stopped = false;
         this.updateGame(0);
         this.render();
         long lastTime = System.currentTimeMillis();
-        while (!this.stopped) {
+        while (!this.isStopped()) {
             final long current = System.currentTimeMillis();
             this.processInput();
-            this.updateGame((current - lastTime) * MS_TO_S);
-            this.render();
+            if (!this.isPaused()) {
+                this.updateGame((current - lastTime) * MS_TO_S);
+                this.render();
+            }
             lastTime = current;
         }
     }
@@ -45,11 +53,47 @@ public class GameLoopImpl extends Thread implements GameLoop {
     @Override
     public final synchronized void stopLoop() {
         this.stopped = true;
+        if (this.model.getCurrentLevel().isPresent()) {
+            this.model.getCurrentLevel().get().setGameStatus(GameStatus.OVER);
+        }
         this.interrupt();
+    }
+    @Override
+    public final void pause() {
+        this.paused = true;
+        if (this.model.getCurrentLevel().isPresent()) {
+            this.model.getCurrentLevel().get().setGameStatus(GameStatus.PAUSE);
+        }
+    }
+
+    @Override
+    public final void resumeLoop() {
+        this.paused = false;
+        if (this.model.getCurrentLevel().isPresent()) {
+            this.model.getCurrentLevel().get().setGameStatus(GameStatus.RUNNING);
+        }
+    }
+
+    private boolean isStopped() {
+        if (this.model.getCurrentLevel().isPresent()) {
+            return this.stopped || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.OVER);
+        } else {
+            return this.stopped;
+        }
+    }
+
+    private boolean isPaused() {
+        if (this.model.getCurrentLevel().isPresent()) {
+            return this.paused || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.PAUSE);
+        } else {
+            return this.paused;
+        }
     }
 
     private void updateGame(final double elapsed) {
-        this.model.getCurrentLevel().get().update(elapsed);
+        if (this.model.getCurrentLevel().isPresent()) {
+            this.model.getCurrentLevel().get().update(elapsed);
+        }
     }
 
     private void render() {

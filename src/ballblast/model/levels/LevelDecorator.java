@@ -74,4 +74,11 @@ public abstract class LevelDecorator implements Level {
     public void setGameStatus(final GameStatus gameStatus) {
         this.innerLevel.setGameStatus(gameStatus);
     }
+    /**
+     * Standard implementation delegates to innerLevel.
+     */
+    @Override
+    public double getGameTime() {
+        return this.innerLevel.getGameTime();
+    }
 }

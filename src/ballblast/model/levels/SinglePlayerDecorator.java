@@ -8,15 +8,22 @@ import com.google.common.collect.ImmutableList;
 import ballblast.model.Model;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
+import ballblast.model.gameobjects.Player;
 import ballblast.model.inputs.InputManager.PlayerTags;
 
 /**
- * Represents a decorator for levels which add the player object and ends when the player is dead.
+ * Represents a decorator for levels which add the player object and ends when
+ * the player is dead.
  */
 public class SinglePlayerDecorator extends LevelDecorator {
-    private static final Coordinate INITIAL_PLAYER_POSITION = calculatePosition();
-    private static final Vector2D INITIAL_PLAYER_VELOCITY = new Vector2D(0, 0);
+    private static final Coordinate PLAYER_POSITION;
+    private static final double FLOOR_OFFSET = 1;
     private final GameObject player;
+
+    static {
+        PLAYER_POSITION = new Coordinate(Model.WORLD_WIDTH / 2,
+                Model.WORLD_HEIGHT - (Model.WALL_OFFSET * 2 + FLOOR_OFFSET + Player.DEFAULT_HEIGHT / 2));
+    }
 
     /**
      * Creates a {@link SinglePlayerDecorator} instance.
@@ -43,7 +50,7 @@ public class SinglePlayerDecorator extends LevelDecorator {
 
     private GameObject createPlayer() {
         return GameObjectFactory.createPlayer(this.getGameObjectManager(), this.getInputManager(), PlayerTags.FIRST,
-                this.getCollisionManager(), INITIAL_PLAYER_VELOCITY, INITIAL_PLAYER_POSITION);
+                this.getCollisionManager(), Vector2D.create(0, 0), PLAYER_POSITION);
     }
 
     private void checkGameOver() {
@@ -51,12 +58,4 @@ public class SinglePlayerDecorator extends LevelDecorator {
             this.setGameStatus(GameStatus.OVER);
         }
     }
-
-    private static Coordinate calculatePosition() {
-        final double playerOffSet = 9;
-        final double x = Model.WORLD_WIDTH / 2;
-        final double y = Model.WORLD_HEIGHT - Model.WALL_OFFSET * 2 - playerOffSet;
-        return new Coordinate(x, y);
-    }
-
 }

@@ -54,4 +54,10 @@ public interface Level {
      *      the Level's score 
      */
     int getGameScore();
+    /**
+     * Gets the playing time in seconds.
+     * @return 
+     *     the double represent the sum of all elapsed.
+     */
+    double getGameTime();
 }

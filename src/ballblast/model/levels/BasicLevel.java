@@ -18,10 +18,10 @@ import ballblast.model.physics.SimpleCollisionManager;
  * that all levels share.
  */
 public final class BasicLevel implements Level {
-    private static final int INITIAL_GAME_SCORE = 0;
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
+    private double gameTime;
     private GameStatus gameStatus;
 
     /**
@@ -44,6 +44,7 @@ public final class BasicLevel implements Level {
     @Override
     public void update(final double elapsed) {
         if (this.gameStatus == GameStatus.RUNNING) {
+            this.increaseGameTime(elapsed);
             this.gameObjectManager.update(elapsed);
             this.collisionManager.checkLoop();
         }
@@ -71,7 +72,8 @@ public final class BasicLevel implements Level {
 
     @Override
     public int getGameScore() {
-        return INITIAL_GAME_SCORE;
+        // TODO change the game score policy.
+        return (int) this.getGameTime();
     }
 
     @Override
@@ -79,9 +81,15 @@ public final class BasicLevel implements Level {
         return this.inputManager;
     }
 
+    @Override
+    public double getGameTime() {
+        return this.gameTime;
+    }
+
     private void createBoundaries() {
-        final List<GameObject> boundaries = Arrays.stream(Boundaries.values()).map(b -> GameObjectFactory
-                .createWall(b.getHeight(), b.getWidth(), b.getPosition(), b.getVelocity(), this.collisionManager))
+        final List<GameObject> boundaries = Arrays
+                .stream(Boundaries.values()).map(b -> GameObjectFactory.createWall(b.getHeight(), b.getWidth(),
+                        b.getPosition(), b.getVelocity(), this.collisionManager))
                 .collect(ImmutableList.toImmutableList());
         this.gameObjectManager.addGameObjects(boundaries);
     }
@@ -93,5 +101,9 @@ public final class BasicLevel implements Level {
     private void initGameObjectManager() {
         this.gameObjectManager.update(0);
         this.gameObjectManager.getGameObjects().forEach(g -> this.activeComponents(g));
+    }
+
+    private void increaseGameTime(final double elapsed) {
+        this.gameTime += elapsed;
     }
 }

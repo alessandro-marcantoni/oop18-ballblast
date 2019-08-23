@@ -20,7 +20,7 @@ public abstract class AbstractGameObject implements GameObject {
     private final GameObjectTypes type;
     private Coordinate position;
     private boolean isAvailable;
-    private ImmutableList<Component> components;
+    private List<Component> components;
     private double width;
     private double height;
     private Vector2D velocity;
@@ -32,7 +32,7 @@ public abstract class AbstractGameObject implements GameObject {
      */
     protected AbstractGameObject(final GameObjectTypes type) {
         this.type = type;
-        this.isAvailable = false;
+        this.isAvailable = true;
         this.components = ImmutableList.of();
         this.position = ZERO;
     }
@@ -85,13 +85,13 @@ public abstract class AbstractGameObject implements GameObject {
 
     @Override
     public final boolean isDestroyed() {
-        return this.isAvailable;
+        return !this.isAvailable;
     }
 
     @Override
     public final void destroy() {
-        this.isAvailable = true;
-        this.components.stream().forEach(c -> c.disable());
+        this.isAvailable = false;
+        this.components.forEach(Component::disable);
     }
 
     @Override

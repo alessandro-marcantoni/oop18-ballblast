@@ -48,6 +48,17 @@ public class GameObjectManager {
         return ImmutableList.copyOf(this.gameObjects);
     }
     /**
+     * Gets the {@link List} of destroyed {@link Ball}s.
+     * @return
+     *     the {@link Ball}s which have been destroyed in the last update.
+     */
+    public List<GameObject> getDestroyedBalls() {
+        return gameObjects.stream()
+                .filter(g -> g.getType() == GameObjectTypes.BALL)
+                .filter(GameObject::isDestroyed)
+                .collect(ImmutableList.toImmutableList());
+    }
+    /*
      * Concatenates the main {@link GameObject} {@link List} 
      * with the {@link GameObject} {@link List} to be added.
      */
@@ -58,12 +69,10 @@ public class GameObjectManager {
                 .build();
         this.toBeAdded = ImmutableList.of();
     }
-    /**
-     * Removes destroyed game objects from the {@link List}.
-     */
+
     private void removeDestoyedObjects() {
         this.gameObjects = gameObjects.stream()
-                .filter(o -> !o.isDestroyed())
+                .filter(g -> !g.isDestroyed())
                 .collect(ImmutableList.toImmutableList());
     }
 }

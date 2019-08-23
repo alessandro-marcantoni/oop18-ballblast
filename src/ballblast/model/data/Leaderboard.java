@@ -40,7 +40,7 @@ public class Leaderboard implements Serializable {
      *          the time of the last game session.
      */
     public void addRecord(final String name, final int score, final int time) {
-        if (this.isRecord(score) && this.recordList.size() < MAX_SCORES) {
+        if (this.isRecord(score) || this.recordList.size() <= MAX_SCORES) {
             Record rec = new Record(name, time, score);
             this.recordList = ImmutableList.<Record>builder()
                                            .addAll(recordList)
@@ -86,7 +86,6 @@ public class Leaderboard implements Serializable {
      *          the score of the record with the highest score.
      */
     public Integer getHighScore() {
-        //Collections.sort(recordList, (a, b) -> b.compareTo(a));
         return Integer.valueOf(this.recordList.stream().min(COMPARATOR).get().getScore());
     }
 

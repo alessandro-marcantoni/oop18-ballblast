@@ -21,6 +21,9 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     private static final int ENABLE_TIME = 2;
     private static final double SPAWN_HEIGHT = 90;
     private static final Vector2D BALL_VELOCITY = Vector2D.create(16, 0);
+    private static final int MIN_BALL_LIFE = 3;
+    private static final int MAX_BALL_LIFE = 200;
+    private static final double LIFE_MULTIPLIER = 0.25;
 
     // TODO private int totalTime; used to increase the survival's difficult.
     private int currentSpawnTime;
@@ -53,15 +56,13 @@ public class SurvivalLevelDecorator extends LevelDecorator {
         this.currentSpawnTime -= elapsed;
         if (this.currentSpawnTime <= 0) {
             this.spawnBall();
-            // currentSpawnTime = SPAWN_TIME * Math.pow(DECREASE_RATE, this.ballNumber) +
-            // MIN_WAIT_TIME;
             this.currentSpawnTime = SPAWN_TIME;
         }
     }
 
     private void spawnBall() {
-        this.spawnedBall = Optional.of(GameObjectFactory.createBall(BallTypes.LARGE, this.generateBallLife(),
-                this.getRandomPosition(), BALL_VELOCITY, this.getCollisionManager()));
+        this.spawnedBall = Optional.of(GameObjectFactory.createBall(BallTypes.LARGE, this.calculateBallLife(),
+                this.getRandomPosition(), BALL_VELOCITY, this.getCollisionManager(), this.getGameObjectManager()));
         this.getGameObjectManager().addGameObjects(ImmutableList.of(this.spawnedBall.get()));
     }
 
@@ -75,8 +76,8 @@ public class SurvivalLevelDecorator extends LevelDecorator {
         return (Math.random() * ((max - min) + 1)) + min;
     }
 
-    private int generateBallLife() {
-        final int life = 100;
-        return life;
+    private int calculateBallLife() {
+        final int life = (int) (this.getGameTime() * LIFE_MULTIPLIER) + MIN_BALL_LIFE;
+        return life > MAX_BALL_LIFE ? MAX_BALL_LIFE : life;
     }
 }

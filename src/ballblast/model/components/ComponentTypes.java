@@ -24,5 +24,9 @@ public enum ComponentTypes {
     /**
      * ShooterComponent.
      */
-    SHOOTER
+    SHOOTER,
+    /**
+     * SplitterComponent.
+     */
+    SPLITTER;
 }

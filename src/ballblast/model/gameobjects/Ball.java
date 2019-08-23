@@ -36,8 +36,8 @@ public final class Ball extends AbstractGameObject {
      * @return
      *     the {@link Ball}'s type.
      */
-    public Optional<BallTypes> getBallType() {
-        return Optional.ofNullable(this.ballType);
+    public BallTypes getBallType() {
+        return this.ballType;
     }
     /**
      * Sets the {@link Ball}'s type.
@@ -90,7 +90,7 @@ public final class Ball extends AbstractGameObject {
 
         @Override
         public final Ball build() {
-            if (!getGameObject().getBallType().isPresent()) {
+            if (!Optional.ofNullable(getGameObject().getBallType()).isPresent()) {
                 throw new IllegalStateException("BallType unset!");
             }
             return this.getGameObject();

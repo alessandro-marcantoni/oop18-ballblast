@@ -1,14 +1,19 @@
 package ballblast.model.gameobjects;
 
 import com.google.common.base.MoreObjects;
-
 /**
- * This class implements the Player object. It represents the entity controlled by the user 
- * which can shoot to destroy objects and dies when hit by a ball.
+ * This class implements the Player object. It represents the entity controlled
+ * by the user which can shoot to destroy objects and dies when hit by a ball.
  */
 public final class Player extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
+    /**
+     * The static {@link Player}'s height used also inside the
+     * {@link SinglePlayerDecorator} class to put the {@link Player} in the center
+     * of the screen.
+     */
+    public static final double DEFAULT_HEIGHT = 16;
     private static final double DEFAULT_WIDTH = 10;
-    private static final double DEFAULT_HEIGHT = 16;
+
     /**
      * Creates a Player instance.
      */
@@ -20,12 +25,10 @@ public final class Player extends AbstractGameObject { // NOPMD This class is us
 
     @Override
     public String toString() {
-       return MoreObjects.toStringHelper(this)
-               .add("GameObjectType", this.getType())
-               .add("Position", this.getPosition())
-               .add("IsDestroyed", this.isDestroyed())
-               .toString();
+        return MoreObjects.toStringHelper(this).add("GameObjectType", this.getType())
+                .add("Position", this.getPosition()).add("IsDestroyed", this.isDestroyed()).toString();
     }
+
     /**
      * Concrete implementation of {@link AbstractGameObject.AbstractBuilder}.
      */

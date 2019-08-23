@@ -25,7 +25,7 @@ public class ShooterComponent extends AbstractComponent {
      * @param gameObjectManager the {@link GameObjectManager} used to add
      *                          {@link Bullet}s.
      * @param collisionManager  the {@link CollisionManager} used to create the
-     *                          {@link CollisionComponent}.
+     *                          {@link Bullet}'s {@link CollisionComponent}.
      */
     public ShooterComponent(final GameObjectManager gameObjectManager, final CollisionManager collisionManager) {
         super(ComponentTypes.SHOOTER);

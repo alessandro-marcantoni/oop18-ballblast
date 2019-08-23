@@ -8,6 +8,7 @@ import ballblast.model.components.GravityComponent;
 import ballblast.model.components.InputComponent;
 import ballblast.model.components.MovementComponent;
 import ballblast.model.components.ShooterComponent;
+import ballblast.model.components.SplitterComponent;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.physics.CollisionManager;
@@ -90,15 +91,16 @@ public final class GameObjectFactory {
     /**
      * Creates {@link Ball} game object.
      * 
-     * @param collisionManager the {@link CollisionManager}.
-     * @param ballType         the {@link BallTypes}.
-     * @param life             the {@link Ball}'s life.
-     * @param position         the {@link Ball}'s position.
-     * @param velocity         the {@link Ball}'s velocity.
+     * @param collisionManager  the {@link CollisionManager}.
+     * @param gameObjectManager the {@link GameObjectManager}.
+     * @param ballType          the {@link BallTypes}.
+     * @param life              the {@link Ball}'s life.
+     * @param position          the {@link Ball}'s position.
+     * @param velocity          the {@link Ball}'s velocity.
      * @return the {@link GameObject created}.
      */
     public static GameObject createBall(final BallTypes ballType, final int life, final Coordinate position,
-            final Vector2D velocity, final CollisionManager collisionManager) {
+            final Vector2D velocity, final CollisionManager collisionManager, final GameObjectManager gameObjectManager) {
         return new Ball.Builder()
                 .setBallType(ballType)
                 .setLife(life)
@@ -107,6 +109,7 @@ public final class GameObjectFactory {
                 .setCollisionHandler(new BallCollisionHandler())
                 .addComponent(new GravityComponent())
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.BALL))
+                .addComponent(new SplitterComponent(gameObjectManager, collisionManager))
                 .addComponent(new MovementComponent()).build();
     }
 }

@@ -15,8 +15,8 @@ public class Leaderboard implements Serializable {
     // To serialize the object into a bytes stream univocally.
     private static final long serialVersionUID = 1104832498325739739L;
     private static final int MAX_SCORES = 10;
-    private ImmutableList<Record> recordList;
-    private static final Comparator<Record> COMPARATOR = (o1, o2) -> {
+    private ImmutableList<RecordData> recordList;
+    private static final Comparator<RecordData> COMPARATOR = (o1, o2) -> {
         return o2.getScore() - o1.getScore();
     };
     // Don't serialize this field.
@@ -31,7 +31,7 @@ public class Leaderboard implements Serializable {
     }
 
     /**
-     * Adds the {@link Record} if is greater than other on top 10 records.
+     * Adds the {@link RecordData} if is greater than other on top 10 records.
      * @param name
      *          the name of the user who submitted the record.
      * @param score
@@ -41,8 +41,8 @@ public class Leaderboard implements Serializable {
      */
     public void addRecord(final String name, final int score, final int time) {
         if (this.isRecord(score) || this.recordList.size() <= MAX_SCORES) {
-            Record rec = new Record(name, time, score);
-            this.recordList = ImmutableList.<Record>builder()
+            RecordData rec = new RecordData(name, time, score);
+            this.recordList = ImmutableList.<RecordData>builder()
                                            .addAll(recordList)
                                            .add(rec)
                                            .build();
@@ -52,7 +52,7 @@ public class Leaderboard implements Serializable {
     }
 
     /**
-     * Returns an optional for the index of the last {@link Record} added.
+     * Returns an optional for the index of the last {@link RecordData} added.
      * @return
      *          The index of the last record, empty if the last record is lower than the top 10.
      */
@@ -61,11 +61,11 @@ public class Leaderboard implements Serializable {
     }
 
     /**
-     * Returns a stream of {@link Record}s.
+     * Returns a stream of {@link RecordData}s.
      * @return
      *          a strea of records.
      */
-    public Stream<Record> getRecords() {
+    public Stream<RecordData> getRecords() {
         return this.recordList.stream();
     }
 

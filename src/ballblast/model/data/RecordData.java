@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * This class is a record for a {@link Leaderboard} keeping information about username, game time and score.
  */
-public class Record implements Serializable {
+public class RecordData implements Serializable {
 
     // To serialize the object into a bytes stream univocally.
     private static final long serialVersionUID = -3402166234477683311L;
@@ -22,7 +22,7 @@ public class Record implements Serializable {
      * @param score
      *          the score reached in the last game session.
      */
-    public Record(final String name, final int time, final int score) {
+    public RecordData(final String name, final int time, final int score) {
         this.userName = name;
         this.gameTime = time;
         this.score = score;

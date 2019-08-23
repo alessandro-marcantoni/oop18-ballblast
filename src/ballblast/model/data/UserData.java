@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The class that represents the information of a User.
  */
-public class User implements Serializable {
+public class UserData implements Serializable {
 
     // To serialize the object into a bytes stream univocally.
     private static final long serialVersionUID = -3297421101653830531L;
@@ -19,7 +19,7 @@ public class User implements Serializable {
      * @param userName
      *          the name of the user.
      */
-    public User(final String userName) {
+    public UserData(final String userName) {
         this.name = userName;
         this.globalScore = 0;
         this.killedBalls = 0;

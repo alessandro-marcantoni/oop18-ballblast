@@ -1,11 +1,11 @@
-package ballblast.controller.leaderboard;
+package ballblast.model.data;
 
 import java.io.Serializable;
 
 /**
  * This class is a record for a {@link Leaderboard} keeping information about username, game time and score.
  */
-public class Record implements Serializable, Comparable<Record> {
+public class Record implements Serializable {
 
     // To serialize the object into a bytes stream univocally.
     private static final long serialVersionUID = -3402166234477683311L;
@@ -53,39 +53,6 @@ public class Record implements Serializable, Comparable<Record> {
      */
     public String getUserName() {
         return this.userName;
-    }
-
-    @Override
-    public final int compareTo(final Record rec) {
-        final int scoreComparison = Integer.compare(this.score, rec.getScore());
-        return scoreComparison == 0 ? Integer.compare(this.gameTime, rec.getGameTime()) : scoreComparison;
-    }
-
-    @Override
-    public final int hashCode() {
-        final int prime = 17;
-        int res = 1;
-        res = prime * res + this.score;
-        res = prime * res + this.gameTime;
-        return res;
-    }
-
-    @Override
-    public final boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Record other = (Record) obj;
-        if (score != other.score) {
-            return false;
-        }
-        return gameTime == other.gameTime;
     }
 
 }

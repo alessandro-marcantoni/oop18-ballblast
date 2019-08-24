@@ -9,6 +9,7 @@ import ballblast.view.View;
  */
 public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
+    private static final long PERIOD = 20;
 
     private boolean stopped;
     private boolean paused;
@@ -32,9 +33,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     @Override
     public final void run() {
-        if (this.model.getCurrentLevel().isPresent()) {
-            this.model.getCurrentLevel().get().setGameStatus(GameStatus.RUNNING);
-        }
+        this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.RUNNING));
         this.stopped = false;
         this.updateGame(0);
         this.render();
@@ -43,35 +42,42 @@ public class GameLoopImpl extends Thread implements GameLoop {
             final long current = System.currentTimeMillis();
             this.processInput();
             if (!this.isPaused()) {
-                this.updateGame((current - lastTime) * MS_TO_S);
+                final long elapsed = current - lastTime;
+                this.updateGame(elapsed * MS_TO_S);
                 this.render();
+                this.waitForNextFrame(current);
             }
             lastTime = current;
+        }
+    }
+
+    private void waitForNextFrame(final long current) {
+        final long dt = System.currentTimeMillis() - current;
+        if (dt < PERIOD) {
+            try {
+                Thread.sleep(PERIOD - dt);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public final synchronized void stopLoop() {
         this.stopped = true;
-        if (this.model.getCurrentLevel().isPresent()) {
-            this.model.getCurrentLevel().get().setGameStatus(GameStatus.OVER);
-        }
+        this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.OVER));
         this.interrupt();
     }
     @Override
     public final void pause() {
         this.paused = true;
-        if (this.model.getCurrentLevel().isPresent()) {
-            this.model.getCurrentLevel().get().setGameStatus(GameStatus.PAUSE);
-        }
+        this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.PAUSE));
     }
 
     @Override
     public final void resumeLoop() {
         this.paused = false;
-        if (this.model.getCurrentLevel().isPresent()) {
-            this.model.getCurrentLevel().get().setGameStatus(GameStatus.RUNNING);
-        }
+        this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.RUNNING));
     }
 
     private boolean isStopped() {
@@ -91,9 +97,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private void updateGame(final double elapsed) {
-        if (this.model.getCurrentLevel().isPresent()) {
-            this.model.getCurrentLevel().get().update(elapsed);
-        }
+        this.model.getCurrentLevel().ifPresent(l -> l.update(elapsed));
     }
 
     private void render() {

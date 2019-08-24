@@ -45,6 +45,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
                 final long elapsed = current - lastTime;
                 this.updateGame(elapsed * MS_TO_S);
                 this.render();
+                // In order to lock the frame rate.
                 this.waitForNextFrame(current);
             }
             lastTime = current;
@@ -81,19 +82,11 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private boolean isStopped() {
-        if (this.model.getCurrentLevel().isPresent()) {
-            return this.stopped || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.OVER);
-        } else {
-            return this.stopped;
-        }
+        return this.model.getCurrentLevel().isPresent() ? this.stopped || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.OVER) : this.stopped;
     }
 
     private boolean isPaused() {
-        if (this.model.getCurrentLevel().isPresent()) {
-            return this.paused || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.PAUSE);
-        } else {
-            return this.paused;
-        }
+        return this.model.getCurrentLevel().isPresent() ? this.paused || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.PAUSE) : this.paused;
     }
 
     private void updateGame(final double elapsed) {

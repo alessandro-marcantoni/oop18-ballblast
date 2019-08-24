@@ -23,7 +23,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
      * @param model
      *      the model to update the world on each frame.
      */
-    public GameLoopImpl(final View view, final Model model) {
+    public GameLoopImpl(final Model model, final View view) {
         super();
         this.setName("Game Loop");
         this.setDaemon(true);

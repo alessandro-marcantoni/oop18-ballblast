@@ -3,12 +3,10 @@ package ballblast.controller;
 import java.util.List;
 
 import ballblast.model.Model;
-import ballblast.model.ModelImpl;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
 import ballblast.view.View;
-import ballblast.view.ViewImpl;
 
 /**
  * The imlementation of the Controller in the MVC architecture.
@@ -21,11 +19,15 @@ public class ControllerImpl implements Controller {
 
     /**
      * Create a new instance of Controller.
+     * @param model
+     *      The model of the MVC architecture.
+     * @param view
+     *      The view of the MVC architecture.
      */
-    public ControllerImpl() {
-        this.model = new ModelImpl();
-        this.view = new ViewImpl(null);
-        this.gameloop = new GameLoopImpl(this.view, this.model);
+    public ControllerImpl(final Model model, final View view) {
+        this.model = model;
+        this.view = view;
+        this.gameloop = new GameLoopImpl(this.model, this.view);
     }
 
     @Override

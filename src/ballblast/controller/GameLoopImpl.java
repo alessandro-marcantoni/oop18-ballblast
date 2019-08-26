@@ -1,6 +1,14 @@
 package ballblast.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+
 import ballblast.model.Model;
+import ballblast.model.inputs.InputManager.PlayerTags;
+import ballblast.model.inputs.InputTypes;
 import ballblast.model.levels.GameStatus;
 import ballblast.view.View;
 
@@ -11,10 +19,18 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
     private static final long PERIOD = 20;
 
+    private static final Map<PlayerTags, List<InputTypes>> INPUTS;
     private boolean stopped;
     private boolean paused;
     private final View view;
     private final Model model;
+
+    static {
+        INPUTS = ImmutableMap.of(
+                PlayerTags.FIRST, ImmutableList.of(),
+                PlayerTags.SECOND, ImmutableList.of()
+        );
+    }
 
     /**
      * Creates a new game loop instance.
@@ -79,6 +95,14 @@ public class GameLoopImpl extends Thread implements GameLoop {
         //this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.RUNNING));
     }
 
+    @Override
+    public final void receiveInputs(final PlayerTags tag, final InputTypes input) {
+        INPUTS.forEach((k, v) -> v = ImmutableList.<InputTypes>builder()
+                .addAll(INPUTS.get(tag))
+                .add(input).build());
+    }
+
+
     private boolean isStopped() {
         //return this.model.getCurrentLevel().isPresent() ? this.stopped || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.OVER) : this.stopped;
         return this.stopped || model.getGameStatus() == GameStatus.OVER;
@@ -98,6 +122,11 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private void processInput() {
+        INPUTS.forEach((k, v) -> this.model.resolveInputs(k, v));
+        this.emptyList();
     }
 
+    private void emptyList() {
+        INPUTS.forEach((k, v) -> v = ImmutableList.of());
+    }
 }

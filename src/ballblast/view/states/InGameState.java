@@ -3,7 +3,7 @@ package ballblast.view.states;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.ImmutableMap;
 
 import ballblast.controller.Controller;
 import ballblast.model.inputs.InputTypes;
@@ -20,14 +20,14 @@ public class InGameState extends GUIState {
     private static final Map<KeyCode, Consumer<GUIState>> RELEASED_INPUT_MAP;
 
     static {
-        PRESSED_INPUT_MAP = ImmutableBiMap.of(
+        PRESSED_INPUT_MAP = ImmutableMap.of(
                 KeyCode.LEFT,   g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_LEFT),
                 KeyCode.RIGHT,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_RIGHT),
                 KeyCode.SPACE,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.SHOOT),
                 KeyCode.P,      g -> g.getGUI().setState(g.getGUI().getPausedState()),
                 KeyCode.ESCAPE, g -> g.getGUI().setState(g.getGUI().getPausedState())
         );
-        RELEASED_INPUT_MAP = ImmutableBiMap.of(
+        RELEASED_INPUT_MAP = ImmutableMap.of(
                 KeyCode.LEFT,   g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING),
                 KeyCode.RIGHT,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING),
                 KeyCode.SPACE,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING)

@@ -1,5 +1,6 @@
 package ballblast.model.levels;
 
+import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.physics.CollisionManager;
@@ -43,13 +44,6 @@ public abstract class LevelDecorator implements Level {
      * Standard implementation delegates to innerLevel.
      */
     @Override
-    public final int getGameScore() {
-        return this.innerLevel.getGameScore();
-    }
-    /**
-     * Standard implementation delegates to innerLevel.
-     */
-    @Override
     public final InputManager getInputManager() {
         return this.innerLevel.getInputManager();
     }
@@ -78,7 +72,7 @@ public abstract class LevelDecorator implements Level {
      * Standard implementation delegates to innerLevel.
      */
     @Override
-    public double getGameTime() {
-        return this.innerLevel.getGameTime();
+    public GameDataManager getGameDataManager() {
+        return this.innerLevel.getGameDataManager();
     }
 }

@@ -44,7 +44,7 @@ public class TestCollisions {
     public void testCollisionComponent() {
         final Component collisionComponent = new CollisionComponent(new SimpleCollisionManager(), CollisionTag.PLAYER);
         final Player player = (Player) GameObjectFactory.createPlayer(new GameObjectManager(), new InputManager(),
-                PlayerTags.FIRST, new SimpleCollisionManager(), Vector2D.create(new Coordinate(0, 0)), null);
+                PlayerTags.FIRST, new SimpleCollisionManager(), Vector2D.create(new Coordinate(0, 0)), null, null);
         collisionComponent.setParent(player);
 
         assertEquals(((CollisionComponent) collisionComponent).toString(), "CollisionComponent{AttachedTo=PLAYER}");
@@ -60,10 +60,10 @@ public class TestCollisions {
         final CollisionManager manager = new SimpleCollisionManager();
         final int ballLife = 24;
         GameObjectFactory
-                .createPlayer(new GameObjectManager(), new InputManager(), PlayerTags.FIRST, manager, new Vector2D(), null)
+                .createPlayer(new GameObjectManager(), new InputManager(), PlayerTags.FIRST, manager, new Vector2D(), null, null)
                 .getComponents().stream().filter(c -> c.getType() == ComponentTypes.COLLISION).findFirst().get()
                 .enable();
-        GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), new Vector2D(), manager, new GameObjectManager())
+        GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), new Vector2D(), manager, new GameObjectManager(), null)
                 .getComponents().stream().filter(c -> c.getType() == ComponentTypes.COLLISION).findFirst().get()
                 .enable();
 
@@ -91,9 +91,9 @@ public class TestCollisions {
         final int ballLife = 1;
         final int pos = 20;
         final GameObject player = GameObjectFactory.createPlayer(new GameObjectManager(), new InputManager(),
-                PlayerTags.FIRST, manager, Vector2D.create(new Coordinate(0, 0)), null);
+                PlayerTags.FIRST, manager, Vector2D.create(new Coordinate(0, 0)), null, null);
         final GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0),
-                Vector2D.create(new Coordinate(0, 0)), manager, new GameObjectManager());
+                Vector2D.create(new Coordinate(0, 0)), manager, new GameObjectManager(), null);
         final GameObject bullet = GameObjectFactory.createBullet(new Coordinate(pos, pos), new Vector2D(), manager);
         player.setPosition(new Coordinate(0, 0));
 
@@ -124,7 +124,7 @@ public class TestCollisions {
         assertEquals(manager.getCollidables().size(), 0);
 
         final GameObject balls = GameObjectFactory.createBall(BallTypes.SMALL, ballLife + 1, new Coordinate(0, 0),
-                Vector2D.create(new Coordinate(0, 0)), manager, new GameObjectManager());
+                Vector2D.create(new Coordinate(0, 0)), manager, new GameObjectManager(), null);
         final GameObject bullets = GameObjectFactory.createBullet(new Coordinate(pos, pos), new Vector2D(), manager);
 
         balls.getComponents().forEach(c -> c.enable());
@@ -157,7 +157,7 @@ public class TestCollisions {
         final double x = 5;
         final double y = 5;
         final CollisionManager manager = new SimpleCollisionManager();
-        final GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, Boundaries.BOTTOM.getPosition(), Vector2D.create(new Coordinate(x, y)), manager, new GameObjectManager());
+        final GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, Boundaries.BOTTOM.getPosition(), Vector2D.create(new Coordinate(x, y)), manager, new GameObjectManager(), null);
         final GameObject wall = GameObjectFactory.createWall(x, y, Boundaries.BOTTOM.getPosition(), new Vector2D(), manager);
 
         ball.getComponents().forEach(c -> c.enable());

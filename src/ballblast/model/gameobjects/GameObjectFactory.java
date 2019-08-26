@@ -9,6 +9,7 @@ import ballblast.model.components.InputComponent;
 import ballblast.model.components.MovementComponent;
 import ballblast.model.components.ShooterComponent;
 import ballblast.model.components.SplitterComponent;
+import ballblast.model.data.GameDataManager;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.physics.CollisionManager;
@@ -30,6 +31,7 @@ public final class GameObjectFactory {
      * 
      * @param gameObjectManager the {@link GameObjectManager}.
      * @param inputManager      the {@link InputManager}.
+     * @param gameDataManager   the {@link GameDataManager}.
      * @param tag               the {@link PlayerTags}.
      * @param collisionManager  the {@link CollisionManager}.
      * @param velocity          the {@link Player}'s velocity.
@@ -38,7 +40,7 @@ public final class GameObjectFactory {
      */
     public static GameObject createPlayer(final GameObjectManager gameObjectManager, final InputManager inputManager,
             final PlayerTags tag, final CollisionManager collisionManager, final Vector2D velocity, 
-            final Coordinate position) {
+            final Coordinate position, final GameDataManager gameDataManager) {
         return new Player.Builder()
                 .setVelocity(velocity)
                 .setPosition(position)
@@ -46,7 +48,7 @@ public final class GameObjectFactory {
                 .addComponent(new InputComponent(inputManager, tag))
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.PLAYER))
                 .addComponent(new MovementComponent())
-                .addComponent(new ShooterComponent(gameObjectManager, collisionManager)).build();
+                .addComponent(new ShooterComponent(gameObjectManager, collisionManager, gameDataManager)).build();
     }
 
     /**
@@ -93,6 +95,7 @@ public final class GameObjectFactory {
      * 
      * @param collisionManager  the {@link CollisionManager}.
      * @param gameObjectManager the {@link GameObjectManager}.
+     * @param gameDataManager   the {@link GameDataManager}.
      * @param ballType          the {@link BallTypes}.
      * @param life              the {@link Ball}'s life.
      * @param position          the {@link Ball}'s position.
@@ -100,7 +103,8 @@ public final class GameObjectFactory {
      * @return the {@link GameObject created}.
      */
     public static GameObject createBall(final BallTypes ballType, final int life, final Coordinate position,
-            final Vector2D velocity, final CollisionManager collisionManager, final GameObjectManager gameObjectManager) {
+            final Vector2D velocity, final CollisionManager collisionManager, final GameObjectManager gameObjectManager, 
+            final GameDataManager gameDataManager) {
         return new Ball.Builder()
                 .setBallType(ballType)
                 .setLife(life)
@@ -109,7 +113,7 @@ public final class GameObjectFactory {
                 .setCollisionHandler(new BallCollisionHandler())
                 .addComponent(new GravityComponent())
                 .addComponent(new CollisionComponent(collisionManager, CollisionTag.BALL))
-                .addComponent(new SplitterComponent(gameObjectManager, collisionManager))
+                .addComponent(new SplitterComponent(gameObjectManager, collisionManager, gameDataManager))
                 .addComponent(new MovementComponent()).build();
     }
 }

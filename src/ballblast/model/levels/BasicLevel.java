@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.components.Component;
+import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
@@ -21,7 +22,7 @@ public final class BasicLevel implements Level {
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
-    private double gameTime;
+    private final GameDataManager gameDataManager;
     private GameStatus gameStatus;
 
     /**
@@ -32,6 +33,7 @@ public final class BasicLevel implements Level {
         this.gameObjectManager = new GameObjectManager();
         this.collisionManager = new SimpleCollisionManager();
         this.inputManager = new InputManager();
+        this.gameDataManager = new GameDataManager();
         this.createBoundaries();
     }
 
@@ -44,7 +46,7 @@ public final class BasicLevel implements Level {
     @Override
     public void update(final double elapsed) {
         if (this.gameStatus == GameStatus.RUNNING) {
-            this.increaseGameTime(elapsed);
+            this.gameDataManager.updateGameTime(elapsed);
             this.gameObjectManager.update(elapsed);
             this.collisionManager.checkLoop();
         }
@@ -71,19 +73,13 @@ public final class BasicLevel implements Level {
     }
 
     @Override
-    public int getGameScore() {
-        // TODO change the game score policy.
-        return (int) this.getGameTime();
-    }
-
-    @Override
     public InputManager getInputManager() {
         return this.inputManager;
     }
 
     @Override
-    public double getGameTime() {
-        return this.gameTime;
+    public GameDataManager getGameDataManager() {
+        return this.gameDataManager;
     }
 
     private void createBoundaries() {
@@ -101,9 +97,5 @@ public final class BasicLevel implements Level {
     private void initGameObjectManager() {
         this.gameObjectManager.update(0);
         this.gameObjectManager.getGameObjects().forEach(g -> this.activeComponents(g));
-    }
-
-    private void increaseGameTime(final double elapsed) {
-        this.gameTime += elapsed;
     }
 }

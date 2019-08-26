@@ -2,6 +2,8 @@ package ballblast.model.data;
 
 import java.io.Serializable;
 
+import ballblast.model.data.GameDataManager.GameData;
+
 /**
  * The class that represents the information of a User.
  */
@@ -42,7 +44,7 @@ public class UserData implements Serializable {
      */
     public void addGameData(final GameData gameData) {
         this.matchesPlayed++;
-        this.globalScore += gameData.getGameScore();
-        this.killedBalls += gameData.getKilledBalls();
+        this.globalScore += gameData.getScore();
+        this.killedBalls += gameData.getDestroyedBalls();
     }
 }

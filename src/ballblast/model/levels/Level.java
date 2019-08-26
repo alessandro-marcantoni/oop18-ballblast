@@ -1,5 +1,6 @@
 package ballblast.model.levels;
 
+import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.physics.CollisionManager;
@@ -49,15 +50,9 @@ public interface Level {
      */
     InputManager getInputManager();
     /**
-     * Gets the Level's score.
-     * @return
-     *      the Level's score 
-     */
-    int getGameScore();
-    /**
-     * Gets the playing time in seconds.
+     * Gets the {@link GameDataManager}.
      * @return 
-     *     the double represent the sum of all elapsed.
+     *     the {@link GameDataManager}.
      */
-    double getGameTime();
+    GameDataManager getGameDataManager();
 }

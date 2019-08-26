@@ -81,7 +81,6 @@ public final class DirectoryManager {
             Files.createDirectories(Paths.get(SCOREBOARD_DIR));
             Files.createDirectories(Paths.get(USERS_DIR));
             if (!Files.exists(Paths.get(SURVIVAL_FILE))) {
-                //Files.createFile(Paths.get(USERS_LIST_FILE));
                 try {
                     XMLFileManager.createEmptyFile(SURVIVAL_FILE);
                 } catch (ParserConfigurationException e) {

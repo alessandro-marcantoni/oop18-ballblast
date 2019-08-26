@@ -53,4 +53,49 @@ public class UserData implements Serializable {
         this.gameTime += gameData.getTime();
         this.spawnedBullets += gameData.getSpawnedBullets();
     }
+
+    /**
+     * Getter for global score of the user.
+     * @return
+     *          the score.
+     */
+    public int getGlobalScore() {
+        return this.globalScore;
+    }
+
+    /**
+     * Getter for the destryed balls.
+     * @return
+     *          the destroyed balls.
+     */
+    public int getDestroyedBalls() {
+        return this.destroyedBalls;
+    }
+
+    /**
+     * Getter for the matches played.
+     * @return
+     *          the played matches.
+     */
+    public int getMatchesPlayed() {
+        return this.matchesPlayed;
+    }
+
+    /**
+     * Getter for the game time.
+     * @return
+     *          the game time.
+     */
+    public double getGameTime() {
+        return this.gameTime;
+    }
+
+    /**
+     * Getter for the spawned bullet.
+     * @return
+     *          the spawned bullets.
+     */
+    public int getSpawnedBullets() {
+        return this.spawnedBullets;
+    }
 }

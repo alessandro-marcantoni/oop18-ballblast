@@ -3,8 +3,8 @@ package ballblast.controller;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
 import ballblast.model.Model;
 import ballblast.model.inputs.InputManager.PlayerTags;
@@ -26,7 +26,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private final Model model;
 
     static {
-        INPUTS = ImmutableBiMap.of(
+        INPUTS = ImmutableMap.of(
                 PlayerTags.FIRST, ImmutableList.of(),
                 PlayerTags.SECOND, ImmutableList.of()
         );
@@ -97,7 +97,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     @Override
     public final void receiveInputs(final PlayerTags tag, final InputTypes input) {
-        INPUTS.replace(tag, ImmutableList.<InputTypes>builder()
+        INPUTS.forEach((k, v) -> v = ImmutableList.<InputTypes>builder()
                 .addAll(INPUTS.get(tag))
                 .add(input).build());
     }
@@ -127,6 +127,6 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private void emptyList() {
-        INPUTS.replaceAll((k, v) -> ImmutableList.of());
+        INPUTS.forEach((k, v) -> v = ImmutableList.of());
     }
 }

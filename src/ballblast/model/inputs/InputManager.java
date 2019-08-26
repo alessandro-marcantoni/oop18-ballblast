@@ -8,8 +8,8 @@ import java.util.function.Consumer;
 
 import org.locationtech.jts.math.Vector2D;
 
-import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
 import ballblast.model.components.ComponentTypes;
 import ballblast.model.components.InputComponent;
@@ -25,7 +25,7 @@ public class InputManager {
     private Map<PlayerTags, InputComponent> inputHandlers;
 
     static {
-        COMMANDS_MAP = ImmutableBiMap.of(
+        COMMANDS_MAP = ImmutableMap.of(
                 InputTypes.MOVE_LEFT, g -> g.setVelocity(Vector2D.create(-MOVEMENT_SPEED, 0)),
                 InputTypes.MOVE_RIGHT, g -> g.setVelocity(Vector2D.create(MOVEMENT_SPEED, 0)),
                 InputTypes.STOP_MOVING, g -> g.setVelocity(Vector2D.create(0, 0)),
@@ -45,7 +45,7 @@ public class InputManager {
      * Creates a {@link InputManager} instance.
      */
     public InputManager() {
-        this.inputHandlers = ImmutableBiMap.of();
+        this.inputHandlers = ImmutableMap.of();
     }
 
     /**
@@ -57,7 +57,7 @@ public class InputManager {
      *     the {@link InputComponent} of a specific {@link Player}.
      */
     public void addInputHandler(final PlayerTags tag, final InputComponent inputComponent) {
-        this.inputHandlers = ImmutableBiMap.<PlayerTags, InputComponent>builder()
+        this.inputHandlers = ImmutableMap.<PlayerTags, InputComponent>builder()
                 .putAll(this.inputHandlers)
                 .put(tag, inputComponent).build();
     }
@@ -70,7 +70,7 @@ public class InputManager {
      */
     public void removeInputHandler(final PlayerTags tag) {
         this.inputHandlers = this.inputHandlers.entrySet().stream().filter(e -> e.getKey() != tag)
-                .collect(ImmutableBiMap.toImmutableBiMap(Entry::getKey, Entry::getValue));
+                .collect(ImmutableMap.toImmutableMap(Entry::getKey, Entry::getValue));
     }
 
     /**

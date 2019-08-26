@@ -1,6 +1,6 @@
 package ballblast.view.utilities;
 
-import com.sun.org.apache.xml.internal.utils.URI;
+import java.io.File;
 
 /**
  * 
@@ -52,8 +52,10 @@ public enum ViewScenes {
      * REGISTER
      */
 
-    private static final String PATH = "view/scenes/";
+
     private final String selectedScene;
+    private static final String SEP = File.separator;
+    private static final String PATH = ".." + SEP + ".." + SEP + ".." + SEP + "view" + SEP + "scenes" + SEP;
     /**
      * 
      * @param scene

@@ -28,8 +28,9 @@ public final class BallBlast extends Application {
      *      CLI arguments.
      */
     public static void main(final String [] args) {
-        launch();
         ViewScenes scene = ViewScenes.MAIN;
         System.out.println(scene.getPath());
+        launch();
+
     }
 }

@@ -1,7 +1,6 @@
 package ballblast.view;
 
 import ballblast.controller.Controller;
-import ballblast.view.rendering.ImageLoader;
 import ballblast.view.scenecontroller.AbstractSceneController;
 import ballblast.view.sceneloader.SceneLoader;
 import ballblast.view.sceneloader.SceneWrapper;
@@ -23,18 +22,6 @@ public class ViewImpl implements View {
     private AbstractSceneController currentScene;
     private boolean viewStarted;
 
-//    private static final int GREEN_SEMAPHORE = 1;
-
-
-//    private Render viewRender;
-//    private List<Optional<ViewEntity>> viewEntities;
-//    private GameData gameData;
-//    private final Semaphore mutex;
-
-//    private final SceneFactory sceneFactory;
-//    private GameMode gameMode;
-//    private Level level;
-//    private int score = 0;
     /**
      * 
      * @param primaryStage
@@ -44,16 +31,7 @@ public class ViewImpl implements View {
         super();
         this.stage = primaryStage;
         this.viewStarted = false;
-//        this.mutex = new Semaphore(GREEN_SEMAPHORE);
-//        this.sceneFactory = new SceneFactoryImpl(this);
-//        this.level = new BasicLevel();
     }
-
-//    @Override
-//    public void startGame(GameSceneController gameSceneController) {
-////        this.gameMode = gameMode;
-//        this.viewRender = new Render(gameSceneController);
-//    }
 
     @Override
     public final void launch(final Controller controller) {
@@ -74,15 +52,6 @@ public class ViewImpl implements View {
         Platform.runLater(() -> this.currentScene.render());
         //To delete.
         this.controller.notifyAll();
-//        try {
-//            this.mutex.acquire();
-//            this.viewEntities = viewEntities;
-//            this.level = level;
-//            this.score = this.level.getGameScore();
-//            this.mutex.release();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
     }
 
     @Override
@@ -112,114 +81,4 @@ public class ViewImpl implements View {
             e.printStackTrace();
         }
     }
-//    @Override
-//    public void startRender() {
-//       this.viewRender.start();
-//    }
-//
-//    @Override
-//    public void stopRender() {
-//        this.viewRender.stopRender();
-//    }
-
-//    @Override
-//    public Controller getController() {
-//        return this.controller;
-//    }
-//
-//
-//    @Override
-//    public SceneFactory getSceneFactory() {
-//        return this.sceneFactory;
-//    }
-
-//    /**
-//     * 
-//     * 
-//     * 
-//     */
-//
-//    private class Render extends Thread{
-//
-//        private static final int FPS = 60;
-//        private static final int MILLISECONDS = 1000/FPS;
-//
-//        private boolean running, end;
-//        private final int period;
-//        private List<Optional<ViewEntity>> viewEntitiesGame;
-//
-//        private Level level;
-//        private int score = 0;
-//
-//        private final GameSceneController gameSceneController;
-//        private GraphicsContext canvas;
-//        private final ImageView backgroundImage;
-//
-//
-//        Render(final GameSceneController gameSceneController) {
-//            super();
-//            this.period = MILLISECONDS;
-//            this.gameSceneController = gameSceneController;
-//            this.canvas = this.gameSceneController.getCanvas().getGraphicsContext2D();
-//            this.running = true;
-////            this.gameMode = SURVIVAL;
-//
-//            this.backgroundImage = new ImageView(new Image(getClass().getResourceAsStream("/view/background/background.png"),
-//                                                           SettingsImpl.getSettings().getSelectedResolution().getKey(),
-//                                                           SettingsImpl.getSettings().getSelectedResolution().getValue(),
-//                                                           false, false));
-//
-//       }
-//
-//
-//        public void run() {
-////            controller.initModel();
-////            controller.initGameLoop();
-////            controller.startGameLoop();
-//
-//            while (this.running) {
-//                try {
-//                    mutex.acquire();
-//
-//                    this.viewEntitiesGame = viewEntities;
-//                    this.score = level.getGameScore();
-//
-//                    mutex.release();
-//
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                final long currentTime = System.currentTimeMillis();
-//
-//                Platform.runLater(() -> {
-////                    this.gameSceneController.setPausePanelVisibility(getController().isGameLoopPaused());
-//
-//                    this.gameSceneController.setGameData(this.level);
-//
-//                    for (final Optional<ViewEntity> viewEntity : this.viewEntitiesGame) {
-//                        if (viewEntity.isPresent() && viewEntity.get().getShape() instanceof Circle) {
-//                            final ViewEntity ve = viewEntity.get();
-//                            final Shape circle = ve.getShape();
-//
-//                        }
-//                    }
-//                });
-//            }
-//
-//        }
-//        public void endGame() {
-//            this.end = true;
-//        }
-//        public void stopRender() {
-//            this.running = false;
-//        }
-//        public void start() {
-//            this.running = true;
-//            super.start();
-//        }
-//
-//
-//    }
-
 }

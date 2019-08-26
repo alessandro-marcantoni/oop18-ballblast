@@ -14,9 +14,9 @@ import ballblast.view.View;
  */
 public class ControllerImpl implements Controller {
 
-    private Model model;
-    private View view;
-    private GameLoop gameloop;
+    private final Model model;
+    //private final View view;
+    private final GameLoop gameloop;
 
     /**
      * Create a new instance of Controller.
@@ -27,8 +27,8 @@ public class ControllerImpl implements Controller {
      */
     public ControllerImpl(final Model model, final View view) {
         this.model = model;
-        this.view = view;
-        this.gameloop = new GameLoopImpl(this.model, this.view);
+        //this.view = view;
+        this.gameloop = new GameLoopImpl(this.model, view);
     }
 
     @Override
@@ -48,8 +48,8 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void sendInput(final PlayerTags tag, final InputTypes input) {
-
+    public final void sendInput(final PlayerTags tag, final InputTypes input) {
+        this.gameloop.receiveInputs(tag, input);
     }
 
     @Override

@@ -2,6 +2,7 @@ package ballblast.controller;
 
 import java.util.List;
 
+import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
@@ -43,9 +44,9 @@ public interface Controller {
     List<GameObject> getGameObjects();
 
     /**
-     * Gives the player's score based on the game time.
+     * Gets the game data (score, time, destroyed balls ecc..).
      * @return
-     *       The score.
+     *       The {@link GameData}.
      */
-    int getTimeScore();
+    GameData getGameData();
 }

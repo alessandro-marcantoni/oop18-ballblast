@@ -1,8 +1,13 @@
 package ballblast.model;
 
-import java.util.Optional;
+import java.util.List;
 
+import ballblast.model.data.GameDataManager.GameData;
+import ballblast.model.gameobjects.GameObject;
+import ballblast.model.inputs.InputManager.PlayerTags;
+import ballblast.model.inputs.InputTypes;
 import ballblast.model.levels.BasicLevel;
+import ballblast.model.levels.GameStatus;
 import ballblast.model.levels.Level;
 import ballblast.model.levels.SinglePlayerDecorator;
 import ballblast.model.levels.SurvivalLevelDecorator;
@@ -13,14 +18,39 @@ import ballblast.model.levels.SurvivalLevelDecorator;
 public final class ModelImpl implements Model {
     private Level currentLevel;
 
-    @Override
+    /*@Override
     public Optional<Level> getCurrentLevel() {
         return Optional.of(currentLevel);
-    }
+    }*/
 
     @Override
     public void startSurvival() {
         this.currentLevel = new SurvivalLevelDecorator(new SinglePlayerDecorator(new BasicLevel()));
         this.currentLevel.start();
+    }
+
+    @Override
+    public List<GameObject> getGameObjects() {
+        return this.currentLevel.getGameObjectManager().getGameObjects();
+    }
+
+    @Override
+    public void resolveInputs(final PlayerTags tag, final List<InputTypes> inputs) {
+        this.currentLevel.getInputManager().processInputs(tag, inputs);
+    }
+
+    @Override
+    public void update(final double elapsed) {
+        this.currentLevel.update(elapsed);
+    }
+
+    @Override
+    public GameStatus getGameStatus() {
+        return this.currentLevel.getGameStatus();
+    }
+
+    @Override
+    public GameData getGameData() {
+        return this.currentLevel.getGameDataManager().getGameData();
     }
 }

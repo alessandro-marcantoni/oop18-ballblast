@@ -33,9 +33,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     @Override
     public final void run() {
-        this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.RUNNING));
         this.stopped = false;
-        this.updateGame(0);
         this.render();
         long lastTime = System.currentTimeMillis();
         while (!this.isStopped()) {
@@ -66,31 +64,33 @@ public class GameLoopImpl extends Thread implements GameLoop {
     @Override
     public final synchronized void stopLoop() {
         this.stopped = true;
-        this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.OVER));
+        //this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.OVER));
         this.interrupt();
     }
     @Override
     public final void pause() {
         this.paused = true;
-        this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.PAUSE));
+        ///this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.PAUSE));
     }
 
     @Override
     public final void resumeLoop() {
         this.paused = false;
-        this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.RUNNING));
+        //this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.RUNNING));
     }
 
     private boolean isStopped() {
-        return this.model.getCurrentLevel().isPresent() ? this.stopped || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.OVER) : this.stopped;
+        //return this.model.getCurrentLevel().isPresent() ? this.stopped || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.OVER) : this.stopped;
+        return this.stopped || model.getGameStatus() == GameStatus.OVER;
     }
 
     private boolean isPaused() {
-        return this.model.getCurrentLevel().isPresent() ? this.paused || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.PAUSE) : this.paused;
+        //return this.model.getCurrentLevel().isPresent() ? this.paused || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.PAUSE) : this.paused;
+        return this.paused;
     }
 
     private void updateGame(final double elapsed) {
-        this.model.getCurrentLevel().ifPresent(l -> l.update(elapsed));
+        this.model.update(elapsed);
     }
 
     private void render() {

@@ -3,6 +3,7 @@ package ballblast.controller;
 import java.util.List;
 
 import ballblast.model.Model;
+import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
@@ -53,12 +54,12 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final List<GameObject> getGameObjects() {
-        return this.model.getCurrentLevel().isPresent() ? this.model.getCurrentLevel().get().getGameObjectManager().getGameObjects() : null;
+        return this.model.getGameObjects();
     }
 
     @Override
-    public final int getTimeScore() {
-        return this.model.getCurrentLevel().isPresent() ? this.model.getCurrentLevel().get().getGameScore() : 0;
+    public final GameData getGameData() {
+        return this.model.getGameData();
     }
 
 }

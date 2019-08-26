@@ -35,8 +35,8 @@ public final class SceneLoader {
      */
     public SceneWrapper getScene(final ViewScenes scene) throws IOException {
         final FXMLLoader loader = new FXMLLoader();
-        final String path = scene.getPath();
-        final Parent parent = loader.load(this.getClass().getResourceAsStream(path));
+        loader.setLocation(getClass().getResource("view/scenes/Main.fxml"));
+        final Parent parent = (Parent) loader.load();
         return new SceneWrapperImpl(new Scene(parent), loader.getController());
     }
 

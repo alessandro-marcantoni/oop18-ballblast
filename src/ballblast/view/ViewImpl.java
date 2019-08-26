@@ -1,6 +1,7 @@
 package ballblast.view;
 
 import ballblast.controller.Controller;
+import ballblast.view.rendering.ImageLoader;
 import ballblast.view.scenecontroller.AbstractSceneController;
 import ballblast.view.sceneloader.SceneLoader;
 import ballblast.view.sceneloader.SceneWrapper;
@@ -62,9 +63,10 @@ public class ViewImpl implements View {
        this.stage.setMinWidth(MIN_WIDTH);
        this.stage.setMaximized(true);
        this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
-       this.loadScene(ViewScenes.MENU);
+       this.loadScene(ViewScenes.MAIN);
 //       this.sceneFactory.setStage(this.stage);
 //       this.sceneFactory.openMenuScene();
+       //ImageLoader.getLoader().loadAll();
     }
 
     @Override
@@ -87,7 +89,7 @@ public class ViewImpl implements View {
     public final void loadScene(final ViewScenes scene) {
         try {
             final SceneWrapper wrapper = SceneLoader.getLoader().getScene(scene);
-            //swrapper.getController().init(control, this);
+            wrapper.getController().init(controller, this);
             this.currentScene = wrapper.getController();
 
             final Parent root = wrapper.getScene().getRoot();

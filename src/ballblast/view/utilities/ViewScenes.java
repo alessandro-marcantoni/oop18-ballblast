@@ -1,5 +1,7 @@
 package ballblast.view.utilities;
 
+import com.sun.org.apache.xml.internal.utils.URI;
+
 /**
  * 
  * Enumeration that contains the game scenes.
@@ -50,7 +52,7 @@ public enum ViewScenes {
      * REGISTER
      */
 
-    private static final String PATH = "/view/scenes";
+    private static final String PATH = "view/scenes/";
     private final String selectedScene;
     /**
      * 

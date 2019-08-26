@@ -11,10 +11,12 @@ public class UserData implements Serializable {
 
     // To serialize the object into a bytes stream univocally.
     private static final long serialVersionUID = -3297421101653830531L;
-    private String name;
+    private final String name;
     private int globalScore;
-    private int killedBalls;
+    private int destroyedBalls;
     private int matchesPlayed;
+    private double gameTime;
+    private int spawnedBullets;
 
     /**
      * The costructor to inizialize the user data.
@@ -24,8 +26,10 @@ public class UserData implements Serializable {
     public UserData(final String userName) {
         this.name = userName;
         this.globalScore = 0;
-        this.killedBalls = 0;
+        this.destroyedBalls = 0;
         this.matchesPlayed = 0;
+        this.spawnedBullets = 0;
+        this.gameTime = 0;
     }
 
     /**
@@ -45,6 +49,8 @@ public class UserData implements Serializable {
     public void addGameData(final GameData gameData) {
         this.matchesPlayed++;
         this.globalScore += gameData.getScore();
-        this.killedBalls += gameData.getDestroyedBalls();
+        this.destroyedBalls += gameData.getDestroyedBalls();
+        this.gameTime += gameData.getTime();
+        this.spawnedBullets += gameData.getSpawnedBullets();
     }
 }

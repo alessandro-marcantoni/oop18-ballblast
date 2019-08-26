@@ -183,7 +183,7 @@ public class TestCollisions {
      */
     @Test
     public void testStop() {
-        Level lvl = new SinglePlayerDecorator(new BasicLevel());
+        final Level lvl = new SinglePlayerDecorator(new BasicLevel());
         lvl.start();
         final int steps = 19;
         final GameObject player = lvl.getGameObjectManager()

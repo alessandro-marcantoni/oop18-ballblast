@@ -4,13 +4,21 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
+import ballblast.controller.files.XMLFileManager;
+
 /**
  * Class that contains constants used to find files saved on the user home directory.
  * It is responsible of checking if the install directory exist and when necessary creates it.
  */
 public final class DirectoryManager {
 
-    private static final String SEPARATOR = System.getProperty("file.separator");
+    /**
+     * The file system separator.
+     */
+    public static final String SEPARATOR = System.getProperty("file.separator");
 
     /**
      * Static field that contains the route path of the application.
@@ -33,15 +41,15 @@ public final class DirectoryManager {
                                            + SEPARATOR
                                            + "users";
 
-    /**
-     * Static field that contains the file of the users list.
-     */
-    public static final String USERS_LIST_FILE = USERS_DIR
-                                                 + SEPARATOR
-                                                 + ".users_list";
+//    /**
+//     * Static field that contains the file of the users list.
+//     */
+//    public static final String USERS_LIST_FILE = USERS_DIR
+//                                                 + SEPARATOR
+//                                                 + "users_list.xml";
 
     /**
-     * Static field that contains the file with the score of the users in the survival mode.
+     * Static field that contains the file with the datas of the users in the survival mode.
      */
     public static final String SURVIVAL_FILE = SCOREBOARD_DIR
                                                + SEPARATOR
@@ -72,11 +80,19 @@ public final class DirectoryManager {
         try {
             Files.createDirectories(Paths.get(SCOREBOARD_DIR));
             Files.createDirectories(Paths.get(USERS_DIR));
-            if (!Files.exists(Paths.get(USERS_LIST_FILE))) {
-                Files.createFile(Paths.get(USERS_LIST_FILE));
+            if (!Files.exists(Paths.get(SURVIVAL_FILE))) {
+                //Files.createFile(Paths.get(USERS_LIST_FILE));
+                try {
+                    XMLFileManager.createEmptyFile(SURVIVAL_FILE);
+                } catch (ParserConfigurationException e) {
+                    e.printStackTrace();
+                } catch (TransformerException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

@@ -10,21 +10,17 @@ public class RecordData implements Serializable {
     // To serialize the object into a bytes stream univocally.
     private static final long serialVersionUID = -3402166234477683311L;
     private final String userName;
-    private final int gameTime;
     private final int score;
 
     /**
      * Creates a new record.
      * @param name
      *          the name of the User.
-     * @param time
-     *          the time of the last survival game session.
      * @param score
      *          the score reached in the last game session.
      */
-    public RecordData(final String name, final int time, final int score) {
+    public RecordData(final String name, final int score) {
         this.userName = name;
-        this.gameTime = time;
         this.score = score;
     }
 
@@ -35,15 +31,6 @@ public class RecordData implements Serializable {
      */
     public int getScore() {
         return this.score;
-    }
-
-    /**
-     * Getter of the game time.
-     * @return
-     *          the game time reached in the last game session.
-     */
-    public int getGameTime() {
-        return this.gameTime;
     }
 
     /**

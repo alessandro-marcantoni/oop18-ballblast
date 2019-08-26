@@ -36,12 +36,10 @@ public class Leaderboard implements Serializable {
      *          the name of the user who submitted the record.
      * @param score
      *          the score reached at the end of the game session.
-     * @param time
-     *          the time of the last game session.
      */
-    public void addRecord(final String name, final int score, final int time) {
+    public void addRecord(final String name, final int score) {
         if (this.isRecord(score) || this.recordList.size() <= MAX_SCORES) {
-            RecordData rec = new RecordData(name, time, score);
+            final RecordData rec = new RecordData(name, score);
             this.recordList = ImmutableList.<RecordData>builder()
                                            .addAll(recordList)
                                            .add(rec)

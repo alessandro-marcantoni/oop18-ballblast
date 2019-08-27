@@ -94,8 +94,11 @@ public abstract class AbstractGameObject implements GameObject {
         this.components.forEach(Component::disable);
     }
 
+    /**
+     * Updates the state of the {@link GameObject}.
+     */
     @Override
-    public final void update(final double elapsed) {
+    public void update(final double elapsed) {
         components.forEach(c -> c.update(elapsed));
     }
 

@@ -1,8 +1,7 @@
 package ballblast.model.components;
 
 /**
- * Component types which can be used.
- *
+ * All types of {@link Component} which can be used.
  */
 public enum ComponentTypes {
     /**

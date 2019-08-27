@@ -1,13 +1,10 @@
 package ballblast.model.levels;
+
 /**
- * Enum to define the status of the Model.
+ * Defines the status of a game session.
  * 
  */
 public enum GameStatus {
-    /**
-     * Player win if he completes all levels.
-     */
-    WON,
     /**
      * The game is over when the player has been destroyed.
      */

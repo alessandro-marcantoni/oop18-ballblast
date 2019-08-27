@@ -11,8 +11,7 @@ import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.physics.CollisionManager;
 
 /**
- * Represents the {@link Component} which allows a {@link GameObject} to shot.
- *
+ * Adds the shotting ability to a {@link GameObject}.
  */
 public class ShooterComponent extends AbstractComponent {
     private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -70);
@@ -22,13 +21,13 @@ public class ShooterComponent extends AbstractComponent {
     private boolean isShooting;
 
     /**
-     * Creates a {@link ShooterComponent} instance.
+     * Class constructor.
      * 
      * @param gameObjectManager the {@link GameObjectManager} used to add
      *                          {@link Bullet}s.
      * @param collisionManager  the {@link CollisionManager} used to create the
      *                          {@link Bullet}'s {@link CollisionComponent}.
-     * @param gameDataManager the {@link GameDataManager} used to increment the 
+     * @param gameDataManager   the {@link GameDataManager} used to increment the
      *                          spawned bullets counter.
      */
     public ShooterComponent(final GameObjectManager gameObjectManager, final CollisionManager collisionManager,

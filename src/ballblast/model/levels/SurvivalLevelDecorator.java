@@ -57,9 +57,9 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     }
 
     private void spawnBall() {
-        this.spawnedBall = Optional.of(GameObjectFactory.createBall(BallTypes.LARGE, this.calculateBallLife(),
-                this.getRandomPosition(), BALL_VELOCITY, this.getCollisionManager(), this.getGameObjectManager(),
-                this.getGameDataManager()));
+        this.spawnedBall = Optional.of(GameObjectFactory.createBall(
+                BallTypes.LARGE, this.calculateBallLife(), this.getRandomPosition(), BALL_VELOCITY, 
+                this.getCollisionManager(), this.getGameObjectManager(), this.getGameDataManager()));
         this.getGameObjectManager().addGameObjects(ImmutableList.of(this.spawnedBall.get()));
     }
 

@@ -26,7 +26,7 @@ public final class BasicLevel implements Level {
     private GameStatus gameStatus;
 
     /**
-     * Creates a new instance of BasicLevel.
+     * Class constructor.
      */
     public BasicLevel() {
         this.gameStatus = GameStatus.PAUSE;
@@ -83,11 +83,15 @@ public final class BasicLevel implements Level {
     }
 
     private void createBoundaries() {
-        final List<GameObject> boundaries = Arrays
-                .stream(Boundaries.values()).map(b -> GameObjectFactory.createWall(b.getHeight(), b.getWidth(),
-                        b.getPosition(), b.getVelocity(), this.collisionManager))
+        final List<GameObject> boundaries = Arrays.stream(Boundaries.values())
+                .map(this::convertToWall)
                 .collect(ImmutableList.toImmutableList());
         this.gameObjectManager.addGameObjects(boundaries);
+    }
+
+    private GameObject convertToWall(final Boundaries b) {
+        return GameObjectFactory.createWall(b.getHeight(), b.getWidth(), 
+                b.getPosition(), b.getVelocity(), this.collisionManager);
     }
 
     private void activeComponents(final GameObject gameObject) {
@@ -96,6 +100,6 @@ public final class BasicLevel implements Level {
 
     private void initGameObjectManager() {
         this.gameObjectManager.update(0);
-        this.gameObjectManager.getGameObjects().forEach(g -> this.activeComponents(g));
+        this.gameObjectManager.getGameObjects().forEach(this::activeComponents);
     }
 }

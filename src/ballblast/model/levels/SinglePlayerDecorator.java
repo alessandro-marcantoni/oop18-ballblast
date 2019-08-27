@@ -26,7 +26,7 @@ public class SinglePlayerDecorator extends LevelDecorator {
     }
 
     /**
-     * Creates a {@link SinglePlayerDecorator} instance.
+     * Class constructor.
      * 
      * @param level the {@link Level} used like decoration.
      */

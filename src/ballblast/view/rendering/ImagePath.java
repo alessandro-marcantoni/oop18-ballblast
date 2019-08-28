@@ -8,13 +8,21 @@ public enum ImagePath {
      */
     BALL("/balls/balls.png"),
     /**
-     * The image for cannon.
+     * The image for the cannon.
      */
     PLAYER("/players/cannon.png"),
     /**
-     * The image for bullet.
+     * The image for the bullet.
      */
-    BULLET("/bullets/bullet.png");
+    BULLET("/bullets/bullet.png"),
+    /**
+     * The image for powers.
+     */
+    POWERS("/powers/powers.png"),
+    /**
+     * The image for the wall.
+     */
+    WALL("/walls/wall.png");
     private static final String IMAGE_PATH = "/images";
     private final String path;
 

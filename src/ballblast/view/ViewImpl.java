@@ -50,8 +50,6 @@ public class ViewImpl implements View {
     @Override
     public final void render() {
         Platform.runLater(() -> this.currentScene.render());
-        //To delete.
-        this.controller.notifyAll();
     }
 
     @Override

@@ -122,8 +122,8 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private void processInput() {
-        INPUTS.forEach((k, v) -> this.model.resolveInputs(k, v));
-        this.emptyList();
+//        INPUTS.forEach((k, v) -> this.model.resolveInputs(k, v));
+//        this.emptyList();
     }
 
     private void emptyList() {

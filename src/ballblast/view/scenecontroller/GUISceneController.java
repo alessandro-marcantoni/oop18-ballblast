@@ -1,6 +1,8 @@
 package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
+import ballblast.model.Model;
+import ballblast.model.levels.Level;
 import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
 import ballblast.view.scenefactory.UIFactory;
@@ -11,41 +13,49 @@ import ballblast.view.states.PausedState;
 import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 /**
  * 
  * Graphical User Interface scene controller.
  * 
  */
 public class GUISceneController extends AbstractSceneController {
+    @FXML
+    private BorderPane canvasContainer;
 
-    @FXML // fx:id game
-    private BorderPane game;
-
-    @FXML // fx:id timeScoreGameLabel
-    private Label timeScoreGameLabel;
-
-    @FXML // fx:id ballsScoreGameLabel
-    private Label ballsScoreGameLabel;
-
-    @FXML // fx:id topHBox
-    private HBox topHBox;
-
-    @FXML // fx:id bottomHBox
-    private HBox bottomHBox;
-
-    @FXML // fx:id canvas
+    @FXML
     private Canvas canvas;
 
-    @FXML // fx:id message
-    private Pane message;
+    @FXML
+    private BorderPane statusBarContainer;
 
-    @FXML // fx:id pausePane
-    private Pane pausePane;
+    @FXML
+    private BorderPane timebarContainer;
+
+
+    @FXML
+    private HBox powers;
+
+    @FXML
+    private Label score;
+
+    @FXML
+    private Pane playerShooter;
+
+    @FXML
+    private Label balls;
+
+    @FXML
+    private VBox startMessage;
+
+    @FXML
+    private BorderPane pausePane;
 
     private GUIState currentState;
     private GUIState idleState;
@@ -53,21 +63,9 @@ public class GUISceneController extends AbstractSceneController {
     private GUIState pausedState;
     private UIFactory userInterface;
     private CanvasDrawer canvasDrawer;
+    private Level level;
 
-    /**
-     * Initialize the FXML components.
-     */
-    @FXML
-    protected final void initialize() {
-        assert game != null : "fx:id game was not injected: check FXML file 'Game.fxml'";
-        assert timeScoreGameLabel != null : "fx:id timeScoreGameLabel was not injected: check FXML file 'Game.fxml'";
-        assert ballsScoreGameLabel != null : "fx:id ballsScoreGameLabel was not injected: check FXML file 'Game.fxml'";
-        assert topHBox != null : "fx:id topHBox was not injected: check FXML file 'Game.fxml'";
-        assert bottomHBox != null : "fx:id bottomHBox was not injected: check FXML file 'Game.fxml'";
-        assert canvas != null : "fx:id canvas was not injected: check FXML file 'Game.fxml'";
-        assert message != null : "fx:id message was not injected: check FXML file 'Game.fxml'";
-        assert pausePane != null : "fx:id message was not injected: check FXML file 'Game.fxml'";
-    }
+
     /**
      * @param controller
      *          the {@link Controller}.
@@ -77,20 +75,17 @@ public class GUISceneController extends AbstractSceneController {
     @Override
     public void init(final Controller controller, final View view) {
         super.init(controller, view);
-        this.idleState = new IdleState(this, controller, this.message);
+        this.idleState = new IdleState(this, controller, this.startMessage);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
         this.userInterface = new UIFactory();
         this.resetGameCanvasCoordinates();
+        // ...
         this.canvasDrawer = new CanvasDrawer(this.canvas);
-        // this.getController().registerSurvivalModeStarted( e -> {
-           // this.canvasDrawer = new CanvasDrawer(this.canvas);
-            // background
-            // [..]
-           // this.level
-      //  });
-
-        // DA IMPLEMENTARE
+        // ...
+        this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
+        this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
+        this.setState(this.idleState);
     }
 
     @Override
@@ -108,14 +103,42 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     public final void render() {
-        this.timeScoreGameLabel.setText(Double.toString(this.getController().getGameData().getTime()));
-        this.ballsScoreGameLabel.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
+        this.score.setText(Double.toString(this.getController().getGameData().getTime()));
+        this.balls.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
         this.canvasDrawer.draw();
     }
 
     private void resetGameCanvasCoordinates() {
-        // DA IMPLEMENTARE
-        userInterface.notifyAll(); //toDelete.
+        final GraphicsContext gc = this.canvas.getGraphicsContext2D();
+        gc.save();
+        final double canvasWidth = this.canvas.getWidth();
+        final double canvasHeight = this.canvas.getHeight();
+        gc.fillRect(0, 0, canvasWidth, canvasHeight);
+        gc.scale(1, -1);
+        gc.translate(canvasWidth / 2, -canvasHeight);
+        // Model.WALL_OFFSET --> WALL_WIDTH or WALL_HEIGHT?
+        gc.scale(canvasWidth / (Model.WORLD_WIDTH + Model.WALL_OFFSET), 
+                canvasHeight / (Model.WORLD_HEIGHT + Model.WALL_OFFSET));
+        gc.translate(0, Model.WALL_OFFSET);
+    }
+
+    private void resizeCanvas() {
+        final double parentWidth = this.canvasContainer.getWidth();
+        final double parentHeight = this.canvasContainer.getHeight();
+        final double ratio = parentWidth / parentHeight;
+        final double expectedRatio = (Model.WORLD_WIDTH + Model.WALL_OFFSET) / Model.WORLD_HEIGHT;
+
+        if (ratio < expectedRatio) {
+            this.canvas.setWidth(parentWidth);
+            this.canvas.setHeight(parentWidth / expectedRatio);
+        } else {
+            this.canvas.setWidth(parentHeight * expectedRatio);
+            this.canvas.setHeight(parentHeight);
+        }
+
+        this.canvas.getGraphicsContext2D().restore();
+        this.resetGameCanvasCoordinates();
+        this.render();
     }
 
     @Override

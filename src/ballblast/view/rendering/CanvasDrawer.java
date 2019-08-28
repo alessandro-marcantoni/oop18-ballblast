@@ -1,13 +1,9 @@
 package ballblast.view.rendering;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
-import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
@@ -23,7 +19,6 @@ import javafx.util.Pair;
  */
 public class CanvasDrawer {
     private static final Map<GameObjectTypes, Function<Pair<Sprite, GameObject>, Renderer>> RENDERER_MAP;
-    private final List<Renderer> renderers;
     private final Canvas canvas;
 
     static {
@@ -39,7 +34,6 @@ public class CanvasDrawer {
      *          the canvas
      */
     public CanvasDrawer(final Canvas canvas) {
-        this.renderers = new ArrayList<>();
         this.canvas = canvas;
     }
     /**
@@ -53,15 +47,6 @@ public class CanvasDrawer {
             r.render();
             gc.restore();
         });
-    }
-    /**
-     * 
-     * @param render
-     *          The render
-     */
-    public final void addRenderer(final Renderer render) {
-        this.renderers.add(render);
-        Collections.sort(this.renderers);
     }
     /**
      * 
@@ -95,6 +80,6 @@ public class CanvasDrawer {
     }
 
     private Renderer getRenderer(final GameObject gameObject) {
-        return RENDERER_MAP.get(gameObject.getType()).apply(new Pair<Sprite, GameObject>(this.generateSprite(), gameObject));
+        return RENDERER_MAP.get(gameObject.getType()).apply(new Pair<>(this.generateSprite(), gameObject));
     }
 }

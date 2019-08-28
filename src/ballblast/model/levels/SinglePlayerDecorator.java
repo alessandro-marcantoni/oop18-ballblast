@@ -38,7 +38,7 @@ public class SinglePlayerDecorator extends LevelDecorator {
 
     @Override
     public final void update(final double elapsed) {
-        if (this.getGameStatus() != GameStatus.OVER) {
+        if (this.getGameStatus() == GameStatus.RUNNING) {
             super.update(elapsed);
             this.checkGameOver();
         }

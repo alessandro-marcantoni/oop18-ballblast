@@ -2,7 +2,9 @@ package ballblast.model.data;
 
 import java.io.Serializable;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableList;
@@ -75,7 +77,7 @@ public class Leaderboard implements Serializable {
      *          true if the score is the high score.
      */
     public boolean isRecord(final int score) {
-        return score > this.recordList.stream().max(COMPARATOR).get().getScore();
+        return score > this.getRecords().max(COMPARATOR).get().getScore();
     }
 
     /**
@@ -84,7 +86,17 @@ public class Leaderboard implements Serializable {
      *          the score of the record with the highest score.
      */
     public Integer getHighScore() {
-        return Integer.valueOf(this.recordList.stream().min(COMPARATOR).get().getScore());
+        return Integer.valueOf(this.getRecords().min(COMPARATOR).get().getScore());
+    }
+
+    /**
+     * Getter for the leaderboard.
+     * @return
+     *          the map of the leaderboard.
+     */
+    public Map<String, Integer> getLeaderboard() {
+        this.recordList.stream().sorted(COMPARATOR).limit(MAX_SCORES).collect(ImmutableList.toImmutableList());
+        return this.getRecords().collect(Collectors.toMap(RecordData::getUserName, RecordData::getScore));
     }
 
 }

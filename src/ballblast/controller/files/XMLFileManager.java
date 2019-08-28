@@ -14,10 +14,11 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import ballblast.controller.DirectoryManager;
-import ballblast.model.data.UserData;
 
 /**
  * Class to handle xml files.
@@ -49,20 +50,56 @@ public final class XMLFileManager {
     }
 
     /**
+     * Check if the input password of the user is correct.
+     * @param userName
+     *          the user name.
+     * @param pwd
+     *          the password to verify.
+     * @return
+     *          true if the password is correct, false otherwise.
+     * @throws ParserConfigurationException
+     *          parser exception.
+     * @throws SAXException
+     *          SAX exception.
+     * @throws IOException
+     *          IO exception.
+     */
+    public static boolean checkUserPassword(final String userName, final String pwd) throws ParserConfigurationException, SAXException, IOException {
+        Document doc = getDocument(DirectoryManager.getUserFile(userName));
+        Node root = doc.getFirstChild();
+        Node obj = root.getChildNodes().item(1);
+
+        NodeList property = obj.getChildNodes();
+        for (int i = 0; i < property.getLength() - 1; i++) {
+                i++;
+                Node field = property.item(i);
+                if (field.getAttributes().item(0).getNodeValue().equals("password")) {
+                        Node password = field.getChildNodes().item(1);
+                        if (password.getTextContent().equals(pwd)) {
+                                return true;
+                        }
+                }
+        }
+        return false;
+    }
+
+    /**
      * Creates an empty xml file.
      * @param filePath
      *          the new file route path in the file system.
+     * @param rootName
+     *          the name of the xml file root. 
      * @throws ParserConfigurationException
      *          exception for the parser.
      * @throws TransformerException
      *          exception for the transformer.
      */
-    public static void createEmptyFile(final String filePath) throws ParserConfigurationException, TransformerException {
+    public static void createEmptyFile(final String filePath, final String rootName) throws ParserConfigurationException, TransformerException {
         final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         final DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
         final Document doc = docBuilder.newDocument();
-        final Element rootElement = doc.createElement("players");
+        final Element rootElement = doc.createElement(rootName);
         doc.appendChild(rootElement);
 
         final TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -76,98 +113,50 @@ public final class XMLFileManager {
     }
 
     /**
-     * Creates a new xml file for the user credentials.
-     * @param directoryPath
-     *          the directory route path of the user file.
-     * @param userName
-     *          the name of the user.
-     * @param password
-     *          the password of the user.
-     * @throws ParserConfigurationException
-     *          exception for the parser.
-     * @throws TransformerException
-     *          exception for the transformer.
-     */
-    public static void createUserFile(final String directoryPath, final String userName, final String password) throws ParserConfigurationException, TransformerException {
-        final String ext = ".xml";
-        final String path = directoryPath + DirectoryManager.SEPARATOR + userName + ext;
-
-        final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-        final DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-
-        final Document doc = docBuilder.newDocument();
-        final Element rootElement = doc.createElement("credentials");
-        doc.appendChild(rootElement);
-
-        final Element name = doc.createElement("name");
-        name.appendChild(doc.createTextNode(userName));
-        rootElement.appendChild(name);
-
-        final Element pwd = doc.createElement("password");
-        pwd.setAttribute("hashCode", String.valueOf(password.hashCode()));
-        pwd.appendChild(doc.createTextNode(password));
-        rootElement.appendChild(pwd);
-
-        final TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        final Transformer transformer = transformerFactory.newTransformer();
-
-        final DOMSource source = new DOMSource(doc);
-
-        final StreamResult result = new StreamResult(new File(path + ext));
-        transformer.transform(source,  result);
-    }
-
-    /**
      * Add a player to the file.
-     * @param player
-     *          the user to add in the file.
+     * @param userName
+     *          the user name to add in the file.
+     * @param password
+     *          the password associated with the user.
      * @throws ParserConfigurationException
      *          parser exception.
-     * @throws SAXException
-     *          SAX exception.
      * @throws IOException
      *          IO exception.
      * @throws TransformerException
      *          transformer exception.
+     * @throws SAXException 
+     *          SAX exception.
      */
-    public static void addPlayer(final UserData player) throws ParserConfigurationException, SAXException, IOException, TransformerException {
-        final Document doc = getDocument(DirectoryManager.SURVIVAL_FILE);
+    public static void submitUser(final String userName, final String password) throws ParserConfigurationException, IOException, TransformerException, SAXException  {
+        int countUsers;
+        final Document doc = getDocument(DirectoryManager.USERS_LIST_FILE);
         final Element root = doc.getDocumentElement();
 
+        if (!root.hasChildNodes()) {
+            countUsers = 1;
+        } else {
+            Element lastUser = (Element) root.getLastChild();
+            countUsers = Integer.valueOf(lastUser.getAttribute("id")) + 1;
+        }
+
         final Element user = doc.createElement("user");
-        user.setAttribute("id", String.valueOf(player.getUserName().hashCode()));
+        user.setAttribute("id", String.valueOf(countUsers));
         root.appendChild(user);
 
-        final Element userName = doc.createElement("name");
-        userName.appendChild(doc.createTextNode(player.getUserName()));
-        user.appendChild(userName);
+        final Element name = doc.createElement("name");
+        name.appendChild(doc.createTextNode(userName));
+        user.appendChild(name);
 
-        final Element globalScore = doc.createElement("score");
-        globalScore.appendChild(doc.createTextNode(String.valueOf(player.getGlobalScore())));
-        user.appendChild(globalScore);
-
-        final Element destroyedBalls = doc.createElement("balls");
-        destroyedBalls.appendChild(doc.createTextNode(String.valueOf(player.getDestroyedBalls())));
-        user.appendChild(destroyedBalls);
-
-        final Element spawnedBullets = doc.createElement("bullets");
-        spawnedBullets.appendChild(doc.createTextNode(String.valueOf(player.getSpawnedBullets())));
-        user.appendChild(spawnedBullets);
-
-        final Element playedMatches = doc.createElement("matches");
-        playedMatches.appendChild(doc.createTextNode(String.valueOf(player.getMatchesPlayed())));
-        user.appendChild(playedMatches);
-
-        final Element gameTime = doc.createElement("time");
-        gameTime.appendChild(doc.createTextNode(String.valueOf(player.getGameTime())));
-        user.appendChild(gameTime);
+        final Element pwd = doc.createElement("password");
+        pwd.appendChild(doc.createTextNode(password));
+        user.appendChild(pwd);
 
         final TransformerFactory transformerFactory = TransformerFactory.newInstance();
         final Transformer transformer = transformerFactory.newTransformer();
 
         final DOMSource source = new DOMSource(doc);
 
-        final StreamResult result = new StreamResult(new File(DirectoryManager.SURVIVAL_FILE));
+        final StreamResult result = new StreamResult(new File(DirectoryManager.USERS_LIST_FILE));
         transformer.transform(source,  result);
     }
 }

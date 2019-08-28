@@ -1,8 +1,130 @@
 package ballblast.controller.files;
 
+import java.beans.ExceptionListener;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Optional;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
+import org.xml.sax.SAXException;
+
+import ballblast.controller.DirectoryManager;
+import ballblast.model.data.UserData;
+
 /**
- * The manager for the I/O of the user data.
+ * The manager for the handling of the user data.
  */
 public class UserManager {
 
+    /**
+     * Tries to login a user.
+     * @param userName
+     *          the user name.
+     * @param password
+     *          the user password.
+     * @return
+     *          an {@link Optional} {@link UserData} object, empty if the login failed.
+     * @throws ParserConfigurationException
+     *          perser exception.
+     * @throws SAXException
+     *          SEX exception.
+     * @throws IOException
+     *          IO exception.
+     */
+    public Optional<UserData> login(final String userName, final String password) throws ParserConfigurationException, SAXException, IOException {
+        if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName))) && XMLFileManager.checkUserPassword(userName, password)) {
+            try {
+                return Optional.of(this.load(userName));
+            } catch (IOException e) {
+                e.printStackTrace();
+                return Optional.empty();
+            }
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Tries to register a new user.
+     * @param userName
+     *          the user name.
+     * @param password
+     *          the user password.
+     * @return
+     *          an {@link Optional} {@link UserData} object, empty if the registration failed.
+     * @throws ParserConfigurationException
+     *          parser exception.
+     * @throws IOException
+     *          IO exception.
+     * @throws TransformerException
+     *          transformer exception.
+     * @throws SAXException
+     *          SAX exception.
+     */
+    public Optional<UserData> register(final String userName, final String password) throws ParserConfigurationException, IOException, TransformerException, SAXException  {
+        if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName)))) {
+            // UserName already exists -> choose an other one.
+            return Optional.empty();
+        } else {
+            XMLFileManager.submitUser(userName, password);
+            UserData user = new UserData();
+            user.setName(userName);
+            user.setPassword(password);
+            try {
+                save(user);
+                return Optional.of(user);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return Optional.empty();
+            }
+        }
+    }
+
+    /**
+     * Updates the user data at the end of a game session.
+     * @param user
+     *          the {@link UserData} to update
+     * @return
+     *          false if save operation fails, true otherwise.
+     */
+    public boolean updateUserData(final UserData user) {
+        try {
+            save(user);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    private void save(final UserData user) throws IOException {
+        FileOutputStream fos = new FileOutputStream(DirectoryManager.getUserFile(user.getName()));
+        XMLEncoder encoder = new XMLEncoder(fos);
+        encoder.setExceptionListener(new ExceptionListener() {
+
+            @Override
+            public void exceptionThrown(final Exception e) {
+                e.printStackTrace();
+            }
+
+        });
+        encoder.writeObject(user);
+        encoder.close();
+        fos.close();
+    }
+
+    private UserData load(final String userName) throws IOException {
+        FileInputStream fis = new FileInputStream(DirectoryManager.getUserFile(userName));
+        XMLDecoder decoder = new XMLDecoder(fis);
+        UserData user = (UserData) decoder.readObject();
+        decoder.close();
+        fis.close();
+        return user;
+    }
 }

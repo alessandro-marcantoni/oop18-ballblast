@@ -41,15 +41,15 @@ public final class DirectoryManager {
                                            + SEPARATOR
                                            + "users";
 
-//    /**
-//     * Static field that contains the file of the users list.
-//     */
-//    public static final String USERS_LIST_FILE = USERS_DIR
-//                                                 + SEPARATOR
-//                                                 + "users_list.xml";
+    /**
+     * Static field that contains the file of the users list.
+     */
+    public static final String USERS_LIST_FILE = USERS_DIR
+                                                 + SEPARATOR
+                                                 + "userslist.xml";
 
     /**
-     * Static field that contains the file with the datas of the users in the survival mode.
+     * Static field that contains the file with the leaderboard of the users in the survival mode.
      */
     public static final String SURVIVAL_FILE = SCOREBOARD_DIR
                                                + SEPARATOR
@@ -82,7 +82,16 @@ public final class DirectoryManager {
             Files.createDirectories(Paths.get(USERS_DIR));
             if (!Files.exists(Paths.get(SURVIVAL_FILE))) {
                 try {
-                    XMLFileManager.createEmptyFile(SURVIVAL_FILE);
+                    XMLFileManager.createEmptyFile(SURVIVAL_FILE, "players");
+                } catch (ParserConfigurationException e) {
+                    e.printStackTrace();
+                } catch (TransformerException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (!Files.exists(Paths.get(USERS_LIST_FILE))) {
+                try {
+                    XMLFileManager.createEmptyFile(USERS_LIST_FILE, "credentials");
                 } catch (ParserConfigurationException e) {
                     e.printStackTrace();
                 } catch (TransformerException e) {

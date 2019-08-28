@@ -7,7 +7,7 @@ import ballblast.model.gameobjects.GameObject;
  */
 public class MovementComponent extends AbstractComponent {
     /**
-     * Creates a {@link MovementComponent} instance.
+     * Class constructor.
      */
     public MovementComponent() {
         super(ComponentTypes.MOVEMENT);
@@ -16,7 +16,6 @@ public class MovementComponent extends AbstractComponent {
     @Override
     public final void update(final double elapsed) {
         if (this.isEnabled()) {
-            //this.translate(this.getParent().getVelocity().multiply(elapsed), this.getParent().getPosition());
             this.updatePosition(elapsed);
         }
     }
@@ -26,9 +25,4 @@ public class MovementComponent extends AbstractComponent {
         parent.getVelocity().multiply(elapsed);
         parent.setPosition(parent.getVelocity().translate(parent.getPosition()));
     }
-    /*private void translate(final Vector2D velocity, final Coordinate position) {
-        this.getParent().setPosition(new Coordinate(
-                position.getX() + velocity.getX(), position.getY() + velocity.getY()));
-    }*/
-
 }

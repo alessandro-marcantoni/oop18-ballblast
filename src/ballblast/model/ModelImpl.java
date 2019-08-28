@@ -13,7 +13,7 @@ import ballblast.model.levels.SinglePlayerDecorator;
 import ballblast.model.levels.SurvivalLevelDecorator;
 
 /**
- * This is the concrete implementation of model interface.
+ * This is the concrete implementation of the {@link Model} interface.
  */
 public final class ModelImpl implements Model {
     private Level currentLevel;

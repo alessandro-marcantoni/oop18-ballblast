@@ -8,32 +8,37 @@ import ballblast.model.gameobjects.GameObject;
 public interface Component {
     /**
      * Updates Component status.
-     * @param elapsed
-     *     the time elapsed since last update.
+     * 
+     * @param elapsed the time elapsed since last update.
      */
     void update(double elapsed);
+
     /**
      * Enables the {@link Component}.
      */
     void enable();
+
     /**
      * Disables the {@link Component}.
      */
     void disable();
+
     /**
-     * @return
-     *     the tag which defines the {@link ComponentType}.
+     * @return the tag which defines the {@link ComponentType}.
      */
     ComponentTypes getType();
+
     /**
      * Sets the {@link Component}'s parent.
-     * @param parent
-     *     the {@link GameObject} attached to the {@link Component}. 
+     * 
+     * @param parent the {@link GameObject} attached to the {@link Component}.
      */
     void setParent(GameObject parent);
+
     /**
-     * @return
-     *     the {@link GameObject} attached to the {@link Component}.
+     * Gets the {@link GameObject} attached.
+     * 
+     * @return the {@link GameObject} attached to the {@link Component}.
      */
     GameObject getParent();
 }

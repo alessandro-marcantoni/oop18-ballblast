@@ -20,5 +20,9 @@ public enum GameObjectTypes {
     /**
      * Wall.
      */
-    WALL
+    WALL,
+    /**
+     * Powerup.
+     */
+    POWERUP
 }

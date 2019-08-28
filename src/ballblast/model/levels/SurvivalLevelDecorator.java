@@ -17,7 +17,7 @@ import ballblast.model.gameobjects.GameObjectFactory;
  * Represents a concrete implementation of {@link LevelDecorator}.
  */
 public class SurvivalLevelDecorator extends LevelDecorator {
-    private static final int SPAWN_TIME = 5;
+    private static final int SPAWN_TIME = 10;
     private static final int ENABLE_TIME = 2;
     private static final double SPAWN_HEIGHT = 90;
     private static final Vector2D BALL_VELOCITY = Vector2D.create(16, 0);
@@ -25,8 +25,8 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     private static final int MAX_BALL_LIFE = 200;
     private static final double LIFE_MULTIPLIER = 0.25;
 
-    private int currentSpawnTime;
-    private int currentEnableTime;
+    private double currentSpawnTime;
+    private double currentEnableTime;
     private Optional<GameObject> spawnedBall;
 
     /**
@@ -37,19 +37,15 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     public SurvivalLevelDecorator(final Level level) {
         super(level);
         this.spawnedBall = Optional.empty();
-        this.currentSpawnTime = SPAWN_TIME;
         this.currentEnableTime = ENABLE_TIME;
     }
 
     @Override
     public final void update(final double elapsed) {
         super.update(elapsed);
-        if (this.getGameStatus() == GameStatus.OVER) {
-            this.calculateScore();
-        } else {
-            this.tryToEnable(elapsed);
-            this.tryToSpawn(elapsed);
-        }
+        this.tryToEnable(elapsed);
+        this.tryToSpawn(elapsed);
+        this.calculateScore();
     }
 
     private static double generateRandomDouble(final double min, final double max) {

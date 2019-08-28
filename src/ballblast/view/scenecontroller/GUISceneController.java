@@ -74,6 +74,7 @@ public class GUISceneController extends AbstractSceneController {
      * @param view
      *          the {@link View}.
      */
+    @Override
     public void init(final Controller controller, final View view) {
         super.init(controller, view);
         this.idleState = new IdleState(this, controller, this.message);
@@ -107,9 +108,8 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     public final void render() {
-        // SCORE DA IMPLEMENTARE!!!
-        //this.timeScoreGameLabel.setText(Integer.toString(this.getController().getTimeScore()));
-        //this.ballsScoreGameLabel.setText(Integer.toString(this.getController().getBallsScore()));
+        this.timeScoreGameLabel.setText(Double.toString(this.getController().getGameData().getTime()));
+        this.ballsScoreGameLabel.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
         this.canvasDrawer.draw();
     }
 

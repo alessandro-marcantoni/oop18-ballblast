@@ -20,6 +20,8 @@ public class LoginController extends AbstractSceneController {
 
     @FXML
     private TextField userTextField;
+    @FXML
+    private TextField pswTextField;
 
     @Override
     public final void init(final Controller controller, final View view) {
@@ -39,16 +41,53 @@ public class LoginController extends AbstractSceneController {
     /**
      * 
      */
+    @FXML
     public void userLogin() {
-        if (!this.userTextField.getText().equals("")) {
-            nextScene();
+        if (checkTextField()) {
+//            if (this.getController().checkLogin(userTextField.getText(), pswTextField.getText())) {
+                this.nextScene();
+//            }
         } else {
+            final Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("DANGER");
+            alert.setHeaderText(null);
+            alert.setContentText("Data mismatch.");
+            alert.showAndWait();
+        }
+    }
+    /**
+     * 
+     */
+    @FXML
+    public void userRegister() {
+        if (checkTextField()) {
+//            if (this.getController().checkRegisterUser(userTextField.getText(), pswTextField.getText())) {
+                this.nextScene();
+//            }
+        } else {
+            final Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("DANGER");
+            alert.setHeaderText(null);
+            alert.setContentText("Data mismatch.");
+            alert.showAndWait();
+        }
+    }
+
+    private boolean checkTextField() {
+        if (this.userTextField.getText().equals("")) {
             final Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("DANGER");
             alert.setHeaderText(null);
             alert.setContentText("Insert a user name");
             alert.showAndWait();
+        } else if (this.pswTextField.getText().equals("")) {
+            final Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("DANGER");
+            alert.setHeaderText(null);
+            alert.setContentText("Insert a password");
+            alert.showAndWait();
         }
+        return true;
     }
 
     @Override

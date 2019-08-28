@@ -6,7 +6,6 @@ import ballblast.model.Model;
 import ballblast.model.ModelImpl;
 import ballblast.view.View;
 import ballblast.view.ViewImpl;
-import ballblast.view.utilities.ViewScenes;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -28,8 +27,8 @@ public final class BallBlast extends Application {
      *      CLI arguments.
      */
     public static void main(final String [] args) {
-        ViewScenes scene = ViewScenes.MAIN;
-        System.out.println(scene.getPath());
+//        ViewScenes scene = ViewScenes.MENU;
+//        System.out.println(scene.getPath());
         launch();
 
     }

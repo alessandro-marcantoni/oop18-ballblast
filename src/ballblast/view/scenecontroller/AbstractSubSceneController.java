@@ -13,6 +13,6 @@ public abstract class AbstractSubSceneController extends AbstractSceneController
      */
     @FXML
     protected void backToMenu() {
-        // super.getSceneFactory().openMenuScene();
+        this.backScene();
     }
 }

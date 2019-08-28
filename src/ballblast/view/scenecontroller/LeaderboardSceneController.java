@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 /**
  * 
- * Scene controller for Leaderboard scene.
+ * Scene controller for Leader board scene.
  * 
  */
 public class LeaderboardSceneController extends AbstractSubSceneController {

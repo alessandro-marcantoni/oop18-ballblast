@@ -29,12 +29,14 @@ public class SceneFactoryImpl implements SceneFactory {
     /**
      * @param stage TODO.
      */
+    @Override
     public void setStage(final Stage stage) {
         this.stage = stage;
     }
     /**
      * @return TODO.
      */
+    @Override
     public Stage getStage() {
         return this.stage;
     }

@@ -2,6 +2,7 @@ package ballblast.view.scenecontroller;
 
 import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 /**
  * 
@@ -10,16 +11,31 @@ import javafx.fxml.FXML;
  */
 public class MenuSceneController extends AbstractSceneController {
 
-    private boolean gameMode;
-    private boolean leaderboard;
-    private boolean settings;
-    private boolean manual;
+    @FXML
+    private Button startNewGameBtn;
+
+    @FXML
+    private Button leaderboardBtn;
+
+    @FXML
+    private Button manualBtn;
+
+    @FXML
+    private Button settingsBtn;
+
+    @FXML
+    private Button quitBtn;
+    private boolean gameMode = false;
+    private boolean leaderboard = false;
+    private boolean settings = false;
+    private boolean manual = false;
     /**
      * Open the game mode selection scene.
      */
     @FXML
     protected void openGameMode() {
         this.gameMode = true;
+        this.nextScene();
     }
     /**
      * Open leader board scene.
@@ -27,6 +43,7 @@ public class MenuSceneController extends AbstractSceneController {
     @FXML
     protected void openLeaderboard() {
         this.leaderboard = true;
+        this.nextScene();
     }
     /**
      * Open settings scene.
@@ -34,6 +51,7 @@ public class MenuSceneController extends AbstractSceneController {
     @FXML
     protected void openSettings() {
         this.settings = true;
+        this.nextScene();
     }
     /**
      * Open manual scene.
@@ -41,6 +59,7 @@ public class MenuSceneController extends AbstractSceneController {
     @FXML
     protected void openManual() {
        this.manual = true;
+       this.nextScene();
     }
     /**
      * Quit game.
@@ -49,6 +68,7 @@ public class MenuSceneController extends AbstractSceneController {
     protected void quitGame() {
         Runtime.getRuntime().exit(0);
     }
+
     @Override
     protected final ViewScenes getNextScene() {
         ViewScenes selection = ViewScenes.MENU;
@@ -71,5 +91,3 @@ public class MenuSceneController extends AbstractSceneController {
         return ViewScenes.LOGIN;
     }
 }
-
- 

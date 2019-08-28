@@ -65,16 +65,16 @@ public final class XMLFileManager {
      *          IO exception.
      */
     public static boolean checkUserPassword(final String userName, final String pwd) throws ParserConfigurationException, SAXException, IOException {
-        Document doc = getDocument(DirectoryManager.getUserFile(userName));
-        Node root = doc.getFirstChild();
-        Node obj = root.getChildNodes().item(1);
+        final Document doc = getDocument(DirectoryManager.getUserFile(userName));
+        final Node root = doc.getFirstChild();
+        final Node obj = root.getChildNodes().item(1);
 
-        NodeList property = obj.getChildNodes();
+        final NodeList property = obj.getChildNodes();
         for (int i = 0; i < property.getLength() - 1; i++) {
                 i++;
-                Node field = property.item(i);
+                final Node field = property.item(i);
                 if (field.getAttributes().item(0).getNodeValue().equals("password")) {
-                        Node password = field.getChildNodes().item(1);
+                        final Node password = field.getChildNodes().item(1);
                         if (password.getTextContent().equals(pwd)) {
                                 return true;
                         }
@@ -135,7 +135,7 @@ public final class XMLFileManager {
         if (!root.hasChildNodes()) {
             countUsers = 1;
         } else {
-            Element lastUser = (Element) root.getLastChild();
+            final Element lastUser = (Element) root.getLastChild();
             countUsers = Integer.valueOf(lastUser.getAttribute("id")) + 1;
         }
 

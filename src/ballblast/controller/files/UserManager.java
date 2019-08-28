@@ -1,6 +1,5 @@
 package ballblast.controller.files;
 
-import java.beans.ExceptionListener;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.FileInputStream;
@@ -74,7 +73,7 @@ public class UserManager {
             return Optional.empty();
         } else {
             XMLFileManager.submitUser(userName, password);
-            UserData user = new UserData();
+            final UserData user = new UserData();
             user.setName(userName);
             user.setPassword(password);
             try {
@@ -104,27 +103,21 @@ public class UserManager {
     }
 
     private void save(final UserData user) throws IOException {
-        FileOutputStream fos = new FileOutputStream(DirectoryManager.getUserFile(user.getName()));
-        XMLEncoder encoder = new XMLEncoder(fos);
-        encoder.setExceptionListener(new ExceptionListener() {
-
-            @Override
-            public void exceptionThrown(final Exception e) {
-                e.printStackTrace();
-            }
-
-        });
-        encoder.writeObject(user);
-        encoder.close();
-        fos.close();
+         try (FileOutputStream fos = new FileOutputStream(DirectoryManager.getUserFile(user.getName()));
+                XMLEncoder encoder = new XMLEncoder(fos)) {
+             encoder.writeObject(user);
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
     }
 
     private UserData load(final String userName) throws IOException {
-        FileInputStream fis = new FileInputStream(DirectoryManager.getUserFile(userName));
-        XMLDecoder decoder = new XMLDecoder(fis);
-        UserData user = (UserData) decoder.readObject();
-        decoder.close();
-        fis.close();
-        return user;
+        try (FileInputStream fis = new FileInputStream(DirectoryManager.getUserFile(userName));
+                XMLDecoder decoder = new XMLDecoder(fis)) {
+            return (UserData) decoder.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

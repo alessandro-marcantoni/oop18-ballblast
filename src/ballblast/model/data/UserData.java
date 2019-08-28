@@ -16,11 +16,10 @@ public class UserData {
     private int spawnedBullets;
 
     /**
-     * Empty costructor to serialize the object in an xml file.
+     * Empty constructor to make the object serializable into xml file.
      */
-    public UserData() {
-
-    }
+//    public UserData() { 
+//    }
 
     /**
      * Update the user fields with the game session data.

@@ -10,18 +10,20 @@ import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
 
 /**
- * Makes a {@link GameObject} controllable through the use of inputs (for example via keyboard).
+ * Makes a {@link GameObject} controllable through the use of inputs (for
+ * example via keyboard).
  */
 public class InputComponent extends AbstractComponent {
     private final InputManager inputManager;
     private final PlayerTags tag;
     private List<Consumer<GameObject>> commands;
+
     /**
-     * Creats an {@link InputComponent} instance.
-     * @param inputManager
-     *     the {@link InputManager} used to received inputs.
-     * @param tag
-     *     the {@link PlayerTags} used to identifies the {@link InputComponent} inside the {@link InputManager}.
+     * Class constructor.
+     * 
+     * @param inputManager the {@link InputManager} used to received inputs.
+     * @param tag          the {@link PlayerTags} used to identifies the
+     *                     {@link InputComponent} inside the {@link InputManager}.
      */
     public InputComponent(final InputManager inputManager, final PlayerTags tag) {
         super(ComponentTypes.INPUT);
@@ -48,10 +50,11 @@ public class InputComponent extends AbstractComponent {
             this.resolveCommands();
         }
     }
+
     /**
      * Receives {@link Command}s to be resolved.
-     * @param list
-     *     the {@link List} of {@link Command}s to be resolved.
+     * 
+     * @param list the {@link List} of {@link Command}s to be resolved.
      */
     public final void receiveCommands(final List<Consumer<GameObject>> list) {
         this.commands = ImmutableList.copyOf(list);

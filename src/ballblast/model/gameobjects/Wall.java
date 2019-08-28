@@ -1,12 +1,14 @@
 package ballblast.model.gameobjects;
 
 import com.google.common.base.MoreObjects;
+
 /**
- * Represents a wall object used to create the level's boundaries. 
+ * Represents a {@link Wall} object used to create the {@link Level}'s
+ * boundaries.
  */
-public final class Wall extends AbstractGameObject {  // NOPMD This class is usable only trought a Builder.
+public final class Wall extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
     /**
-     * Creates a {@link Wall} instance.
+     * Class constructor.
      */
     private Wall() {
         super(GameObjectTypes.WALL);
@@ -14,33 +16,33 @@ public final class Wall extends AbstractGameObject {  // NOPMD This class is usa
 
     @Override
     public String toString() {
-       return MoreObjects.toStringHelper(this)
-               .add("GameObjectType", this.getType())
-               .add("Position", this.getPosition())
-               .add("IsDestroyed", this.isDestroyed())
-               .toString();
+        return MoreObjects.toStringHelper(this)
+                .add("GameObjectType", this.getType())
+                .add("Position", this.getPosition().toString())
+                .add("IsDestroyed", this.isDestroyed())
+                .toString();
     }
+
     /**
      * Concrete implementation of {@link AbstractGameObject.AbstractBuilder}.
      */
     public static class Builder extends AbstractGameObject.AbstractBuilder<Wall, Builder> {
         /**
          * Sets the {@link Wall}'s height.
-         * @param height
-         *     the height of the {@link Wall}.
-         * @return
-         *     the {@link Builder}.
+         * 
+         * @param height the height of the {@link Wall}.
+         * @return the {@link Builder}.
          */
         public Builder setHeight(final double height) {
             this.getGameObject().setHeight(height);
             return this;
         }
+
         /**
          * Sets the {@link Wall}'s width.
-         * @param width
-         *     the width of the {@link Wall}.
-         * @return
-         *     the {@link Builder}.
+         * 
+         * @param width the width of the {@link Wall}.
+         * @return the {@link Builder}.
          */
         public Builder setWidth(final double width) {
             this.getGameObject().setWidth(width);
@@ -58,4 +60,3 @@ public final class Wall extends AbstractGameObject {  // NOPMD This class is usa
         }
     }
 }
-

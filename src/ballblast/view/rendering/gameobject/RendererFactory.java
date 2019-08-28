@@ -4,6 +4,7 @@ import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.Bullet;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.Player;
+import ballblast.model.gameobjects.Wall;
 import ballblast.view.rendering.Renderer;
 import ballblast.view.rendering.Sprite;
 /**
@@ -39,7 +40,16 @@ public final class RendererFactory {
         return new BallRenderer(sprite, (Ball) gameObject);
     }
 
-    /*public static Renderer createWallRenderer(final Sprite s, final GameObject g) {
-        return new WallRenderer(s, (Wall) g);
-    }*/
+    /**
+     * Creates a {@link Wall} {@link Renderer}.
+     * @param sprite
+     *          the {@link Sprite}.
+     * @param gameObject
+     *          the {@link GameObject} to be rendered.
+     * @return
+     *          the {@link Renderer} used to render a {@link Wall}.
+     */
+    public static Renderer createWallRenderer(final Sprite sprite, final GameObject gameObject) {
+        return new WallRenderer(sprite, (Wall) gameObject);
+    }
 }

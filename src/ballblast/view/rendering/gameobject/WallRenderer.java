@@ -1,4 +1,3 @@
-
 package ballblast.view.rendering.gameobject;
 
 import org.locationtech.jts.geom.Coordinate;
@@ -21,13 +20,11 @@ public class WallRenderer extends GameObjectRenderer<Wall> {
      *     The {@link Sprite} used to render.
      * @param gameObject
      *     The {@link Wall} {@link GameObject}.
-     * @param wallImage
-     *     The {@link ImagePath} of the wall texture to be used.
      */
-    public WallRenderer(final Sprite sprite, final Wall gameObject, final ImagePath wallImage) {
+    public WallRenderer(final Sprite sprite, final Wall gameObject) {
         super(sprite, gameObject);
         this.setLayer(Layers.WALL_LAYER);
-        sprite.setSource(wallImage);
+        sprite.setSource(ImagePath.WALL);
         final double width = gameObject.getWidth() * sprite.getSourceWidth() / MAX_SIZE;
         final double height = gameObject.getHeight() * sprite.getSourceHeight() / MAX_SIZE;
         double x = gameObject.getPosition().getX() + (Model.WORLD_WIDTH + Model.WALL_OFFSET) / 2 - gameObject.getWidth() / 2;
@@ -37,4 +34,3 @@ public class WallRenderer extends GameObjectRenderer<Wall> {
         sprite.setSourceWindow(new Coordinate(x, y), new Vector2D(width, height));
     }
 }
-

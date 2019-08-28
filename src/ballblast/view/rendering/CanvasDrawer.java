@@ -27,8 +27,8 @@ public class CanvasDrawer {
         RENDERER_MAP = ImmutableBiMap.of(
                 GameObjectTypes.BALL,   p -> RendererFactory.createBallRenderer(p.getKey(), p.getValue()),
                 GameObjectTypes.BULLET, p -> RendererFactory.createBulletRenderer(p.getKey(), p.getValue()),
-                GameObjectTypes.PLAYER, p -> RendererFactory.createPlayerRenderer(p.getKey(), p.getValue())
-                //GameObjectTypes.WALL, c -> new WallRenderer(generateSprite(c), player)
+                GameObjectTypes.PLAYER, p -> RendererFactory.createPlayerRenderer(p.getKey(), p.getValue()),
+                GameObjectTypes.WALL, p -> RendererFactory.createWallRenderer(p.getKey(), p.getValue())
         );
     }
     /**

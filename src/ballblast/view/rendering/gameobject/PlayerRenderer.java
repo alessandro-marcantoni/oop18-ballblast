@@ -14,7 +14,7 @@ public class PlayerRenderer extends GameObjectRenderer<Player> {
 
     private static final int COLUMNS = 4;
     private static final int ROWS = 5;
-    //private static final double PLAYER_OFFSET = 3;
+    private static final double PLAYER_OFFSET = 3;
     /**
      * 
      * @param sprite
@@ -30,11 +30,11 @@ public class PlayerRenderer extends GameObjectRenderer<Player> {
         spriteSheet.setCell(3, 2);
     }
 
-    /*@Override
+    @Override
     public void render() {
         this.getSprite().setPosition(this.getGameObject().getPosition());
         this.getSprite().setWidth(this.getGameObject().getWidth() + PLAYER_OFFSET);
         this.getSprite().setHeight(this.getGameObject().getHeight());
         this.getSprite().render();
-    }*/
+    }
 }

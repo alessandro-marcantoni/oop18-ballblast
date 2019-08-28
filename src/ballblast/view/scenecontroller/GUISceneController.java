@@ -2,7 +2,6 @@ package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
 import ballblast.model.Model;
-import ballblast.model.levels.Level;
 import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
 import ballblast.view.scenefactory.UIFactory;
@@ -63,7 +62,6 @@ public class GUISceneController extends AbstractSceneController {
     private GUIState pausedState;
     private UIFactory userInterface;
     private CanvasDrawer canvasDrawer;
-    private Level level;
 
 
     /**
@@ -80,9 +78,9 @@ public class GUISceneController extends AbstractSceneController {
         this.pausedState = new PausedState(this, controller, this.pausePane);
         this.userInterface = new UIFactory();
         this.resetGameCanvasCoordinates();
-        // ...
+        // ..
         this.canvasDrawer = new CanvasDrawer(this.canvas);
-        // ...
+        // ..
         this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
         this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
         this.setState(this.idleState);
@@ -105,7 +103,7 @@ public class GUISceneController extends AbstractSceneController {
     public final void render() {
         this.score.setText(Double.toString(this.getController().getGameData().getTime()));
         this.balls.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
-        this.canvasDrawer.draw();
+        this.canvasDrawer.draw(this.getController().getGameObjects());
     }
 
     private void resetGameCanvasCoordinates() {
@@ -116,9 +114,9 @@ public class GUISceneController extends AbstractSceneController {
         gc.fillRect(0, 0, canvasWidth, canvasHeight);
         gc.scale(1, -1);
         gc.translate(canvasWidth / 2, -canvasHeight);
-        // Model.WALL_OFFSET --> WALL_WIDTH or WALL_HEIGHT?
+        // Model.WALL_OFFSET --> WALL_WIDTH
         gc.scale(canvasWidth / (Model.WORLD_WIDTH + Model.WALL_OFFSET), 
-                canvasHeight / (Model.WORLD_HEIGHT + Model.WALL_OFFSET));
+                 canvasHeight / (Model.WORLD_HEIGHT));
         gc.translate(0, Model.WALL_OFFSET);
     }
 

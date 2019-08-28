@@ -42,8 +42,6 @@ public class ViewImpl implements View {
        this.stage.setMaximized(true);
        this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
        this.loadScene(ViewScenes.MAIN);
-//       this.sceneFactory.setStage(this.stage);
-//       this.sceneFactory.openMenuScene();
        //ImageLoader.getLoader().loadAll();
     }
 

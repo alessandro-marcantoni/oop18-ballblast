@@ -47,21 +47,6 @@ public enum BallColors {
      */
     BALL_ORANGE(Color.ORANGE);
 
-//    private static final String PATH = "/view/balls/";
-//    private Image image;
-//
-//    private BallColors(final String ballColor) {
-//        this.image = new Image(getClass().getResourceAsStream(PATH + ballColor));
-//    }
-//
-//    /**
-//     * 
-//     * @return
-//     *          the ball image
-//     */
-//    public Image getImage() {
-//        return this.image;
-//    }
     private final Color color;
 
     BallColors(final Color color) {

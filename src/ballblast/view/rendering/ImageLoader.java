@@ -1,5 +1,7 @@
 package ballblast.view.rendering;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import javafx.scene.image.Image;
 
@@ -25,6 +27,7 @@ public class ImageLoader {
      *          the Image.
      */
     public Image getImage(final ImagePath id) {
+        Path path = Paths.get(id.getPath());
         return new Image(ImageLoader.class.getResourceAsStream(id.getPath()));
     }
     /**

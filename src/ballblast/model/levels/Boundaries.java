@@ -28,19 +28,19 @@ public enum Boundaries {
     static {
         /*TODO
         LEFT.position = new Coordinate(0, 0);
-        LEFT.width = Model.WALL_OFFSET;
+        LEFT.width = Model.WALL_OFFSET * 2;
         LEFT.height = Model.WORLD_HEIGHT;
 
         RIGHT.position = new Coordinate(Model.WORLD_WIDTH - Model.WALL_OFFSET, 0);
-        RIGHT.width = Model.WALL_OFFSET;
+        RIGHT.width = Model.WALL_OFFSET * 2;
         RIGHT.height = Model.WORLD_HEIGHT; 
 
         TOP.position = new Coordinate(Model.WALL_OFFSET, 0);
-        TOP.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 2;
+        TOP.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 4;
         TOP.height = Model.WALL_OFFSET; 
 
         BOTTOM.position = new Coordinate(Model.WALL_OFFSET, Model.WORLD_HEIGHT - Model.WALL_OFFSET);
-        BOTTOM.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 2;
+        BOTTOM.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 4;
         BOTTOM.height = Model.WALL_OFFSET; 
         */
         LEFT.position = new Coordinate(Model.WALL_OFFSET, Model.WORLD_HEIGHT / 2);
@@ -58,6 +58,7 @@ public enum Boundaries {
         BOTTOM.position = new Coordinate(Model.WORLD_WIDTH / 2, Model.WORLD_HEIGHT - Model.WALL_OFFSET);
         BOTTOM.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 4;
         BOTTOM.height = Model.WALL_OFFSET * 2; 
+
     }
 
     private final Vector2D velocity = Vector2D.create(0, 0);

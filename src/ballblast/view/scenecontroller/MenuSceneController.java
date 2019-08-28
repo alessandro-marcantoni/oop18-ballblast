@@ -2,7 +2,9 @@ package ballblast.view.scenecontroller;
 
 import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * 
@@ -35,6 +37,9 @@ public class MenuSceneController extends AbstractSceneController {
     @FXML
     protected void openGameMode() {
         this.gameMode = true;
+        this.manual = false;
+        this.settings = false;
+        this.leaderboard = false;
         this.nextScene();
     }
     /**
@@ -43,6 +48,9 @@ public class MenuSceneController extends AbstractSceneController {
     @FXML
     protected void openLeaderboard() {
         this.leaderboard = true;
+        this.gameMode = false;
+        this.settings = false;
+        this.manual = false;
         this.nextScene();
     }
     /**
@@ -50,8 +58,13 @@ public class MenuSceneController extends AbstractSceneController {
      */
     @FXML
     protected void openSettings() {
-        this.settings = true;
-        this.nextScene();
+//        this.settings = true;
+//        this.nextScene();
+        final Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Work in progress...");
+        alert.setHeaderText(null);
+        alert.setContentText("Not implemented yet.");
+        alert.showAndWait();
     }
     /**
      * Open manual scene.

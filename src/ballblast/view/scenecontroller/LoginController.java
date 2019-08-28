@@ -62,7 +62,12 @@ public class LoginController extends AbstractSceneController {
     public void userRegister() {
         if (checkTextField()) {
 //            if (this.getController().checkRegisterUser(userTextField.getText(), pswTextField.getText())) {
-                this.nextScene();
+//            this.nextScene();
+            final Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Work in progress...");
+            alert.setHeaderText(null);
+            alert.setContentText("Not implemented yet.");
+            alert.showAndWait();
 //            }
         } else {
             final Alert alert = new Alert(AlertType.WARNING);

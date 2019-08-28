@@ -54,7 +54,7 @@ public enum ViewScenes {
     private final String selectedScene;
 //    private static final String SEP = File.separator;
 //    private static final String PATH = SEP + ".." + SEP + ".." + SEP + ".." + SEP + "view" + SEP + "scenes" + SEP;
-    private static final String PATH = "C:\\Users\\eliam\\Desktop\\Progetto\\oop18-ballblast\\bin\\view\\scenes\\";
+    private static final String PATH = "C:\\Users\\eliam\\Desktop\\Progetto\\oop18-ballblast\\res\\view\\scenes\\";
     /**
      * 
      * @param scene

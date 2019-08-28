@@ -14,7 +14,7 @@ import ballblast.model.physics.CollisionManager;
  * Adds the shotting ability to a {@link GameObject}.
  */
 public class ShooterComponent extends AbstractComponent {
-    private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -70);
+    private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -3);
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final GameDataManager gameDataManager;

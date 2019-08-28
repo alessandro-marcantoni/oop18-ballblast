@@ -59,7 +59,7 @@ class TestLevel {
     }
 
     private void ballSpawnerTest(final Level level) {
-        final int spawnTime = 50;
+        final int spawnTime = 100;
         final int enableTime = 20;
         final long oldCount = this.getCollidablesCount(level);
         level.update(SAMPLE_ELAPSED * spawnTime);

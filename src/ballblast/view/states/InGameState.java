@@ -56,12 +56,15 @@ public class InGameState extends GUIState {
 
     @Override
     public final void onKeyPressed(final KeyEvent event) {
-        PRESSED_INPUT_MAP.get(event.getCode()).accept(this);
+        if (PRESSED_INPUT_MAP.containsKey(event.getCode())) {
+            PRESSED_INPUT_MAP.get(event.getCode()).accept(this);
+        }
     }
 
     @Override
     public final void onKeyReleased(final KeyEvent event) {
-        RELEASED_INPUT_MAP.get(event.getCode()).accept(this);
+        if (RELEASED_INPUT_MAP.containsKey(event.getCode())) {
+            RELEASED_INPUT_MAP.get(event.getCode()).accept(this);
+        }
     }
-
 }

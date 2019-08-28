@@ -1,9 +1,9 @@
 package ballblast.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import ballblast.model.Model;
@@ -19,18 +19,11 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
     private static final long PERIOD = 20;
 
-    private static final Map<PlayerTags, List<InputTypes>> INPUTS;
+    private final Map<PlayerTags, List<InputTypes>> inputs;
     private boolean stopped;
     private boolean paused;
     private final View view;
     private final Model model;
-
-    static {
-        INPUTS = ImmutableMap.of(
-                PlayerTags.FIRST, ImmutableList.of(),
-                PlayerTags.SECOND, ImmutableList.of()
-        );
-    }
 
     /**
      * Creates a new game loop instance.
@@ -45,6 +38,10 @@ public class GameLoopImpl extends Thread implements GameLoop {
         this.setDaemon(true);
         this.view = view;
         this.model = model;
+        this.inputs = ImmutableMap.of(
+                PlayerTags.FIRST, new ArrayList<>(),
+                PlayerTags.SECOND, new ArrayList<>()
+        );
     }
 
     @Override
@@ -97,9 +94,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     @Override
     public final void receiveInputs(final PlayerTags tag, final InputTypes input) {
-        INPUTS.forEach((k, v) -> v = ImmutableList.<InputTypes>builder()
-                .addAll(INPUTS.get(tag))
-                .add(input).build());
+        inputs.get(tag).add(input);
     }
 
 
@@ -122,11 +117,11 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private void processInput() {
-        INPUTS.forEach((k, v) -> this.model.resolveInputs(k, v));
-        this.emptyList();
-    }
-
-    private void emptyList() {
-        INPUTS.forEach((k, v) -> v = ImmutableList.of());
+        inputs.forEach((k, v) -> {
+            if (!v.isEmpty()) {
+                this.model.resolveInputs(k, v);
+                v.clear();
+            }
+        });
     }
 }

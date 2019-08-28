@@ -101,7 +101,7 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     public final void render() {
-        this.score.setText(Double.toString(this.getController().getGameData().getTime()));
+        this.score.setText(Double.toString(this.getController().getGameData().getScore()));
         this.balls.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
         this.canvasDrawer.draw(this.getController().getGameObjects());
     }

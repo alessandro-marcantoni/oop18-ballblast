@@ -1,4 +1,4 @@
-package ballblast.view.entities;
+package ballblast.view.rendering.gameobject;
 
 import java.util.Arrays;
 import java.util.Collections;

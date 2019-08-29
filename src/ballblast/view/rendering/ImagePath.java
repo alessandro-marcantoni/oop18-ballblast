@@ -1,6 +1,6 @@
 package ballblast.view.rendering;
 
-import ballblast.view.entities.BallColors;
+import ballblast.view.rendering.gameobject.BallColors;
 /**
  * Identifies an image stored on the disk and its path.
  */

@@ -43,7 +43,7 @@ public class ViewImpl implements View {
        this.stage.setMaximized(true);
        this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
        this.loadScene(ViewScenes.MAIN);
-       //ImageLoader.getLoader().loadAll();
+//       ImageLoader.getLoader().loadAll();
     }
 
     @Override

@@ -1,7 +1,5 @@
 package ballblast.view.rendering;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
@@ -15,11 +13,13 @@ import javafx.scene.image.Image;
 public class ImageLoader {
     private static final ImageLoader SINGLETON = new ImageLoader();
     private final Map<ImagePath, Image> imageMap;
-    
+    /**
+     * Simple constructor.
+     */
     public ImageLoader() {
         this.imageMap = new EnumMap<>(ImagePath.class);
     }
-    
+
     /**
      * 
      * @return

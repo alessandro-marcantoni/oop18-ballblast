@@ -39,18 +39,22 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
 
     @Override
     public final void render() {
+//        this.gc.translate(this.getPosition().getX(), this.getPosition().getY());
         this.gc.translate(this.getPosition().getX(), this.getPosition().getY());
         this.gc.scale(1, -1);
         this.gc.setGlobalAlpha(this.getAlpha());
-        this.gc.drawImage(this.image, 
-                          this.getSourceTopLeftCorner().getX(),
-                          this.getSourceTopLeftCorner().getY(),
-                          this.getSourceOffset().getX(),
-                          this.getSourceOffset().getY(),
-                          (this.getPivot().getX() - 1) * this.getWidth() / 2,
-                          (this.getPivot().getY() - 1) * this.getHeight() / 2,
-                          this.getWidth(),
-                          this.getHeight());
+        this.gc.drawImage(
+                // the source image
+                this.image, 
+                // the source rectangle's coordinate position.
+                this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
+                // the source rectangle's dimension (width and height).
+                this.image.getWidth(), this.image.getHeight(),
+                // the destination rectangle's coordinate position.
+                (this.getPivot().getX() - 1) * this.getWidth() - 10, (this.getPivot().getY() - 1) * this.getHeight() / 4,
+                // the destination rectangle's dimension (width and height).
+                this.getWidth(), this.getHeight()
+                );
     }
 
     @Override
@@ -141,15 +145,17 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         return this.alpha;
     }
     /**
-     * 
-     * @return TO DO.
+     * Returns the position of the top-left corner of the source rectangle.
+     * @return 
+     *          the top-left corner.
      */
     protected final Coordinate getSourceTopLeftCorner() {
         return this.sourceTopLeft;
     }
     /**
-     * 
-     * @return TO DO.
+     * Returns the offset of the bottom-right corner from the top-left corner.
+     * @return 
+     *          the offset in pixel.
      */
     protected final Vector2D getSourceOffset() {
         return this.sourceOffset;

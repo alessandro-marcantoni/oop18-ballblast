@@ -2,6 +2,7 @@ package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
 import ballblast.model.Model;
+import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
 import ballblast.view.scenefactory.UIFactory;
@@ -74,6 +75,7 @@ public class GUISceneController extends AbstractSceneController {
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
         this.userInterface = new UIFactory();
+        
         this.resetGameCanvasCoordinates();
 
         this.canvasDrawer = new CanvasDrawer(this.canvas);
@@ -107,16 +109,20 @@ public class GUISceneController extends AbstractSceneController {
 
     private void resetGameCanvasCoordinates() {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
+        gc.setFill(Color.AQUAMARINE);
         gc.save();
+        
         final double canvasWidth = this.canvas.getWidth();
         final double canvasHeight = this.canvas.getHeight();
         gc.fillRect(0, 0, canvasWidth, canvasHeight);
+//        gc.scale(1, -1);
         gc.scale(1, -1);
-        gc.translate(canvasWidth / 2, -canvasHeight);
-        // Model.WALL_OFFSET --> WALL_WIDTH
-        gc.scale(canvasWidth / (Model.WORLD_WIDTH + Model.WALL_OFFSET), 
-                 canvasHeight / (Model.WORLD_HEIGHT));
-        gc.translate(0, Model.WALL_OFFSET);
+        gc.translate(canvasWidth / 2, -canvasHeight + 100);
+//        // Model.WALL_OFFSET --> WALL_WIDTH
+//        gc.scale(canvasWidth / (Model.WORLD_WIDTH + Model.WALL_OFFSET), 
+//                 canvasHeight / (Model.WORLD_HEIGHT));
+//        gc.scale(canvasWidth / Model.WORLD_WIDTH - Model.WALL_OFFSET, canvasHeight / Model.WORLD_HEIGHT);
+//        gc.translate(0, 0);
     }
 
     private void resizeCanvas() {

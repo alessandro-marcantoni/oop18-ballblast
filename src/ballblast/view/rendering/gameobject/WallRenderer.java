@@ -13,7 +13,7 @@ import ballblast.view.rendering.Sprite;
  */
 public class WallRenderer extends GameObjectRenderer<Wall> {
 
-    private static final double MAX_SIZE = Model.WORLD_WIDTH + Model.WALL_OFFSET;
+    private static final double MAX_SIZE = 100;
     /**
      * Creates a new {@link Wall} Renderer given its {@link Wall}{@link GameObject}.
      * @param sprite
@@ -27,10 +27,13 @@ public class WallRenderer extends GameObjectRenderer<Wall> {
         sprite.setSource(ImagePath.WALL);
         final double width = gameObject.getWidth() * sprite.getSourceWidth() / MAX_SIZE;
         final double height = gameObject.getHeight() * sprite.getSourceHeight() / MAX_SIZE;
-        double x = gameObject.getPosition().getX() + (Model.WORLD_WIDTH + Model.WALL_OFFSET) / 2 - gameObject.getWidth() / 2;
+//        double x = gameObject.getPosition().getX() + (Model.WORLD_WIDTH + Model.WALL_OFFSET) / 2 - gameObject.getWidth() / 2;
+//        double x = gameObject.getPosition().getX();
+        double x = gameObject.getPosition().getX() - sprite.getWidth() / 2;
         double y = Model.WORLD_HEIGHT - (gameObject.getPosition().getY() - Model.WALL_OFFSET + gameObject.getHeight() / 2);
-        x *= sprite.getSourceWidth() / MAX_SIZE;
-        y *= sprite.getSourceHeight() / MAX_SIZE;
+//        double y = gameObject.getPosition().getY();
+//        x *= sprite.getSourceWidth() / MAX_SIZE;
+//        y *= sprite.getSourceHeight() / MAX_SIZE;
         sprite.setSourceWindow(new Coordinate(x, y), new Vector2D(width, height));
     }
 }

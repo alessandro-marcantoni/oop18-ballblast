@@ -17,7 +17,7 @@ import ballblast.view.View;
  */
 public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
-    private static final long PERIOD = 20;
+    private static final long PERIOD = 30;
 
     private final Map<PlayerTags, List<InputTypes>> inputs;
     private boolean stopped;
@@ -100,7 +100,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     private boolean isStopped() {
         //return this.model.getCurrentLevel().isPresent() ? this.stopped || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.OVER) : this.stopped;
-        return this.stopped || model.getGameStatus() == GameStatus.OVER;
+        return this.stopped || model.getGameStatus().equals(GameStatus.OVER);
     }
 
     private boolean isPaused() {

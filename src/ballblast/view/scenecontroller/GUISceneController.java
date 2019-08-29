@@ -81,6 +81,8 @@ public class GUISceneController extends AbstractSceneController {
         // Adjust the canvas when resizing the window.
         this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
         this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
+        this.statusBarContainer.prefWidthProperty().bind(this.canvas.widthProperty());
+
         this.setState(this.inGameState);
     }
 
@@ -110,6 +112,7 @@ public class GUISceneController extends AbstractSceneController {
         gc.save();
         final double canvasWidth = this.canvas.getWidth();
         final double canvasHeight = this.canvas.getHeight();
+        gc.clearRect(0, 0, canvasWidth, canvasWidth);
         gc.fillRect(0, 0, canvasWidth, canvasHeight);
         gc.scale(1, -1);
 //        gc.translate(0, -canvasHeight);

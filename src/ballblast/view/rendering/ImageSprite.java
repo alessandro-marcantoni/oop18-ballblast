@@ -41,6 +41,8 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     @Override
     public final void render() {
 //        this.gc.translate(this.getPosition().getX() + Model.WALL_OFFSET * 5, this.getPosition().getY());
+        this.gc.clearRect(this.gameObject.getPosition().getX(), this.gameObject.getPosition().getY(),
+                          this.gameObject.getWidth(), this.gameObject.getHeight());
         this.gc.scale(1, -1);
         this.gc.setGlobalAlpha(this.getAlpha());
         this.gc.drawImage(
@@ -131,16 +133,16 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         return this.sourceOffset;
     }
 
-    @Override
-    public void setWidth(double width) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void setHeight(double height) {
-        // TODO Auto-generated method stub
-        
-    }
+//    @Override
+//    public void setWidth(double width) {
+//        // TODO Auto-generated method stub
+//        
+//    }
+//
+//    @Override
+//    public void setHeight(double height) {
+//        // TODO Auto-generated method stub
+//        
+//    }
 
 }

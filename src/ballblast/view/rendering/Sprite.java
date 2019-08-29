@@ -62,15 +62,15 @@ public interface Sprite extends Renderer {
      * @return
      */
     double getSourceWidth();
-    /**
-     * 
-     * @param d
-     */
-    void setWidth(double width);
-    /**
-     * 
-     * @param height
-     */
-    void setHeight(double height);
+//    /**
+//     * 
+//     * @param d
+//     */
+//    void setWidth(double width);
+//    /**
+//     * 
+//     * @param height
+//     */
+//    void setHeight(double height);
 
 }

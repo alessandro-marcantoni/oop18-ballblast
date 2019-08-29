@@ -111,18 +111,17 @@ public class GUISceneController extends AbstractSceneController {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
         gc.setFill(Color.AQUAMARINE);
         gc.save();
-        
+
         final double canvasWidth = this.canvas.getWidth();
         final double canvasHeight = this.canvas.getHeight();
         gc.fillRect(0, 0, canvasWidth, canvasHeight);
-//        gc.scale(1, -1);
         gc.scale(1, -1);
-        gc.translate(canvasWidth / 2, -canvasHeight + 100);
+        gc.translate(0, -canvasHeight);
+
+//        gc.translate(canvasWidth / 2, 0);
+
 //        // Model.WALL_OFFSET --> WALL_WIDTH
-//        gc.scale(canvasWidth / (Model.WORLD_WIDTH + Model.WALL_OFFSET), 
-//                 canvasHeight / (Model.WORLD_HEIGHT));
-//        gc.scale(canvasWidth / Model.WORLD_WIDTH - Model.WALL_OFFSET, canvasHeight / Model.WORLD_HEIGHT);
-//        gc.translate(0, 0);
+        gc.scale(canvasWidth / (Model.WORLD_WIDTH - Model.WALL_OFFSET), canvasHeight / Model.WORLD_HEIGHT);
     }
 
     private void resizeCanvas() {

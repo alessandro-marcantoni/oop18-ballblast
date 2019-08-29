@@ -41,19 +41,19 @@ public enum Boundaries {
          * Model.WALL_OFFSET); BOTTOM.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 4;
          * BOTTOM.height = Model.WALL_OFFSET;
          */
-        LEFT.position = new Coordinate(Model.WALL_OFFSET, Model.WORLD_HEIGHT / 2);
+        LEFT.position = new Coordinate(Model.WALL_OFFSET * 4, Model.WORLD_HEIGHT / 2 + Model.WALL_OFFSET * 4);
         LEFT.width = Model.WALL_OFFSET * 2;
-        LEFT.height = Model.WORLD_HEIGHT;
+        LEFT.height = Model.WORLD_HEIGHT + Model.WORLD_HEIGHT / 2;
 
-        RIGHT.position = new Coordinate(Model.WORLD_WIDTH - Model.WALL_OFFSET, Model.WORLD_HEIGHT / 2);
+        RIGHT.position = new Coordinate(Model.WORLD_WIDTH + Model.WALL_OFFSET * 2, Model.WORLD_HEIGHT / 2 + Model.WALL_OFFSET * 4);
         RIGHT.width = Model.WALL_OFFSET * 2;
-        RIGHT.height = Model.WORLD_HEIGHT;
+        RIGHT.height = Model.WORLD_HEIGHT + Model.WORLD_HEIGHT / 2;
 
-        TOP.position = new Coordinate(Model.WORLD_WIDTH / 2, Model.WALL_OFFSET);
+        TOP.position = new Coordinate(Model.WORLD_WIDTH, Model.WALL_OFFSET);
         TOP.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 4;
         TOP.height = Model.WALL_OFFSET * 2;
 
-        BOTTOM.position = new Coordinate(Model.WORLD_WIDTH / 2, Model.WORLD_HEIGHT - Model.WALL_OFFSET);
+        BOTTOM.position = new Coordinate(Model.WORLD_WIDTH, Model.WORLD_HEIGHT - Model.WALL_OFFSET);
         BOTTOM.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 4;
         BOTTOM.height = Model.WALL_OFFSET * 2;
 

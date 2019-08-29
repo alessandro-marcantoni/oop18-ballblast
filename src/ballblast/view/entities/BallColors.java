@@ -1,8 +1,9 @@
 package ballblast.view.entities;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 /**
  * 
@@ -13,60 +14,60 @@ public enum BallColors {
     /**
      * Ball color blue.
      */
-    BALL_BLUE(Color.BLUE),
+    BALL_BLUE("blue.png"),
     /**
      * Ball color red.
      */
-    BALL_RED(Color.RED),
+    BALL_RED("red.png"),
     /**
      * Ball color green.
      */
-    BALL_GREEN(Color.GREEN),
+    BALL_GREEN("green.png"),
     /**
      * Ball color yellow.
      */
-    BALL_YELLOW(Color.YELLOW),
+    BALL_YELLOW("yellow.png"),
     /**
-     * Ball color pink.
+     * Ball color bordeaux.
      */
-    BALL_PINK(Color.PINK),
+    BALL_BORDEAUX("bordeaux.png"),
     /**
      * Ball color light blue.
      */
-    BALL_LIGHTBLUE(Color.LIGHTBLUE),
+    BALL_LIGHTBLUE("lightblue.png"),
     /**
      * Ball color purple.
      */
-    BALL_PURPLE(Color.PURPLE),
-    /**
-     * Ball color brown.
-     */
-    BALL_BROWN(Color.BROWN),
+    BALL_PURPLE("purple.png"),
     /**
      * Ball color orange.
      */
-    BALL_ORANGE(Color.ORANGE);
+    BALL_ORANGE("orange.png");
 
-    private final Color color;
+    private static final String PATH = "/balls/";
+    private static final List<BallColors> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+    private static final int SIZE = VALUES.size();
+    private static final Random RANDOM = new Random();
+    private final String selectedBall;
 
-    BallColors(final Color color) {
-        this.color = color;
-    }
-    /**
-     * 
-     * @return
-     *          {@link Paint} color.
-     */
-    public Paint getColor() {
-         return this.color;
+
+    BallColors(final String ball) {
+        this.selectedBall = ball;
     }
     /**
      * 
      * @return
      *          A random {@link BallColors} color.
      */
-    public static BallColors randomColor() {
-        final Random random = new Random();
-        return values()[random.nextInt(values().length)];
+    private static String randomColor() {
+        return VALUES.get(RANDOM.nextInt(SIZE)).toString();
+    }
+    /**
+     * 
+     * @return
+     *          the path where the ball is stored.
+     */
+    public static String getPath() {
+        return PATH + randomColor();
     }
 }

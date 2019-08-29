@@ -1,4 +1,6 @@
 package ballblast.view.rendering;
+
+import ballblast.view.entities.BallColors;
 /**
  * Identifies an image stored on the disk and its path.
  */
@@ -6,11 +8,11 @@ public enum ImagePath {
     /**
      * The image for balls.
      */
-    BALL("balls/balls.png"),
+    BALL(BallColors.getPath()),
     /**
      * The image for the cannon.
      */
-    PLAYER("players/cannon.png"),
+    PLAYER("/players/cannon.png"),
     /**
      * The image for the bullet.
      */
@@ -23,7 +25,7 @@ public enum ImagePath {
      * The image for the wall.
      */
     WALL("/walls/wall.png");
-    private static final String IMAGE_PATH = "/view/";
+    private static final String IMAGE_PATH = "/view";
     private final String path;
 
     ImagePath(final String path) {

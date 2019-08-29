@@ -13,7 +13,12 @@ public final class Player extends AbstractGameObject { // NOPMD This class is us
      * of the screen.
      */
     public static final double DEFAULT_HEIGHT = 16;
-    private static final double DEFAULT_WIDTH = 10;
+    /**
+     * The static {@link Player}'s width used also inside the
+     * {@link SinglePlayerDecorator} class to put the {@link Player} in the center
+     * of the screen.
+     */
+    public static final double DEFAULT_WIDTH = 10;
 
     /**
      * Class constructor.

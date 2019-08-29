@@ -28,14 +28,14 @@ public class PlayerRenderer extends GameObjectRenderer<Player> {
         super(sprite, gameObject);
         this.setLayer(Layers.PLAYER_LAYER);
         sprite.setSource(ImagePath.PLAYER);
-        sprite.setPivot(new Vector2D(0, -1));
+//        sprite.setPivot(new Vector2D(0, -1));
     }
 
     @Override
     public final void render() {
-        this.getSprite().setPosition(this.getGameObject().getPosition());
-        this.getSprite().setWidth(this.getGameObject().getWidth() + PLAYER_OFFSET);
-        this.getSprite().setHeight(this.getGameObject().getHeight());
+//        this.getSprite().setPosition(this.getGameObject().getPosition());
+//        this.getSprite().setWidth(this.getGameObject().getWidth());
+//        this.getSprite().setHeight(this.getGameObject().getHeight() + PLAYER_OFFSET);
         this.getSprite().render();
     }
 }

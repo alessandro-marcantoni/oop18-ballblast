@@ -71,19 +71,16 @@ public class GUISceneController extends AbstractSceneController {
     @Override
     public void init(final Controller controller, final View view) {
         super.init(controller, view);
-//        this.idleState = new IdleState(this, controller);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
         this.userInterface = new UIFactory();
-        
+
         this.resetGameCanvasCoordinates();
-
         this.canvasDrawer = new CanvasDrawer(this.canvas);
-        this.canvas.getGraphicsContext2D().setFill(Color.NAVAJOWHITE);
 
+        // Adjust the canvas when resizing the window.
         this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
         this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
-//        this.setState(this.idleState);
         this.setState(this.inGameState);
     }
 
@@ -111,17 +108,12 @@ public class GUISceneController extends AbstractSceneController {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
         gc.setFill(Color.AQUAMARINE);
         gc.save();
-
         final double canvasWidth = this.canvas.getWidth();
         final double canvasHeight = this.canvas.getHeight();
         gc.fillRect(0, 0, canvasWidth, canvasHeight);
         gc.scale(1, -1);
-        gc.translate(0, -canvasHeight);
-
-//        gc.translate(canvasWidth / 2, 0);
-
-//        // Model.WALL_OFFSET --> WALL_WIDTH
-        gc.scale(canvasWidth / (Model.WORLD_WIDTH - Model.WALL_OFFSET), canvasHeight / Model.WORLD_HEIGHT);
+//        gc.translate(0, -canvasHeight);
+        gc.scale(canvasWidth / (Model.WORLD_WIDTH), canvasHeight / Model.WORLD_HEIGHT);
     }
 
     private void resizeCanvas() {

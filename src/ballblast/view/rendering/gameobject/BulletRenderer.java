@@ -26,17 +26,6 @@ public class BulletRenderer extends GameObjectRenderer<Bullet> {
         super(sprite, gameObject);
         this.setLayer(Layers.BULLET_LAYER);
         sprite.setSource(ImagePath.BULLET);
-        sprite.setPivot(new Vector2D(0, 1));
+//        sprite.setPivot(new Vector2D(0, 1));
     }
-
-    /*@Override
-    public final void render() {
-        final double width = getSprite().getSourceWidth();
-        final double height = getGameObject().getHeight() * getSprite().getSourceHeight() / MAX_SHOT_HEIGHT;
-        getSprite().setSourceWindow(new Coordinate(0, 0), new Vector2D(width, height));
-        this.getSprite().setHeight(this.getGameObject().getHeight());
-        this.getSprite().setWidth(this.getGameObject().getWidth() + OFFSET);
-        this.getSprite().setPosition(this.getGameObject().getPosition());
-        this.getSprite().render();
-    }*/
 }

@@ -76,11 +76,11 @@ public class CanvasDrawer {
 //        return sprite;
 //    }
 
-    private Sprite generateSprite() {
-        return new ImageSprite(this.canvas.getGraphicsContext2D());
+    private Sprite generateSprite(GameObject gameObject) {
+        return new ImageSprite(this.canvas.getGraphicsContext2D(), gameObject);
     }
 
     private Renderer getRenderer(final GameObject gameObject) {
-        return RENDERER_MAP.get(gameObject.getType()).apply(new Pair<>(this.generateSprite(), gameObject));
+        return RENDERER_MAP.get(gameObject.getType()).apply(new Pair<>(this.generateSprite(gameObject), gameObject));
     }
 }

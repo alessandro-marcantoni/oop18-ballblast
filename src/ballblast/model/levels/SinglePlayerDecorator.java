@@ -17,12 +17,12 @@ import ballblast.model.inputs.InputManager.PlayerTags;
  */
 public class SinglePlayerDecorator extends LevelDecorator {
     private static final Coordinate PLAYER_POSITION;
-    private static final double FLOOR_OFFSET = 1;
+    private static final double FLOOR_OFFSET = 5.1;
     private final GameObject player;
 
     static {
         PLAYER_POSITION = new Coordinate(Model.WORLD_WIDTH / 2,
-                Model.WORLD_HEIGHT - (Model.WALL_OFFSET * 2 + FLOOR_OFFSET + Player.DEFAULT_HEIGHT / 2));
+                Model.WORLD_HEIGHT - (FLOOR_OFFSET + Player.DEFAULT_HEIGHT));
     }
 
     /**

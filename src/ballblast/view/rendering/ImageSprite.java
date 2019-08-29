@@ -2,6 +2,9 @@ package ballblast.view.rendering;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
+
+import ballblast.model.Model;
+import ballblast.model.gameobjects.GameObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 /**
@@ -15,32 +18,29 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     private Coordinate sourceTopLeft;
     private Vector2D sourceOffset;
     private Coordinate position;
-    private Vector2D pivot;
-    private double width;
-    private double height;
     private double alpha;
     private Image image;
     private final GraphicsContext gc;
+    private final GameObject gameObject;
     /**
-     * @param gc TODO
+     * Creates a new Image sprite with the given GraphicsContext.
+     * @param gc 
+     *          the GraphicsContext. 
      */
-    public ImageSprite(final GraphicsContext gc) {
+    public ImageSprite(final GraphicsContext gc, final GameObject gameObject) {
         super();
         this.sourceTopLeft = new Coordinate(0, 0);
         this.sourceOffset = Vector2D.create(0, 0);
-        this.pivot = Vector2D.create(0, 0);
         this.position = new Coordinate(0, 0);
-        this.width = DEFAULT_DIMENSION;
-        this.height = DEFAULT_DIMENSION;
         this.alpha = MAX_ALPHA;
         this.gc = gc;
         this.image = null;
+        this.gameObject = gameObject;
     }
 
     @Override
     public final void render() {
-//        this.gc.translate(this.getPosition().getX(), this.getPosition().getY());
-        this.gc.translate(this.getPosition().getX(), this.getPosition().getY());
+//        this.gc.translate(this.getPosition().getX() + Model.WALL_OFFSET * 5, this.getPosition().getY());
         this.gc.scale(1, -1);
         this.gc.setGlobalAlpha(this.getAlpha());
         this.gc.drawImage(
@@ -51,9 +51,9 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
                 // the source rectangle's dimension (width and height).
                 this.image.getWidth(), this.image.getHeight(),
                 // the destination rectangle's coordinate position.
-                (this.getPivot().getX() - 1) * this.getWidth() - 10, (this.getPivot().getY() - 1) * this.getHeight() / 4,
+                this.gameObject.getPosition().getX(), this.gameObject.getPosition().getY(),
                 // the destination rectangle's dimension (width and height).
-                this.getWidth(), this.getHeight()
+                this.gameObject.getWidth(), this.gameObject.getHeight()
                 );
     }
 
@@ -68,36 +68,6 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     }
 
     @Override
-    public final void setPivot(final Vector2D pivot) {
-        this.pivot = pivot;
-    }
-
-    @Override
-    public final Vector2D getPivot() {
-        return this.pivot;
-    }
-
-    @Override
-    public final void setWidth(final double width) {
-        this.width = width;
-    }
-
-    @Override
-    public final void setHeight(final double height) {
-        this.height = height;
-    }
-
-    @Override
-    public final double getWidth() {
-        return this.width;
-    }
-
-    @Override
-    public final double getHeight() {
-        return this.height;
-    }
-
-    @Override
     public final void setSourceWindow(final Coordinate topLeft, final Vector2D offset) {
         this.sourceTopLeft = topLeft;
         this.sourceOffset = offset;
@@ -105,7 +75,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
 
     @Override
     public final double getSourceWidth() {
-        return this.getWidth();
+        return this.image.getWidth();
     }
     /**
      * 
@@ -118,7 +88,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
 
     @Override
     public final double getSourceHeight() {
-        return this.getHeight();
+        return this.image.getHeight();
     }
     /**
      * 
@@ -159,6 +129,18 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
      */
     protected final Vector2D getSourceOffset() {
         return this.sourceOffset;
+    }
+
+    @Override
+    public void setWidth(double width) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void setHeight(double height) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
  */
 public class ImageSprite extends AbstractRenderer implements Sprite {
 
-    private static final double DEFAULT_DIMENSION = 100;
+    private static final double DEFAULT = 100;
     private static final double MAX_ALPHA = 1;
     private static final double MIN_ALPHA = 0;
     private Coordinate sourceTopLeft;
@@ -22,6 +22,9 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     private Image image;
     private final GraphicsContext gc;
     private final GameObject gameObject;
+    private double gameObjectWidth;
+    private double gameObjectHeight;
+    private Coordinate gameObjectPosition;
     /**
      * Creates a new Image sprite with the given GraphicsContext.
      * @param gc 
@@ -36,13 +39,16 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         this.gc = gc;
         this.image = null;
         this.gameObject = gameObject;
+        this.gameObjectWidth = DEFAULT;
+        this.gameObjectWidth = DEFAULT;
+        this.gameObjectPosition = new Coordinate(0,0);
     }
 
     @Override
     public final void render() {
 //        this.gc.translate(this.getPosition().getX() + Model.WALL_OFFSET * 5, this.getPosition().getY());
-        this.gc.clearRect(this.gameObject.getPosition().getX(), this.gameObject.getPosition().getY(),
-                          this.gameObject.getWidth(), this.gameObject.getHeight());
+//        this.gc.clearRect(this.gameObject.getPosition().getX(), this.gameObject.getPosition().getY(),
+//                          this.gameObject.getWidth(), this.gameObject.getHeight());
         this.gc.scale(1, -1);
         this.gc.setGlobalAlpha(this.getAlpha());
         this.gc.drawImage(
@@ -57,6 +63,18 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
                 // the destination rectangle's dimension (width and height).
                 this.gameObject.getWidth(), this.gameObject.getHeight()
                 );
+//        this.gc.drawImage(
+//                // the source image
+//                this.image, 
+//                // the source rectangle's coordinate position.
+//                this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
+//                // the source rectangle's dimension (width and height).
+//                this.getImageSourceWidth(), this.getImageSourceHeight(),
+//                // the destination rectangle's coordinate position.
+//                this.getGameObjectPosition().getX(), this.getGameObjectPosition().getY(),
+//                // the destination rectangle's dimension (width and height).
+//                this.getGameObjectWidth(), this.getGameObjectHeight()
+//                );
     }
 
     @Override
@@ -133,16 +151,31 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         return this.sourceOffset;
     }
 
-//    @Override
-//    public void setWidth(double width) {
-//        // TODO Auto-generated method stub
-//        
-//    }
-//
-//    @Override
-//    public void setHeight(double height) {
-//        // TODO Auto-generated method stub
-//        
-//    }
+    @Override
+    public final void setGameObjectWidth(final double width) {
+        this.gameObjectWidth = width;
+    }
+    @Override
+    public final double getGameObjectWidth() {
+        return this.gameObjectWidth;
+    }
+
+    @Override
+    public final void setGameObjectHeight(final double height) {
+        this.gameObjectHeight = height;
+    }
+    @Override
+    public final double getGameObjectHeight() {
+        return this.gameObjectHeight;
+    }
+    @Override
+    public final void setGameObjectPosition(final Coordinate position) {
+        this.gameObjectPosition = position;
+    }
+    
+    @Override
+    public final Coordinate getGameObjectPosition() {
+        return this.gameObjectPosition;
+    }
 
 }

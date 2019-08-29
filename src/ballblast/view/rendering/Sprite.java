@@ -62,15 +62,35 @@ public interface Sprite extends Renderer {
      * @return
      */
     double getSourceWidth();
-//    /**
-//     * 
-//     * @param d
-//     */
-//    void setWidth(double width);
-//    /**
-//     * 
-//     * @param height
-//     */
-//    void setHeight(double height);
+    /**
+     * 
+     * @param d
+     */
+    void setGameObjectWidth(double width);
+    /**
+     * 
+     * @param height
+     */
+    void setGameObjectHeight(double height);
+    /**
+     * 
+     * @param position
+     */
+    void setGameObjectPosition(Coordinate position);
+    /**
+     * 
+     * @return
+     */
+    Coordinate getGameObjectPosition();
+    /**
+     * 
+     * @return
+     */
+    double getGameObjectWidth();
+    /**
+     * 
+     * @return
+     */
+    double getGameObjectHeight();
 
 }

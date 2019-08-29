@@ -33,9 +33,9 @@ public class PlayerRenderer extends GameObjectRenderer<Player> {
 
     @Override
     public final void render() {
-//        this.getSprite().setPosition(this.getGameObject().getPosition());
-//        this.getSprite().setWidth(this.getGameObject().getWidth());
-//        this.getSprite().setHeight(this.getGameObject().getHeight() + PLAYER_OFFSET);
+//        this.getSprite().setGameObjectPosition(this.getGameObject().getPosition());
+//        this.getSprite().setGameObjectWidth(this.getGameObject().getWidth());
+//        this.getSprite().setGameObjectHeight(this.getGameObject().getHeight());
         this.getSprite().render();
     }
 }

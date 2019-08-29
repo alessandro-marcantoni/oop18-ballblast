@@ -19,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 /**
  * 
  * Graphical User Interface scene controller.
@@ -51,13 +52,9 @@ public class GUISceneController extends AbstractSceneController {
     private Label balls;
 
     @FXML
-    private VBox startMessage;
-
-    @FXML
     private BorderPane pausePane;
 
     private GUIState currentState;
-    private GUIState idleState;
     private GUIState inGameState;
     private GUIState pausedState;
     private UIFactory userInterface;
@@ -73,17 +70,19 @@ public class GUISceneController extends AbstractSceneController {
     @Override
     public void init(final Controller controller, final View view) {
         super.init(controller, view);
-        this.idleState = new IdleState(this, controller, this.startMessage);
+//        this.idleState = new IdleState(this, controller);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
         this.userInterface = new UIFactory();
         this.resetGameCanvasCoordinates();
-        // ..
+
         this.canvasDrawer = new CanvasDrawer(this.canvas);
-        // ..
+        this.canvas.getGraphicsContext2D().setFill(Color.NAVAJOWHITE);
+
         this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
         this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
-        this.setState(this.idleState);
+//        this.setState(this.idleState);
+        this.setState(this.inGameState);
     }
 
     @Override
@@ -124,7 +123,7 @@ public class GUISceneController extends AbstractSceneController {
         final double parentWidth = this.canvasContainer.getWidth();
         final double parentHeight = this.canvasContainer.getHeight();
         final double ratio = parentWidth / parentHeight;
-        final double expectedRatio = (Model.WORLD_WIDTH + Model.WALL_OFFSET) / Model.WORLD_HEIGHT;
+        final double expectedRatio = (Model.WORLD_WIDTH + Model.WALL_OFFSET) / (Model.WORLD_HEIGHT + Model.WALL_OFFSET);
 
         if (ratio < expectedRatio) {
             this.canvas.setWidth(parentWidth);
@@ -133,7 +132,6 @@ public class GUISceneController extends AbstractSceneController {
             this.canvas.setWidth(parentHeight * expectedRatio);
             this.canvas.setHeight(parentHeight);
         }
-
         this.canvas.getGraphicsContext2D().restore();
         this.resetGameCanvasCoordinates();
         this.render();
@@ -182,13 +180,13 @@ public class GUISceneController extends AbstractSceneController {
     public GUIState getInGameState() {
         return this.inGameState;
     }
-    /**
-     * 
-     * @return
-     *          the idle state.
-     */
-    public GUIState getIdleState() {
-        return this.idleState;
-    }
+//    /**
+//     * 
+//     * @return
+//     *          the idle state.
+//     */
+//    public GUIState getIdleState() {
+//        return this.idleState;
+//    }
 
 }

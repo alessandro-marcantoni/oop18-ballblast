@@ -12,6 +12,7 @@ import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.view.rendering.gameobject.RendererFactory;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.util.Pair;
 
 /**

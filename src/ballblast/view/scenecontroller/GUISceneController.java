@@ -83,6 +83,7 @@ public class GUISceneController extends AbstractSceneController {
 
         this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
         this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
+        this.statusBarContainer.prefWidthProperty().bind(this.canvas.widthProperty());
 //        this.setState(this.idleState);
         this.setState(this.inGameState);
     }

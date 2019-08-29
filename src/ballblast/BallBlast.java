@@ -1,12 +1,15 @@
 package ballblast;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import ballblast.controller.Controller;
 import ballblast.controller.ControllerImpl;
 import ballblast.model.Model;
 import ballblast.model.ModelImpl;
 import ballblast.view.View;
 import ballblast.view.ViewImpl;
-import ballblast.view.entities.BallColors;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -30,7 +33,9 @@ public final class BallBlast extends Application {
     public static void main(final String [] args) {
 //        ViewScenes scene = ViewScenes.MENU;
 //        System.out.println(scene.getPath());
-        System.out.println(BallColors.getPath());
+
+//        System.out.println(BallColors.getRandomColor());
+
         launch();
 
     }

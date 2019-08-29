@@ -8,7 +8,7 @@ public enum ImagePath {
     /**
      * The image for balls.
      */
-    BALL(BallColors.getPath()),
+    BALL(BallColors.getRandomColor()),
     /**
      * The image for the cannon.
      */

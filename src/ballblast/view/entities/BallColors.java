@@ -10,64 +10,66 @@ import java.util.Random;
  * Enumeration used to select ball colors.
  */
 public enum BallColors {
-
     /**
      * Ball color blue.
      */
-    BALL_BLUE("blue.png"),
+    BALL_BLUE("/balls/blue.png"),
     /**
      * Ball color red.
      */
-    BALL_RED("red.png"),
+    BALL_RED("/balls/red.png"),
     /**
      * Ball color green.
      */
-    BALL_GREEN("green.png"),
+    BALL_GREEN("/balls/green.png"),
     /**
      * Ball color yellow.
      */
-    BALL_YELLOW("yellow.png"),
+    BALL_YELLOW("/balls/yellow.png"),
     /**
      * Ball color bordeaux.
      */
-    BALL_BORDEAUX("bordeaux.png"),
+    BALL_BORDEAUX("/balls/bordeaux.png"),
     /**
      * Ball color light blue.
      */
-    BALL_LIGHTBLUE("lightblue.png"),
+    BALL_LIGHTBLUE("/balls/lightblue.png"),
     /**
      * Ball color purple.
      */
-    BALL_PURPLE("purple.png"),
+    BALL_PURPLE("/balls/purple.png"),
     /**
      * Ball color orange.
      */
-    BALL_ORANGE("orange.png");
+    BALL_ORANGE("/balls/orange.png");
 
-    private static final String PATH = "/balls/";
     private static final List<BallColors> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
-    private final String selectedBall;
+    private final String ballPath;
 
 
-    BallColors(final String ball) {
-        this.selectedBall = ball;
+    BallColors(final String ballPath) {
+        this.ballPath = ballPath;
     }
     /**
      * 
      * @return
      *          A random {@link BallColors} color.
      */
-    private static String randomColor() {
-        return VALUES.get(RANDOM.nextInt(SIZE)).toString();
+    public static String getRandomColor() {
+        return VALUES.get(RANDOM.nextInt(SIZE)).getBallPath();
     }
     /**
      * 
      * @return
-     *          the path where the ball is stored.
+     *          pippo
      */
-    public static String getPath() {
-        return PATH + randomColor();
+    public String getBallPath() {
+        return this.ballPath;
+    }
+    
+    public String getBallColor() {
+        return this.toString();
     }
 }

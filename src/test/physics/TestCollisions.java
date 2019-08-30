@@ -201,6 +201,6 @@ public class TestCollisions {
         assertFalse(pos.equals(player.getPosition()));
         pos = player.getPosition();
         lvl.update(1);
-        //assertTrue(pos.equals(player.getPosition()));
+        assertTrue(pos.equals(player.getPosition()));
     }
 }

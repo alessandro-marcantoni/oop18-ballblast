@@ -81,6 +81,8 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
     @Override
     public final void notifyCollision(final Collision coll) {
         if (this.getAttachedGameObject().get().equals(coll.getObj().getAttachedGameObject().get())) {
+            // da eliminare
+            System.out.println(this.getCollisionTag() + " collides with " + coll.getOther().getCollisionTag());
             this.getParent().handleCollision(coll.getOther());
         }
     }

@@ -165,16 +165,16 @@ public class TestCollisions {
 
         manager.checkLoop();
         // Expected floor bounce.
-        assertTrue(ball.getVelocity().getY() == y * -1);
-        assertTrue(ball.getVelocity().getX() == x);
+        assertSame(ball.getVelocity().getY() - (y * -1), 0);
+        assertSame(ball.getVelocity().getX() - x, 0);
 
         ball.setPosition(Boundaries.LEFT.getPosition());
         wall.setPosition(Boundaries.LEFT.getPosition());
 
         manager.checkLoop();
         // Expected wall bounce.
-        assertTrue(ball.getVelocity().getY() == y * -1);
-        assertTrue(ball.getVelocity().getX() == x * -1);
+        assertSame(ball.getVelocity().getY() - (y * -1), 0);
+        assertSame(ball.getVelocity().getX() - (x * -1), 0);
     }
 
     /**

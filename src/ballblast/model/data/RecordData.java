@@ -1,28 +1,18 @@
 package ballblast.model.data;
 
-import java.io.Serializable;
-
 /**
  * This class is a record for a {@link Leaderboard} keeping information about username, game time and score.
  */
-public class RecordData implements Serializable {
+public class RecordData {
 
-    // To serialize the object into a bytes stream univocally.
-    private static final long serialVersionUID = -3402166234477683311L;
-    private final String userName;
-    private final int score;
+    private String name;
+    private int score;
 
     /**
-     * Creates a new record.
-     * @param name
-     *          the name of the User.
-     * @param score
-     *          the score reached in the last game session.
+     * Empty constructor to serialize the object in a xml file.
      */
-    public RecordData(final String name, final int score) {
-        this.userName = name;
-        this.score = score;
-    }
+//    public RecordData() {
+//    }
 
     /**
      * Getter of the User score.
@@ -30,7 +20,7 @@ public class RecordData implements Serializable {
      *          the score in the last played game.
      */
     public int getScore() {
-        return this.score;
+        return score;
     }
 
     /**
@@ -38,8 +28,26 @@ public class RecordData implements Serializable {
      * @return
      *          the name of the User.
      */
-    public String getUserName() {
-        return this.userName;
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Setter for the {@RecordData} user name.
+     * @param name
+     *          the user name who submit the record.
+     */
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    /**
+     * Setter for the {@RecordData} user score.
+     * @param score
+     *          the score of the record.
+     */
+    public void setScore(final int score) {
+        this.score = score;
     }
 
 }

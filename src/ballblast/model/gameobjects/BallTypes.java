@@ -9,15 +9,15 @@ public enum BallTypes {
     /**
      * small.
      */
-    SMALL(20),
+    SMALL(15),
     /**
      * medium.
      */
-    MEDIUM(25),
+    MEDIUM(20),
     /**
      * large.
      */
-    LARGE(30);
+    LARGE(25);
 
     private BallTypes child;
     private int diameter;

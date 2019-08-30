@@ -6,6 +6,7 @@ import ballblast.view.rendering.Layers;
 import ballblast.view.rendering.Sprite;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
@@ -24,11 +25,13 @@ public class BallRenderer extends GameObjectRenderer<Ball> {
     public BallRenderer(final Sprite sprite, final Ball gameObject) {
         super(sprite, gameObject);
         this.setLayer(Layers.BALL_LAYER);
-        final Text life = new Text(Integer.toString(gameObject.getLife()));
-        final StackPane pane = new StackPane();
-        pane.getChildren().add((Node) sprite);
-        pane.getChildren().add(life);
-        pane.setAlignment(Pos.CENTER);
+//        final Text life = new Text(Integer.toString(gameObject.getLife()));
+//        final StackPane pane = new StackPane();
+//        final ImageView imageView = new ImageView();
+//        imageView.setImage(sprite.getImageSource());
+//        pane.getChildren().add(imageView);
+//        pane.getChildren().add(life);
+//        pane.setAlignment(Pos.CENTER);
         sprite.setSource(ImagePath.BALL);
     }
 }

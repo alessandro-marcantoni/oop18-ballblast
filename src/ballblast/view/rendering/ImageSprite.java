@@ -82,6 +82,10 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     public final double getSourceWidth() {
         return this.image.getWidth();
     }
+    @Override
+    public final Image getImageSource() {
+        return this.image;
+    }
     /**
      * 
      * @return

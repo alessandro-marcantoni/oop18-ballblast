@@ -2,6 +2,8 @@ package ballblast.view.rendering;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
+
+import javafx.scene.image.Image;
 /**
  * Represents an image that can be rendered on the screen at a certain position on the screen
  * and with some rotation. 
@@ -26,7 +28,12 @@ public interface Sprite extends Renderer {
      *          the position.
      */
     Coordinate getPosition();
-
+    /**
+     * 
+     * @return
+     *          the {@link Image} source.
+     */
+    Image getImageSource();
     /**
      * 
      * @param topLeft

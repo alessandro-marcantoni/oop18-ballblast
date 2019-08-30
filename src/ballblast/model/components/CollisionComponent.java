@@ -22,6 +22,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     private final CollisionTag collisionTag;
     private final CollisionManager manager;
+
     /**
      * The constructor for the CollisionComponent.
      * @param man
@@ -37,18 +38,10 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     @Override
     public final Geometry generateShape() {
-        final Coordinate coordinateX = this.generateCoordinateX(this.getParent());
-        final Coordinate coordinateY = this.generateCoordinateY(this.getParent());
-        return new GeometryFactory().toGeometry(new Envelope(coordinateX.getX(), coordinateX.getY(), coordinateY.getX(), coordinateY.getY()))
-                                    .getEnvelope();
-    }
-
-    private Coordinate generateCoordinateX(final GameObject obj) {
-        return new Coordinate(obj.getPosition().getX() - obj.getWidth() / 2, obj.getPosition().getX() + obj.getWidth() / 2);
-    }
-
-    private Coordinate generateCoordinateY(final GameObject obj) {
-        return new Coordinate(obj.getPosition().getY() - obj.getHeight() / 2, obj.getPosition().getY() + obj.getHeight() / 2);
+        final Coordinate pos = this.getParent().getPosition();
+        final GameObject parent = this.getParent();
+        return new GeometryFactory().toGeometry(new Envelope(pos.getX(), pos.getX() + parent.getWidth(), pos.getY(), pos.getY() + parent.getHeight()))
+                .getEnvelope();
     }
 
     @Override

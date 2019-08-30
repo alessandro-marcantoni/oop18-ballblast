@@ -30,7 +30,7 @@ public class LeaderboardManager {
     }
 
     /**
-     * Save leaderboard data in the xml file.
+     * Saves leaderboard data in the xml file.
      * @param lb
      *          the leaderboard to save data.
      * @return
@@ -40,15 +40,6 @@ public class LeaderboardManager {
         return this.save(lb, DirectoryManager.SURVIVAL_FILE);
     }
 
-    /**
-     * Saves the leaderboard data on file.
-     * @param lb
-     *          the leaderboard to save.
-     * @param filePath
-     *          the file where save the leaderboard.
-     * @return
-     *          true if save done successfully, false otherwise.
-     */
     private boolean save(final Leaderboard lb, final String filePath) {
         try (FileOutputStream fos = new FileOutputStream(new File(filePath));
                 XMLEncoder enc = new XMLEncoder(fos)) {
@@ -60,13 +51,6 @@ public class LeaderboardManager {
         }
     }
 
-    /**
-     * Loads the leaderboard from file.
-     * @param path
-     *          the file where to load the leaderboard.
-     * @return
-     *          the leaderboard read from file, if present.
-     */
     private Optional<Leaderboard> load(final String path) {
         if (!Files.exists(Paths.get(path))) {
             Leaderboard leaderboard = new Leaderboard();

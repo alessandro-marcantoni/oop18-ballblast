@@ -14,6 +14,7 @@ import com.google.common.collect.ImmutableList;
 import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.Component;
 import ballblast.model.components.ComponentTypes;
+import ballblast.model.data.GameDataManager;
 import ballblast.model.levels.BasicLevel;
 import ballblast.model.levels.Boundaries;
 import ballblast.model.levels.Level;
@@ -89,9 +90,9 @@ public class TestCollisions {
     public void testCollisionHandler() {
         final CollisionManager manager = new SimpleCollisionManager();
         final int ballLife = 1;
-        final int pos = 20;
+        final int pos = 25;
         final GameObject player = GameObjectFactory.createPlayer(new GameObjectManager(), new InputManager(),
-                PlayerTags.FIRST, manager, Vector2D.create(new Coordinate(0, 0)), null, null);
+                PlayerTags.FIRST, manager, Vector2D.create(0, 0), null, new GameDataManager());
         final GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0),
                 Vector2D.create(new Coordinate(0, 0)), manager, new GameObjectManager(), null);
         final GameObject bullet = GameObjectFactory.createBullet(new Coordinate(pos, pos), new Vector2D(), manager);

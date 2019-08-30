@@ -47,7 +47,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     @Override
     public final void run() {
         this.stopped = false;
-        this.render();
+        //this.render();
         long lastTime = System.currentTimeMillis();
         while (!this.isStopped()) {
             final long current = System.currentTimeMillis();

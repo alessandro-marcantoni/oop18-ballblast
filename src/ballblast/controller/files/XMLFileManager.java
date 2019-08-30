@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
 import ballblast.controller.DirectoryManager;
 
 /**
- * Class to handle xml files.
+ * Class with static methods to handle xml files.
  */
 public final class XMLFileManager {
 
@@ -30,13 +30,13 @@ public final class XMLFileManager {
     }
 
     /**
-     * The getter for document to modify.
+     * The getter for the {@link Document} to modify.
      * @param path
      *          the route path of the file.
      * @return
-     *          the file converted in the document format.
+     *          the file converted in a document format.
      * @throws ParserConfigurationException
-     *          parser exception.
+     *          Parser exception.
      * @throws SAXException
      *          SAX exception.
      * @throws IOException
@@ -58,7 +58,7 @@ public final class XMLFileManager {
      * @return
      *          true if the password is correct, false otherwise.
      * @throws ParserConfigurationException
-     *          parser exception.
+     *          Parser exception.
      * @throws SAXException
      *          SAX exception.
      * @throws IOException
@@ -90,9 +90,9 @@ public final class XMLFileManager {
      * @param rootName
      *          the name of the xml file root. 
      * @throws ParserConfigurationException
-     *          exception for the parser.
+     *          Parser exception.
      * @throws TransformerException
-     *          exception for the transformer.
+     *          Transformer exception.
      */
     public static void createEmptyFile(final String filePath, final String rootName) throws ParserConfigurationException, TransformerException {
         final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -113,17 +113,17 @@ public final class XMLFileManager {
     }
 
     /**
-     * Add a player to the file.
+     * Add a new {@link UserData} informations to the users list file..
      * @param userName
      *          the user name to add in the file.
      * @param password
      *          the password associated with the user.
      * @throws ParserConfigurationException
-     *          parser exception.
+     *          Parser exception.
      * @throws IOException
      *          IO exception.
      * @throws TransformerException
-     *          transformer exception.
+     *          Transformer exception.
      * @throws SAXException 
      *          SAX exception.
      */
@@ -159,4 +159,5 @@ public final class XMLFileManager {
         final StreamResult result = new StreamResult(new File(DirectoryManager.USERS_LIST_FILE));
         transformer.transform(source,  result);
     }
+
 }

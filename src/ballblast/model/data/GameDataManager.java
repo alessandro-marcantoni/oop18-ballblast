@@ -4,6 +4,7 @@ package ballblast.model.data;
  * Keeps all game data up to date.
  */
 public class GameDataManager {
+
     private final GameData gameData;
 
     /**
@@ -60,6 +61,7 @@ public class GameDataManager {
      * accessible to anyone.
      */
     public class GameData {
+
         private int destroyedBalls;
         private int spawnedBullets;
         private int score;
@@ -137,4 +139,5 @@ public class GameDataManager {
             this.gameTime = gameTime;
         }
     }
+
 }

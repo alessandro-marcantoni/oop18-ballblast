@@ -10,26 +10,30 @@ import ballblast.model.gameobjects.GameObject;
  * Represents an object that can collide with other collidable objects.
  */
 public interface Collidable {
+
     /**
-     * Returns the shape of the object without any transformation.
+     * Returns the bound shape of the parent object.
      * @return
-     *      the shape of the object.
+     *      the geometric limits of the {@link GameObject}.
      */
     Geometry generateShape();
+
     /**
      * Returns the {@link CollisionTag} for this collidable.
      * @return
      *      the {@link CollisionTag}.
      */
     CollisionTag getCollisionTag();
+
     /**
-     * Returns an optional representing the {@link GameObject} where this {@link Collidable} is attached to.
+     * Returns the {@link GameObject} where this {@link Collidable} is attached to, if present.
      * @return
-     *      the optional {@link GameObject}.
+     *      an {@link Optional} {@link GameObject}, empty if the component has no parent.
      */
     Optional<GameObject> getAttachedGameObject();
+
     /**
-     * Notify this object that it is colliding with another object.
+     * Notify the component parent that it is colliding with another object.
      * @param collision
      *      the {@link Collision} data for this collision.
      */

@@ -9,7 +9,7 @@ import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
 
 /**
- * Represents the handler for the behavior of the {@link Player} after a collision.
+ * Represents the handler for the behavior of a {@link Player} after a collision.
  */
 public class PlayerCollisionHandler implements CollisionHandler {
 
@@ -35,4 +35,5 @@ public class PlayerCollisionHandler implements CollisionHandler {
         }
         this.prevPosition = Optional.of(obj.getPosition());
     }
+
 }

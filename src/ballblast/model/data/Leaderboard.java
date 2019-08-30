@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Keeps track of users score.
+ * Keeps track of users {@link RecordData}.
  */
 public class Leaderboard {
 
@@ -27,7 +27,7 @@ public class Leaderboard {
 //    }
 
     /**
-     * Adds the {@link RecordData} if is greater than other on top 10 records.
+     * Adds a {@link RecordData} if is greater than other on top 10 records.
      * @param name
      *          the name of the user who submitted the record.
      * @param score
@@ -47,20 +47,20 @@ public class Leaderboard {
     }
 
     /**
-     * Returns a stream of {@link RecordData}s.
+     * Returns the records under a stream format.
      * @return
-     *          a strea of records.
+     *          a stream of {@link RecordData}.
      */
     public Stream<RecordData> getRecords() {
         return this.recordList.stream();
     }
 
     /**
-     * Verify if a record is an high score.
+     * Checks if a record can be saved in the leaderboard.
      * @param score
      *          the score to verify.
      * @return
-     *          true if the score is the high score.
+     *          true if the score is an high score.
      */
     public boolean isRecord(final int score) {
         return score > this.getRecords().max(COMPARATOR).get().getScore();
@@ -69,7 +69,7 @@ public class Leaderboard {
     /**
      * Getter for the highscore.
      * @return
-     *          the score of the record with the highest score.
+     *          an {@link Optional} {@link RecordData} with the highest score, empty if the record list has no records saved.
      */
     public Optional<RecordData> getHighScore() {
         if (this.recordList.isEmpty()) {
@@ -80,9 +80,9 @@ public class Leaderboard {
     }
 
     /**
-     * Getter for the leaderboard.
+     * Getter for the leaderboard under a map format.
      * @return
-     *          the map of the leaderboard.
+     *          the map of the {@link Leaderboard}.
      */
     public Map<Integer, String> getLeaderboard() {
         Map<Integer, String> map = this.getRecords().collect(Collectors.toMap(RecordData::getScore, RecordData::getName));
@@ -101,7 +101,7 @@ public class Leaderboard {
     /**
      * Getter of the record list.
      * @return
-     *          the record list.
+     *          the {@link List} of {@link RecordData}.
      */
     public List<RecordData> getRecordList() {
         return recordList;
@@ -110,7 +110,7 @@ public class Leaderboard {
     /**
      * Setter for the record list.
      * @param recordList
-     *          the record list to set.
+     *          the {@link List} of {@link RecordData} to set.
      */
     public void setRecordList(final List<RecordData> recordList) {
         this.recordList = recordList;

@@ -65,4 +65,5 @@ public enum CollisionTag {
     public boolean canCollideWith(final CollisionTag other) {
         return true;
     }
+
 }

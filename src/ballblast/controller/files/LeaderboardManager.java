@@ -16,14 +16,14 @@ import ballblast.controller.DirectoryManager;
 import ballblast.model.data.Leaderboard;
 
 /**
- * The manager for the I/O of the leaderboard data.
+ * The manager for handling the {@link Leaderboard}.
  */
 public class LeaderboardManager {
 
     /**
      * Loads the survival leaderboard.
      * @return
-     *          the survival leaderboard, if present.
+     *          an {@link Optional} {@link Leaderboard}, if present.
      */
     public final Optional<Leaderboard> loadSurvivalLeaderboard() {
         return this.load(DirectoryManager.SURVIVAL_FILE);
@@ -32,7 +32,7 @@ public class LeaderboardManager {
     /**
      * Saves leaderboard data in the xml file.
      * @param lb
-     *          the leaderboard to save data.
+     *          the {@link Leaderboard} datas to save.
      * @return
      *          true if save operation done successfully, false otherwise.
      */
@@ -65,4 +65,5 @@ public class LeaderboardManager {
             return Optional.empty();
         }
     }
+
 }

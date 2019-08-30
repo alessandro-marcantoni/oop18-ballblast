@@ -5,7 +5,7 @@ import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
 
 /**
- * Represents the handler for the behavior of the {@link Bullet} after a collision.
+ * Represents the handler for the behavior of a {@link Bullet} after a collision.
  */
 public class BulletCollisionHandler implements CollisionHandler {
 
@@ -25,4 +25,5 @@ public class BulletCollisionHandler implements CollisionHandler {
                 break;
         }
     }
+
 }

@@ -8,7 +8,7 @@ import ballblast.model.physics.CollisionHandler;
 import ballblast.model.physics.utilities.Bounce;
 
 /**
- * Represents the handler for the behavior of the {@link Ball} after a collision.
+ * Represents the handler for the behavior of a {@link Ball} after a collision.
  */
 public class BallCollisionHandler implements CollisionHandler {
 
@@ -39,4 +39,5 @@ public class BallCollisionHandler implements CollisionHandler {
                 break;
         }
     }
+
 }

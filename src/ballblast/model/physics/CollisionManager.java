@@ -8,25 +8,29 @@ import java.util.List;
 public interface CollisionManager {
 
     /**
-     * The main method to check if there are collision between game objects.
+     * The main method to check if there are collision between {@link GameObject}s.
      */
     void checkLoop();
+
     /**
      * Add a new {@link Collidable} object to the list.
      * @param coll
      *       the {@link Collidable} object to add in the list.
      */
     void addCollidable(Collidable coll);
+
     /**
      * Remove a {@link Collidable} object from the list.
      * @param coll
      *       the {@link Collidable} object to remove form the list.
      */
     void removeCollidable(Collidable coll);
+
     /**
      * The getter for the attached collidables list.
      * @return
-     *      the list of collidables.
+     *      the {@link List} of {@link Collidable} objects.
      */
     List<Collidable> getCollidables();
+
 }

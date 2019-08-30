@@ -24,9 +24,9 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
     private final CollisionManager manager;
 
     /**
-     * The constructor for the CollisionComponent.
+     * Class constructor.
      * @param man
-     *       the collision manager.
+     *       the {@link CollisionManager}.
      * @param tag
      *       the type of the collision component, chosen by the game object type.
      */
@@ -84,4 +84,5 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
             this.getParent().handleCollision(coll.getOther());
         }
     }
+
 }

@@ -11,7 +11,7 @@ import ballblast.controller.files.XMLFileManager;
 
 /**
  * Class that contains constants used to find files saved on the user home directory.
- * It is responsible of checking if the install directory exist and when necessary creates it.
+ * It is responsible of checking if the install directory exist and if necessary creates it.
  */
 public final class DirectoryManager {
 
@@ -64,7 +64,7 @@ public final class DirectoryManager {
      * @param userName
      *       name of the user.
      * @return
-     *       the couple userName and hashcode_password of the user.
+     *       the file with the {@link UserData}.
      */
     public static String getUserFile(final String userName) {
         return USERS_DIR
@@ -74,21 +74,12 @@ public final class DirectoryManager {
     }
 
     /**
-     * Sets up the application by creating app directories and utility files.
+     * Sets up the application creating app directories and utility files.
      */
     public static void setupApplication() {
         try {
             Files.createDirectories(Paths.get(SCOREBOARD_DIR));
             Files.createDirectories(Paths.get(USERS_DIR));
-            if (!Files.exists(Paths.get(SURVIVAL_FILE))) {
-                try {
-                    XMLFileManager.createEmptyFile(SURVIVAL_FILE, "players");
-                } catch (ParserConfigurationException e) {
-                    e.printStackTrace();
-                } catch (TransformerException e) {
-                    e.printStackTrace();
-                }
-            }
             if (!Files.exists(Paths.get(USERS_LIST_FILE))) {
                 try {
                     XMLFileManager.createEmptyFile(USERS_LIST_FILE, "credentials");

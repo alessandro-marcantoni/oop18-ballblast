@@ -5,7 +5,7 @@ import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
 
 /**
- * Represents the handler for the behavior of the {@link Wall} after a collision.
+ * Represents the handler for the behavior of a {@link Wall} after a collision.
  */
 public class WallCollisionHandler implements CollisionHandler {
 

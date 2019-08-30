@@ -18,7 +18,7 @@ import ballblast.controller.DirectoryManager;
 import ballblast.model.data.UserData;
 
 /**
- * The manager for the handling of the user data.
+ * The manager for handling {@link UserData}s.
  */
 public class UserManager {
 
@@ -31,9 +31,9 @@ public class UserManager {
      * @return
      *          an {@link Optional} {@link UserData} object, empty if the login failed.
      * @throws ParserConfigurationException
-     *          perser exception.
+     *          Parser exception.
      * @throws SAXException
-     *          SEX exception.
+     *          SAX exception.
      * @throws IOException
      *          IO exception.
      */
@@ -59,11 +59,11 @@ public class UserManager {
      * @return
      *          an {@link Optional} {@link UserData} object, empty if the registration failed.
      * @throws ParserConfigurationException
-     *          parser exception.
+     *          Parser exception.
      * @throws IOException
      *          IO exception.
      * @throws TransformerException
-     *          transformer exception.
+     *          Transformer exception.
      * @throws SAXException
      *          SAX exception.
      */
@@ -87,11 +87,11 @@ public class UserManager {
     }
 
     /**
-     * Updates the user data at the end of a game session.
+     * Updates the user game datas at the end of a game session.
      * @param user
      *          the {@link UserData} to update
      * @return
-     *          false if save operation fails, true otherwise.
+     *          true if save operation done successfully, false otherwise.
      */
     public boolean updateUserData(final UserData user) {
         try {
@@ -120,4 +120,5 @@ public class UserManager {
             return null;
         }
     }
+
 }

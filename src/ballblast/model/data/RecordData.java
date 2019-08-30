@@ -1,7 +1,7 @@
 package ballblast.model.data;
 
 /**
- * This class is a record for a {@link Leaderboard} keeping information about username, game time and score.
+ * The class that represents a Record for a {@link Leaderboard}, keeping information about user.
  */
 public class RecordData {
 

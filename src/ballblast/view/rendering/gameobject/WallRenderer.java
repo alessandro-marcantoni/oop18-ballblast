@@ -13,7 +13,7 @@ import ballblast.view.rendering.Sprite;
  */
 public class WallRenderer extends GameObjectRenderer<Wall> {
 
-    private static final double MAX_SIZE = Model.WORLD_WIDTH + Model.WALL_OFFSET;
+    private static final double MAX_SIZE = 100;
     /**
      * Creates a new {@link Wall} Renderer given its {@link Wall}{@link GameObject}.
      * @param sprite

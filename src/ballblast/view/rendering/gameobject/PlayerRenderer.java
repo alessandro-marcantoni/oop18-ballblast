@@ -1,5 +1,7 @@
 package ballblast.view.rendering.gameobject;
 
+import org.locationtech.jts.math.Vector2D;
+
 import ballblast.model.gameobjects.Player;
 import ballblast.view.rendering.ImagePath;
 import ballblast.view.rendering.Layers;
@@ -26,15 +28,14 @@ public class PlayerRenderer extends GameObjectRenderer<Player> {
         super(sprite, gameObject);
         this.setLayer(Layers.PLAYER_LAYER);
         sprite.setSource(ImagePath.PLAYER);
-        final SpriteSheet spriteSheet = new SpriteSheet(sprite, COLUMNS, ROWS);
-        spriteSheet.setCell(3, 2);
+//        sprite.setPivot(new Vector2D(0, -1));
     }
 
     @Override
     public final void render() {
-        this.getSprite().setPosition(this.getGameObject().getPosition());
-        this.getSprite().setWidth(this.getGameObject().getWidth() + PLAYER_OFFSET);
-        this.getSprite().setHeight(this.getGameObject().getHeight());
+//        this.getSprite().setGameObjectPosition(this.getGameObject().getPosition());
+//        this.getSprite().setGameObjectWidth(this.getGameObject().getWidth());
+//        this.getSprite().setGameObjectHeight(this.getGameObject().getHeight());
         this.getSprite().render();
     }
 }

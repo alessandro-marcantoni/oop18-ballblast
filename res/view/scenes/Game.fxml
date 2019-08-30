@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <StackPane onKeyReleased="#handleReleased" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ballblast.view.scenecontroller.GUISceneController">
@@ -26,7 +25,7 @@
          <children>
             <BorderPane fx:id="canvasContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
                <center>
-                  <Canvas fx:id="canvas" height="300.0" width="600.0" BorderPane.alignment="CENTER" />
+                  <Canvas fx:id="canvas" height="800.0" width="1920.0" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
             <BorderPane fx:id="statusBarContainer" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefWidth="600.0" GridPane.rowIndex="1">
@@ -118,20 +117,6 @@
                   </GridPane>
                </center>
             </BorderPane>
-            <VBox fx:id="startMessage" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label id="title" text="ARE YOU READY?">
-                     <font>
-                        <Font size="50.0" />
-                     </font>
-                  </Label>
-                  <Label text="Press any key to start">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
          </children>
       </GridPane>
       <BorderPane id="pause" fx:id="pausePane" prefHeight="200.0" prefWidth="200.0" visible="false">

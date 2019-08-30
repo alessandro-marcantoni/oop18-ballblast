@@ -1,6 +1,7 @@
 package ballblast.view;
 
 import ballblast.controller.Controller;
+import ballblast.view.rendering.ImageLoader;
 import ballblast.view.scenecontroller.AbstractSceneController;
 import ballblast.view.sceneloader.SceneLoader;
 import ballblast.view.sceneloader.SceneWrapper;
@@ -42,7 +43,7 @@ public class ViewImpl implements View {
        this.stage.setMaximized(true);
        this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
        this.loadScene(ViewScenes.MAIN);
-       //ImageLoader.getLoader().loadAll();
+//       ImageLoader.getLoader().loadAll();
     }
 
     @Override

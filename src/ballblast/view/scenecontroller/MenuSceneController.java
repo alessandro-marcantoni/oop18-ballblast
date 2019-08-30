@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /**
  * 
@@ -85,6 +87,9 @@ public class MenuSceneController extends AbstractSceneController {
     @Override
     protected final ViewScenes getNextScene() {
         ViewScenes selection = ViewScenes.MENU;
+        // TO DELETE
+        selection = ViewScenes.GAME_MODE; // Inserito per andare più veloce nel testing
+        
         if (this.gameMode) {
             selection = ViewScenes.GAME_MODE;
         }
@@ -102,5 +107,14 @@ public class MenuSceneController extends AbstractSceneController {
     @Override
     protected final ViewScenes getPreviousScene() {
         return ViewScenes.LOGIN;
+    }
+    
+    // TO DELETE
+    // Inserito per andare più veloce nel testing.
+    @Override
+    public final void onKeyPressed(final KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            this.nextScene();
+        }
     }
 }

@@ -12,6 +12,7 @@ import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.view.rendering.gameobject.RendererFactory;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.util.Pair;
 
 /**
@@ -75,11 +76,11 @@ public class CanvasDrawer {
 //        return sprite;
 //    }
 
-    private Sprite generateSprite() {
-        return new ImageSprite(this.canvas.getGraphicsContext2D());
+    private Sprite generateSprite(GameObject gameObject) {
+        return new ImageSprite(this.canvas.getGraphicsContext2D(), gameObject);
     }
 
     private Renderer getRenderer(final GameObject gameObject) {
-        return RENDERER_MAP.get(gameObject.getType()).apply(new Pair<>(this.generateSprite(), gameObject));
+        return RENDERER_MAP.get(gameObject.getType()).apply(new Pair<>(this.generateSprite(gameObject), gameObject));
     }
 }

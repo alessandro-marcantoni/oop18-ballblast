@@ -15,90 +15,82 @@ import org.locationtech.jts.math.Vector2D;
  */
 public interface Sprite extends Renderer {
     /**
-     * 
+     * Sets the position of the sprite in pixel coordinates relative to the pivot.
      * @param coordinate
-     *          pippo
+     *          the position to be set.
      */
     void setPosition(Coordinate coordinate);
     /**
-     * 
+     * Returns the position of the sprite in pixel coordinates relative to the pivot.
      * @return
-     *          pippo
+     *          the position.
      */
     Coordinate getPosition();
     /**
-     * 
+     * Sets the pivot of the sprite. The pivot is the point relative to the center of the image that
+     * is used as the center for positioning. Coordinates in the range [-1,1] indicate a pivot inside
+     * the rectangle of the image.
      * @param pivot
-     *          pippo
-     */
-    void setPivot(Vector2D pivot);
-    /**
-     * 
-     * @return
-     *          pippo
-     */
-    Vector2D getPivot();
-    /**
-     * 
-     * @param width 
-     *          pippo
-     */
-    void setWidth(double width);
-    /**
-     * 
-     * @param height
-     *          pippo
-     */
-    void setHeight(double height);
-    /**
-     * 
-     * @return
-     *          pippo
-     */
-    double getWidth();
-    /**
-     * 
-     * @return
-     *          pippo
-     */
-    double getHeight();
-    /**
-     * 
-     * @param topLeft
-     *          pippo
-     * @param offset
-     *          pippo
+     *          the new pivot.
      */
     void setSourceWindow(Coordinate topLeft, Vector2D offset);
     /**
-     * 
+     * Returns the width of the source image in pixels.
      * @return
-     *          pippo
+     *          the width.
      */
-    double getSourceWidth();
+    void setSource(ImagePath source);
+    /**
+     * Sets the opacity of the sprite. Values [0,1].
+     * @param alpha
+     *          the new alpha value.
+     */
+    void setAlpha(double alpha);
+    /**
+     * Returns the opacity of the sprite.
+     * @return
+     *          the alpha value.
+     */
+    double getAlpha();
     /**
      * 
      * @return
-     *          pippo
      */
     double getSourceHeight();
     /**
      * 
-     * @param source
-     *          pippo
+     * @return
      */
-    void setSource(ImagePath source);
+    double getSourceWidth();
     /**
      * 
-     * @param alpha
-     *          pippo
+     * @param d
      */
-    void setAlpha(double alpha);
+    void setGameObjectWidth(double width);
+    /**
+     * 
+     * @param height
+     */
+    void setGameObjectHeight(double height);
+    /**
+     * 
+     * @param position
+     */
+    void setGameObjectPosition(Coordinate position);
     /**
      * 
      * @return
-     *          pippo
      */
-    double getAlpha();
+    Coordinate getGameObjectPosition();
+    /**
+     * 
+     * @return
+     */
+    double getGameObjectWidth();
+    /**
+     * 
+     * @return
+     */
+    double getGameObjectHeight();
 
 }

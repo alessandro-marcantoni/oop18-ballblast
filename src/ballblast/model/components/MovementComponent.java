@@ -22,7 +22,6 @@ public class MovementComponent extends AbstractComponent {
 
     private void updatePosition(final double elapsed) {
         final GameObject parent = this.getParent();
-        parent.getVelocity().multiply(elapsed);
-        parent.setPosition(parent.getVelocity().translate(parent.getPosition()));
+        parent.setPosition(parent.getVelocity().multiply(elapsed).translate(parent.getPosition()));
     }
 }

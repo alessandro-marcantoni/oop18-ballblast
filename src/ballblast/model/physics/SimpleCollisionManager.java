@@ -7,11 +7,12 @@ import org.locationtech.jts.geom.Geometry;
 import com.google.common.collect.ImmutableList;
 
 /**
- * The manager to check the collision during the game session.
+ * The manager to check the {@link Collision}s during a game session.
  */
 public class SimpleCollisionManager implements CollisionManager {
 
     private ImmutableList<Collidable> collidables;
+
     /**
      * The costructor to initialize the list of collidable objects.
      */

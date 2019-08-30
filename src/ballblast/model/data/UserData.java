@@ -16,15 +16,15 @@ public class UserData {
     private int spawnedBullets;
 
     /**
-     * Empty constructor to make the object serializable into xml file.
+     * Empty constructor to make this object serializable into xml file.
      */
 //    public UserData() { 
 //    }
 
     /**
-     * Update the user fields with the game session data.
+     * Updates the user fields with the game session data.
      * @param gameData
-     *          the data of the game session.
+     *          the {@link GameData} of the game session.
      */
     public void addGameData(final GameData gameData) {
         this.setMatchesPlayed(this.getMatchesPlayed() + 1);
@@ -159,4 +159,5 @@ public class UserData {
     public void setSpawnedBullets(final int spawnedBullets) {
         this.spawnedBullets = spawnedBullets;
     }
+
 }

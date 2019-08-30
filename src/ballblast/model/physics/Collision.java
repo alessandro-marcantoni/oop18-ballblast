@@ -1,7 +1,7 @@
 package ballblast.model.physics;
 
 /**
- * Represents a simple collision between two {@link GameObject}.
+ * Represents a simple collision between two {@link GameObject}s.
  */
 public class Collision {
 
@@ -9,11 +9,11 @@ public class Collision {
     private final Collidable other;
 
     /**
-     * The costructor for the collision.
+     * The class constructor.
      * @param object
-     *       the {@link Collidable} of the game object that collides.
+     *       the {@link CollisionComponent} of the game object that collides.
      * @param other
-     *       the component of the game object that lose out the collision.
+     *       the {@link CollisionComponent} of the game object that loses out the collision.
      */
     public Collision(final Collidable object, final Collidable other) {
         this.obj = object;
@@ -21,20 +21,21 @@ public class Collision {
     }
 
     /**
-     * The getter for the object that collides.
+     * The getter for the {@link GameObject} that collides.
      * @return
-     *       the {@link Collidable} object that collides.
+     *       the {@link Collidable} that collides.
      */
     public Collidable getObj() {
         return this.obj;
     }
 
     /**
-     * The getter for the other game object that collides.
+     * The getter for the {@link GameObject} that loses out the {@link Collision}.
      * @return
      *       the {@link Collidable} that lose out the collision.
      */
     public Collidable getOther() {
         return this.other;
     }
+
 }

@@ -27,10 +27,9 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     /**
      * Creates a new game loop instance.
-     * @param view
-     *      the view to render on each frame.
-     * @param model
-     *      the model to update the world on each frame.
+     * 
+     * @param view  the view to render on each frame.
+     * @param model the model to update the world on each frame.
      */
     public GameLoopImpl(final Model model, final View view) {
         super();
@@ -38,10 +37,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
         this.setDaemon(true);
         this.view = view;
         this.model = model;
-        this.inputs = ImmutableMap.of(
-                PlayerTags.FIRST, new ArrayList<>(),
-                PlayerTags.SECOND, new ArrayList<>()
-        );
+        this.inputs = ImmutableMap.of(PlayerTags.FIRST, new ArrayList<>(), PlayerTags.SECOND, new ArrayList<>());
     }
 
     @Override
@@ -77,34 +73,29 @@ public class GameLoopImpl extends Thread implements GameLoop {
     @Override
     public final synchronized void stopLoop() {
         this.stopped = true;
-        //this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.OVER));
         this.interrupt();
     }
+
     @Override
     public final void pause() {
         this.paused = true;
-        ///this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.PAUSE));
     }
 
     @Override
     public final void resumeLoop() {
         this.paused = false;
-        //this.model.getCurrentLevel().ifPresent(l -> l.setGameStatus(GameStatus.RUNNING));
     }
 
     @Override
-    public final void receiveInputs(final PlayerTags tag, final InputTypes input) {
+    public final synchronized void receiveInputs(final PlayerTags tag, final InputTypes input) {
         inputs.get(tag).add(input);
     }
 
-
     private boolean isStopped() {
-        //return this.model.getCurrentLevel().isPresent() ? this.stopped || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.OVER) : this.stopped;
         return this.stopped || model.getGameStatus().equals(GameStatus.OVER);
     }
 
     private boolean isPaused() {
-        //return this.model.getCurrentLevel().isPresent() ? this.paused || this.model.getCurrentLevel().get().getGameStatus().equals(GameStatus.PAUSE) : this.paused;
         return this.paused;
     }
 

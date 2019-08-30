@@ -22,10 +22,11 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     private final CollisionTag collisionTag;
     private final CollisionManager manager;
+
     /**
-     * The constructor for the CollisionComponent.
+     * Class constructor.
      * @param man
-     *       the collision manager.
+     *       the {@link CollisionManager}.
      * @param tag
      *       the type of the collision component, chosen by the game object type.
      */
@@ -37,18 +38,10 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     @Override
     public final Geometry generateShape() {
-        final Coordinate coordinateX = this.generateCoordinateX(this.getParent());
-        final Coordinate coordinateY = this.generateCoordinateY(this.getParent());
-        return new GeometryFactory().toGeometry(new Envelope(coordinateX.getX(), coordinateX.getY(), coordinateY.getX(), coordinateY.getY()))
-                                    .getEnvelope();
-    }
-
-    private Coordinate generateCoordinateX(final GameObject obj) {
-        return new Coordinate(obj.getPosition().getX() - obj.getWidth() / 2, obj.getPosition().getX() + obj.getWidth() / 2);
-    }
-
-    private Coordinate generateCoordinateY(final GameObject obj) {
-        return new Coordinate(obj.getPosition().getY() - obj.getHeight() / 2, obj.getPosition().getY() + obj.getHeight() / 2);
+        final Coordinate pos = this.getParent().getPosition();
+        final GameObject parent = this.getParent();
+        return new GeometryFactory().toGeometry(new Envelope(pos.getX(), pos.getX() + parent.getWidth(), pos.getY(), pos.getY() + parent.getHeight()))
+                .getEnvelope();
     }
 
     @Override
@@ -88,7 +81,10 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
     @Override
     public final void notifyCollision(final Collision coll) {
         if (this.getAttachedGameObject().get().equals(coll.getObj().getAttachedGameObject().get())) {
+            // da eliminare
+            System.out.println(this.getCollisionTag() + " collides with " + coll.getOther().getCollisionTag());
             this.getParent().handleCollision(coll.getOther());
         }
     }
+
 }

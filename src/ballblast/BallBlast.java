@@ -20,6 +20,7 @@ public final class BallBlast extends Application {
         final Model model = new ModelImpl();
         final Controller controller = new ControllerImpl(model, view);
         view.launch(controller);
+
     }
     /**
      * The main entry point of the application.
@@ -27,8 +28,6 @@ public final class BallBlast extends Application {
      *      CLI arguments.
      */
     public static void main(final String [] args) {
-//        ViewScenes scene = ViewScenes.MENU;
-//        System.out.println(scene.getPath());
         launch();
 
     }

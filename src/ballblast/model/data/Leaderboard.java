@@ -109,11 +109,11 @@ public class Leaderboard {
 
     /**
      * Setter for the record list.
-     * @param recordList
+     * @param records
      *          the {@link List} of {@link RecordData} to set.
      */
-    public void setRecordList(final List<RecordData> recordList) {
-        this.recordList = recordList;
+    public void setRecordList(final List<RecordData> records) {
+        this.recordList = records;
     }
 
 }

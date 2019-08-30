@@ -106,12 +106,12 @@ public class TestGameLoop {
     }
 
     /**
-     * 
+     * Tests {@Link GameLoop} constant refresh rate.
      */
     @Test
     public void testFrameRate() {
-        int previousValue = this.testView.getCounter();
         for (int i = 0; i < 10; i++) {
+            int previousValue = this.testView.getCounter();
             this.waitOneSecond();
             int newValue = this.testView.getCounter();
             System.out.println(newValue - previousValue);

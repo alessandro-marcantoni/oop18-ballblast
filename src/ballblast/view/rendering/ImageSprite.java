@@ -2,8 +2,6 @@ package ballblast.view.rendering;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
-
-import ballblast.model.Model;
 import ballblast.model.gameobjects.GameObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -28,7 +26,9 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     /**
      * Creates a new Image sprite with the given GraphicsContext.
      * @param gc 
-     *          the GraphicsContext. 
+     *          the {@link GraphicsContext}.
+     * @param gameObject
+     *          the {@link GameObject} to be rendered.
      */
     public ImageSprite(final GraphicsContext gc, final GameObject gameObject) {
         super();
@@ -157,7 +157,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     public final void setGameObjectPosition(final Coordinate position) {
         this.gameObjectPosition = position;
     }
-    
+
     @Override
     public final Coordinate getGameObjectPosition() {
         return this.gameObjectPosition;

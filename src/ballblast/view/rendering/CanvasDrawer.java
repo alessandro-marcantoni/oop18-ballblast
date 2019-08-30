@@ -15,7 +15,7 @@ import javafx.util.Pair;
 /**
  * A canvas drawer.
  */
-public class CanvasDrawer{
+public class CanvasDrawer {
     private static final Map<GameObjectTypes, Function<Pair<Sprite, GameObject>, Renderer>> RENDERER_MAP;
     private final Canvas canvas;
 
@@ -42,7 +42,7 @@ public class CanvasDrawer{
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
         this.convertToRenderers(gameObjects).forEach(r -> {
             gc.save();
-            r.render();;
+            r.render();
             gc.restore();
         });
     }
@@ -55,23 +55,12 @@ public class CanvasDrawer{
         return gameObjects.stream().map(this::getRenderer).collect(ImmutableList.toImmutableList());
     }
     /**
-     * 
      * @return
      *          the canvas.
      */
     public Canvas getCanvas() {
         return this.canvas;
     }
-    /**
-     * 
-     * @return
-     *          a Sprite
-     */
-//    public final Sprite createSprite() {
-//        final Sprite sprite = generateSprite();
-//        this.addRenderer(sprite);
-//        return sprite;
-//    }
 
     private Sprite generateSprite(final GameObject gameObject) {
         return new ImageSprite(this.canvas.getGraphicsContext2D(), gameObject);

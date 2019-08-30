@@ -1,7 +1,7 @@
 package ballblast.view;
 
 import ballblast.controller.Controller;
-import ballblast.view.utilities.ViewScenes;
+import ballblast.view.scenes.GameScenes;
 
 /**
  * 
@@ -43,23 +43,5 @@ public interface View {
      * @param scene
      *          scene
      */
-    void loadScene(ViewScenes scene);
-
-//    /**
-//     * Start the view thread.
-//     */
-//    void startRender();
-//
-//    /**
-//     * Stop the view thread.
-//     */
-//    void stopRender();
-//
-
-//    /**
-//     * 
-//     * @return the controller.
-//     */
-//    Controller getController();
-//
+    void loadScene(GameScenes scene);
 }

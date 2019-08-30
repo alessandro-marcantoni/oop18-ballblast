@@ -6,7 +6,7 @@ package ballblast.view.scenecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import ballblast.view.utilities.ViewScenes;
+import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -87,39 +87,39 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
         @FXML // fx:id="backToMenuBtn"
         private Button backToMenuBtn; // Value injected by FXMLLoader
 
-        @FXML // This method is called by the FXMLLoader when initialization is complete
-        final void initialize() {
-            assert player1label != null : "fx:id=\"player1label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert score1label != null : "fx:id=\"score1label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert player2label != null : "fx:id=\"player2label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert player3label != null : "fx:id=\"player3label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert player4label != null : "fx:id=\"player4label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert player5label != null : "fx:id=\"player5label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert player6label != null : "fx:id=\"player6label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert player7label != null : "fx:id=\"player7label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert player8label != null : "fx:id=\"player8label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert score2label != null : "fx:id=\"score2label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert score3label != null : "fx:id=\"score3label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert score4label != null : "fx:id=\"score4label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert score5label != null : "fx:id=\"score5label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert score6label != null : "fx:id=\"score6label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert score7label != null : "fx:id=\"score7label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert score8label != null : "fx:id=\"score8label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert player9label != null : "fx:id=\"player9label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert player10label != null : "fx:id=\"player10label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert score9label != null : "fx:id=\"score9label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert score10label != null : "fx:id=\"score10label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-            assert backToMenuBtn != null : "fx:id=\"backToMenuBtn\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//        @FXML // This method is called by the FXMLLoader when initialization is complete
+//        private void initialize() {
+//            assert player1label != null : "fx:id=\"player1label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert score1label != null : "fx:id=\"score1label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert player2label != null : "fx:id=\"player2label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert player3label != null : "fx:id=\"player3label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert player4label != null : "fx:id=\"player4label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert player5label != null : "fx:id=\"player5label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert player6label != null : "fx:id=\"player6label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert player7label != null : "fx:id=\"player7label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert player8label != null : "fx:id=\"player8label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert score2label != null : "fx:id=\"score2label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert score3label != null : "fx:id=\"score3label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert score4label != null : "fx:id=\"score4label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert score5label != null : "fx:id=\"score5label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert score6label != null : "fx:id=\"score6label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert score7label != null : "fx:id=\"score7label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert score8label != null : "fx:id=\"score8label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert player9label != null : "fx:id=\"player9label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert player10label != null : "fx:id=\"player10label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert score9label != null : "fx:id=\"score9label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert score10label != null : "fx:id=\"score10label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//            assert backToMenuBtn != null : "fx:id=\"backToMenuBtn\" was not injected: check your FXML file 'Leaderboard.fxml'.";
+//
+//        }
 
+        @Override
+        protected final GameScenes getNextScene() {
+            return GameScenes.MENU;
         }
 
         @Override
-        protected final ViewScenes getNextScene() {
-            return ViewScenes.MENU;
-        }
-
-        @Override
-        protected final ViewScenes getPreviousScene() {
-            return ViewScenes.MENU;
+        protected final GameScenes getPreviousScene() {
+            return GameScenes.MENU;
         }
     }

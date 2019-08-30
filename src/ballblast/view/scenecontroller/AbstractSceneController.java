@@ -2,7 +2,7 @@ package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
 import ballblast.view.View;
-import ballblast.view.utilities.ViewScenes;
+import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 
@@ -57,9 +57,9 @@ public abstract class AbstractSceneController {
     /**
      * 
      * @return
-     *          The next {@link ViewScenes}.
+     *          The next {@link GameScenes}.
      */
-    protected abstract ViewScenes getNextScene();
+    protected abstract GameScenes getNextScene();
     /**
      * Go to the previous scene.
      */
@@ -70,9 +70,9 @@ public abstract class AbstractSceneController {
     /**
      * 
      * @return
-     *          The previous {@link ViewScenes}.
+     *          The previous {@link GameScenes}.
      */
-    protected abstract ViewScenes getPreviousScene();
+    protected abstract GameScenes getPreviousScene();
     /**
      * Event handler.
      * @param event

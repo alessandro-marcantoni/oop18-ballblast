@@ -2,7 +2,7 @@ package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
 import ballblast.view.View;
-import ballblast.view.utilities.ViewScenes;
+import ballblast.view.scenes.GameScenes;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -30,13 +30,13 @@ public class LoginController extends AbstractSceneController {
     }
 
     @Override
-    protected final ViewScenes getNextScene() {
-        return ViewScenes.MENU;
+    protected final GameScenes getNextScene() {
+        return GameScenes.MENU;
     }
 
     @Override
-    protected final ViewScenes getPreviousScene() {
-        return ViewScenes.MAIN;
+    protected final GameScenes getPreviousScene() {
+        return GameScenes.MAIN;
     }
     /**
      * 

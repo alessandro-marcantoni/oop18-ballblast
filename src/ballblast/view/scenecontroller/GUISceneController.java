@@ -1,7 +1,11 @@
 package ballblast.view.scenecontroller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ballblast.controller.Controller;
 import ballblast.model.Model;
+import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
@@ -73,7 +77,7 @@ public class GUISceneController extends AbstractSceneController {
         super.init(controller, view);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
-        this.userInterface = new UIFactory();
+//        this.userInterface = new UIFactory();
 
         this.resetGameCanvasCoordinates();
         this.canvasDrawer = new CanvasDrawer(this.canvas);
@@ -82,8 +86,9 @@ public class GUISceneController extends AbstractSceneController {
         this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
         this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
         this.statusBarContainer.prefWidthProperty().bind(this.canvas.widthProperty());
-
+        
         this.setState(this.inGameState);
+        
     }
 
     @Override
@@ -101,9 +106,24 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     public final void render() {
+        List<GameObject> walls = new ArrayList<>();
+        for (GameObject gameObject : this.getController().getGameObjects()) {
+            if (gameObject.getType() == GameObjectTypes.WALL) {
+                walls.add(gameObject);
+            }
+        }
+        final GraphicsContext gc = this.canvas.getGraphicsContext2D();
+//        gc.save();
+        final double canvasWidth = this.canvas.getWidth();
+        final double canvasHeight = this.canvas.getHeight();
+//        gc.fillRect(0, 0, canvasWidth, canvasHeight);
+//        gc.scale(1, -1);
+//        gc.translate(0, -canvasHeight);
+//        gc.scale(canvasWidth / (Model.WORLD_WIDTH), canvasHeight / Model.WORLD_HEIGHT);
         this.score.setText(Double.toString(this.getController().getGameData().getScore()));
         this.balls.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
         this.canvasDrawer.draw(this.getController().getGameObjects());
+//        this.canvasDrawer.draw(walls);
     }
 
     private void resetGameCanvasCoordinates() {
@@ -115,7 +135,6 @@ public class GUISceneController extends AbstractSceneController {
         gc.clearRect(0, 0, canvasWidth, canvasWidth);
         gc.fillRect(0, 0, canvasWidth, canvasHeight);
         gc.scale(1, -1);
-//        gc.translate(0, -canvasHeight);
         gc.scale(canvasWidth / (Model.WORLD_WIDTH), canvasHeight / Model.WORLD_HEIGHT);
     }
 

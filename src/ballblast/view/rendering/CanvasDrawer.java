@@ -3,22 +3,19 @@ package ballblast.view.rendering;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.view.rendering.gameobject.RendererFactory;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.util.Pair;
 
 /**
  * A canvas drawer.
  */
-public class CanvasDrawer {
+public class CanvasDrawer{
     private static final Map<GameObjectTypes, Function<Pair<Sprite, GameObject>, Renderer>> RENDERER_MAP;
     private final Canvas canvas;
 
@@ -45,7 +42,7 @@ public class CanvasDrawer {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
         this.convertToRenderers(gameObjects).forEach(r -> {
             gc.save();
-            r.render();
+            r.render();;
             gc.restore();
         });
     }
@@ -76,7 +73,7 @@ public class CanvasDrawer {
 //        return sprite;
 //    }
 
-    private Sprite generateSprite(GameObject gameObject) {
+    private Sprite generateSprite(final GameObject gameObject) {
         return new ImageSprite(this.canvas.getGraphicsContext2D(), gameObject);
     }
 

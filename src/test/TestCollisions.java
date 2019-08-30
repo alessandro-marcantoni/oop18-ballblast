@@ -156,6 +156,7 @@ public class TestCollisions {
         final int ballLife = 3;
         final double x = 5;
         final double y = 5;
+        final int neg = -1;
         final CollisionManager manager = new SimpleCollisionManager();
         final GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, Boundaries.BOTTOM.getPosition(), Vector2D.create(new Coordinate(x, y)), manager, new GameObjectManager(), null);
         final GameObject wall = GameObjectFactory.createWall(x, y, Boundaries.BOTTOM.getPosition(), new Vector2D(), manager);
@@ -165,16 +166,17 @@ public class TestCollisions {
 
         manager.checkLoop();
         // Expected floor bounce.
-        assertSame(ball.getVelocity().getY() - (y * -1), 0);
-        assertSame(ball.getVelocity().getX() - x, 0);
+        assertEquals(Double.valueOf(ball.getVelocity().getY()), Double.valueOf(y * neg));
+        assertEquals(Double.valueOf(ball.getVelocity().getX()), Double.valueOf(x));
 
         ball.setPosition(Boundaries.LEFT.getPosition());
         wall.setPosition(Boundaries.LEFT.getPosition());
 
         manager.checkLoop();
         // Expected wall bounce.
-        assertSame(ball.getVelocity().getY() - (y * -1), 0);
-        assertSame(ball.getVelocity().getX() - (x * -1), 0);
+        assertEquals(Double.valueOf(ball.getVelocity().getY()), Double.valueOf(y * neg));
+        assertEquals(Double.valueOf(ball.getVelocity().getX()), Double.valueOf(x * neg));
+
     }
 
     /**

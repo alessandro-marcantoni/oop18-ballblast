@@ -1,10 +1,12 @@
 package ballblast.model.components;
 
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.data.GameDataManager;
+import ballblast.model.gameobjects.Bullet;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
@@ -14,11 +16,14 @@ import ballblast.model.physics.CollisionManager;
  * Adds the shotting ability to a {@link GameObject}.
  */
 public class ShooterComponent extends AbstractComponent {
-    private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -3);
+    private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -25);
+    private static final double SHOT_INTERVAL = 0.2;
+
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final GameDataManager gameDataManager;
     private boolean isShooting;
+    private double currentShotInterval;
 
     /**
      * Class constructor.
@@ -41,9 +46,11 @@ public class ShooterComponent extends AbstractComponent {
 
     @Override
     public final void update(final double elapsed) {
-        if (this.isEnabled() && this.isShooting) {
+        if (this.isEnabled() && this.isShooting && this.currentShotInterval <= 0) {
             this.shoot(this.spawnBullet());
+            this.currentShotInterval = SHOT_INTERVAL;
         }
+        this.currentShotInterval -= elapsed;
     }
 
     /**
@@ -67,7 +74,13 @@ public class ShooterComponent extends AbstractComponent {
     }
 
     private GameObject spawnBullet() {
-        return GameObjectFactory.createBullet(this.getParent().getPosition(), BULLET_VELOCITY, collisionManager);
+        return GameObjectFactory.createBullet(this.getSpawnPosition(), BULLET_VELOCITY, collisionManager);
+    }
+
+    private Coordinate getSpawnPosition() {
+        final Coordinate parentPos = this.getParent().getPosition();
+        return new Coordinate(parentPos.getX() + this.getParent().getWidth() / 2 - Bullet.DEFAULT_WIDTH / 2,
+                parentPos.getY() - Bullet.DEFAULT_HEIGHT);
     }
 
 }

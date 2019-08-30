@@ -8,8 +8,14 @@ import com.google.common.base.MoreObjects;
  *
  */
 public final class Bullet extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
-    private static final double DEFAULT_WIDTH = 4;
-    private static final double DEFAULT_HEIGHT = 4;
+    /**
+     * Default {@link Bullet}'s width.
+     */
+    public static final double DEFAULT_WIDTH  = 1;
+    /**
+     * Default {@link Bullet}'s height.
+     */
+    public static final double DEFAULT_HEIGHT = 1.5;
 
     /**
      * Create a {@link Bullet} instance.

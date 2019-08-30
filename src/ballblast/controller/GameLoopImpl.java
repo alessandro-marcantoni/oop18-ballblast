@@ -11,6 +11,7 @@ import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
 import ballblast.model.levels.GameStatus;
 import ballblast.view.View;
+import ballblast.view.scenecontroller.GUISceneController;
 
 /**
  * Represents a game loop that starts in a new thread.

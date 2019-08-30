@@ -2,8 +2,6 @@ package ballblast.view.rendering;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
-
-import ballblast.model.Model;
 import ballblast.model.gameobjects.GameObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -28,7 +26,9 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     /**
      * Creates a new Image sprite with the given GraphicsContext.
      * @param gc 
-     *          the GraphicsContext. 
+     *          the {@link GraphicsContext}.
+     * @param gameObject
+     *          the {@link GameObject} to be rendered.
      */
     public ImageSprite(final GraphicsContext gc, final GameObject gameObject) {
         super();
@@ -41,14 +41,11 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         this.gameObject = gameObject;
         this.gameObjectWidth = DEFAULT;
         this.gameObjectWidth = DEFAULT;
-        this.gameObjectPosition = new Coordinate(0,0);
+        this.gameObjectPosition = new Coordinate(0, 0);
     }
 
     @Override
     public final void render() {
-//        this.gc.translate(this.getPosition().getX() + Model.WALL_OFFSET * 5, this.getPosition().getY());
-//        this.gc.clearRect(this.gameObject.getPosition().getX(), this.gameObject.getPosition().getY(),
-//                          this.gameObject.getWidth(), this.gameObject.getHeight());
         this.gc.scale(1, -1);
         this.gc.setGlobalAlpha(this.getAlpha());
         this.gc.drawImage(
@@ -63,18 +60,6 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
                 // the destination rectangle's dimension (width and height).
                 this.gameObject.getWidth(), this.gameObject.getHeight()
                 );
-//        this.gc.drawImage(
-//                // the source image
-//                this.image, 
-//                // the source rectangle's coordinate position.
-//                this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
-//                // the source rectangle's dimension (width and height).
-//                this.getImageSourceWidth(), this.getImageSourceHeight(),
-//                // the destination rectangle's coordinate position.
-//                this.getGameObjectPosition().getX(), this.getGameObjectPosition().getY(),
-//                // the destination rectangle's dimension (width and height).
-//                this.getGameObjectWidth(), this.getGameObjectHeight()
-//                );
     }
 
     @Override
@@ -172,7 +157,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     public final void setGameObjectPosition(final Coordinate position) {
         this.gameObjectPosition = position;
     }
-    
+
     @Override
     public final Coordinate getGameObjectPosition() {
         return this.gameObjectPosition;

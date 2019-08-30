@@ -63,12 +63,16 @@ public enum BallColors {
     /**
      * 
      * @return
-     *          pippo
+     *          the ball image path.
      */
     public String getBallPath() {
         return this.ballPath;
     }
-    
+    /**
+     * 
+     * @return
+     *          the {@link BallColors} color.
+     */
     public String getBallColor() {
         return this.toString();
     }

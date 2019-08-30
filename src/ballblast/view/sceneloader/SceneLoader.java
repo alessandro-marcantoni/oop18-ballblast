@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import ballblast.view.utilities.ViewScenes;
+import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,9 +20,9 @@ public final class SceneLoader {
     private static final SceneLoader SINGLETON = new SceneLoader();
 
     /**
-     * 
+     * Singleton getter.
      * @return
-     *          pippo
+     *          a new {@link SceneLoader}.
      */
     public static SceneLoader getLoader() {
         return SINGLETON;
@@ -31,16 +31,15 @@ public final class SceneLoader {
     /**
      * 
      * @param scene
-     *          scene
+     *          the {@link GameScenes} to be loaded.
      * @return
-     *          pippo
+     *          a new {@link SceneWrapper} for the scene which will be loaded.
      * @throws IOException
      *          help
      */
-    public SceneWrapper getScene(final ViewScenes scene) throws IOException {
+    public SceneWrapper getScene(final GameScenes scene) throws IOException {
         final FXMLLoader loader = new FXMLLoader();
-//        final Parent root = (Parent) loader.load(this.getClass().getResourceAsStream(scene.getPath()));
-        Path path = Paths.get(scene.getPath());
+        final Path path = Paths.get(scene.getPath());
         final Parent root = (Parent) loader.load(new FileInputStream(path.toFile()));
         return new SceneWrapperImpl(new Scene(root), loader.getController());
     }

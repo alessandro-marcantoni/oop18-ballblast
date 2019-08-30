@@ -1,10 +1,10 @@
-package ballblast.view.utilities;
+package ballblast.view.scenes;
 
 /**
  * 
  * Enumeration that contains the game scenes.
  */
-public enum ViewScenes {
+public enum GameScenes {
     /**
      * The game scene.
      */
@@ -57,7 +57,7 @@ public enum ViewScenes {
      * @param scene
      *          the scene.
      */
-    ViewScenes(final String scene) {
+    GameScenes(final String scene) {
         this.selectedScene = scene;
     }
     /**
@@ -66,6 +66,6 @@ public enum ViewScenes {
      *          the Path where the scene is stored.
      */
     public String getPath() {
-        return ViewScenes.PATH + this.selectedScene;
+        return GameScenes.PATH + this.selectedScene;
     }
 }

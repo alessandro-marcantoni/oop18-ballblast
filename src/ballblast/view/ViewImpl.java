@@ -1,11 +1,10 @@
 package ballblast.view;
 
 import ballblast.controller.Controller;
-import ballblast.view.rendering.ImageLoader;
 import ballblast.view.scenecontroller.AbstractSceneController;
 import ballblast.view.sceneloader.SceneLoader;
 import ballblast.view.sceneloader.SceneWrapper;
-import ballblast.view.utilities.ViewScenes;
+import ballblast.view.scenes.GameScenes;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
@@ -42,8 +41,7 @@ public class ViewImpl implements View {
        this.stage.setMinWidth(MIN_WIDTH);
        this.stage.setMaximized(true);
        this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
-       this.loadScene(ViewScenes.MAIN);
-//       ImageLoader.getLoader().loadAll();
+       this.loadScene(GameScenes.MAIN);
     }
 
     @Override
@@ -52,7 +50,7 @@ public class ViewImpl implements View {
     }
 
     @Override
-    public final void loadScene(final ViewScenes scene) {
+    public final void loadScene(final GameScenes scene) {
         try {
             final SceneWrapper wrapper = SceneLoader.getLoader().getScene(scene);
             wrapper.getController().init(controller, this);

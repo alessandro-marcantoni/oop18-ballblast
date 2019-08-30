@@ -1,6 +1,6 @@
 package ballblast.view.scenecontroller;
 
-import ballblast.view.utilities.ViewScenes;
+import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -60,6 +60,7 @@ public class MenuSceneController extends AbstractSceneController {
      */
     @FXML
     protected void openSettings() {
+        //TODO
 //        this.settings = true;
 //        this.nextScene();
         final Alert alert = new Alert(AlertType.WARNING);
@@ -85,30 +86,30 @@ public class MenuSceneController extends AbstractSceneController {
     }
 
     @Override
-    protected final ViewScenes getNextScene() {
-        ViewScenes selection = ViewScenes.MENU;
+    protected final GameScenes getNextScene() {
+        GameScenes selection = GameScenes.MENU;
         // TO DELETE
-        selection = ViewScenes.GAME_MODE; // Inserito per andare più veloce nel testing
-        
+        selection = GameScenes.GAME_MODE; // Inserito per andare più veloce nel testing
+
         if (this.gameMode) {
-            selection = ViewScenes.GAME_MODE;
+            selection = GameScenes.GAME_MODE;
         }
         if (this.leaderboard) {
-            selection = ViewScenes.LEADERBOARD;
+            selection = GameScenes.LEADERBOARD;
         }
         if (this.settings) {
-            selection = ViewScenes.SETTINGS;
+            selection = GameScenes.SETTINGS;
         }
         if (this.manual) {
-            selection = ViewScenes.MANUAL;
+            selection = GameScenes.MANUAL;
         }
         return selection;
     }
     @Override
-    protected final ViewScenes getPreviousScene() {
-        return ViewScenes.LOGIN;
+    protected final GameScenes getPreviousScene() {
+        return GameScenes.LOGIN;
     }
-    
+
     // TO DELETE
     // Inserito per andare più veloce nel testing.
     @Override

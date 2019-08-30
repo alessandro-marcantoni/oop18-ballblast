@@ -3,16 +3,13 @@ package ballblast.view.rendering;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.view.rendering.gameobject.RendererFactory;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.util.Pair;
 
 /**
@@ -58,25 +55,14 @@ public class CanvasDrawer {
         return gameObjects.stream().map(this::getRenderer).collect(ImmutableList.toImmutableList());
     }
     /**
-     * 
      * @return
      *          the canvas.
      */
     public Canvas getCanvas() {
         return this.canvas;
     }
-    /**
-     * 
-     * @return
-     *          a Sprite
-     */
-//    public final Sprite createSprite() {
-//        final Sprite sprite = generateSprite();
-//        this.addRenderer(sprite);
-//        return sprite;
-//    }
 
-    private Sprite generateSprite(GameObject gameObject) {
+    private Sprite generateSprite(final GameObject gameObject) {
         return new ImageSprite(this.canvas.getGraphicsContext2D(), gameObject);
     }
 

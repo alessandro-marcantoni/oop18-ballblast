@@ -1,4 +1,4 @@
-package ballblast.view.scenefactory;
+package ballblast.view.scenes;
 
 import ballblast.model.powerups.PowerTypes;
 import ballblast.view.rendering.ImageLoader;

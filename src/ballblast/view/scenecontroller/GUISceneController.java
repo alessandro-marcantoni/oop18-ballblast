@@ -1,16 +1,12 @@
 package ballblast.view.scenecontroller;
-
 import ballblast.controller.Controller;
 import ballblast.model.Model;
-import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
-import ballblast.view.scenefactory.UIFactory;
+import ballblast.view.scenes.GameScenes;
 import ballblast.view.states.GUIState;
-import ballblast.view.states.IdleState;
 import ballblast.view.states.InGameState;
 import ballblast.view.states.PausedState;
-import ballblast.view.utilities.ViewScenes;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -19,7 +15,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 /**
  * 
@@ -58,7 +53,7 @@ public class GUISceneController extends AbstractSceneController {
     private GUIState currentState;
     private GUIState inGameState;
     private GUIState pausedState;
-    private UIFactory userInterface;
+//    private UIFactory userInterface;
     private CanvasDrawer canvasDrawer;
 
 
@@ -73,17 +68,18 @@ public class GUISceneController extends AbstractSceneController {
         super.init(controller, view);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
-        this.userInterface = new UIFactory();
+//        this.userInterface = new UIFactory();
 
         this.resetGameCanvasCoordinates();
         this.canvasDrawer = new CanvasDrawer(this.canvas);
 
-        // Adjust the canvas when resizing the window.
+        // Listeners for resized windows.
         this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
         this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
         this.statusBarContainer.prefWidthProperty().bind(this.canvas.widthProperty());
 
         this.setState(this.inGameState);
+
     }
 
     @Override
@@ -101,6 +97,7 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     public final void render() {
+        this.clearCanvas();
         this.score.setText(Double.toString(this.getController().getGameData().getScore()));
         this.balls.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
         this.canvasDrawer.draw(this.getController().getGameObjects());
@@ -115,10 +112,14 @@ public class GUISceneController extends AbstractSceneController {
         gc.clearRect(0, 0, canvasWidth, canvasWidth);
         gc.fillRect(0, 0, canvasWidth, canvasHeight);
         gc.scale(1, -1);
-//        gc.translate(0, -canvasHeight);
         gc.scale(canvasWidth / (Model.WORLD_WIDTH), canvasHeight / Model.WORLD_HEIGHT);
     }
-
+    // Clear the canvas after every render. It avoids ghosting effect.
+    private void clearCanvas() {
+        this.canvas.getGraphicsContext2D().restore();
+        this.resetGameCanvasCoordinates();
+    }
+    // Resize the canvas proportionally when the app window is resized by the user.
     private void resizeCanvas() {
         final double parentWidth = this.canvasContainer.getWidth();
         final double parentHeight = this.canvasContainer.getHeight();
@@ -138,19 +139,15 @@ public class GUISceneController extends AbstractSceneController {
     }
 
     @Override
-    protected final ViewScenes getNextScene() {
-        return ViewScenes.GAMEOVER;
+    protected final GameScenes getNextScene() {
+        return GameScenes.GAMEOVER;
     }
 
     @Override
-    protected final ViewScenes getPreviousScene() {
-        return ViewScenes.MENU;
+    protected final GameScenes getPreviousScene() {
+        return GameScenes.MENU;
     }
 
-    /**
-     * POWER UP DA IMPLEMENTARE
-     */
-    // private void handlePickupEvent(final PowerUp powerUp, final Player player) {}
 
     /**
      * 
@@ -180,13 +177,9 @@ public class GUISceneController extends AbstractSceneController {
     public GUIState getInGameState() {
         return this.inGameState;
     }
-//    /**
-//     * 
-//     * @return
-//     *          the idle state.
-//     */
-//    public GUIState getIdleState() {
-//        return this.idleState;
-//    }
 
+    /**
+     * POWER UP DA IMPLEMENTARE
+     */
+    // private void handlePickupEvent(final PowerUp powerUp, final Player player) {}
 }

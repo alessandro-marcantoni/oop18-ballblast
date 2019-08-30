@@ -26,18 +26,19 @@ public interface Sprite extends Renderer {
      *          the position.
      */
     Coordinate getPosition();
+
     /**
-     * Sets the pivot of the sprite. The pivot is the point relative to the center of the image that
-     * is used as the center for positioning. Coordinates in the range [-1,1] indicate a pivot inside
-     * the rectangle of the image.
-     * @param pivot
-     *          the new pivot.
+     * 
+     * @param topLeft
+     *          The top left corner position. Default is (0, 0)
+     * @param offset
+     *          The offset of the bottom right corner from the top left one.
      */
     void setSourceWindow(Coordinate topLeft, Vector2D offset);
     /**
-     * Returns the width of the source image in pixels.
-     * @return
-     *          the width.
+     * Sets the source image of the sprite.
+     * @param source
+     *          the new source image identifier.
      */
     void setSource(ImagePath source);
     /**
@@ -55,41 +56,53 @@ public interface Sprite extends Renderer {
     /**
      * 
      * @return
+     *          return the image source height.
      */
     double getSourceHeight();
     /**
      * 
      * @return
+     *          return the image source width.
      */
     double getSourceWidth();
     /**
-     * 
-     * @param d
+     * Sets the width on the screen of the sprite, 
+     * according to the {@link GameObject} width.
+     * @param width
+     *          the new width.
      */
     void setGameObjectWidth(double width);
     /**
      * 
+     * Sets the width on the screen of the sprite, 
+     * according to the {@link GameObject} height.
      * @param height
+     *          the new height.
      */
     void setGameObjectHeight(double height);
     /**
-     * 
+     * Sets the position on the screen of the sprite, 
+     * according to the {@link GameObject} position.
      * @param position
+     *          the new position
      */
     void setGameObjectPosition(Coordinate position);
     /**
      * 
      * @return
+     *          the position of the {@link GameObject}.
      */
     Coordinate getGameObjectPosition();
     /**
      * 
      * @return
+     *          the width of the {@link GameObject}.
      */
     double getGameObjectWidth();
     /**
      * 
      * @return
+     *          the height of the {@link GameObject}.
      */
     double getGameObjectHeight();
 

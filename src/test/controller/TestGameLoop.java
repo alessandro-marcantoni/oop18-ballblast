@@ -11,7 +11,7 @@ import ballblast.controller.GameLoopImpl;
 import ballblast.model.Model;
 import ballblast.model.ModelImpl;
 import ballblast.view.View;
-import ballblast.view.utilities.ViewScenes;
+import ballblast.view.scenes.GameScenes;
 
 /**
  * JUnit test for {@Link GameLoop}.
@@ -40,7 +40,7 @@ public class TestGameLoop {
         }
 
         @Override
-        public void loadScene(final ViewScenes scene) {
+        public void loadScene(final GameScenes scene) {
         }
 
     }

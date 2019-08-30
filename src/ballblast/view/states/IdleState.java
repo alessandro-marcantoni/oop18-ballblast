@@ -28,13 +28,13 @@ public class IdleState extends GUIState {
 
     @Override
     public final void onStateEntry() {
-        //this.getController().pauseGame();
+        this.getController().pauseGame();
         this.message.setVisible(true);
     }
 
     @Override
     public final void onStateExit() {
-        //this.getController().resume();
+        this.getController().resume();
         this.message.setVisible(false);
     }
 

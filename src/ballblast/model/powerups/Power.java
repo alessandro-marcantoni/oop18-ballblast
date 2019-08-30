@@ -10,7 +10,7 @@ public interface Power {
     /**
      * Activates the powerup on a specific player.
      * @param player
-     *      The player who gets the powerup.
+     *      The {@Link Player} who gets the powerup.
      */
     void activate(Player player);
 
@@ -27,11 +27,11 @@ public interface Power {
     boolean isActive();
 
     /**
-     * Returns the type of the powerup.
+     * Returns the {@Link PowerTypes} of the powerup.
      * @return
-     *       The type of the powerup.
+     *       The {@Link PowerTypes} of the powerup.
      */
-    PowerType getPowerTag();
+    PowerTypes getPowerTag();
 
     /**
      * Updates the state of the powerup following the elapsed time.

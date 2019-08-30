@@ -7,7 +7,7 @@ import org.locationtech.jts.math.Vector2D;
  */
 public class GravityComponent extends AbstractComponent {
 
-    private static final Vector2D STANDARD_GRAVITY = Vector2D.create(0, -100);
+    private static final Vector2D STANDARD_GRAVITY = Vector2D.create(0, 100);
 
     private Vector2D gravity;
 

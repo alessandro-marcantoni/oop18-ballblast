@@ -107,7 +107,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
         this.view.render();
     }
 
-    private void processInput() {
+    private synchronized void processInput() {
         inputs.forEach((k, v) -> {
             if (!v.isEmpty()) {
                 this.model.resolveInputs(k, v);

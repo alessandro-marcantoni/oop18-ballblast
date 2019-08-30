@@ -28,6 +28,11 @@ public interface Controller {
     void resume();
 
     /**
+     * Ends the game.
+     */
+    void gameOver();
+
+    /**
      * Sends an input to be resolved the next update by the right {@link Player} to the {@link Controller}.
      * @param tag
      *     the tag which identifies the {@link Player}.
@@ -49,4 +54,5 @@ public interface Controller {
      *       The {@link GameData}.
      */
     GameData getGameData();
+
 }

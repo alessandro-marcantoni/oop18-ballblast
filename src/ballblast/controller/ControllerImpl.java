@@ -48,6 +48,11 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
+    public final void gameOver() {
+        this.gameloop.stopLoop();
+    }
+
+    @Override
     public final void sendInput(final PlayerTags tag, final InputTypes input) {
         this.gameloop.receiveInputs(tag, input);
     }

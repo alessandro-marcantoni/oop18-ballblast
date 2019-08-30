@@ -1,6 +1,6 @@
 package ballblast.view.scenefactory;
 
-import ballblast.model.powerups.PowerType;
+import ballblast.model.powerups.PowerTypes;
 import ballblast.view.rendering.ImageLoader;
 import ballblast.view.rendering.ImagePath;
 import javafx.geometry.Rectangle2D;
@@ -23,7 +23,7 @@ public class UIFactory {
      * @return
      *          A icon for the given power.
      */
-    public ImageView createPowerIcon(final PowerType power) {
+    public ImageView createPowerIcon(final PowerTypes power) {
         final ImageView imageView = new ImageView();
         final Image image = ImageLoader.getLoader().getImage(ImagePath.POWERS);
         final double cellWidth = image.getWidth() / 3;
@@ -32,7 +32,7 @@ public class UIFactory {
         case SHIELD:
             imageView.setViewport(new Rectangle2D(cellWidth, 0, cellWidth, cellHeight));
             break;
-        case DOUBLESHOT:
+        case DOUBLEFIRE:
             imageView.setViewport(new Rectangle2D(0, 0, cellWidth, cellHeight));
             break;
         case FREEZE:

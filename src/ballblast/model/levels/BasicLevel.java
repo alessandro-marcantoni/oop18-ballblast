@@ -3,6 +3,8 @@ package ballblast.model.levels;
 import java.util.Arrays;
 import java.util.List;
 
+import org.locationtech.jts.math.Vector2D;
+
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.components.Component;
@@ -91,7 +93,7 @@ public final class BasicLevel implements Level {
 
     private GameObject convertToWall(final Boundaries b) {
         return GameObjectFactory.createWall(b.getHeight(), b.getWidth(), 
-                b.getPosition(), b.getVelocity(), this.collisionManager);
+                b.getPosition(), Vector2D.create(0, 0), this.collisionManager);
     }
 
     private void activeComponents(final GameObject gameObject) {

@@ -25,13 +25,13 @@ public class BallRenderer extends GameObjectRenderer<Ball> {
     public BallRenderer(final Sprite sprite, final Ball gameObject) {
         super(sprite, gameObject);
         this.setLayer(Layers.BALL_LAYER);
-//        final Text life = new Text(Integer.toString(gameObject.getLife()));
-//        final StackPane pane = new StackPane();
-//        final ImageView imageView = new ImageView();
-//        imageView.setImage(sprite.getImageSource());
-//        pane.getChildren().add(imageView);
-//        pane.getChildren().add(life);
-//        pane.setAlignment(Pos.CENTER);
+        final Text life = new Text(Integer.toString(gameObject.getCurrentLife()));
+        final StackPane pane = new StackPane();
+        final ImageView imageView = new ImageView();
+        imageView.setImage(sprite.getImageSource());
+        pane.getChildren().add(imageView);
+        pane.getChildren().add(life);
+        pane.setAlignment(Pos.CENTER);
         sprite.setSource(ImagePath.BALL);
     }
 }

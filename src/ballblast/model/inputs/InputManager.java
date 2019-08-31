@@ -21,7 +21,7 @@ import ballblast.model.gameobjects.GameObject;
  */
 public class InputManager {
     private static final Map<InputTypes, Consumer<GameObject>> COMMANDS_MAP;
-    private static final int MOVEMENT_SPEED = 10;
+    private static final int MOVEMENT_SPEED = 45;
     private Map<PlayerTags, InputComponent> inputHandlers;
 
     static {

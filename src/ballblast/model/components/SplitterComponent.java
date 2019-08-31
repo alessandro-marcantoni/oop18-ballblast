@@ -77,7 +77,7 @@ public class SplitterComponent extends AbstractComponent {
     }
 
     private int getChildLife() {
-        return ((Ball) this.getParent()).getLife() / 2;
+        return ((Ball) this.getParent()).getInitialLife() / 2;
     }
 
     private Coordinate getChildPosition() {

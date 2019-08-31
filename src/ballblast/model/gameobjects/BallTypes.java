@@ -44,7 +44,7 @@ public enum BallTypes {
      *         {@link BallTypes} otherwise.
      */
     public Optional<BallTypes> getChild() {
-        return Optional.of(child);
+        return Optional.ofNullable(child);
     }
 
     /**

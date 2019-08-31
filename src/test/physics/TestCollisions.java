@@ -144,7 +144,7 @@ public class TestCollisions {
         assertTrue(bullets.isDestroyed());
         assertFalse(balls.isDestroyed());
         // The Ball object is still alive but his life has been decremented.
-        assertEquals(((Ball) balls).getLife(), 1);
+        assertEquals(((Ball) balls).getCurrentLife(), 1);
         assertEquals(manager.getCollidables().size(), 1);
     }
 

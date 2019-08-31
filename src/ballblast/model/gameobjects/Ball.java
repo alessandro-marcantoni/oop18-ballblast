@@ -8,7 +8,8 @@ import com.google.common.base.MoreObjects;
  */
 public final class Ball extends AbstractGameObject {
     private BallTypes ballType;
-    private int life;
+    private int initialLife;
+    private int currentLife;
 
     /**
      * Creates a Ball instance.
@@ -18,21 +19,30 @@ public final class Ball extends AbstractGameObject {
     }
 
     /**
-     * Sets the {@link Ball} life.
+     * Sets the current {@link Ball}'s life.
      * 
-     * @param life the {@link Ball} life.
+     * @param life the current {@link Ball}'s life.
      */
-    public void setLife(final int life) {
-        this.life = life;
+    public void setCurrentLife(final int life) {
+        this.currentLife = life;
     }
 
     /**
-     * Gets the {@link GameObject} life.
+     * Gets the initial {@link Ball}'s life.
      * 
-     * @return the {@link GameObject} life.
+     * @return the intial {@link Ball}'s life.
      */
-    public int getLife() {
-        return this.life;
+    public int getInitialLife() {
+        return this.initialLife;
+    }
+
+    /**
+     * Gets the current {@link Ball}'s life.
+     * 
+     * @return the current {@link Ball}'s life.
+     */
+    public int getCurrentLife() {
+        return this.currentLife;
     }
 
     /**
@@ -42,6 +52,15 @@ public final class Ball extends AbstractGameObject {
      */
     public BallTypes getBallType() {
         return this.ballType;
+    }
+
+    /**
+     * Sets the initial {@link Ball}'s life.
+     * 
+     * @param life the initial {@link Ball}'s life.
+     */
+    private void setInitialLife(final int life) {
+        this.initialLife = life;
     }
 
     /**
@@ -61,7 +80,7 @@ public final class Ball extends AbstractGameObject {
                 .add("GameObjectType", this.getType())
                 .add("BallType", this.ballType)
                 .add("Diameter", this.ballType.getDiameter())
-                .add("Life", this.life)
+                .add("InitialLife", this.initialLife)
                 .add("Position", this.getPosition().toString())
                 .add("IsDestroyed", this.isDestroyed())
                 .toString();
@@ -78,7 +97,8 @@ public final class Ball extends AbstractGameObject {
          * @return the {@link Builder}.
          */
         public Builder setLife(final int life) {
-            this.getGameObject().setLife(life);
+            this.getGameObject().setInitialLife(life);
+            this.getGameObject().setCurrentLife(life);
             return this;
         }
 

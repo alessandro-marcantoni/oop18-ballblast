@@ -29,8 +29,8 @@ public class BallCollisionHandler implements CollisionHandler {
                 break;
             case BULLET:
                 // Decrement the Ball life by 'decLife' and destroy if life = 0.
-                ((Ball) obj).setLife(((Ball) obj).getLife() - decLife);
-                if (((Ball) obj).getLife() == 0) {
+                ((Ball) obj).setCurrentLife(((Ball) obj).getCurrentLife() - decLife);
+                if (((Ball) obj).getCurrentLife() <= 0) {
                     obj.destroy();
                 }
                 // TODO handle score

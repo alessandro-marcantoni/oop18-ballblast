@@ -21,10 +21,6 @@ public interface Model {
      * Default height for the levels.
      */
     double WORLD_HEIGHT = 100;
-    /**
-     * Default {@link Wall} width for external boundaries.
-     */
-    double WALL_OFFSET = 3;
     // TO delete maybe.
     /**
      * Returns the current level, it can be null, this is the reason of Optional.

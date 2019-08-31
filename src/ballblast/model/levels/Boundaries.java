@@ -1,7 +1,6 @@
 package ballblast.model.levels;
 
 import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.math.Vector2D;
 
 import ballblast.model.Model;
 
@@ -30,41 +29,12 @@ public enum Boundaries {
     private static final double VERTICAL_WALL_HEIGHT = Model.WORLD_HEIGHT;
     private static final double HORIZONTAL_WALL_WIDTH = Model.WORLD_WIDTH - 2 * VERTICAL_WALL_WIDTH;
     private static final double HORIZONTAL_WALL_HEIGHT = VERTICAL_WALL_WIDTH;
-    private final Vector2D velocity = Vector2D.create(0, 0);
+
     private Coordinate position;
     private double width;
     private double height;
-    static {
-        /*
-         * TODO LEFT.position = new Coordinate(0, 0); LEFT.width = Model.WALL_OFFSET *
-         * 2; LEFT.height = Model.WORLD_HEIGHT;
-         * 
-         * RIGHT.position = new Coordinate(Model.WORLD_WIDTH - Model.WALL_OFFSET, 0);
-         * RIGHT.width = Model.WALL_OFFSET * 2; RIGHT.height = Model.WORLD_HEIGHT;
-         * 
-         * TOP.position = new Coordinate(Model.WALL_OFFSET, 0); TOP.width =
-         * Model.WORLD_WIDTH - Model.WALL_OFFSET * 4; TOP.height = Model.WALL_OFFSET;
-         * 
-         * BOTTOM.position = new Coordinate(Model.WALL_OFFSET, Model.WORLD_HEIGHT -
-         * Model.WALL_OFFSET); BOTTOM.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 4;
-         * BOTTOM.height = Model.WALL_OFFSET;
-         */
-//        LEFT.position = new Coordinate(Model.WALL_OFFSET * 4, Model.WORLD_HEIGHT / 2 + Model.WALL_OFFSET * 4);
-//        LEFT.width = Model.WALL_OFFSET * 2;
-//        LEFT.height = Model.WORLD_HEIGHT + Model.WORLD_HEIGHT / 2;
-//
-//        RIGHT.position = new Coordinate(Model.WORLD_WIDTH + Model.WALL_OFFSET * 2, Model.WORLD_HEIGHT / 2 + Model.WALL_OFFSET * 4);
-//        RIGHT.width = Model.WALL_OFFSET * 2;
-//        RIGHT.height = Model.WORLD_HEIGHT + Model.WORLD_HEIGHT / 2;
-//
-//        TOP.position = new Coordinate(Model.WORLD_WIDTH, Model.WORLD_HEIGHT - Model.WALL_OFFSET);
-//        TOP.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 4;
-//        TOP.height = Model.WALL_OFFSET * 2;
-//
-//        BOTTOM.position = new Coordinate(Model.WORLD_WIDTH, 0);
-//        BOTTOM.width = Model.WORLD_WIDTH - Model.WALL_OFFSET * 4;
-//        BOTTOM.height = Model.WALL_OFFSET * 2;
 
+    static {
         LEFT.width = VERTICAL_WALL_WIDTH;
         LEFT.height = VERTICAL_WALL_HEIGHT;
         LEFT.position = new Coordinate(0, 0);
@@ -108,14 +78,5 @@ public enum Boundaries {
      */
     public double getHeight() {
         return height;
-    }
-
-    /**
-     * Gets boundary's velocity.
-     * 
-     * @return the velcoity of the boundary.
-     */
-    public Vector2D getVelocity() {
-        return velocity;
     }
 }

@@ -1,6 +1,9 @@
 package ballblast.model.physics.handlers;
 
 import ballblast.model.levels.Boundaries;
+
+import org.locationtech.jts.geom.Coordinate;
+
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.physics.Collidable;
@@ -21,7 +24,8 @@ public class BallCollisionHandler implements CollisionHandler {
                 // TODO metodo endGameSession()
                 break;
             case WALL:
-                if (coll.getAttachedGameObject().get().getPosition().equals(Boundaries.BOTTOM.getPosition())) {
+                final Coordinate boundaryPos = coll.getAttachedGameObject().get().getPosition();
+                if (this.checkFloor(boundaryPos)) {
                     Bounce.floorBounce(obj);
                 } else {
                     Bounce.wallBounce(obj);
@@ -29,8 +33,8 @@ public class BallCollisionHandler implements CollisionHandler {
                 break;
             case BULLET:
                 // Decrement the Ball life by 'decLife' and destroy if life = 0.
-                ((Ball) obj).setLife(((Ball) obj).getLife() - decLife);
-                if (((Ball) obj).getLife() == 0) {
+                ((Ball) obj).setCurrentLife(((Ball) obj).getCurrentLife() - decLife);
+                if (((Ball) obj).getCurrentLife() <= 0) {
                     obj.destroy();
                 }
                 // TODO handle score
@@ -40,4 +44,7 @@ public class BallCollisionHandler implements CollisionHandler {
         }
     }
 
+    private boolean checkFloor(final Coordinate position) {
+        return position.equals(Boundaries.BOTTOM.getPosition()) || position.equals(Boundaries.TOP.getPosition());
+    }
 }

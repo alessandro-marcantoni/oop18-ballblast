@@ -7,6 +7,8 @@ import ballblast.model.gameobjects.GameObjectTypes;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import sun.font.FontScaler;
 import ballblast.model.gameobjects.Ball;
 /**
  * 
@@ -67,12 +69,13 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
                 this.gameObject.getWidth(), this.gameObject.getHeight()
                 );
 
-        if (this.gameObject.getType().equals(GameObjectTypes.BALL)) {
-            this.gc.setStroke(Color.DIMGRAY);
-                    this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
-                                     this.gameObject.getPosition().getX() + this.gameObject.getWidth() / 4 + TEXT_X_OFFSET, 
-                                     this.gameObject.getPosition().getY() + this.gameObject.getHeight() / 2 + TEXT_Y_OFFSET,
-                                     MAX_TEXT_WIDTH);
+        if (this.gameObject.getType().equals(GameObjectTypes.BALL)
+           && ((Ball) this.gameObject).getCurrentLife() > 0) {
+
+            this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
+                               this.gameObject.getPosition().getX() + this.gameObject.getWidth() / 4 + TEXT_X_OFFSET, 
+                               this.gameObject.getPosition().getY() + this.gameObject.getHeight() / 2 + TEXT_Y_OFFSET,
+                               MAX_TEXT_WIDTH);
         }
     }
 

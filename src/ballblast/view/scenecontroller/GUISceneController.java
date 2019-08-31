@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 /**
  * 
  * Graphical User Interface scene controller.
@@ -55,6 +56,7 @@ public class GUISceneController extends AbstractSceneController {
     private GUIState pausedState;
 //    private UIFactory userInterface;
     private CanvasDrawer canvasDrawer;
+    private static final double FONT_SIZE = 8.0;
 
 
     /**
@@ -105,7 +107,9 @@ public class GUISceneController extends AbstractSceneController {
 
     private void resetGameCanvasCoordinates() {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
+        gc.setFont(new Font(FONT_SIZE));
         gc.setFill(Color.AQUAMARINE);
+        gc.setStroke(Color.DIMGRAY);
         gc.save();
         final double canvasWidth = this.canvas.getWidth();
         final double canvasHeight = this.canvas.getHeight();

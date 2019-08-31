@@ -30,7 +30,7 @@ public abstract class AbstractSceneController {
      * @return
      *          The {@link Controller}.
      */
-    protected Controller getController() {
+    public Controller getController() {
         return this.controller;
     }
     /**

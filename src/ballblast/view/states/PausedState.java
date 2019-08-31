@@ -20,8 +20,10 @@ public class PausedState extends GUIState {
         PRESSED_INPUT_MAP = ImmutableMap.of(
                 KeyCode.P,      g -> g.getGUI().setState(g.getGUI().getInGameState()),
                 KeyCode.ESCAPE, g -> g.getGUI().setState(g.getGUI().getInGameState()),
-//                KeyCode.Q,      g -> g.getController().closeGame()
-                KeyCode.Q,      g -> g.getGUI().nextScene()
+                KeyCode.Q,      g -> {
+                    g.getGUI().getController().gameOver();
+                    g.getGUI().backScene();
+                }
         );
     }
     /**
@@ -48,6 +50,7 @@ public class PausedState extends GUIState {
     public final void onStateExit() {
         this.getController().resume();
         this.pausePane.setVisible(false);
+        this.getGUI().render();
     }
 
     @Override

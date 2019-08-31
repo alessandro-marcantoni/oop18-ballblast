@@ -124,7 +124,7 @@ public class GUISceneController extends AbstractSceneController {
         final double parentWidth = this.canvasContainer.getWidth();
         final double parentHeight = this.canvasContainer.getHeight();
         final double ratio = parentWidth / parentHeight;
-        final double expectedRatio = (Model.WORLD_WIDTH + Model.WALL_OFFSET) / (Model.WORLD_HEIGHT + Model.WALL_OFFSET);
+        final double expectedRatio = Model.WORLD_WIDTH / Model.WORLD_HEIGHT;
 
         if (ratio < expectedRatio) {
             this.canvas.setWidth(parentWidth);

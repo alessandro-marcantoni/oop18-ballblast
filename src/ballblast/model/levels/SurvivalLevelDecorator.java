@@ -12,16 +12,14 @@ import ballblast.model.components.Component;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
-import ballblast.model.gameobjects.Wall;
-
 /**
  * Represents a concrete implementation of {@link LevelDecorator}.
  */
 public class SurvivalLevelDecorator extends LevelDecorator {
     private static final int SPAWN_TIME = 10;
     private static final int ENABLE_TIME = 2;
-    private static final double SPAWN_HEIGHT = 5.1;
-    private static final Vector2D BALL_VELOCITY = Vector2D.create(0, 5);
+    private static final double HEIGHT_OFFSET = 4;
+    private static final Vector2D BALL_VELOCITY = Vector2D.create(8, 0);
     private static final int MIN_BALL_LIFE = 3;
     private static final int MAX_BALL_LIFE = 200;
     private static final double LIFE_MULTIPLIER = 0.25;
@@ -38,7 +36,6 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     public SurvivalLevelDecorator(final Level level) {
         super(level);
         this.spawnedBall = Optional.empty();
-        this.currentSpawnTime = SPAWN_TIME;
         this.currentEnableTime = ENABLE_TIME;
     }
 
@@ -64,8 +61,11 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     }
 
     private Coordinate getRandomPosition() {
-        return new Coordinate(generateRandomDouble(Model.WALL_OFFSET * 2, 
-                Model.WORLD_WIDTH - Model.WALL_OFFSET * 2), SPAWN_HEIGHT);
+        return new Coordinate(
+                generateRandomDouble(Boundaries.LEFT.getWidth() + BallTypes.LARGE.getDiameter(), 
+                        Model.WORLD_WIDTH - Boundaries.RIGHT.getWidth() - BallTypes.LARGE.getDiameter()),
+                Boundaries.TOP.getHeight() + HEIGHT_OFFSET);
+
     }
 
     private int calculateBallLife() {

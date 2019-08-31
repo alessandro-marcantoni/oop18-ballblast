@@ -58,9 +58,11 @@ public class SplitterComponent extends AbstractComponent {
 
     private GameObject generateChildBall(final BallTypes type, final int life, final double xVelocity,
             final Coordinate position) {
-        return GameObjectFactory.createBall(
-                type, life, position, Vector2D.create(xVelocity, GRAVITY_Y / 2),
-                this.collisionManager, this.gameObjectManager, this.gameDataManager);
+        final GameObject ball = GameObjectFactory.createBall(type, life, position,
+                Vector2D.create(xVelocity, GRAVITY_Y / 2), this.collisionManager, this.gameObjectManager,
+                this.gameDataManager);
+        ball.getComponents().forEach(Component::enable);
+        return ball;
     }
 
     private void addParentChilds(final BallTypes type) {

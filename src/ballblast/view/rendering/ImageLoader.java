@@ -13,14 +13,14 @@ import javafx.scene.image.Image;
 public class ImageLoader {
     private static final ImageLoader SINGLETON = new ImageLoader();
     private final Map<ImagePath, Image> imageMap;
-    private final Map<BallColors, Image> ballMap;
+//    private final Map<BallColors, Image> ballMap;
 
     /**
      * Simple constructor.
      */
     public ImageLoader() {
         this.imageMap = new EnumMap<>(ImagePath.class);
-        this.ballMap = new EnumMap<>(BallColors.class);
+//        this.ballMap = new EnumMap<>(BallColors.class);
     }
 
     /**
@@ -39,9 +39,11 @@ public class ImageLoader {
      */
     public Image getImage(final ImagePath imagePath) throws FileNotFoundException {
         if (imagePath.equals(ImagePath.BALL)) {
-            final Image img = checkBall(BallColors.getRandomColor());
-            return img;
-        } else if (!this.imageMap.containsKey(imagePath)) {
+//            final Image img = checkBall(BallColors.getRandomColor());
+//            return img;
+            return this.loadImageFromString(imagePath.getPath());
+        } else 
+            if (!this.imageMap.containsKey(imagePath)) {
             final Image img = this.loadImage(imagePath);
             this.imageMap.put(imagePath, img);
             return img;
@@ -57,17 +59,17 @@ public class ImageLoader {
      * @throws FileNotFoundException the file not found.
      */
     public Image checkBall(final String path) throws FileNotFoundException {
-        for (BallColors color : BallColors.values()) {
-            if (color.getBallPath().equals(path)) {
-                if (!this.ballMap.containsKey(color)) {
-                    final Image img = this.loadImageFromString(color.getBallPath());
-                    this.ballMap.put(color, img);
-                    return img;
-                } else {
-                    return this.ballMap.get(color);
-                }
-            }
-        }
+//        for (BallColors color : BallColors.values()) {
+//            if (color.getBallPath().equals(path)) {
+//                if (!this.ballMap.containsKey(color)) {
+//                    final Image img = this.loadImageFromString(color.getBallPath());
+//                    this.ballMap.put(color, img);
+//                    return img;
+//                } else {
+//                    return this.ballMap.get(color);
+//                }
+//            }
+//        }
         return null;
     }
 

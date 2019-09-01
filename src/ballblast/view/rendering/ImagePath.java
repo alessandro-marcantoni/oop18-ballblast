@@ -1,5 +1,7 @@
 package ballblast.view.rendering;
 
+import ballblast.view.rendering.gameobject.BallColors;
+
 /**
  * Identifies an image stored on the disk and its path.
  */
@@ -8,32 +10,31 @@ public enum ImagePath {
      * The image for {@link Ball}. String empty to use randomColor in the
      * {@link ImageLoader}.
      */
-    BALL(""),
+    BALL(BallColors.getRandomColor()),
     /**
      * The image for {@link Player}.
      */
-    PLAYER("/players/cannon.png"),
+    PLAYER("/view/players/cannon.png"),
     /**
      * The image for {@link Bullet}.
      */
-    BULLET("/bullets/bullet.png"),
+    BULLET("/view/bullets/bullet.png"),
     /**
      * The image for freeze {@link Power}.
      */
-    POWERUP_FREEZE("/powers/freeze.png"),
+    POWERUP_FREEZE("/view/powers/freeze.png"),
     /**
      * The image for shield {@link Power}.
      */
-    POWERUP_SHIELD("/powers/shield.png"),
+    POWERUP_SHIELD("/view/powers/shield.png"),
     /**
      * The image for double fire {@link Power}.
      */
-    POWERUP_DOUBLEFIRE("/powers/doublefire.png"),
+    POWERUP_DOUBLEFIRE("/view/powers/doublefire.png"),
     /**
      * The image for {@link Wall}.
      */
-    WALL("/walls/wall.png");
-    private static final String IMAGE_PATH = "/view";
+    WALL("/view/walls/wall.png");
     private final String path;
 
     ImagePath(final String path) {
@@ -45,6 +46,6 @@ public enum ImagePath {
      * @return the path of the image.
      */
     public String getPath() {
-        return IMAGE_PATH + this.path;
+        return this.path;
     }
 }

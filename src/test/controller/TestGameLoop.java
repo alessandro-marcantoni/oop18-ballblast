@@ -43,6 +43,11 @@ public class TestGameLoop {
         public void loadScene(final GameScenes scene) {
         }
 
+        @Override
+        public void setGameOver(final boolean gameover) {
+            // TODO Auto-generated method stub
+        }
+
     }
 
     private void waitOneSecond() {

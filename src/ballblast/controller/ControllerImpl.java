@@ -23,7 +23,7 @@ public class ControllerImpl implements Controller {
 
     private final Model model;
     private final View view;
-    private final GameLoop gameloop;
+    private GameLoop gameloop;
     private final UserManager userManager;
     private String currentUser;
 
@@ -38,12 +38,11 @@ public class ControllerImpl implements Controller {
         this.model = model;
         this.view = view;
         this.userManager = new UserManager();
-        this.currentUser = null;
-        this.gameloop = new GameLoopImpl(this.model, view);
     }
 
     @Override
     public final void startSurvivalMode() {
+        this.createGameLoop();
         this.model.startSurvival();
         this.gameloop.start();
     }
@@ -66,8 +65,8 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public final void sendInput(final PlayerTags tag, final InputTypes input) {
-        this.gameloop.receiveInputs(tag, input);
+    public final void receiveInput(final PlayerTags tag, final InputTypes input) {
+        this.gameloop.receiveInput(tag, input);
     }
 
     @Override
@@ -101,5 +100,7 @@ public class ControllerImpl implements Controller {
         return this.currentUser;
     }
 
-
+    private void createGameLoop() {
+        this.gameloop = new GameLoopImpl(this.model, view);
+    }
 }

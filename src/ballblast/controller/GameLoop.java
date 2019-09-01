@@ -35,5 +35,5 @@ public interface GameLoop {
      * @param tag   the tag which identifies the {@link Player}.
      * @param input the input to be resolved.
      */
-    void receiveInputs(PlayerTags tag, InputTypes input);
+    void receiveInput(PlayerTags tag, InputTypes input);
 }

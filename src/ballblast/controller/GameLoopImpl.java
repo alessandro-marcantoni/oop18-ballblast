@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import ballblast.model.Model;
@@ -11,7 +12,6 @@ import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
 import ballblast.model.levels.GameStatus;
 import ballblast.view.View;
-import ballblast.view.scenecontroller.GUISceneController;
 
 /**
  * Represents a game loop that starts in a new thread.
@@ -89,8 +89,17 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     @Override
-    public final synchronized void receiveInputs(final PlayerTags tag, final InputTypes input) {
-        inputs.get(tag).add(input);
+    public final synchronized void receiveInput(final PlayerTags tag, final InputTypes input) {
+        this.inputs.get(tag).add(input);
+    }
+
+    private synchronized void processInput() {
+        this.inputs.forEach((k, v) -> {
+            if (!v.isEmpty()) {
+                this.model.resolveInputs(k, ImmutableList.copyOf(v));
+                v.clear();
+            }
+        });
     }
 
     private boolean isStopped() {
@@ -107,14 +116,5 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     private void render() {
         this.view.render();
-    }
-
-    private synchronized void processInput() {
-        inputs.forEach((k, v) -> {
-            if (!v.isEmpty()) {
-                this.model.resolveInputs(k, v);
-                v.clear();
-            }
-        });
     }
 }

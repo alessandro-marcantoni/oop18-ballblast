@@ -22,15 +22,15 @@ public class InGameState extends GUIState {
 
     static {
         PRESSED_INPUT_MAP = ImmutableMap.of(KeyCode.LEFT,
-                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_LEFT), KeyCode.RIGHT,
-                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_RIGHT), KeyCode.SPACE,
-                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.SHOOT), KeyCode.P,
+                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.MOVE_LEFT), KeyCode.RIGHT,
+                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.MOVE_RIGHT), KeyCode.SPACE,
+                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.SHOOT), KeyCode.P,
                 g -> g.getGUI().setState(g.getGUI().getPausedState()), KeyCode.ESCAPE,
                 g -> g.getGUI().setState(g.getGUI().getPausedState()));
         RELEASED_INPUT_MAP = ImmutableMap.of(KeyCode.LEFT,
-                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING), KeyCode.RIGHT,
-                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING), KeyCode.SPACE,
-                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING));
+                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_MOVING), KeyCode.RIGHT,
+                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_MOVING), KeyCode.SPACE,
+                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING));
     }
 
     /**
@@ -50,8 +50,8 @@ public class InGameState extends GUIState {
 
     @Override
     public final void onStateExit() {
-        this.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING);
-        this.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING);
+        this.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_MOVING);
+        this.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING);
     }
 
     @Override

@@ -45,7 +45,7 @@ public interface Controller {
      * @param tag   the tag which identifies the {@link Player}.
      * @param input the input to be resolved.
      */
-    void sendInput(PlayerTags tag, InputTypes input);
+    void receiveInput(PlayerTags tag, InputTypes input);
 
     /**
      * Returns the list of active {@link GameObjects} to be rendered.

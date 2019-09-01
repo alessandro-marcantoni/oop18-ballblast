@@ -188,19 +188,20 @@ public class TestCollisions {
     public void testStop() {
         final Level lvl = new SinglePlayerDecorator(new BasicLevel());
         lvl.start();
-        final int steps = 19;
+        lvl.getInputManager().processInputs(InputManager.PlayerTags.FIRST, ImmutableList.of(InputTypes.MOVE_RIGHT));
+        final int steps = 50;
+        final double elapsed = 0.1;
         final GameObject player = lvl.getGameObjectManager()
                                      .getGameObjects()
                                      .stream()
                                      .filter(obj -> obj.getType() == GameObjectTypes.PLAYER)
                                      .findFirst()
                                      .get();
-        Coordinate pos = player.getPosition();
-        lvl.getInputManager().processInputs(InputManager.PlayerTags.FIRST, ImmutableList.of(InputTypes.MOVE_RIGHT));
-        lvl.update(steps);
-        assertFalse(pos.equals(player.getPosition()));
-        pos = player.getPosition();
-        lvl.update(1);
-        assertTrue(pos.equals(player.getPosition()));
+
+        for (int i = 0; i < steps; i++) {
+            final Coordinate pos = player.getPosition();
+            lvl.update(elapsed);
+            assertTrue(pos.getX() <= Boundaries.RIGHT.getPosition().getX());
+        }
     }
 }

@@ -19,7 +19,6 @@ public class PlayerCollisionHandler implements CollisionHandler {
         case BALL:
             // Destroy the Player and finish the game session.
             obj.destroy();
-            // TODO metodo endGameSession()
             break;
         case WALL:
             obj.setPosition(this.getPrevPosition(obj, coll.getAttachedGameObject().get()));

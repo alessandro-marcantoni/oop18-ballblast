@@ -3,13 +3,13 @@ package ballblast.model.components;
 import java.util.Optional;
 
 import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.util.GeometricShapeFactory;
 
 import com.google.common.base.MoreObjects;
 
 import ballblast.model.gameobjects.GameObject;
+import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.Collision;
 import ballblast.model.physics.CollisionManager;
@@ -38,10 +38,18 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     @Override
     public final Geometry generateShape() {
-        final Coordinate pos = this.getParent().getPosition();
         final GameObject parent = this.getParent();
-        return new GeometryFactory().toGeometry(new Envelope(pos.getX(), pos.getX() + parent.getWidth(), pos.getY(), pos.getY() + parent.getHeight()))
-                .getEnvelope();
+        final Coordinate pos = parent.getPosition();
+
+        final GeometricShapeFactory shapeFactory = new GeometricShapeFactory();
+        shapeFactory.setBase(new Coordinate(pos.getX(), pos.getY()));
+        shapeFactory.setHeight(parent.getHeight());
+        shapeFactory.setWidth(parent.getWidth());
+        if (parent.getType() == GameObjectTypes.BALL) {
+            return shapeFactory.createCircle();
+        } else {
+            return shapeFactory.createRectangle();
+        }
     }
 
     @Override
@@ -81,8 +89,6 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
     @Override
     public final void notifyCollision(final Collision coll) {
         if (this.getAttachedGameObject().get().equals(coll.getObj().getAttachedGameObject().get())) {
-            // da eliminare
-            System.out.println(this.getCollisionTag() + " collides with " + coll.getOther().getCollisionTag());
             this.getParent().handleCollision(coll.getOther());
         }
     }

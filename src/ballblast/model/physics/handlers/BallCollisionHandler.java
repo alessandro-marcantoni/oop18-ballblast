@@ -37,11 +37,10 @@ public class BallCollisionHandler implements CollisionHandler {
                 break;
             case BULLET:
                 // Decrement the Ball life by 'decLife' and destroy if life = 0.
-                ((Ball) obj).setCurrentLife(((Ball) obj).getCurrentLife() - decLife);
+                this.decrementLife(obj, decLife);
                 if (((Ball) obj).getCurrentLife() <= 0) {
                     obj.destroy();
                 }
-                // TODO handle score
                 break;
             default:
                 break;
@@ -54,5 +53,9 @@ public class BallCollisionHandler implements CollisionHandler {
 
     private static boolean checkRoof(final Coordinate boundaryPosition) {
         return boundaryPosition.equals(Boundaries.TOP.getPosition());
+    }
+
+    private void decrementLife(final GameObject ball, final int decrementBy) {
+        ((Ball) ball).setCurrentLife(((Ball) ball).getCurrentLife() - decrementBy);
     }
 }

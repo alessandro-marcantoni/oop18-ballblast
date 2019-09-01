@@ -16,7 +16,6 @@ public class BulletCollisionHandler implements CollisionHandler {
             case BALL:
                 // Destroy the Bullet after the collision with the Ball.
                 obj.destroy();
-                // TODO handle score
                 break;
             case WALL:
                 obj.destroy();

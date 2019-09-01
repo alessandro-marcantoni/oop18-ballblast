@@ -18,13 +18,12 @@ public class UIFactory {
     private static final double PERCENT_WIDTH_BAR = 50;
     private static final double PERCENT_WIDTH_BUTTON = 35;
     private static final double POWER_BLOCK_HEIGHT = 50;
+
     /**
      * 
-     * @param power
-     *          The power to select the icon.
-     * @return
-     *          A icon for the given power.
-     * @throws FileNotFoundException 
+     * @param power The power to select the icon.
+     * @return A icon for the given power.
+     * @throws FileNotFoundException the file not found.
      */
     public ImageView createPowerIcon(final PowerTypes power) throws FileNotFoundException {
         final ImageView imageView = new ImageView();
@@ -33,7 +32,8 @@ public class UIFactory {
         final Image imageShield = ImageLoader.getLoader().getImage(ImagePath.POWERUP_SHIELD);
         switch (power) {
         case SHIELD:
-            imageView.setViewport(new Rectangle2D(imageShield.getWidth(), 0, imageShield.getWidth(), imageShield.getHeight()));
+            imageView.setViewport(
+                    new Rectangle2D(imageShield.getWidth(), 0, imageShield.getWidth(), imageShield.getHeight()));
             imageView.setImage(imageShield);
             break;
         case DOUBLEFIRE:
@@ -41,10 +41,12 @@ public class UIFactory {
             imageView.setImage(imageDoublefire);
             break;
         case FREEZE:
-            imageView.setViewport(new Rectangle2D(imageFreeze.getWidth(), 0, imageFreeze.getWidth(), imageFreeze.getHeight()));
+            imageView.setViewport(
+                    new Rectangle2D(imageFreeze.getWidth(), 0, imageFreeze.getWidth(), imageFreeze.getHeight()));
             imageView.setImage(imageFreeze);
             break;
-        default: break;
+        default:
+            break;
         }
 
         imageView.setPreserveRatio(true);

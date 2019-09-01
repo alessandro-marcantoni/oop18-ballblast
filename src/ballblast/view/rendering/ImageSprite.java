@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.BallTypes;
+
 /**
  * 
  */
@@ -35,12 +36,12 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     private double gameObjectWidth;
     private double gameObjectHeight;
     private Coordinate gameObjectPosition;
+
     /**
      * Creates a new Image sprite with the given GraphicsContext.
-     * @param gc 
-     *          the {@link GraphicsContext}.
-     * @param gameObject
-     *          the {@link GameObject} to be rendered.
+     * 
+     * @param gc         the {@link GraphicsContext}.
+     * @param gameObject the {@link GameObject} to be rendered.
      */
     public ImageSprite(final GraphicsContext gc, final GameObject gameObject) {
         super();
@@ -63,7 +64,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         this.gc.setGlobalAlpha(this.getAlpha());
         this.gc.drawImage(
                 // the source image
-                this.image, 
+                this.image,
                 // the source rectangle's coordinate position.
                 this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
                 // the source rectangle's dimension (width and height).
@@ -71,11 +72,9 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
                 // the destination rectangle's coordinate position.
                 this.gameObject.getPosition().getX(), this.gameObject.getPosition().getY(),
                 // the destination rectangle's dimension (width and height).
-                this.gameObject.getWidth(), this.gameObject.getHeight()
-                );
+                this.gameObject.getWidth(), this.gameObject.getHeight());
 
-        if (this.gameObject.getType().equals(GameObjectTypes.BALL)
-           && ((Ball) this.gameObject).getCurrentLife() > 0) {
+        if (this.gameObject.getType().equals(GameObjectTypes.BALL) && ((Ball) this.gameObject).getCurrentLife() > 0) {
             // Set the font
             if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.LARGE.getDiameter())) {
                 this.gc.setFont(new Font(FONT_LARGE));
@@ -86,7 +85,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
             }
             // Draw life inside the ball
             this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
-                    this.gameObject.getPosition().getX() + this.gameObject.getWidth() / 4 + TEXT_X_OFFSET, 
+                    this.gameObject.getPosition().getX() + this.gameObject.getWidth() / 4 + TEXT_X_OFFSET,
                     this.gameObject.getPosition().getY() + this.gameObject.getHeight() / 2 + TEXT_Y_OFFSET,
                     MAX_TEXT_WIDTH);
         }
@@ -112,14 +111,15 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     public final double getSourceWidth() {
         return this.image.getWidth();
     }
+
     @Override
     public final Image getImageSource() {
         return this.image;
     }
+
     /**
      * 
-     * @return
-     *          the image width.
+     * @return the image width.
      */
     public double getImageSourceWidth() {
         return this.image.getWidth();
@@ -129,10 +129,10 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     public final double getSourceHeight() {
         return this.image.getHeight();
     }
+
     /**
      * 
-     * @return
-     *          the image height.
+     * @return the image height.
      */
     public double getImageSourceHeight() {
         return this.image.getHeight();
@@ -147,24 +147,26 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     @Override
     public final void setAlpha(final double alpha) {
         this.alpha = Math.min(MAX_ALPHA, Math.max(MIN_ALPHA, alpha));
-        }
+    }
 
     @Override
     public final double getAlpha() {
         return this.alpha;
     }
+
     /**
      * Returns the position of the top-left corner of the source rectangle.
-     * @return 
-     *          the top-left corner.
+     * 
+     * @return the top-left corner.
      */
     protected final Coordinate getSourceTopLeftCorner() {
         return this.sourceTopLeft;
     }
+
     /**
      * Returns the offset of the bottom-right corner from the top-left corner.
-     * @return 
-     *          the offset in pixel.
+     * 
+     * @return the offset in pixel.
      */
     protected final Vector2D getSourceOffset() {
         return this.sourceOffset;
@@ -174,6 +176,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     public final void setGameObjectWidth(final double width) {
         this.gameObjectWidth = width;
     }
+
     @Override
     public final double getGameObjectWidth() {
         return this.gameObjectWidth;
@@ -183,10 +186,12 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     public final void setGameObjectHeight(final double height) {
         this.gameObjectHeight = height;
     }
+
     @Override
     public final double getGameObjectHeight() {
         return this.gameObjectHeight;
     }
+
     @Override
     public final void setGameObjectPosition(final Coordinate position) {
         this.gameObjectPosition = position;

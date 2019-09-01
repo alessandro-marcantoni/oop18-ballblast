@@ -33,6 +33,7 @@ public class MenuSceneController extends AbstractSceneController {
     private boolean leaderboard = false;
     private boolean settings = false;
     private boolean manual = false;
+
     /**
      * Open the game mode selection scene.
      */
@@ -44,6 +45,7 @@ public class MenuSceneController extends AbstractSceneController {
         this.leaderboard = false;
         this.nextScene();
     }
+
     /**
      * Open leader board scene.
      */
@@ -55,12 +57,13 @@ public class MenuSceneController extends AbstractSceneController {
         this.manual = false;
         this.nextScene();
     }
+
     /**
      * Open settings scene.
      */
     @FXML
     protected void openSettings() {
-        //TODO
+        // TODO
 //        this.settings = true;
 //        this.nextScene();
         final Alert alert = new Alert(AlertType.WARNING);
@@ -69,14 +72,16 @@ public class MenuSceneController extends AbstractSceneController {
         alert.setContentText("Not implemented yet.");
         alert.showAndWait();
     }
+
     /**
      * Open manual scene.
      */
     @FXML
     protected void openManual() {
-       this.manual = true;
-       this.nextScene();
+        this.manual = true;
+        this.nextScene();
     }
+
     /**
      * Quit game.
      */
@@ -102,6 +107,7 @@ public class MenuSceneController extends AbstractSceneController {
         }
         return selection;
     }
+
     @Override
     protected final GameScenes getPreviousScene() {
         return GameScenes.LOGIN;

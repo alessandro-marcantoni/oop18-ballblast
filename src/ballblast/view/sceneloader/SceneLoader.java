@@ -21,8 +21,8 @@ public final class SceneLoader {
 
     /**
      * Singleton getter.
-     * @return
-     *          a new {@link SceneLoader}.
+     * 
+     * @return a new {@link SceneLoader}.
      */
     public static SceneLoader getLoader() {
         return SINGLETON;
@@ -30,12 +30,9 @@ public final class SceneLoader {
 
     /**
      * 
-     * @param scene
-     *          the {@link GameScenes} to be loaded.
-     * @return
-     *          a new {@link SceneWrapper} for the scene which will be loaded.
-     * @throws IOException
-     *          help
+     * @param scene the {@link GameScenes} to be loaded.
+     * @return a new {@link SceneWrapper} for the scene which will be loaded.
+     * @throws IOException help
      */
     public SceneWrapper getScene(final GameScenes scene) throws IOException {
         final FXMLLoader loader = new FXMLLoader();

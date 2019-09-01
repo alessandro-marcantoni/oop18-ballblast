@@ -1,4 +1,5 @@
 package ballblast.view.scenecontroller;
+
 import ballblast.controller.Controller;
 import ballblast.model.Model;
 import ballblast.view.View;
@@ -17,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+
 /**
  * 
  * Graphical User Interface scene controller.
@@ -34,7 +36,6 @@ public class GUISceneController extends AbstractSceneController {
 
     @FXML
     private BorderPane timebarContainer;
-
 
     @FXML
     private HBox powers;
@@ -58,12 +59,9 @@ public class GUISceneController extends AbstractSceneController {
     private CanvasDrawer canvasDrawer;
     private static final double FONT_SIZE = 8.0;
 
-
     /**
-     * @param controller
-     *          the {@link Controller}.
-     * @param view
-     *          the {@link View}.
+     * @param controller the {@link Controller}.
+     * @param view       the {@link View}.
      */
     @Override
     public void init(final Controller controller, final View view) {
@@ -88,10 +86,11 @@ public class GUISceneController extends AbstractSceneController {
     public final void onKeyPressed(final KeyEvent event) {
         this.currentState.onKeyPressed(event);
     }
+
     /**
      * Method to handle the onKeyRelease.
-     * @param event
-     *          the key released.
+     * 
+     * @param event the key released.
      */
     public void handleReleased(final KeyEvent event) {
         this.currentState.onKeyReleased(event);
@@ -118,11 +117,13 @@ public class GUISceneController extends AbstractSceneController {
         gc.scale(1, -1);
         gc.scale(canvasWidth / (Model.WORLD_WIDTH), canvasHeight / Model.WORLD_HEIGHT);
     }
+
     // Clear the canvas after every render. It avoids ghosting effect.
     private void clearCanvas() {
         this.canvas.getGraphicsContext2D().restore();
         this.resetGameCanvasCoordinates();
     }
+
     // Resize the canvas proportionally when the app window is resized by the user.
     private void resizeCanvas() {
         final double parentWidth = this.canvasContainer.getWidth();
@@ -152,11 +153,9 @@ public class GUISceneController extends AbstractSceneController {
         return GameScenes.MENU;
     }
 
-
     /**
      * 
-     * @param state
-     *          the state.
+     * @param state the state.
      */
     public void setState(final GUIState state) {
         if (this.currentState != null) {
@@ -165,18 +164,18 @@ public class GUISceneController extends AbstractSceneController {
         this.currentState = state;
         this.currentState.onStateEntry();
     }
+
     /**
      * 
-     * @return
-     *          the paused state.
+     * @return the paused state.
      */
     public GUIState getPausedState() {
         return this.pausedState;
     }
+
     /**
      * 
-     * @return
-     *          the in game state.
+     * @return the in game state.
      */
     public GUIState getInGameState() {
         return this.inGameState;

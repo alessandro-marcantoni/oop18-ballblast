@@ -13,12 +13,12 @@ import ballblast.view.rendering.Sprite;
  */
 public class BulletRenderer extends GameObjectRenderer<Bullet> {
     /**
-     * Constructor which creates a new {@link Bullet} Renderer given its {@link Bullet} {@link GameObject}.
-     * @param sprite
-     *          The {@link Sprite} used to render.
-     * @param gameObject
-     *          The {@link Bullet} {@link GameObject}.
-     * @throws FileNotFoundException 
+     * Constructor which creates a new {@link Bullet} Renderer given its
+     * {@link Bullet} {@link GameObject}.
+     * 
+     * @param sprite     The {@link Sprite} used to render.
+     * @param gameObject The {@link Bullet} {@link GameObject}.
+     * @throws FileNotFoundException the file not found.
      */
     public BulletRenderer(final Sprite sprite, final Bullet gameObject) throws FileNotFoundException {
         super(sprite, gameObject);

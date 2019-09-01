@@ -11,34 +11,33 @@ import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.view.scenecontroller.GUISceneController;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
 /**
- * Class for the in game state.
- * It is the state which comes when the player is interacting with the game.
+ * Class for the in game state. It is the state which comes when the player is
+ * interacting with the game.
  */
 public class InGameState extends GUIState {
     private static final Map<KeyCode, Consumer<GUIState>> PRESSED_INPUT_MAP;
     private static final Map<KeyCode, Consumer<GUIState>> RELEASED_INPUT_MAP;
 
     static {
-        PRESSED_INPUT_MAP = ImmutableMap.of(
-                KeyCode.LEFT,   g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_LEFT),
-                KeyCode.RIGHT,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_RIGHT),
-                KeyCode.SPACE,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.SHOOT),
-                KeyCode.P,      g -> g.getGUI().setState(g.getGUI().getPausedState()),
-                KeyCode.ESCAPE, g -> g.getGUI().setState(g.getGUI().getPausedState())
-        );
-        RELEASED_INPUT_MAP = ImmutableMap.of(
-                KeyCode.LEFT,   g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING),
-                KeyCode.RIGHT,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING),
-                KeyCode.SPACE,  g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING)
-        );
+        PRESSED_INPUT_MAP = ImmutableMap.of(KeyCode.LEFT,
+                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_LEFT), KeyCode.RIGHT,
+                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.MOVE_RIGHT), KeyCode.SPACE,
+                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.SHOOT), KeyCode.P,
+                g -> g.getGUI().setState(g.getGUI().getPausedState()), KeyCode.ESCAPE,
+                g -> g.getGUI().setState(g.getGUI().getPausedState()));
+        RELEASED_INPUT_MAP = ImmutableMap.of(KeyCode.LEFT,
+                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING), KeyCode.RIGHT,
+                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING), KeyCode.SPACE,
+                g -> g.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING));
     }
+
     /**
      * Initialize a new in game state.
-     * @param gui
-     *          The {@link GUISceneContrller}.
-     * @param controller
-     *          The {@link Controller} of the game.
+     * 
+     * @param gui        The {@link GUISceneContrller}.
+     * @param controller The {@link Controller} of the game.
      */
     public InGameState(final GUISceneController gui, final Controller controller) {
         super(gui, controller);
@@ -50,8 +49,9 @@ public class InGameState extends GUIState {
     }
 
     @Override
-    public void onStateExit() {
-
+    public final void onStateExit() {
+        this.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_MOVING);
+        this.getController().sendInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING);
     }
 
     @Override

@@ -46,24 +46,24 @@ public enum GameScenes {
      */
     MAIN("Main.fxml");
 
-    /* OPZIONALI
-     * REGISTER
+    /*
+     * OPZIONALI REGISTER
      */
 
     private final String selectedScene;
     private static final String PATH = "res/view/scenes/";
+
     /**
      * 
-     * @param scene
-     *          the scene.
+     * @param scene the scene.
      */
     GameScenes(final String scene) {
         this.selectedScene = scene;
     }
+
     /**
      * 
-     * @return
-     *          the Path where the scene is stored.
+     * @return the Path where the scene is stored.
      */
     public String getPath() {
         return GameScenes.PATH + this.selectedScene;

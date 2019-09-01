@@ -38,6 +38,7 @@ public class LoginController extends AbstractSceneController {
     protected final GameScenes getPreviousScene() {
         return GameScenes.MAIN;
     }
+
     /**
      * 
      */
@@ -45,7 +46,7 @@ public class LoginController extends AbstractSceneController {
     public void userLogin() {
         if (checkTextField()) {
 //            if (this.getController().checkLogin(userTextField.getText(), pswTextField.getText())) {
-                this.nextScene();
+            this.nextScene();
 //            }
         } else {
             final Alert alert = new Alert(AlertType.WARNING);
@@ -55,6 +56,7 @@ public class LoginController extends AbstractSceneController {
             alert.showAndWait();
         }
     }
+
     /**
      * 
      */

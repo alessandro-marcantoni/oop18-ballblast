@@ -11,14 +11,12 @@ public final class SpriteSheet {
     private final Sprite sprite;
     private final double cellWidth;
     private final double cellHeight;
+
     /**
      * 
-     * @param sprite
-     *          sprite
-     * @param columns
-     *          columns
-     * @param rows
-     *          rows
+     * @param sprite  sprite
+     * @param columns columns
+     * @param rows    rows
      */
     public SpriteSheet(final Sprite sprite, final int columns, final int rows) {
         this.sprite = sprite;
@@ -28,14 +26,11 @@ public final class SpriteSheet {
 
     /**
      * 
-     * @param x
-     *          x
-     * @param y
-     *          y
+     * @param x x
+     * @param y y
      */
     public void setCell(final int x, final int y) {
-        this.sprite.setSourceWindow(
-                                    new Coordinate(x * this.cellWidth, y * this.cellHeight),
-                                    new Vector2D(this.cellWidth, this.cellHeight));
+        this.sprite.setSourceWindow(new Coordinate(x * this.cellWidth, y * this.cellHeight),
+                new Vector2D(this.cellWidth, this.cellHeight));
     }
 }

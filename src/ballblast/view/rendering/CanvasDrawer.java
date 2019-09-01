@@ -21,51 +21,53 @@ public class CanvasDrawer {
     private final Canvas canvas;
 
     static {
-        RENDERER_MAP = ImmutableMap.of(
-                GameObjectTypes.BALL,   p -> {
-                    try {
-                        return RendererFactory.createBallRenderer(p.getKey(), p.getValue());
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                },
-                GameObjectTypes.BULLET, p -> {
-                    try {
-                        return RendererFactory.createBulletRenderer(p.getKey(), p.getValue());
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                },
-                GameObjectTypes.PLAYER, p -> {
-                    try {
-                        return RendererFactory.createPlayerRenderer(p.getKey(), p.getValue());
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                },
-                GameObjectTypes.WALL, p -> {
-                    try {
-                        return RendererFactory.createWallRenderer(p.getKey(), p.getValue());
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                }
-        );
+        RENDERER_MAP = ImmutableMap.of(GameObjectTypes.BALL, p -> {
+            try {
+                return RendererFactory.createBallRenderer(p.getKey(), p.getValue());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }, GameObjectTypes.BULLET, p -> {
+            try {
+                return RendererFactory.createBulletRenderer(p.getKey(), p.getValue());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }, GameObjectTypes.PLAYER, p -> {
+            try {
+                return RendererFactory.createPlayerRenderer(p.getKey(), p.getValue());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }, GameObjectTypes.WALL, p -> {
+            try {
+                return RendererFactory.createWallRenderer(p.getKey(), p.getValue());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }, GameObjectTypes.POWERUP, p -> {
+            try {
+                return RendererFactory.createPowerUpRenderer(p.getKey(), p.getValue());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
     }
+
     /**
-     * @param canvas
-     *          the canvas
+     * @param canvas The {@link Canvas}.
      */
     public CanvasDrawer(final Canvas canvas) {
         this.canvas = canvas;
     }
+
     /**
-     * @param gameObjects
-     *          gameObjects
+     * @param gameObjects A list of {@link gameObject}s.
      */
     public void draw(final List<GameObject> gameObjects) {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
@@ -75,17 +77,13 @@ public class CanvasDrawer {
             gc.restore();
         });
     }
-    /**
-     * 
-     * @param gameObjects
-     * @return
-     */
+
     private List<Renderer> convertToRenderers(final List<GameObject> gameObjects) {
         return gameObjects.stream().map(this::getRenderer).collect(ImmutableList.toImmutableList());
     }
+
     /**
-     * @return
-     *          the canvas.
+     * @return the {@link Canvas} the file not found..
      */
     public Canvas getCanvas() {
         return this.canvas;

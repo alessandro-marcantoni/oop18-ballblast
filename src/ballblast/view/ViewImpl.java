@@ -24,8 +24,7 @@ public class ViewImpl implements View {
 
     /**
      * 
-     * @param primaryStage
-     *          primaryStage
+     * @param primaryStage primaryStage
      */
     public ViewImpl(final Stage primaryStage) {
         super();
@@ -35,13 +34,13 @@ public class ViewImpl implements View {
 
     @Override
     public final void launch(final Controller controller) {
-       this.controller = controller;
-       this.stage.setTitle(GAME_TITLE);
-       this.stage.setMinHeight(MIN_HEIGHT);
-       this.stage.setMinWidth(MIN_WIDTH);
-       this.stage.setMaximized(true);
-       this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
-       this.loadScene(GameScenes.MAIN);
+        this.controller = controller;
+        this.stage.setTitle(GAME_TITLE);
+        this.stage.setMinHeight(MIN_HEIGHT);
+        this.stage.setMinWidth(MIN_WIDTH);
+        this.stage.setMaximized(true);
+        this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
+        this.loadScene(GameScenes.MAIN);
     }
 
     @Override

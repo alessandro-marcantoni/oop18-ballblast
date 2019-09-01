@@ -5,8 +5,8 @@ package ballblast.view.rendering;
  */
 public enum ImagePath {
     /**
-     * The image for {@link Ball}.
-     * String empty to use randomColor in the {@link ImageLoader}.
+     * The image for {@link Ball}. String empty to use randomColor in the
+     * {@link ImageLoader}.
      */
     BALL(""),
     /**
@@ -39,10 +39,10 @@ public enum ImagePath {
     ImagePath(final String path) {
         this.path = path;
     }
+
     /**
      * 
-     * @return
-     *          the path of the image.
+     * @return the path of the image.
      */
     public String getPath() {
         return IMAGE_PATH + this.path;

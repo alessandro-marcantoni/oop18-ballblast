@@ -13,25 +13,9 @@ public interface View {
 
     /**
      * 
-     * @param controller 
-     *          the controller
+     * @param controller the controller
      */
     void launch(Controller controller);
-
-//    /**
-//     * 
-//     * @return 
-//     *          the scene factory.
-//     */
-//    SceneFactory getSceneFactory();
-//
-//    /**
-//     * Start a new match.
-//     * 
-//     * @param gameSceneController 
-//     *          the game scene controller
-//     */
-//    void startGame(GameSceneController gameSceneController);
 
     /**
      * Render method.
@@ -40,8 +24,7 @@ public interface View {
 
     /**
      * 
-     * @param scene
-     *          scene
+     * @param scene scene
      */
     void loadScene(GameScenes scene);
 }

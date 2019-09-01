@@ -52,30 +52,29 @@ public enum BallColors {
     private static final Random RANDOM = new Random();
     private final String ballPath;
 
-
     BallColors(final String ballPath) {
         this.ballPath = ballPath;
     }
+
     /**
      * 
-     * @return
-     *          A random {@link BallColors} color.
+     * @return A random {@link BallColors} color.
      */
     public static String getRandomColor() {
         return VALUES.get(RANDOM.nextInt(SIZE)).getBallPath();
     }
+
     /**
      * 
-     * @return
-     *          the ball image path.
+     * @return the ball image path.
      */
     public String getBallPath() {
         return this.ballPath;
     }
+
     /**
      * 
-     * @return
-     *          the {@link BallColors} color.
+     * @return the {@link BallColors} color.
      */
     public String getBallColor() {
         return this.toString();

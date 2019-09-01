@@ -8,6 +8,7 @@ import ballblast.view.scenecontroller.GUISceneController;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+
 /**
  * Class for the paused state.
  */
@@ -18,22 +19,20 @@ public class PausedState extends GUIState {
 
     static {
         PRESSED_INPUT_MAP = ImmutableMap.of(
-                KeyCode.P,      g -> g.getGUI().setState(g.getGUI().getInGameState()),
-                KeyCode.ESCAPE, g -> g.getGUI().setState(g.getGUI().getInGameState()),
-                KeyCode.Q,      g -> {
+                KeyCode.P, g -> g.getGUI().setState(g.getGUI().getInGameState()),
+                KeyCode.ESCAPE, g -> g.getGUI().setState(g.getGUI().getInGameState()), 
+                KeyCode.Q, g -> {
                     g.getGUI().getController().gameOver();
                     g.getGUI().backScene();
-                }
-        );
+                });
     }
+
     /**
      * Initialize the paused state.
-     * @param gui
-     *          the {@link GUISceneController}.
-     * @param controller
-     *          the {@link Controller} of the game.
-     * @param pausePane
-     *          the {@link Pane} to be showed during the pause.
+     * 
+     * @param gui        the {@link GUISceneController}.
+     * @param controller the {@link Controller} of the game.
+     * @param pausePane  the {@link Pane} to be showed during the pause.
      */
     public PausedState(final GUISceneController gui, final Controller controller, final Pane pausePane) {
         super(gui, controller);

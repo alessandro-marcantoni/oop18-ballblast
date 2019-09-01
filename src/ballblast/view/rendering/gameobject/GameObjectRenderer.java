@@ -3,6 +3,7 @@ package ballblast.view.rendering.gameobject;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.view.rendering.AbstractRenderer;
 import ballblast.view.rendering.Sprite;
+
 /**
  * 
  * 
@@ -15,15 +16,14 @@ public abstract class GameObjectRenderer<G extends GameObject> extends AbstractR
 
     /**
      * 
-     * @param sprite
-     *          the sprite used to render the {@link GameObject}.
-     * @param gameObject
-     *          the {@link GameObject} to render.
+     * @param sprite     the sprite used to render the {@link GameObject}.
+     * @param gameObject the {@link GameObject} to render.
      */
     public GameObjectRenderer(final Sprite sprite, final G gameObject) {
         this.sprite = sprite;
         this.gameObject = gameObject;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -35,8 +35,8 @@ public abstract class GameObjectRenderer<G extends GameObject> extends AbstractR
 
     /**
      * Returns the {@link GameObject} that this object will render.
-     * @return
-     *          the {@link GameObject}.
+     * 
+     * @return the {@link GameObject}.
      */
     protected G getGameObject() {
         return this.gameObject;
@@ -44,8 +44,8 @@ public abstract class GameObjectRenderer<G extends GameObject> extends AbstractR
 
     /**
      * Return the {@link Sprite} used to render the {@link GameObject}.
-     * @return
-     *          the {@link Sprite} object.
+     * 
+     * @return the {@link Sprite} object.
      */
     protected Sprite getSprite() {
         return this.sprite;

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
 /**
  * 
  * 
@@ -29,6 +30,7 @@ public class GameSelectionSceneController extends AbstractSceneController {
     protected final GameScenes getPreviousScene() {
         return GameScenes.MENU;
     }
+
     // TO DELETE
     // Inserito per andare più veloce nel testing.
     @Override
@@ -39,4 +41,3 @@ public class GameSelectionSceneController extends AbstractSceneController {
     }
 
 }
-

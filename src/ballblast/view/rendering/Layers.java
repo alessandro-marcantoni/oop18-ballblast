@@ -1,4 +1,5 @@
 package ballblast.view.rendering;
+
 /**
  * 
  * A wrapper class for layer constants.
@@ -20,6 +21,11 @@ public final class Layers {
      * The layer of the {@link Ball} {@link GameObject}.
      */
     public static final int BALL_LAYER = 4;
+    /**
+     * The layer of the {@link Power} {@link GameObject}.
+     */
+    public static final int POWERUP_LAYER = 5;
+
     private Layers() {
         // Can't create a Layer object.
     }

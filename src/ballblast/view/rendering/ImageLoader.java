@@ -14,6 +14,7 @@ public class ImageLoader {
     private static final ImageLoader SINGLETON = new ImageLoader();
     private final Map<ImagePath, Image> imageMap;
     private final Map<BallColors, Image> ballMap;
+
     /**
      * Simple constructor.
      */
@@ -24,19 +25,17 @@ public class ImageLoader {
 
     /**
      * 
-     * @return
-     *          the imageLoader.
+     * @return the imageLoader.
      */
     public static ImageLoader getLoader() {
         return SINGLETON;
     }
+
     /**
      * 
-     * @param imagePath
-     *          the path of the image to get.
-     * @return
-     *          the image of the object required.
-     * @throws FileNotFoundException 
+     * @param imagePath the path of the image to get.
+     * @return the image of the object required.
+     * @throws FileNotFoundException the file not found.
      */
     public Image getImage(final ImagePath imagePath) throws FileNotFoundException {
         if (imagePath.equals(ImagePath.BALL)) {
@@ -50,15 +49,14 @@ public class ImageLoader {
             return this.imageMap.get(imagePath);
         }
     }
+
     /**
      * 
-     * @param path
-     *          the path of the ball.
-     * @return
-     *          the image of the ball required.
-     * @throws FileNotFoundException
+     * @param path the path of the ball.
+     * @return the image of the ball required.
+     * @throws FileNotFoundException the file not found.
      */
-    public Image checkBall(final String path) throws FileNotFoundException { 
+    public Image checkBall(final String path) throws FileNotFoundException {
         for (BallColors color : BallColors.values()) {
             if (color.getBallPath().equals(path)) {
                 if (!this.ballMap.containsKey(color)) {
@@ -72,12 +70,11 @@ public class ImageLoader {
         }
         return null;
     }
+
     /**
      * 
-     * @param imagePath
-     *          the path of the image to be loaded.
-     * @return
-     *          the Image.
+     * @param imagePath the path of the image to be loaded.
+     * @return the Image.
      */
     public Image loadImage(final ImagePath imagePath) {
         return new Image(ImageLoader.class.getResourceAsStream(imagePath.getPath()));
@@ -86,10 +83,4 @@ public class ImageLoader {
     private Image loadImageFromString(final String path) throws FileNotFoundException {
         return new Image(ImageLoader.class.getResourceAsStream(path));
     }
-//    /**
-//     * 
-//     */
-//    public void loadAll() {
-//        Arrays.stream(ImagePath.values()).forEach(this::loadImage);
-//    }
 }

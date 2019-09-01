@@ -6,6 +6,7 @@ import ballblast.model.Model;
 import ballblast.model.ModelImpl;
 import ballblast.view.View;
 import ballblast.view.ViewImpl;
+import ballblast.view.rendering.gameobject.BallColors;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

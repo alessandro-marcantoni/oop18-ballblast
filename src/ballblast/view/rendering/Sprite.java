@@ -1,5 +1,7 @@
 package ballblast.view.rendering;
 
+import java.io.FileNotFoundException;
+
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
@@ -46,8 +48,9 @@ public interface Sprite extends Renderer {
      * Sets the source image of the sprite.
      * @param source
      *          the new source image identifier.
+     * @throws FileNotFoundException 
      */
-    void setSource(ImagePath source);
+    void setSource(ImagePath source) throws FileNotFoundException;
     /**
      * Sets the opacity of the sprite. Values [0,1].
      * @param alpha

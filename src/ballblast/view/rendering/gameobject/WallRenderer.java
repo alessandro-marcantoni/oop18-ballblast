@@ -1,5 +1,7 @@
 package ballblast.view.rendering.gameobject;
 
+import java.io.FileNotFoundException;
+
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
@@ -20,8 +22,9 @@ public class WallRenderer extends GameObjectRenderer<Wall> {
      *     The {@link Sprite} used to render.
      * @param gameObject
      *     The {@link Wall} {@link GameObject}.
+     * @throws FileNotFoundException 
      */
-    public WallRenderer(final Sprite sprite, final Wall gameObject) {
+    public WallRenderer(final Sprite sprite, final Wall gameObject) throws FileNotFoundException {
         super(sprite, gameObject);
         this.setLayer(Layers.WALL_LAYER);
         sprite.setSource(ImagePath.WALL);

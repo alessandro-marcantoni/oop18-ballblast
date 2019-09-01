@@ -1,6 +1,5 @@
 package ballblast.view.rendering;
 
-import ballblast.view.rendering.gameobject.BallColors;
 /**
  * Identifies an image stored on the disk and its path.
  */
@@ -8,8 +7,7 @@ public enum ImagePath {
     /**
      * The image for balls.
      */
-//    BALL(BallColors.getRandomColor()),
-    BALL("/balls/ball.png"),
+    BALL("/balls/blue.png"),
     /**
      * The image for the cannon.
      */

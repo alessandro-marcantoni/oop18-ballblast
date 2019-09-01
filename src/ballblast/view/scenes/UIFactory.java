@@ -1,5 +1,7 @@
 package ballblast.view.scenes;
 
+import java.io.FileNotFoundException;
+
 import ballblast.model.powerups.PowerTypes;
 import ballblast.view.rendering.ImageLoader;
 import ballblast.view.rendering.ImagePath;
@@ -22,8 +24,9 @@ public class UIFactory {
      *          The power to select the icon.
      * @return
      *          A icon for the given power.
+     * @throws FileNotFoundException 
      */
-    public ImageView createPowerIcon(final PowerTypes power) {
+    public ImageView createPowerIcon(final PowerTypes power) throws FileNotFoundException {
         final ImageView imageView = new ImageView();
         final Image image = ImageLoader.getLoader().getImage(ImagePath.POWERS);
         final double cellWidth = image.getWidth() / 3;

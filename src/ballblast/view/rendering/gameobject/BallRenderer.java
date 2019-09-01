@@ -1,5 +1,7 @@
 package ballblast.view.rendering.gameobject;
 
+import java.io.FileNotFoundException;
+
 import ballblast.model.gameobjects.Ball;
 import ballblast.view.rendering.ImagePath;
 import ballblast.view.rendering.Layers;
@@ -21,8 +23,9 @@ public class BallRenderer extends GameObjectRenderer<Ball> {
      *          the {@link Sprite} used to render.
      * @param gameObject
      *          the {@link Ball} {@link @link GameObject}.
+     * @throws FileNotFoundException 
      */
-    public BallRenderer(final Sprite sprite, final Ball gameObject) {
+    public BallRenderer(final Sprite sprite, final Ball gameObject) throws FileNotFoundException {
         super(sprite, gameObject);
         this.setLayer(Layers.BALL_LAYER);
         final Text life = new Text(Integer.toString(gameObject.getCurrentLife()));

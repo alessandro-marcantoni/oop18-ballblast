@@ -86,4 +86,12 @@ public abstract class AbstractSceneController {
     public void onKeyPressed(final KeyEvent event) {
         // Empty for subclasses.
     }
+    /**
+     * 
+     * @param gameover
+     *          gameover.
+     */
+    public void setGameover(final boolean gameover) {
+        // Empty for subclasses.
+    }
 }

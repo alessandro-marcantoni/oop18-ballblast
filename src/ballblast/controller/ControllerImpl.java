@@ -60,7 +60,8 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final void gameOver() {
-        this.view.setGameOver(true);
+//        System.out.println("Gameover true in ControllerImpl");
+//        this.view.setGameOver(true);
         this.gameloop.stopLoop();
     }
 

@@ -101,15 +101,14 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     public final void render() {
-
+        if (this.isGameover()) {
+            System.out.println(gameover);
+            this.nextScene();
+        }
         this.clearCanvas();
         this.score.setText(Double.toString(this.getController().getGameData().getScore()));
         this.balls.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
         this.canvasDrawer.draw(this.getController().getGameObjects());
-        if (this.isGameover()) {
-            this.nextScene();
-        }
-        
     }
 
     private void resetGameCanvasCoordinates() {
@@ -190,13 +189,18 @@ public class GUISceneController extends AbstractSceneController {
     }
 
     /**
-     * 
+     * @param gameover
+     *          true if the player has lost.
      */
     public void setGameover(final boolean gameover) {
         this.gameover = gameover;
     }
 
-    private boolean isGameover() {
+    /**
+     * 
+     * @return True if the player has lost.
+     */
+    public boolean isGameover() {
         return this.gameover;
     }
     /**

@@ -58,6 +58,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
             }
             lastTime = current;
         }
+        this.view.setGameOver(true);
     }
 
     private void waitForNextFrame(final long current) {

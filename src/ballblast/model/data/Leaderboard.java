@@ -46,12 +46,7 @@ public class Leaderboard {
         }
     }
 
-    /**
-     * Returns the records under a stream format.
-     * @return
-     *          a stream of {@link RecordData}.
-     */
-    public Stream<RecordData> getRecords() {
+    private Stream<RecordData> getRecords() {
         return this.recordList.stream();
     }
 

@@ -33,14 +33,14 @@ public class GravityComponent extends AbstractComponent {
     @Override
     public final void update(final double elapsed) {
         if (this.isEnabled()) {
-            if (this.getParent().getVelocity().getY() >= 0) {
-                this.gravity = STANDARD_GRAVITY;
-            } else {
-                this.gravity = UPWARDS_GRAVITY;
-            }
+            this.gravity = this.isGoingUpwards() ? UPWARDS_GRAVITY : STANDARD_GRAVITY;
             final Vector2D dV = gravity.multiply(elapsed);
             this.getParent().setVelocity(this.getParent().getVelocity().add(dV));
         }
+    }
+
+    private boolean isGoingUpwards() {
+        return this.getParent().getVelocity().getY() <= 0;
     }
 
     /**

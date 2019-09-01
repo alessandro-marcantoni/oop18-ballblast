@@ -31,4 +31,16 @@ public class ShieldPower extends AbstractPower {
         .ifPresent(c -> ((CollisionComponent) c).enable());
     }
 
+    /**
+     * Concrete implementation of {@link AbstractPower.Builder}.
+     */
+    public static class Builder extends AbstractPower.Builder {
+
+        @Override
+        protected final AbstractPower initGameObject() {
+            return new ShieldPower();
+        }
+
+    }
+
 }

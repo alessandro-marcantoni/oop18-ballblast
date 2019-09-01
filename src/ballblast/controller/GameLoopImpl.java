@@ -11,7 +11,6 @@ import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
 import ballblast.model.levels.GameStatus;
 import ballblast.view.View;
-import ballblast.view.scenecontroller.GUISceneController;
 
 /**
  * Represents a game loop that starts in a new thread.
@@ -44,7 +43,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     @Override
     public final void run() {
         this.stopped = false;
-        //this.render();
+        // this.render();
         long lastTime = System.currentTimeMillis();
         while (!this.isStopped()) {
             final long current = System.currentTimeMillis();

@@ -33,25 +33,25 @@ public interface Controller {
     void gameOver();
 
     /**
-     * Sends an input to be resolved the next update by the right {@link Player} to the {@link Controller}.
-     * @param tag
-     *     the tag which identifies the {@link Player}.
-     * @param input
-     *     the input to be resolved.
+     * Sends an input to be resolved the next update by the right {@link Player} to
+     * the {@link Controller}.
+     * 
+     * @param tag   the tag which identifies the {@link Player}.
+     * @param input the input to be resolved.
      */
     void sendInput(PlayerTags tag, InputTypes input);
 
     /**
      * Returns the list of active {@link GameObjects} to be rendered.
-     * @return
-     *       A list of {@link GameObject}.
+     * 
+     * @return A list of {@link GameObject}.
      */
     List<GameObject> getGameObjects();
 
     /**
      * Gets the game data (score, time, destroyed balls ecc..).
-     * @return
-     *       The {@link GameData}.
+     * 
+     * @return The {@link GameData}.
      */
     GameData getGameData();
 

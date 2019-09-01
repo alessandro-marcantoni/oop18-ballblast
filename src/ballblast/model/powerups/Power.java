@@ -1,6 +1,6 @@
 package ballblast.model.powerups;
 
-import ballblast.model.gameobjects.Player;
+import ballblast.model.gameobjects.GameObject;
 
 /**
  * The interface representing a powerup.
@@ -10,9 +10,9 @@ public interface Power {
     /**
      * Activates the powerup on a specific player.
      * 
-     * @param player The {@Link Player} who gets the powerup.
+     * @param player The {@link Player} who gets the powerup.
      */
-    void activate(Player player);
+    void activate(GameObject player);
 
     /**
      * Deactivates the powerup.
@@ -27,10 +27,17 @@ public interface Power {
     boolean isActive();
 
     /**
-     * Returns the {@Link PowerTypes} of the powerup.
+     * Returns the {@link PowerTypes} of the powerup.
      * 
-     * @return The {@Link PowerTypes} of the powerup.
+     * @return The {@link PowerTypes} of the powerup.
      */
     PowerTypes getPowerType();
+
+    /**
+     * Returns the {@link Player} who is using the power.
+     * 
+     * @return the {@link Player}.
+     */
+    GameObject getPlayer();
 
 }

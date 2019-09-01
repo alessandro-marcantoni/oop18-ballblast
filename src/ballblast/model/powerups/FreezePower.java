@@ -22,4 +22,16 @@ public class FreezePower extends AbstractPower {
 
     }
 
+    /**
+     * Concrete implementation of {@link AbstractPower.Builder}.
+     */
+    public static class Builder extends AbstractPower.Builder {
+
+        @Override
+        protected final AbstractPower initGameObject() {
+            return new FreezePower();
+        }
+
+    }
+
 }

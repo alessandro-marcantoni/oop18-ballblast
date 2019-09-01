@@ -1,8 +1,8 @@
 package ballblast.model.powerups;
 
 import ballblast.model.gameobjects.AbstractGameObject;
+import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
-import ballblast.model.gameobjects.Player;
 
 /**
  * The abstract class representing a {@Link Power}.
@@ -11,7 +11,7 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
 
     private static final double AVAILABLE_TIME = 5;
 
-    private Player player;
+    private GameObject player;
     private boolean active;
     private PowerTypes powerType;
     private double elapsedTime;
@@ -39,7 +39,7 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
      * May be extended in subclasses.
      */
     @Override
-    public void activate(final Player player) {
+    public void activate(final GameObject player) {
         this.active = true;
         this.player = player;
     }
@@ -75,7 +75,7 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
      * 
      * @return The {@Link Player} who gets the {@Link Power}.
      */
-    public Player getPlayer() {
+    public GameObject getPlayer() {
         return this.player;
     }
 
@@ -83,6 +83,20 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
         if (this.elapsedTime >= AVAILABLE_TIME) {
             this.deactivate();
             this.destroy();
+        }
+    }
+
+    /**
+     * Implementation of {@link AbstractGameObject.AbstractBuilder}.
+     */
+    public abstract static class Builder extends AbstractGameObject.AbstractBuilder<AbstractPower, Builder> {
+
+        @Override
+        protected abstract AbstractPower initGameObject();
+
+        @Override
+        protected final Builder getBuilder() {
+            return this;
         }
     }
 }

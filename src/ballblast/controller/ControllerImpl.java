@@ -15,19 +15,18 @@ import ballblast.view.View;
 public class ControllerImpl implements Controller {
 
     private final Model model;
-    //private final View view;
+    // private final View view;
     private final GameLoop gameloop;
 
     /**
      * Create a new instance of Controller.
-     * @param model
-     *      The model of the MVC architecture.
-     * @param view
-     *      The view of the MVC architecture.
+     * 
+     * @param model The model of the MVC architecture.
+     * @param view  The view of the MVC architecture.
      */
     public ControllerImpl(final Model model, final View view) {
         this.model = model;
-        //this.view = view;
+        // this.view = view;
         this.gameloop = new GameLoopImpl(this.model, view);
     }
 

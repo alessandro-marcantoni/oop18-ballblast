@@ -3,7 +3,8 @@ package ballblast.model.components;
 import org.locationtech.jts.math.Vector2D;
 
 /**
- * Adds the ability to move and update the position of a {@link GameObject} based on gravity.
+ * Adds the ability to move and update the position of a {@link GameObject}
+ * based on gravity.
  */
 public class GravityComponent extends AbstractComponent {
 
@@ -22,12 +23,12 @@ public class GravityComponent extends AbstractComponent {
 
     /**
      * Creates a new GravityComponent instance with specified gravity acceleration.
-     * @param gravity
-     *          the gravity acceleration.
+     * 
+     * @param gravity the gravity acceleration.
      */
     public GravityComponent(final Vector2D gravity) {
-            super(ComponentTypes.GRAVITY);
-            this.gravity = gravity;
+        super(ComponentTypes.GRAVITY);
+        this.gravity = gravity;
     }
 
     @Override
@@ -45,20 +46,20 @@ public class GravityComponent extends AbstractComponent {
 
     /**
      * Gets the gravity value.
-     * @return
-     *          the gravity value.
+     * 
+     * @return the gravity value.
      */
     public Vector2D getGravity() {
-            return this.gravity;
+        return this.gravity;
     }
 
     /**
      * Sets a new gravity value.
-     * @param gravity
-     *          the gravity vector.
+     * 
+     * @param gravity the gravity vector.
      */
     public void setGravity(final Vector2D gravity) {
-            this.gravity = gravity;
+        this.gravity = gravity;
     }
 
 }

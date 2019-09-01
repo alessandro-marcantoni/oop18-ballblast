@@ -22,11 +22,11 @@ public class PowerUpRenderer extends GameObjectRenderer<AbstractPower> {
     public PowerUpRenderer(final Sprite sprite, final AbstractPower gameObject) throws FileNotFoundException {
         super(sprite, gameObject);
         this.setLayer(Layers.POWERUP_LAYER);
-        if (gameObject.getPowerTag().equals(PowerTypes.DOUBLEFIRE)) {
+        if (gameObject.getPowerType().equals(PowerTypes.DOUBLEFIRE)) {
             sprite.setSource(ImagePath.POWERUP_DOUBLEFIRE);
-        } else if (gameObject.getPowerTag().equals(PowerTypes.FREEZE)) {
+        } else if (gameObject.getPowerType().equals(PowerTypes.FREEZE)) {
             sprite.setSource(ImagePath.POWERUP_FREEZE);
-        } else if (gameObject.getPowerTag().equals(PowerTypes.SHIELD)) {
+        } else if (gameObject.getPowerType().equals(PowerTypes.SHIELD)) {
             sprite.setSource(ImagePath.POWERUP_SHIELD);
         }
     }

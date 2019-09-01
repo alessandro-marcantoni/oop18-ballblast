@@ -33,4 +33,16 @@ public class DoubleFirePower extends AbstractPower {
         .ifPresent(c -> ((ShooterComponent) c).setDefaultShotInterval());
     }
 
+    /**
+     * Concrete implementation of {@link AbstractPower.Builder}.
+     */
+    public static class Builder extends AbstractPower.Builder {
+
+        @Override
+        protected final AbstractPower initGameObject() {
+            return new DoubleFirePower();
+        }
+
+    }
+
 }

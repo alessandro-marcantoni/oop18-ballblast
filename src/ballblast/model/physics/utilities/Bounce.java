@@ -16,8 +16,7 @@ public final class Bounce {
     /**
      * Makes the object bounce on the floor inverting the Y velocity.
      * 
-     * @param object
-     *      The object that bounces.
+     * @param object The object that bounces.
      */
     public static void floorBounce(final GameObject object) {
         object.setVelocity(new Vector2D(object.getVelocity().getX(), object.getVelocity().getY() * CHANGE_SIGN));
@@ -26,8 +25,7 @@ public final class Bounce {
     /**
      * Makes the object bounce on the wall inverting the X velocity.
      * 
-     * @param object
-     *      The object that bounces.
+     * @param object The object that bounces.
      */
     public static void wallBounce(final GameObject object) {
         object.setVelocity(new Vector2D(object.getVelocity().getX() * CHANGE_SIGN, object.getVelocity().getY()));

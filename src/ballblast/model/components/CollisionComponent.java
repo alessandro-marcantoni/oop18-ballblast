@@ -41,7 +41,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
         final GameObject parent = this.getParent();
         final Coordinate pos = parent.getPosition();
 
-        GeometricShapeFactory shapeFactory = new GeometricShapeFactory();
+        final GeometricShapeFactory shapeFactory = new GeometricShapeFactory();
         shapeFactory.setBase(new Coordinate(pos.getX(), pos.getY()));
         shapeFactory.setHeight(parent.getHeight());
         shapeFactory.setWidth(parent.getWidth());

@@ -53,7 +53,7 @@ public class LeaderboardManager {
 
     private Optional<Leaderboard> load(final String path) {
         if (!Files.exists(Paths.get(path))) {
-            Leaderboard leaderboard = new Leaderboard();
+            final Leaderboard leaderboard = new Leaderboard();
             leaderboard.setRecordList(Lists.newArrayList());
             return Optional.of(leaderboard);
         }

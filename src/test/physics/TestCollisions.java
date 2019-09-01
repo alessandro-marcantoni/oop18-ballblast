@@ -199,7 +199,7 @@ public class TestCollisions {
                                      .get();
 
         for (int i = 0; i < steps; i++) {
-            Coordinate pos = player.getPosition();
+            final Coordinate pos = player.getPosition();
             lvl.update(elapsed);
             assertTrue(pos.getX() <= Boundaries.RIGHT.getPosition().getX());
         }

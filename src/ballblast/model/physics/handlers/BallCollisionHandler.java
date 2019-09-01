@@ -25,7 +25,11 @@ public class BallCollisionHandler implements CollisionHandler {
                 break;
             case WALL:
                 final Coordinate boundaryPos = coll.getAttachedGameObject().get().getPosition();
-                if (this.checkFloor(boundaryPos)) {
+                if (checkFloor(boundaryPos)) {
+                    obj.setPosition(new Coordinate(obj.getPosition().getX(), Boundaries.BOTTOM.getPosition().getY() - obj.getHeight()));
+                    Bounce.floorBounce(obj);
+                } else if (checkRoof(boundaryPos)) {
+                    obj.setPosition(new Coordinate(obj.getPosition().getX(), Boundaries.TOP.getPosition().getY() + Boundaries.TOP.getHeight()));
                     Bounce.floorBounce(obj);
                 } else {
                     Bounce.wallBounce(obj);
@@ -44,7 +48,11 @@ public class BallCollisionHandler implements CollisionHandler {
         }
     }
 
-    private boolean checkFloor(final Coordinate position) {
-        return position.equals(Boundaries.BOTTOM.getPosition()) || position.equals(Boundaries.TOP.getPosition());
+    private static boolean checkFloor(final Coordinate position) {
+        return position.equals(Boundaries.BOTTOM.getPosition());
+    }
+
+    private static boolean checkRoof(final Coordinate boundaryPosition) {
+        return boundaryPosition.equals(Boundaries.TOP.getPosition());
     }
 }

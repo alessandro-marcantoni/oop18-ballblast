@@ -17,7 +17,7 @@ import ballblast.model.physics.CollisionManager;
  * Adds the ability to a {@link GameObject} to be split when destroyed.
  */
 public class SplitterComponent extends AbstractComponent {
-    private static final double GRAVITY_Y = -80;
+    private static final double Y_SPLIT_VELOCITY = -90;
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final GameDataManager gameDataManager;
@@ -59,7 +59,7 @@ public class SplitterComponent extends AbstractComponent {
     private GameObject generateChildBall(final BallTypes type, final int life, final double xVelocity,
             final Coordinate position) {
         final GameObject ball = GameObjectFactory.createBall(type, life, position,
-                Vector2D.create(xVelocity, GRAVITY_Y / 2), this.collisionManager, this.gameObjectManager,
+                Vector2D.create(xVelocity, Y_SPLIT_VELOCITY / 2), this.collisionManager, this.gameObjectManager,
                 this.gameDataManager);
         ball.getComponents().forEach(Component::enable);
         return ball;

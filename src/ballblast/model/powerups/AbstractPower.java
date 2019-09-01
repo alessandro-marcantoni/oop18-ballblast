@@ -13,7 +13,7 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
 
     private GameObject player;
     private boolean active;
-    private PowerTypes powerType;
+    private final PowerTypes powerType;
     private double elapsedTime;
 
     /**

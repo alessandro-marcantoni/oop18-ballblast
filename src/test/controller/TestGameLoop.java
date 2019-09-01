@@ -18,13 +18,13 @@ import ballblast.view.scenes.GameScenes;
  */
 public class TestGameLoop {
 
-    private Model testModel = new ModelImpl();
-    private TestView testView = new TestView();
+    private final Model testModel = new ModelImpl();
+    private final TestView testView = new TestView();
     private final GameLoopImpl gameLoop = new GameLoopImpl(testModel, testView);
 
     private class TestView implements View {
 
-        private int counter = 0;
+        private int counter;
 
         @Override
         public void launch(final Controller controller) {
@@ -118,7 +118,7 @@ public class TestGameLoop {
         for (int i = 0; i < 10; i++) {
             int previousValue = this.testView.getCounter();
             this.waitOneSecond();
-            int newValue = this.testView.getCounter();
+            final int newValue = this.testView.getCounter();
             System.out.println(newValue - previousValue);
             previousValue = newValue;
         }

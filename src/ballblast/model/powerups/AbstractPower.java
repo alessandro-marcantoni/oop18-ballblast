@@ -40,14 +40,19 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
      */
     @Override
     public void activate(final GameObject player) {
-        this.active = true;
-        this.player = player;
+        if (!this.isActive()) {
+            this.active = true;
+            this.player = player;
+            this.performPower();
+        }
     }
 
     @Override
     public final void deactivate() {
-        this.stopPerforming();
-        this.active = false;
+        if (this.isActive()) {
+            this.stopPerforming();
+            this.active = false;
+        }
     }
 
     @Override

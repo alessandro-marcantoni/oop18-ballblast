@@ -6,6 +6,7 @@ import ballblast.model.gameobjects.GameObject;
 import ballblast.model.levels.Boundaries;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
+import ballblast.model.powerups.Power;
 
 /**
  * Represents the handler for the behavior of a {@link Player} after a
@@ -33,7 +34,7 @@ public class PlayerCollisionHandler implements CollisionHandler {
             }
             break;
         case POWERUP:
-            obj.toString();
+            ((Power) coll).activate(obj);
             break;
         default:
             break;

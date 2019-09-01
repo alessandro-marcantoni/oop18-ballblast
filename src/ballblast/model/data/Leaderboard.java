@@ -46,12 +46,7 @@ public class Leaderboard {
         }
     }
 
-    /**
-     * Returns the records under a stream format.
-     * @return
-     *          a stream of {@link RecordData}.
-     */
-    public Stream<RecordData> getRecords() {
+    private Stream<RecordData> getRecords() {
         return this.recordList.stream();
     }
 
@@ -85,8 +80,8 @@ public class Leaderboard {
      *          the map of the {@link Leaderboard}.
      */
     public Map<Integer, String> getLeaderboard() {
-        Map<Integer, String> map = this.getRecords().collect(Collectors.toMap(RecordData::getScore, RecordData::getName));
-        Map<Integer, String> treeMap = new TreeMap<>(new Comparator<Integer>() {
+        final Map<Integer, String> map = this.getRecords().collect(Collectors.toMap(RecordData::getScore, RecordData::getName));
+        final Map<Integer, String> treeMap = new TreeMap<>(new Comparator<Integer>() {
 
             @Override
             public int compare(final Integer o1, final Integer o2) {

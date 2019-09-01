@@ -25,7 +25,11 @@ public class BallCollisionHandler implements CollisionHandler {
                 break;
             case WALL:
                 final Coordinate boundaryPos = coll.getAttachedGameObject().get().getPosition();
-                if (this.checkFloor(boundaryPos)) {
+                if (Boundaries.isFloor(boundaryPos)) {
+                    obj.setPosition(new Coordinate(obj.getPosition().getX(), Boundaries.BOTTOM.getPosition().getY() - obj.getHeight()));
+                    Bounce.floorBounce(obj);
+                } else if (Boundaries.isRoof(boundaryPos)) {
+                    obj.setPosition(new Coordinate(obj.getPosition().getX(), Boundaries.TOP.getPosition().getY() + Boundaries.TOP.getHeight()));
                     Bounce.floorBounce(obj);
                 } else {
                     Bounce.wallBounce(obj);
@@ -33,18 +37,17 @@ public class BallCollisionHandler implements CollisionHandler {
                 break;
             case BULLET:
                 // Decrement the Ball life by 'decLife' and destroy if life = 0.
-                ((Ball) obj).setCurrentLife(((Ball) obj).getCurrentLife() - decLife);
+                this.decrementLife(obj, decLife);
                 if (((Ball) obj).getCurrentLife() <= 0) {
                     obj.destroy();
                 }
-                // TODO handle score
                 break;
             default:
                 break;
         }
     }
 
-    private boolean checkFloor(final Coordinate position) {
-        return position.equals(Boundaries.BOTTOM.getPosition()) || position.equals(Boundaries.TOP.getPosition());
+    private void decrementLife(final GameObject ball, final int decrementBy) {
+        ((Ball) ball).setCurrentLife(((Ball) ball).getCurrentLife() - decrementBy);
     }
 }

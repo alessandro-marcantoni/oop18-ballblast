@@ -1,5 +1,6 @@
 package ballblast.view.rendering;
 
+import java.io.FileNotFoundException;
 import java.util.EnumMap;
 import java.util.Map;
 import ballblast.view.rendering.gameobject.BallColors;
@@ -35,13 +36,13 @@ public class ImageLoader {
      *          the path of the image to get.
      * @return
      *          the image of the object required.
+     * @throws FileNotFoundException 
      */
-    public Image getImage(final ImagePath imagePath) {
-//        if (imagePath.equals(ImagePath.BALL)) {
-//            final Image img = checkBall(imagePath);
-//            return img;
-//        } else 
-            if (!this.imageMap.containsKey(imagePath)) {
+    public Image getImage(final ImagePath imagePath) throws FileNotFoundException {
+        if (imagePath.equals(ImagePath.BALL)) {
+            final Image img = checkBall(BallColors.getRandomColor());
+            return img;
+        } else if (!this.imageMap.containsKey(imagePath)) {
             final Image img = this.loadImage(imagePath);
             this.imageMap.put(imagePath, img);
             return img;
@@ -51,14 +52,15 @@ public class ImageLoader {
     }
     /**
      * 
-     * @param imagePath
-     *          the {@link ImagePath}.
+     * @param path
+     *          the path of the ball.
      * @return
      *          the image of the ball required.
+     * @throws FileNotFoundException
      */
-    public Image checkBall(final ImagePath imagePath) {
+    public Image checkBall(final String path) throws FileNotFoundException { 
         for (BallColors color : BallColors.values()) {
-            if (color.getBallPath().equals(imagePath.getPath())) {
+            if (color.getBallPath().equals(path)) {
                 if (!this.ballMap.containsKey(color)) {
                     final Image img = this.loadImageFromString(color.getBallPath());
                     this.ballMap.put(color, img);
@@ -81,8 +83,8 @@ public class ImageLoader {
         return new Image(ImageLoader.class.getResourceAsStream(imagePath.getPath()));
     }
 
-    private Image loadImageFromString(final String path) {
-        return null;
+    private Image loadImageFromString(final String path) throws FileNotFoundException {
+        return new Image(ImageLoader.class.getResourceAsStream(path));
     }
 //    /**
 //     * 

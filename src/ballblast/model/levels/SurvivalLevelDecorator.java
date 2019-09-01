@@ -20,7 +20,7 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     private static final int ENABLE_TIME = 2;
     private static final double HEIGHT_OFFSET = 4;
     private static final Vector2D BALL_VELOCITY = Vector2D.create(8, 0);
-    private static final int MIN_BALL_LIFE = 3;
+    private static final int MIN_BALL_LIFE = 4;
     private static final int MAX_BALL_LIFE = 200;
     private static final double LIFE_MULTIPLIER = 0.25;
 

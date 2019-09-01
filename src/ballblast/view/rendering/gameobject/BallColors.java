@@ -13,35 +13,39 @@ public enum BallColors {
     /**
      * Ball color blue.
      */
-    BALL_BLUE("/balls/blue.png"),
+    BALL_BLUE("/view/balls/blue.png"),
     /**
      * Ball color red.
      */
-    BALL_RED("/balls/red.png"),
+    BALL_RED("/view/balls/red.png"),
     /**
      * Ball color green.
      */
-    BALL_GREEN("/balls/green.png"),
+    BALL_GREEN("/view/balls/green.png"),
     /**
      * Ball color yellow.
      */
-    BALL_YELLOW("/balls/yellow.png"),
+    BALL_YELLOW("/view/balls/yellow.png"),
     /**
      * Ball color bordeaux.
      */
-    BALL_BORDEAUX("/balls/bordeaux.png"),
+    BALL_BORDEAUX("/view/balls/bordeaux.png"),
     /**
      * Ball color light blue.
      */
-    BALL_LIGHTBLUE("/balls/lightblue.png"),
+    BALL_LIGHTBLUE("/view/balls/lightblue.png"),
     /**
      * Ball color purple.
      */
-    BALL_PURPLE("/balls/purple.png"),
+    BALL_PURPLE("/view/balls/purple.png"),
     /**
      * Ball color orange.
      */
-    BALL_ORANGE("/balls/orange.png");
+    BALL_ORANGE("/view/balls/orange.png"),
+    /**
+     * Ball color white.
+     */
+    BALL_WHITE("/view/balls/white.png");
 
     private static final List<BallColors> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();

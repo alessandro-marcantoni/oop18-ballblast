@@ -1,5 +1,6 @@
 package ballblast.view.rendering;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -21,10 +22,38 @@ public class CanvasDrawer {
 
     static {
         RENDERER_MAP = ImmutableMap.of(
-                GameObjectTypes.BALL,   p -> RendererFactory.createBallRenderer(p.getKey(), p.getValue()),
-                GameObjectTypes.BULLET, p -> RendererFactory.createBulletRenderer(p.getKey(), p.getValue()),
-                GameObjectTypes.PLAYER, p -> RendererFactory.createPlayerRenderer(p.getKey(), p.getValue()),
-                GameObjectTypes.WALL, p -> RendererFactory.createWallRenderer(p.getKey(), p.getValue())
+                GameObjectTypes.BALL,   p -> {
+                    try {
+                        return RendererFactory.createBallRenderer(p.getKey(), p.getValue());
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                },
+                GameObjectTypes.BULLET, p -> {
+                    try {
+                        return RendererFactory.createBulletRenderer(p.getKey(), p.getValue());
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                },
+                GameObjectTypes.PLAYER, p -> {
+                    try {
+                        return RendererFactory.createPlayerRenderer(p.getKey(), p.getValue());
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                },
+                GameObjectTypes.WALL, p -> {
+                    try {
+                        return RendererFactory.createWallRenderer(p.getKey(), p.getValue());
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
         );
     }
     /**

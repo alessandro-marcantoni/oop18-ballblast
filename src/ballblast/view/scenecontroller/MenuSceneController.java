@@ -88,9 +88,6 @@ public class MenuSceneController extends AbstractSceneController {
     @Override
     protected final GameScenes getNextScene() {
         GameScenes selection = GameScenes.MENU;
-        // TO DELETE
-        selection = GameScenes.GAME_MODE; // Inserito per andare più veloce nel testing
-
         if (this.gameMode) {
             selection = GameScenes.GAME_MODE;
         }
@@ -110,8 +107,6 @@ public class MenuSceneController extends AbstractSceneController {
         return GameScenes.LOGIN;
     }
 
-    // TO DELETE
-    // Inserito per andare più veloce nel testing.
     @Override
     public final void onKeyPressed(final KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {

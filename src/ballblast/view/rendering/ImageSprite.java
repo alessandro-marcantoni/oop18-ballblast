@@ -1,15 +1,16 @@
 package ballblast.view.rendering;
 
+import java.io.FileNotFoundException;
+
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import sun.font.FontScaler;
 import ballblast.model.gameobjects.Ball;
+import ballblast.model.gameobjects.BallTypes;
 /**
  * 
  */
@@ -18,9 +19,12 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     private static final double DEFAULT = 100;
     private static final double MAX_ALPHA = 1;
     private static final double MIN_ALPHA = 0;
-    private static final int TEXT_X_OFFSET = 2;
-    private static final int TEXT_Y_OFFSET = 4;
+    private static final int TEXT_X_OFFSET = 1;
+    private static final int TEXT_Y_OFFSET = 3;
     private static final int MAX_TEXT_WIDTH = 10;
+    private static final int FONT_LARGE = 10;
+    private static final int FONT_MEDIUM = 8;
+    private static final int FONT_SMALL = 4;
     private Coordinate sourceTopLeft;
     private Vector2D sourceOffset;
     private Coordinate position;
@@ -54,6 +58,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
 
     @Override
     public final void render() {
+        // Draw the gameObject
         this.gc.scale(1, -1);
         this.gc.setGlobalAlpha(this.getAlpha());
         this.gc.drawImage(
@@ -71,11 +76,19 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
 
         if (this.gameObject.getType().equals(GameObjectTypes.BALL)
            && ((Ball) this.gameObject).getCurrentLife() > 0) {
-
+            // Set the font
+            if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.LARGE.getDiameter())) {
+                this.gc.setFont(new Font(FONT_LARGE));
+            } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.MEDIUM.getDiameter())) {
+                this.gc.setFont(new Font(FONT_MEDIUM));
+            } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.SMALL.getDiameter())) {
+                this.gc.setFont(new Font(FONT_SMALL));
+            }
+            // Draw life inside the ball
             this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
-                               this.gameObject.getPosition().getX() + this.gameObject.getWidth() / 4 + TEXT_X_OFFSET, 
-                               this.gameObject.getPosition().getY() + this.gameObject.getHeight() / 2 + TEXT_Y_OFFSET,
-                               MAX_TEXT_WIDTH);
+                    this.gameObject.getPosition().getX() + this.gameObject.getWidth() / 4 + TEXT_X_OFFSET, 
+                    this.gameObject.getPosition().getY() + this.gameObject.getHeight() / 2 + TEXT_Y_OFFSET,
+                    MAX_TEXT_WIDTH);
         }
     }
 
@@ -126,7 +139,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     }
 
     @Override
-    public final void setSource(final ImagePath source) {
+    public final void setSource(final ImagePath source) throws FileNotFoundException {
         this.image = ImageLoader.getLoader().getImage(source);
         this.setSourceWindow(new Coordinate(0, 0), new Vector2D(this.getSourceWidth(), this.getSourceHeight()));
     }

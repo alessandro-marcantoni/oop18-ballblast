@@ -2,6 +2,7 @@ package ballblast.view;
 
 import ballblast.controller.Controller;
 import ballblast.view.scenecontroller.AbstractSceneController;
+import ballblast.view.scenecontroller.GUISceneController;
 import ballblast.view.sceneloader.SceneLoader;
 import ballblast.view.sceneloader.SceneWrapper;
 import ballblast.view.scenes.GameScenes;
@@ -19,8 +20,9 @@ public class ViewImpl implements View {
     private static final double MIN_HEIGHT = 200;
     private final Stage stage;
     private Controller controller;
-    private AbstractSceneController currentScene;
+    private AbstractSceneController currentSceneController;
     private boolean viewStarted;
+    private boolean gameover;
 
     /**
      * 
@@ -40,20 +42,29 @@ public class ViewImpl implements View {
         this.stage.setMinWidth(MIN_WIDTH);
         this.stage.setMaximized(true);
         this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
+        this.gameover = false;
         this.loadScene(GameScenes.MAIN);
     }
 
     @Override
     public final void render() {
-        Platform.runLater(() -> this.currentScene.render());
+
+        Platform.runLater(() -> {
+            this.currentSceneController.render();
+        });
     }
 
     @Override
     public final void loadScene(final GameScenes scene) {
         try {
-            final SceneWrapper wrapper = SceneLoader.getLoader().getScene(scene);
+            final SceneWrapper wrapper;
+            if (gameover) {
+                wrapper = SceneLoader.getLoader().getScene(this.currentSceneController.getNextScene());
+            } else {
+                wrapper = SceneLoader.getLoader().getScene(scene);
+            }
             wrapper.getController().init(controller, this);
-            this.currentScene = wrapper.getController();
+            this.currentSceneController = wrapper.getController();
 
             final Parent root = wrapper.getScene().getRoot();
             root.requestFocus();
@@ -75,4 +86,14 @@ public class ViewImpl implements View {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public final void setGameOver(final boolean gameover) {
+        ((GUISceneController) this.currentSceneController).setGameover(gameover);
+        this.gameover = gameover;
+        if (gameover) {
+            this.currentSceneController.nextScene();
+        }
+    }
+
 }

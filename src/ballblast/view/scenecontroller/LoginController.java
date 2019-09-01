@@ -1,5 +1,9 @@
 package ballblast.view.scenecontroller;
 
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import org.xml.sax.SAXException;
 import ballblast.controller.Controller;
 import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;
@@ -30,7 +34,7 @@ public class LoginController extends AbstractSceneController {
     }
 
     @Override
-    protected final GameScenes getNextScene() {
+    public final GameScenes getNextScene() {
         return GameScenes.MENU;
     }
 
@@ -40,14 +44,18 @@ public class LoginController extends AbstractSceneController {
     }
 
     /**
+     * @throws IOException                  ...
+     * @throws SAXException                 ...
+     * @throws ParserConfigurationException ...
      * 
      */
     @FXML
-    public void userLogin() {
+    public void userLogin() throws ParserConfigurationException, SAXException, IOException {
         if (checkTextField()) {
-//            if (this.getController().checkLogin(userTextField.getText(), pswTextField.getText())) {
-            this.nextScene();
-//            }
+            if (this.getController().checkLoginUser(userTextField.getText(), pswTextField.getText())) {
+//            if (UserManager.login(userTextField.getText(), pswTextField.getText()).isPresent()) {
+                this.nextScene();
+            }
         } else {
             final Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("DANGER");
@@ -58,24 +66,28 @@ public class LoginController extends AbstractSceneController {
     }
 
     /**
+     * @throws SAXException                 ...
+     * @throws TransformerException         ...
+     * @throws IOException                  ...
+     * @throws ParserConfigurationException ...
      * 
      */
     @FXML
-    public void userRegister() {
+    public void userRegister() throws ParserConfigurationException, IOException, TransformerException, SAXException {
         if (checkTextField()) {
-//            if (this.getController().checkRegisterUser(userTextField.getText(), pswTextField.getText())) {
-//            this.nextScene();
-            final Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Work in progress...");
-            alert.setHeaderText(null);
-            alert.setContentText("Not implemented yet.");
-            alert.showAndWait();
-//            }
+            if (this.getController().checkRegisterUser(userTextField.getText(), pswTextField.getText())) {
+                this.nextScene();
+//            final Alert alert = new Alert(AlertType.WARNING);
+//            alert.setTitle("Work in progress...");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Not implemented yet.");
+//            alert.showAndWait();
+            }
         } else {
             final Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("DANGER");
             alert.setHeaderText(null);
-            alert.setContentText("Data mismatch.");
+            alert.setContentText("Registrazione non effettuata.");
             alert.showAndWait();
         }
     }
@@ -93,14 +105,21 @@ public class LoginController extends AbstractSceneController {
             alert.setHeaderText(null);
             alert.setContentText("Insert a password");
             alert.showAndWait();
+        } else {
+            return true;
         }
         return true;
+
     }
 
     @Override
     public final void onKeyPressed(final KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            this.userLogin();
+            try {
+                this.userLogin();
+            } catch (ParserConfigurationException | SAXException | IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -23,8 +23,17 @@ public interface View {
     void render();
 
     /**
+     * Load the scene.
      * 
-     * @param scene scene
+     * @param scene The scene to be loaded.
      */
     void loadScene(GameScenes scene);
+
+    /**
+     * Sets gameover.
+     * 
+     * @param gameover If true the gameover scene is loaded.
+     * 
+     */
+    void setGameOver(boolean gameover);
 }

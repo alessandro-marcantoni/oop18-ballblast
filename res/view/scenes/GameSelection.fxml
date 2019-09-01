@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="1080.0" prefWidth="1920.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ballblast.view.scenecontroller.GameSelectionSceneController">
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ballblast.view.scenecontroller.GameSelectionSceneController">
    <center>
       <Button fx:id="btnSurvivalMode" mnemonicParsing="false" onMouseClicked="#startSurvivalMode" text="Survival Mode" BorderPane.alignment="CENTER">
          <font>
@@ -13,4 +13,14 @@
          </font>
       </Button>
    </center>
+   <bottom>
+      <Button fx:id="btnBackToMenu" mnemonicParsing="false" onMouseClicked="#backToMenu" text="BACK TO MENU" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets bottom="100.0" />
+         </padding>
+      </Button>
+   </bottom>
 </BorderPane>

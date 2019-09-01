@@ -61,7 +61,7 @@ public abstract class AbstractSceneController {
      * 
      * @return The next {@link GameScenes}.
      */
-    protected abstract GameScenes getNextScene();
+    public abstract GameScenes getNextScene();
 
     /**
      * Go to the previous scene.

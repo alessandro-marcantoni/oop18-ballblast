@@ -71,7 +71,7 @@ public class UserManager {
             user.setName(userName);
             user.setPassword(password);
             try {
-                save(user);
+                this.save(user);
                 return Optional.of(user);
             } catch (IOException e) {
                 e.printStackTrace();

@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -26,6 +27,10 @@ public class LoginController extends AbstractSceneController {
     private TextField userTextField;
     @FXML
     private TextField pswTextField;
+    @FXML
+    private Button btnRegister;
+    @FXML
+    private Button btnLogin;
 
     @Override
     public final void init(final Controller controller, final View view) {

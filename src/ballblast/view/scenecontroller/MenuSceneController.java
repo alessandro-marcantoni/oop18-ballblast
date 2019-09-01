@@ -29,20 +29,22 @@ public class MenuSceneController extends AbstractSceneController {
 
     @FXML
     private Button quitBtn;
-    private boolean gameMode = false;
-    private boolean leaderboard = false;
-    private boolean settings = false;
-    private boolean manual = false;
+//    private boolean gameMode = false;
+//    private boolean leaderboard = false;
+//    private boolean settings = false;
+//    private boolean manual = false;
+    private GameScenes selection;
 
     /**
      * Open the game mode selection scene.
      */
     @FXML
     protected void openGameMode() {
-        this.gameMode = true;
-        this.manual = false;
-        this.settings = false;
-        this.leaderboard = false;
+//        this.gameMode = true;
+//        this.manual = false;
+//        this.settings = false;
+//        this.leaderboard = false;
+        this.selection = GameScenes.GAME_MODE;
         this.nextScene();
     }
 
@@ -51,10 +53,11 @@ public class MenuSceneController extends AbstractSceneController {
      */
     @FXML
     private void openLeaderboard() {
-        this.leaderboard = true;
-        this.gameMode = false;
-        this.settings = false;
-        this.manual = false;
+//        this.leaderboard = true;
+//        this.gameMode = false;
+//        this.settings = false;
+//        this.manual = false;
+        this.selection = GameScenes.LEADERBOARD;
         this.nextScene();
     }
 
@@ -78,7 +81,8 @@ public class MenuSceneController extends AbstractSceneController {
      */
     @FXML
     private void openManual() {
-        this.manual = true;
+//        this.manual = true;
+        this.selection = GameScenes.MANUAL;
         this.nextScene();
     }
 
@@ -92,19 +96,6 @@ public class MenuSceneController extends AbstractSceneController {
 
     @Override
     public final GameScenes getNextScene() {
-        GameScenes selection = GameScenes.MENU;
-        if (this.gameMode) {
-            selection = GameScenes.GAME_MODE;
-        }
-        if (this.leaderboard) {
-            selection = GameScenes.LEADERBOARD;
-        }
-        if (this.settings) {
-            selection = GameScenes.SETTINGS;
-        }
-        if (this.manual) {
-            selection = GameScenes.MANUAL;
-        }
         return selection;
     }
 

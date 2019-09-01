@@ -20,30 +20,31 @@ public class BallCollisionHandler implements CollisionHandler {
         // obj is a Ball object.
         final int decLife = 1;
         switch (coll.getCollisionTag()) {
-            case PLAYER:
-                // TODO metodo endGameSession()
-                break;
-            case WALL:
-                final Coordinate boundaryPos = coll.getAttachedGameObject().get().getPosition();
-                if (Boundaries.isFloor(boundaryPos)) {
-                    obj.setPosition(new Coordinate(obj.getPosition().getX(), Boundaries.BOTTOM.getPosition().getY() - obj.getHeight()));
-                    Bounce.floorBounce(obj);
-                } else if (Boundaries.isRoof(boundaryPos)) {
-                    obj.setPosition(new Coordinate(obj.getPosition().getX(), Boundaries.TOP.getPosition().getY() + Boundaries.TOP.getHeight()));
-                    Bounce.floorBounce(obj);
-                } else {
-                    Bounce.wallBounce(obj);
-                }
-                break;
-            case BULLET:
-                // Decrement the Ball life by 'decLife' and destroy if life = 0.
-                this.decrementLife(obj, decLife);
-                if (((Ball) obj).getCurrentLife() <= 0) {
-                    obj.destroy();
-                }
-                break;
-            default:
-                break;
+        case PLAYER:
+            break;
+        case WALL:
+            final Coordinate boundaryPos = coll.getAttachedGameObject().getPosition();
+            if (Boundaries.isFloor(boundaryPos)) {
+                obj.setPosition(new Coordinate(obj.getPosition().getX(),
+                        Boundaries.BOTTOM.getPosition().getY() - obj.getHeight()));
+                Bounce.floorBounce(obj);
+            } else if (Boundaries.isRoof(boundaryPos)) {
+                obj.setPosition(new Coordinate(obj.getPosition().getX(),
+                        Boundaries.TOP.getPosition().getY() + Boundaries.TOP.getHeight()));
+                Bounce.floorBounce(obj);
+            } else {
+                Bounce.wallBounce(obj);
+            }
+            break;
+        case BULLET:
+            // Decrement the Ball life by 'decLife' and destroy if life = 0.
+            this.decrementLife(obj, decLife);
+            if (((Ball) obj).getCurrentLife() <= 0) {
+                obj.destroy();
+            }
+            break;
+        default:
+            break;
         }
     }
 

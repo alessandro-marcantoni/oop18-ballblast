@@ -10,10 +10,11 @@ public class Collision {
 
     /**
      * The class constructor.
-     * @param object
-     *       the {@link CollisionComponent} of the game object that collides.
-     * @param other
-     *       the {@link CollisionComponent} of the game object that loses out the collision.
+     * 
+     * @param object the {@link CollisionComponent} of the game object that
+     *               collides.
+     * @param other  the {@link CollisionComponent} of the game object that loses
+     *               out the collision.
      */
     public Collision(final Collidable object, final Collidable other) {
         this.obj = object;
@@ -22,8 +23,8 @@ public class Collision {
 
     /**
      * The getter for the {@link GameObject} that collides.
-     * @return
-     *       the {@link Collidable} that collides.
+     * 
+     * @return the {@link Collidable} that collides.
      */
     public Collidable getObj() {
         return this.obj;
@@ -31,8 +32,8 @@ public class Collision {
 
     /**
      * The getter for the {@link GameObject} that loses out the {@link Collision}.
-     * @return
-     *       the {@link Collidable} that lose out the collision.
+     * 
+     * @return the {@link Collidable} that lose out the collision.
      */
     public Collidable getOther() {
         return this.other;

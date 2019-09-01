@@ -1,7 +1,8 @@
 package ballblast.model.data;
 
 /**
- * The class that represents a Record for a {@link Leaderboard}, keeping information about user.
+ * The class that represents a Record for a {@link Leaderboard}, keeping
+ * information about user.
  */
 public class RecordData {
 
@@ -16,8 +17,8 @@ public class RecordData {
 
     /**
      * Getter of the User score.
-     * @return
-     *          the score in the last played game.
+     * 
+     * @return the score in the last played game.
      */
     public int getScore() {
         return score;
@@ -25,8 +26,8 @@ public class RecordData {
 
     /**
      * Getter of the User name.
-     * @return
-     *          the name of the User.
+     * 
+     * @return the name of the User.
      */
     public String getName() {
         return name;
@@ -34,8 +35,8 @@ public class RecordData {
 
     /**
      * Setter for the {@RecordData} user name.
-     * @param name
-     *          the user name who submit the record.
+     * 
+     * @param name the user name who submit the record.
      */
     public void setName(final String name) {
         this.name = name;
@@ -43,8 +44,8 @@ public class RecordData {
 
     /**
      * Setter for the {@RecordData} user score.
-     * @param score
-     *          the score of the record.
+     * 
+     * @param score the score of the record.
      */
     public void setScore(final int score) {
         this.score = score;

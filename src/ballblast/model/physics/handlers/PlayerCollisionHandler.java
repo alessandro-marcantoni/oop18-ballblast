@@ -22,14 +22,14 @@ public class PlayerCollisionHandler implements CollisionHandler {
             obj.destroy();
             break;
         case WALL:
-            final GameObject boundary = coll.getAttachedGameObject().get();
+            final GameObject boundary = coll.getAttachedGameObject();
             if (Boundaries.isRight(boundary.getPosition())) {
-                obj.setPosition(new Coordinate(boundary.getPosition().getX() - obj.getWidth(), 
-                        obj.getPosition().getY()));
+                obj.setPosition(
+                        new Coordinate(boundary.getPosition().getX() - obj.getWidth(), obj.getPosition().getY()));
             }
             if (Boundaries.isLeft(boundary.getPosition())) {
-                obj.setPosition(new Coordinate(boundary.getPosition().getX() + boundary.getWidth(), 
-                        obj.getPosition().getY()));
+                obj.setPosition(
+                        new Coordinate(boundary.getPosition().getX() + boundary.getWidth(), obj.getPosition().getY()));
             }
             break;
         case POWERUP:

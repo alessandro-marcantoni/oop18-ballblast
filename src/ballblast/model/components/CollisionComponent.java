@@ -1,7 +1,5 @@
 package ballblast.model.components;
 
-import java.util.Optional;
-
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.util.GeometricShapeFactory;
@@ -25,10 +23,10 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     /**
      * Class constructor.
-     * @param man
-     *       the {@link CollisionManager}.
-     * @param tag
-     *       the type of the collision component, chosen by the game object type.
+     * 
+     * @param man the {@link CollisionManager}.
+     * @param tag the type of the collision component, chosen by the game object
+     *            type.
      */
     public CollisionComponent(final CollisionManager man, final CollisionTag tag) {
         super(ComponentTypes.COLLISION);
@@ -58,8 +56,8 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
     }
 
     @Override
-    public final Optional<GameObject> getAttachedGameObject() {
-        return Optional.of(this.getParent());
+    public final GameObject getAttachedGameObject() {
+        return this.getParent();
     }
 
     @Override
@@ -76,9 +74,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     @Override
     public final String toString() {
-        return MoreObjects.toStringHelper(this)
-                          .add("AttachedTo", this.getCollisionTag())
-                          .toString();
+        return MoreObjects.toStringHelper(this).add("AttachedTo", this.getCollisionTag()).toString();
     }
 
     @Override
@@ -88,7 +84,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
 
     @Override
     public final void notifyCollision(final Collision coll) {
-        if (this.getAttachedGameObject().get().equals(coll.getObj().getAttachedGameObject().get())) {
+        if (this.getAttachedGameObject().equals(coll.getObj().getAttachedGameObject())) {
             this.getParent().handleCollision(coll.getOther());
         }
     }

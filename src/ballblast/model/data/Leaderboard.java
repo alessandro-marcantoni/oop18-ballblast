@@ -28,10 +28,9 @@ public class Leaderboard {
 
     /**
      * Adds a {@link RecordData} if is greater than other on top 10 records.
-     * @param name
-     *          the name of the user who submitted the record.
-     * @param score
-     *          the score reached at the end of the game session.
+     * 
+     * @param name  the name of the user who submitted the record.
+     * @param score the score reached at the end of the game session.
      */
     public void addRecord(final String name, final int score) {
         if (this.recordList.size() < MAX_SCORES || this.isRecord(score)) {
@@ -52,10 +51,9 @@ public class Leaderboard {
 
     /**
      * Checks if a record can be saved in the leaderboard.
-     * @param score
-     *          the score to verify.
-     * @return
-     *          true if the score is an high score.
+     * 
+     * @param score the score to verify.
+     * @return true if the score is an high score.
      */
     public boolean isRecord(final int score) {
         return score > this.getRecords().max(COMPARATOR).get().getScore();
@@ -63,8 +61,9 @@ public class Leaderboard {
 
     /**
      * Getter for the highscore.
-     * @return
-     *          an {@link Optional} {@link RecordData} with the highest score, empty if the record list has no records saved.
+     * 
+     * @return an {@link Optional} {@link RecordData} with the highest score, empty
+     *         if the record list has no records saved.
      */
     public Optional<RecordData> getHighScore() {
         if (this.recordList.isEmpty()) {
@@ -76,11 +75,12 @@ public class Leaderboard {
 
     /**
      * Getter for the leaderboard under a map format.
-     * @return
-     *          the map of the {@link Leaderboard}.
+     * 
+     * @return the map of the {@link Leaderboard}.
      */
     public Map<Integer, String> getLeaderboard() {
-        final Map<Integer, String> map = this.getRecords().collect(Collectors.toMap(RecordData::getScore, RecordData::getName));
+        final Map<Integer, String> map = this.getRecords()
+                .collect(Collectors.toMap(RecordData::getScore, RecordData::getName));
         final Map<Integer, String> treeMap = new TreeMap<>(new Comparator<Integer>() {
 
             @Override
@@ -95,8 +95,8 @@ public class Leaderboard {
 
     /**
      * Getter of the record list.
-     * @return
-     *          the {@link List} of {@link RecordData}.
+     * 
+     * @return the {@link List} of {@link RecordData}.
      */
     public List<RecordData> getRecordList() {
         return recordList;
@@ -104,8 +104,8 @@ public class Leaderboard {
 
     /**
      * Setter for the record list.
-     * @param records
-     *          the {@link List} of {@link RecordData} to set.
+     * 
+     * @param records the {@link List} of {@link RecordData} to set.
      */
     public void setRecordList(final List<RecordData> records) {
         this.recordList = records;

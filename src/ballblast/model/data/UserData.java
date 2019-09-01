@@ -23,8 +23,8 @@ public class UserData {
 
     /**
      * Updates the user fields with the game session data.
-     * @param gameData
-     *          the {@link GameData} of the game session.
+     * 
+     * @param gameData the {@link GameData} of the game session.
      */
     public void addGameData(final GameData gameData) {
         this.setMatchesPlayed(this.getMatchesPlayed() + 1);
@@ -36,17 +36,17 @@ public class UserData {
 
     /**
      * Getter for the user name.
-     * @return
-     *          the user name.
+     * 
+     * @return the user name.
      */
     public String getName() {
-       return name;
+        return name;
     }
 
     /**
      * Getter for the user password.
-     * @return
-     *          the password.
+     * 
+     * @return the password.
      */
     public String getPassword() {
         return password;
@@ -54,8 +54,8 @@ public class UserData {
 
     /**
      * Getter for global score of the user.
-     * @return
-     *          the score.
+     * 
+     * @return the score.
      */
     public int getGlobalScore() {
         return globalScore;
@@ -63,8 +63,8 @@ public class UserData {
 
     /**
      * Getter for the destryed balls.
-     * @return
-     *          the destroyed balls.
+     * 
+     * @return the destroyed balls.
      */
     public int getDestroyedBalls() {
         return destroyedBalls;
@@ -72,8 +72,8 @@ public class UserData {
 
     /**
      * Getter for the matches played.
-     * @return
-     *          the played matches.
+     * 
+     * @return the played matches.
      */
     public int getMatchesPlayed() {
         return matchesPlayed;
@@ -81,8 +81,8 @@ public class UserData {
 
     /**
      * Getter for the game time.
-     * @return
-     *          the game time.
+     * 
+     * @return the game time.
      */
     public double getGameTime() {
         return gameTime;
@@ -90,8 +90,8 @@ public class UserData {
 
     /**
      * Getter for the spawned bullet.
-     * @return
-     *          the spawned bullets.
+     * 
+     * @return the spawned bullets.
      */
     public int getSpawnedBullets() {
         return spawnedBullets;
@@ -99,8 +99,8 @@ public class UserData {
 
     /**
      * Setter for the user name.
-     * @param name
-     *          the name.
+     * 
+     * @param name the name.
      */
     public void setName(final String name) {
         this.name = name;
@@ -108,8 +108,8 @@ public class UserData {
 
     /**
      * Setter for the user password.
-     * @param pwd
-     *          the password.
+     * 
+     * @param pwd the password.
      */
     public void setPassword(final String pwd) {
         this.password = pwd;
@@ -117,8 +117,8 @@ public class UserData {
 
     /**
      * Setter for the user global score.
-     * @param globalScore
-     *          the score.
+     * 
+     * @param globalScore the score.
      */
     public void setGlobalScore(final int globalScore) {
         this.globalScore = globalScore;
@@ -126,8 +126,8 @@ public class UserData {
 
     /**
      * Setter for the number of destroyed ball.
-     * @param destroyedBalls
-     *          the killed balls.
+     * 
+     * @param destroyedBalls the killed balls.
      */
     public void setDestroyedBalls(final int destroyedBalls) {
         this.destroyedBalls = destroyedBalls;
@@ -135,8 +135,8 @@ public class UserData {
 
     /**
      * Setter for the matches played by the user.
-     * @param matchesPlayed
-     *          the number of played matches.
+     * 
+     * @param matchesPlayed the number of played matches.
      */
     public void setMatchesPlayed(final int matchesPlayed) {
         this.matchesPlayed = matchesPlayed;
@@ -144,8 +144,8 @@ public class UserData {
 
     /**
      * Setter for the game time.
-     * @param gameTime
-     *          the total game time.
+     * 
+     * @param gameTime the total game time.
      */
     public void setGameTime(final double gameTime) {
         this.gameTime = gameTime;
@@ -153,8 +153,8 @@ public class UserData {
 
     /**
      * Setter for the spawned bullets.
-     * @param spawnedBullets
-     *          the number of bullets spawned.
+     * 
+     * @param spawnedBullets the number of bullets spawned.
      */
     public void setSpawnedBullets(final int spawnedBullets) {
         this.spawnedBullets = spawnedBullets;

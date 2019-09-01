@@ -52,6 +52,45 @@ public enum Boundaries {
         BOTTOM.position = new Coordinate(VERTICAL_WALL_WIDTH, Model.WORLD_HEIGHT - HORIZONTAL_WALL_HEIGHT);
     }
 
+    /**
+     * Check if is the BOTTOM {@Link Boundaries}' position.
+     * 
+     * @param boundaryPosition the position to be checked.
+     * @return true if it's the floor position, false otherwise.
+     */
+    public static boolean isFloor(final Coordinate boundaryPosition) {
+        return boundaryPosition.equals(Boundaries.BOTTOM.getPosition());
+    }
+
+    /**
+     * Check if is the TOP {@Link Boundaries}' position.
+     * 
+     * @param boundaryPosition the position to be checked.
+     * @return true if it's the roof position, false otherwise.
+     */
+    public static boolean isRoof(final Coordinate boundaryPosition) {
+        return boundaryPosition.equals(Boundaries.TOP.getPosition());
+    }
+
+    /**
+     * Check if is the RIGHT {@Link Boundaries}' position.
+     * 
+     * @param boundaryPosition the position to be checked.
+     * @return true if it's the right position, false otherwise.
+     */
+    public static boolean isRight(final Coordinate boundaryPosition) {
+        return boundaryPosition.equals(Boundaries.RIGHT.getPosition());
+    }
+
+    /**
+     * Check if is the LEFT {@Link Boundaries}' position.
+     * 
+     * @param boundaryPosition the position to be checked.
+     * @return true if it's the left position, false otherwise.
+     */
+    public static boolean isLeft(final Coordinate boundaryPosition) {
+        return boundaryPosition.equals(Boundaries.LEFT.getPosition());
+    }
 
     /**
      * Gets boundary's position.

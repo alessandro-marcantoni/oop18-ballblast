@@ -25,10 +25,10 @@ public class BallCollisionHandler implements CollisionHandler {
                 break;
             case WALL:
                 final Coordinate boundaryPos = coll.getAttachedGameObject().get().getPosition();
-                if (checkFloor(boundaryPos)) {
+                if (Boundaries.isFloor(boundaryPos)) {
                     obj.setPosition(new Coordinate(obj.getPosition().getX(), Boundaries.BOTTOM.getPosition().getY() - obj.getHeight()));
                     Bounce.floorBounce(obj);
-                } else if (checkRoof(boundaryPos)) {
+                } else if (Boundaries.isRoof(boundaryPos)) {
                     obj.setPosition(new Coordinate(obj.getPosition().getX(), Boundaries.TOP.getPosition().getY() + Boundaries.TOP.getHeight()));
                     Bounce.floorBounce(obj);
                 } else {
@@ -45,14 +45,6 @@ public class BallCollisionHandler implements CollisionHandler {
             default:
                 break;
         }
-    }
-
-    private static boolean checkFloor(final Coordinate position) {
-        return position.equals(Boundaries.BOTTOM.getPosition());
-    }
-
-    private static boolean checkRoof(final Coordinate boundaryPosition) {
-        return boundaryPosition.equals(Boundaries.TOP.getPosition());
     }
 
     private void decrementLife(final GameObject ball, final int decrementBy) {

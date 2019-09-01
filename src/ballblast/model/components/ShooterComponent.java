@@ -67,6 +67,22 @@ public class ShooterComponent extends AbstractComponent {
         this.isShooting = false;
     }
 
+    /**
+     * Sets a custom shot interval.
+     * 
+     * @param interval The custom shot interval.
+     */
+    public void setShotInterval(final double interval) {
+        this.currentShotInterval = interval;
+    }
+
+    /**
+     * Sets the default shot interval.
+     */
+    public void setDefaultShotInterval() {
+        this.currentShotInterval = SHOT_INTERVAL;
+    }
+
     private void shoot(final GameObject bullet) {
         bullet.getComponents().forEach(Component::enable);
         this.gameObjectManager.addGameObjects(ImmutableList.of(bullet));

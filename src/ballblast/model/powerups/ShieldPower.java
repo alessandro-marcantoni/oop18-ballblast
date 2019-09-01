@@ -1,5 +1,8 @@
 package ballblast.model.powerups;
 
+import ballblast.model.components.CollisionComponent;
+import ballblast.model.components.ComponentTypes;
+
 /**
  * The class representing the shield {@Link Power}.
  */
@@ -13,7 +16,19 @@ public class ShieldPower extends AbstractPower {
     }
 
     @Override
-    public void performPower() {
+    public final void performPower() {
+        this.getPlayer().getComponents().stream()
+        .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
+        .findFirst()
+        .ifPresent(c -> ((CollisionComponent) c).disable());
+    }
+
+    @Override
+    protected final void stopPerforming() {
+        this.getPlayer().getComponents().stream()
+        .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
+        .findFirst()
+        .ifPresent(c -> ((CollisionComponent) c).enable());
     }
 
 }

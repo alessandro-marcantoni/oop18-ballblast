@@ -9,8 +9,8 @@ public interface Power {
 
     /**
      * Activates the powerup on a specific player.
-     * @param player
-     *      The {@Link Player} who gets the powerup.
+     * 
+     * @param player The {@Link Player} who gets the powerup.
      */
     void activate(Player player);
 
@@ -21,22 +21,16 @@ public interface Power {
 
     /**
      * Returns the enhancement active state.
-     * @return
-     *       The enhancement active state.
+     * 
+     * @return The enhancement active state.
      */
     boolean isActive();
 
     /**
      * Returns the {@Link PowerTypes} of the powerup.
-     * @return
-     *       The {@Link PowerTypes} of the powerup.
+     * 
+     * @return The {@Link PowerTypes} of the powerup.
      */
-    PowerTypes getPowerTag();
+    PowerTypes getPowerType();
 
-    /**
-     * Updates the state of the powerup following the elapsed time.
-     * @param elapsed
-     *      The elapsed time.
-     */
-    void update(double elapsed);
 }

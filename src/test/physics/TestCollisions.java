@@ -50,7 +50,7 @@ public class TestCollisions {
 
         assertEquals(((CollisionComponent) collisionComponent).toString(), "CollisionComponent{AttachedTo=PLAYER}");
         assertSame(((CollisionComponent) collisionComponent).getCollisionTag(), CollisionTag.PLAYER);
-        assertTrue(((CollisionComponent) collisionComponent).getAttachedGameObject().get().equals(player));
+        assertTrue(((CollisionComponent) collisionComponent).getAttachedGameObject().equals(player));
     }
 
     /**
@@ -61,10 +61,13 @@ public class TestCollisions {
         final CollisionManager manager = new SimpleCollisionManager();
         final int ballLife = 24;
         GameObjectFactory
-                .createPlayer(new GameObjectManager(), new InputManager(), PlayerTags.FIRST, manager, new Vector2D(), null, null)
+                .createPlayer(new GameObjectManager(), new InputManager(), PlayerTags.FIRST, manager, new Vector2D(),
+                        null, null)
                 .getComponents().stream().filter(c -> c.getType() == ComponentTypes.COLLISION).findFirst().get()
                 .enable();
-        GameObjectFactory.createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), new Vector2D(), manager, new GameObjectManager(), null)
+        GameObjectFactory
+                .createBall(BallTypes.SMALL, ballLife, new Coordinate(0, 0), new Vector2D(), manager,
+                        new GameObjectManager(), null)
                 .getComponents().stream().filter(c -> c.getType() == ComponentTypes.COLLISION).findFirst().get()
                 .enable();
 
@@ -149,8 +152,8 @@ public class TestCollisions {
     }
 
     /**
-     * Tests the correct behavior after the collision with a Wall object.
-     * The Ball has to bounce correctly.
+     * Tests the correct behavior after the collision with a Wall object. The Ball
+     * has to bounce correctly.
      */
     @Test
     public void testBounce() {
@@ -159,8 +162,10 @@ public class TestCollisions {
         final double y = 5;
         final int neg = -1;
         final CollisionManager manager = new SimpleCollisionManager();
-        final GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, Boundaries.BOTTOM.getPosition(), Vector2D.create(new Coordinate(x, y)), manager, new GameObjectManager(), null);
-        final GameObject wall = GameObjectFactory.createWall(x, y, Boundaries.BOTTOM.getPosition(), new Vector2D(), manager);
+        final GameObject ball = GameObjectFactory.createBall(BallTypes.SMALL, ballLife, Boundaries.BOTTOM.getPosition(),
+                Vector2D.create(new Coordinate(x, y)), manager, new GameObjectManager(), null);
+        final GameObject wall = GameObjectFactory.createWall(x, y, Boundaries.BOTTOM.getPosition(), new Vector2D(),
+                manager);
 
         ball.getComponents().forEach(c -> c.enable());
         wall.getComponents().forEach(c -> c.enable());
@@ -181,8 +186,8 @@ public class TestCollisions {
     }
 
     /**
-     * Tests the correct behavior after the collision with a Wall object.
-     * The Player hasn't to change his position.
+     * Tests the correct behavior after the collision with a Wall object. The Player
+     * hasn't to change his position.
      */
     @Test
     public void testStop() {
@@ -191,12 +196,8 @@ public class TestCollisions {
         lvl.getInputManager().processInputs(InputManager.PlayerTags.FIRST, ImmutableList.of(InputTypes.MOVE_RIGHT));
         final int steps = 50;
         final double elapsed = 0.1;
-        final GameObject player = lvl.getGameObjectManager()
-                                     .getGameObjects()
-                                     .stream()
-                                     .filter(obj -> obj.getType() == GameObjectTypes.PLAYER)
-                                     .findFirst()
-                                     .get();
+        final GameObject player = lvl.getGameObjectManager().getGameObjects().stream()
+                .filter(obj -> obj.getType() == GameObjectTypes.PLAYER).findFirst().get();
 
         for (int i = 0; i < steps; i++) {
             final Coordinate pos = player.getPosition();

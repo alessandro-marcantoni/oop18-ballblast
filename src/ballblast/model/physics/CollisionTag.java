@@ -56,11 +56,11 @@ public enum CollisionTag {
     };
 
     /**
-     * Returns true if objects of this type can collide with objects of the given one.
-     * @param other
-     *      the other type.
-     * @return
-     *      true if the objects can collide.
+     * Returns true if objects of this type can collide with objects of the given
+     * one.
+     * 
+     * @param other the other type.
+     * @return true if the objects can collide.
      */
     public boolean canCollideWith(final CollisionTag other) {
         return true;

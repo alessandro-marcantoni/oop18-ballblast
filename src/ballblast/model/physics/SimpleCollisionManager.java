@@ -52,10 +52,7 @@ public class SimpleCollisionManager implements CollisionManager {
         if (this.collidables.isEmpty()) {
             this.collidables = ImmutableList.of(coll);
         } else {
-            this.collidables = ImmutableList.<Collidable>builder()
-                               .addAll(this.collidables)
-                               .add(coll)
-                               .build();
+            this.collidables = ImmutableList.<Collidable>builder().addAll(this.collidables).add(coll).build();
         }
     }
 
@@ -64,9 +61,8 @@ public class SimpleCollisionManager implements CollisionManager {
         if (this.collidables.isEmpty()) {
             throw new UnsupportedOperationException("Cannot remove from an empty list");
         } else {
-        this.collidables = this.collidables.stream()
-                                           .filter(c -> !c.equals(coll))
-                                           .collect(ImmutableList.toImmutableList());
+            this.collidables = this.collidables.stream().filter(c -> !c.equals(coll))
+                    .collect(ImmutableList.toImmutableList());
         }
     }
 

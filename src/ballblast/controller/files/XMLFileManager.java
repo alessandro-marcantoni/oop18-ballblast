@@ -31,18 +31,15 @@ public final class XMLFileManager {
 
     /**
      * The getter for the {@link Document} to modify.
-     * @param path
-     *          the route path of the file.
-     * @return
-     *          the file converted in a document format.
-     * @throws ParserConfigurationException
-     *          Parser exception.
-     * @throws SAXException
-     *          SAX exception.
-     * @throws IOException
-     *          IO exception.
+     * 
+     * @param path the route path of the file.
+     * @return the file converted in a document format.
+     * @throws ParserConfigurationException Parser exception.
+     * @throws SAXException                 SAX exception.
+     * @throws IOException                  IO exception.
      */
-    public static Document getDocument(final String path) throws ParserConfigurationException, SAXException, IOException {
+    public static Document getDocument(final String path)
+            throws ParserConfigurationException, SAXException, IOException {
         final File file = new File(path);
         final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         final DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -51,50 +48,44 @@ public final class XMLFileManager {
 
     /**
      * Check if the input password of the user is correct.
-     * @param userName
-     *          the user name.
-     * @param pwd
-     *          the password to verify.
-     * @return
-     *          true if the password is correct, false otherwise.
-     * @throws ParserConfigurationException
-     *          Parser exception.
-     * @throws SAXException
-     *          SAX exception.
-     * @throws IOException
-     *          IO exception.
+     * 
+     * @param userName the user name.
+     * @param pwd      the password to verify.
+     * @return true if the password is correct, false otherwise.
+     * @throws ParserConfigurationException Parser exception.
+     * @throws SAXException                 SAX exception.
+     * @throws IOException                  IO exception.
      */
-    public static boolean checkUserPassword(final String userName, final String pwd) throws ParserConfigurationException, SAXException, IOException {
+    public static boolean checkUserPassword(final String userName, final String pwd)
+            throws ParserConfigurationException, SAXException, IOException {
         final Document doc = getDocument(DirectoryManager.getUserFile(userName));
         final Node root = doc.getFirstChild();
         final Node obj = root.getChildNodes().item(1);
 
         final NodeList property = obj.getChildNodes();
         for (int i = 0; i < property.getLength() - 1; i++) {
-                i++;
-                final Node field = property.item(i);
-                if (field.getAttributes().item(0).getNodeValue().equals("password")) {
-                        final Node password = field.getChildNodes().item(1);
-                        if (password.getTextContent().equals(pwd)) {
-                                return true;
-                        }
+            i++;
+            final Node field = property.item(i);
+            if (field.getAttributes().item(0).getNodeValue().equals("password")) {
+                final Node password = field.getChildNodes().item(1);
+                if (password.getTextContent().equals(pwd)) {
+                    return true;
                 }
+            }
         }
         return false;
     }
 
     /**
      * Creates an empty xml file.
-     * @param filePath
-     *          the new file route path in the file system.
-     * @param rootName
-     *          the name of the xml file root. 
-     * @throws ParserConfigurationException
-     *          Parser exception.
-     * @throws TransformerException
-     *          Transformer exception.
+     * 
+     * @param filePath the new file route path in the file system.
+     * @param rootName the name of the xml file root.
+     * @throws ParserConfigurationException Parser exception.
+     * @throws TransformerException         Transformer exception.
      */
-    public static void createEmptyFile(final String filePath, final String rootName) throws ParserConfigurationException, TransformerException {
+    public static void createEmptyFile(final String filePath, final String rootName)
+            throws ParserConfigurationException, TransformerException {
         final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         final DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
@@ -108,26 +99,22 @@ public final class XMLFileManager {
         final DOMSource source = new DOMSource(doc);
 
         final StreamResult result = new StreamResult(new File(filePath));
-        transformer.transform(source,  result);
+        transformer.transform(source, result);
 
     }
 
     /**
      * Add a new {@link UserData} informations to the users list file..
-     * @param userName
-     *          the user name to add in the file.
-     * @param password
-     *          the password associated with the user.
-     * @throws ParserConfigurationException
-     *          Parser exception.
-     * @throws IOException
-     *          IO exception.
-     * @throws TransformerException
-     *          Transformer exception.
-     * @throws SAXException 
-     *          SAX exception.
+     * 
+     * @param userName the user name to add in the file.
+     * @param password the password associated with the user.
+     * @throws ParserConfigurationException Parser exception.
+     * @throws IOException                  IO exception.
+     * @throws TransformerException         Transformer exception.
+     * @throws SAXException                 SAX exception.
      */
-    public static void submitUser(final String userName, final String password) throws ParserConfigurationException, IOException, TransformerException, SAXException  {
+    public static void submitUser(final String userName, final String password)
+            throws ParserConfigurationException, IOException, TransformerException, SAXException {
         int countUsers;
         final Document doc = getDocument(DirectoryManager.USERS_LIST_FILE);
         final Element root = doc.getDocumentElement();
@@ -157,7 +144,7 @@ public final class XMLFileManager {
         final DOMSource source = new DOMSource(doc);
 
         final StreamResult result = new StreamResult(new File(DirectoryManager.USERS_LIST_FILE));
-        transformer.transform(source,  result);
+        transformer.transform(source, result);
     }
 
 }

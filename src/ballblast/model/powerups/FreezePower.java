@@ -14,6 +14,12 @@ public class FreezePower extends AbstractPower {
 
     @Override
     public void performPower() {
+
+    }
+
+    @Override
+    protected void stopPerforming() {
+
     }
 
 }

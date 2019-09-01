@@ -13,18 +13,17 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
 
     private Player player;
     private boolean active;
-    private final PowerTypes powerType;
+    private PowerTypes powerType;
     private double elapsedTime;
 
     /**
-     * Constructor taking the {@Link PowerTypes} of the {@Link Power}.
-     * @param powerType
-     *      The {@Link PowerTypes} of the {@Link Power}.
+     * Constructor for a generic {@Link Power}.
+     * 
+     * @param powerType The type of the {@Link Power}.
      */
     public AbstractPower(final PowerTypes powerType) {
         super(GameObjectTypes.POWERUP);
         this.powerType = powerType;
-        this.elapsedTime = 0;
     }
 
     @Override
@@ -47,6 +46,7 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
 
     @Override
     public final void deactivate() {
+        this.stopPerforming();
         this.active = false;
     }
 
@@ -56,19 +56,24 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
     }
 
     @Override
-    public final PowerTypes getPowerTag() {
+    public final PowerTypes getPowerType() {
         return this.powerType;
     }
 
     /**
      * The specific action performed by a {@Link Power}.
      */
-    public abstract void performPower();
+    protected abstract void performPower();
+
+    /**
+     * Stops the performed action of the {@Link Power}.
+     */
+    protected abstract void stopPerforming();
 
     /**
      * Returns the {@Link Player} who gets the {@Link Power}.
-     * @return
-     *       The {@Link Player} who gets the {@Link Power}.
+     * 
+     * @return The {@Link Player} who gets the {@Link Power}.
      */
     public Player getPlayer() {
         return this.player;
@@ -80,5 +85,4 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
             this.destroy();
         }
     }
-
 }

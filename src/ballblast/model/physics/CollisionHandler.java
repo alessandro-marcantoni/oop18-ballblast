@@ -9,10 +9,9 @@ public interface CollisionHandler {
 
     /**
      * The functional method to execute the correct behavior.
-     * @param coll
-     *       the {@link Collidable} component that loses out the collision.
-     * @param obj
-     *       the {@link GameObject} that collides.
+     * 
+     * @param coll the {@link Collidable} component that loses out the collision.
+     * @param obj  the {@link GameObject} that collides.
      */
     void execute(Collidable coll, GameObject obj);
 

@@ -24,21 +24,19 @@ public class UserManager {
 
     /**
      * Tries to login a user.
-     * @param userName
-     *          the user name.
-     * @param password
-     *          the user password.
-     * @return
-     *          an {@link Optional} {@link UserData} object, empty if the login failed.
-     * @throws ParserConfigurationException
-     *          Parser exception.
-     * @throws SAXException
-     *          SAX exception.
-     * @throws IOException
-     *          IO exception.
+     * 
+     * @param userName the user name.
+     * @param password the user password.
+     * @return an {@link Optional} {@link UserData} object, empty if the login
+     *         failed.
+     * @throws ParserConfigurationException Parser exception.
+     * @throws SAXException                 SAX exception.
+     * @throws IOException                  IO exception.
      */
-    public Optional<UserData> login(final String userName, final String password) throws ParserConfigurationException, SAXException, IOException {
-        if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName))) && XMLFileManager.checkUserPassword(userName, password)) {
+    public Optional<UserData> login(final String userName, final String password)
+            throws ParserConfigurationException, SAXException, IOException {
+        if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName)))
+                && XMLFileManager.checkUserPassword(userName, password)) {
             try {
                 return Optional.of(this.load(userName));
             } catch (IOException e) {
@@ -52,22 +50,18 @@ public class UserManager {
 
     /**
      * Tries to register a new user.
-     * @param userName
-     *          the user name.
-     * @param password
-     *          the user password.
-     * @return
-     *          an {@link Optional} {@link UserData} object, empty if the registration failed.
-     * @throws ParserConfigurationException
-     *          Parser exception.
-     * @throws IOException
-     *          IO exception.
-     * @throws TransformerException
-     *          Transformer exception.
-     * @throws SAXException
-     *          SAX exception.
+     * 
+     * @param userName the user name.
+     * @param password the user password.
+     * @return an {@link Optional} {@link UserData} object, empty if the
+     *         registration failed.
+     * @throws ParserConfigurationException Parser exception.
+     * @throws IOException                  IO exception.
+     * @throws TransformerException         Transformer exception.
+     * @throws SAXException                 SAX exception.
      */
-    public Optional<UserData> register(final String userName, final String password) throws ParserConfigurationException, IOException, TransformerException, SAXException  {
+    public Optional<UserData> register(final String userName, final String password)
+            throws ParserConfigurationException, IOException, TransformerException, SAXException {
         if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName)))) {
             // UserName already exists -> choose an other one.
             return Optional.empty();
@@ -88,10 +82,9 @@ public class UserManager {
 
     /**
      * Updates the user game datas at the end of a game session.
-     * @param user
-     *          the {@link UserData} to update
-     * @return
-     *          true if save operation done successfully, false otherwise.
+     * 
+     * @param user the {@link UserData} to update
+     * @return true if save operation done successfully, false otherwise.
      */
     public boolean updateUserData(final UserData user) {
         try {
@@ -103,12 +96,12 @@ public class UserManager {
     }
 
     private void save(final UserData user) throws IOException {
-         try (FileOutputStream fos = new FileOutputStream(DirectoryManager.getUserFile(user.getName()));
+        try (FileOutputStream fos = new FileOutputStream(DirectoryManager.getUserFile(user.getName()));
                 XMLEncoder encoder = new XMLEncoder(fos)) {
-             encoder.writeObject(user);
-         } catch (IOException e) {
-             e.printStackTrace();
-         }
+            encoder.writeObject(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private UserData load(final String userName) throws IOException {

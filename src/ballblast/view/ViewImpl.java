@@ -89,7 +89,6 @@ public class ViewImpl implements View {
 
     @Override
     public final void setGameOver(final boolean gameover) {
-        System.out.println(gameover + "in viewImpl");
         this.currentSceneController.setGameover(gameover);
         this.gameover = gameover;
         if (gameover) {

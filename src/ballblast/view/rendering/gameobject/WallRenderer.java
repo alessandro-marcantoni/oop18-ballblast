@@ -7,6 +7,7 @@ import org.locationtech.jts.math.Vector2D;
 
 import ballblast.model.Model;
 import ballblast.model.gameobjects.Wall;
+import ballblast.model.levels.Boundaries;
 import ballblast.view.rendering.ImagePath;
 import ballblast.view.rendering.Layers;
 import ballblast.view.rendering.Sprite;
@@ -28,13 +29,10 @@ public class WallRenderer extends GameObjectRenderer<Wall> {
     public WallRenderer(final Sprite sprite, final Wall gameObject) throws FileNotFoundException {
         super(sprite, gameObject);
         this.setLayer(Layers.WALL_LAYER);
-        sprite.setSource(ImagePath.WALL);
-        final double width = gameObject.getWidth() * sprite.getSourceWidth() / MAX_SIZE;
-        final double height = gameObject.getHeight() * sprite.getSourceHeight() / MAX_SIZE;
-        double x = gameObject.getPosition().getX() + Model.WORLD_WIDTH / 2 - gameObject.getWidth() / 2;
-        double y = Model.WORLD_HEIGHT - (gameObject.getPosition().getY() + gameObject.getHeight() / 2);
-        x *= sprite.getSourceWidth() / MAX_SIZE;
-        y *= sprite.getSourceHeight() / MAX_SIZE;
-        sprite.setSourceWindow(new Coordinate(x, y), new Vector2D(width, height));
+        if (Boundaries.isFloor(gameObject.getPosition()) || Boundaries.isRoof(gameObject.getPosition())) {
+            sprite.setSource(ImagePath.WALL_VERTICAL);
+        } else if (Boundaries.isLeft(gameObject.getPosition()) || Boundaries.isRight(gameObject.getPosition())) {
+        sprite.setSource(ImagePath.WALL_HORIZONTAL);
+        }
     }
 }

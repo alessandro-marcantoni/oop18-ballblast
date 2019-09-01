@@ -32,9 +32,13 @@ public enum ImagePath {
      */
     POWERUP_DOUBLEFIRE("/view/powers/doublefire.png"),
     /**
-     * The image for {@link Wall}.
+     * The image for {@link Wall} horizontal.
      */
-    WALL("/view/walls/wall.png");
+    WALL_HORIZONTAL("/view/walls/wall_horizontal.png"),
+    /**
+     * The image for {@link Wall} vertical.
+     */
+    WALL_VERTICAL("/view/walls/wall_vertical.png");
     private final String path;
 
     ImagePath(final String path) {

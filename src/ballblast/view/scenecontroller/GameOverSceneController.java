@@ -23,7 +23,7 @@ public class GameOverSceneController extends AbstractSubSceneController {
     @Override
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
-        this.score.setText(controller.getCurrentUser());
+        this.user.setText(controller.getCurrentUser());
         this.score.setText(String.valueOf(controller.getGameData().getScore()));
     }
 

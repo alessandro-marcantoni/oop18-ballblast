@@ -15,4 +15,5 @@ public abstract class AbstractSubSceneController extends AbstractSceneController
     protected void backToMenu() {
         this.backScene();
     }
+
 }

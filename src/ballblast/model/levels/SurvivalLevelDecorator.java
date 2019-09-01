@@ -9,20 +9,23 @@ import com.google.common.collect.ImmutableList;
 
 import ballblast.model.Model;
 import ballblast.model.components.Component;
+import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
+
 /**
  * Represents a concrete implementation of {@link LevelDecorator}.
  */
 public class SurvivalLevelDecorator extends LevelDecorator {
     private static final int SPAWN_TIME = 10;
     private static final int ENABLE_TIME = 2;
-    private static final double HEIGHT_OFFSET = 4;
-    private static final Vector2D BALL_VELOCITY = Vector2D.create(8, 0);
     private static final int MIN_BALL_LIFE = 4;
     private static final int MAX_BALL_LIFE = 200;
+    private static final double HEIGHT_OFFSET = 4;
     private static final double LIFE_MULTIPLIER = 0.25;
+    private static final double SCORE_MULTIPLIER = 0.8;
+    private static final Vector2D BALL_VELOCITY = Vector2D.create(8, 0);
 
     private double currentSpawnTime;
     private double currentEnableTime;
@@ -45,7 +48,7 @@ public class SurvivalLevelDecorator extends LevelDecorator {
             super.update(elapsed);
             this.tryToEnable(elapsed);
             this.tryToSpawn(elapsed);
-            this.calculateScore();
+            this.updateScore();
         }
     }
 
@@ -54,15 +57,15 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     }
 
     private void spawnBall() {
-        this.spawnedBall = Optional.of(GameObjectFactory.createBall(
-                BallTypes.LARGE, this.calculateBallLife(), this.getRandomPosition(), BALL_VELOCITY, 
-                this.getCollisionManager(), this.getGameObjectManager(), this.getGameDataManager()));
+        this.spawnedBall = Optional.of(GameObjectFactory.createBall(BallTypes.LARGE, this.calculateBallLife(),
+                this.getRandomPosition(), BALL_VELOCITY, this.getCollisionManager(), this.getGameObjectManager(),
+                this.getGameDataManager()));
         this.getGameObjectManager().addGameObjects(ImmutableList.of(this.spawnedBall.get()));
     }
 
     private Coordinate getRandomPosition() {
         return new Coordinate(
-                generateRandomDouble(Boundaries.LEFT.getWidth() + BallTypes.LARGE.getDiameter(), 
+                generateRandomDouble(Boundaries.LEFT.getWidth() + BallTypes.LARGE.getDiameter(),
                         Model.WORLD_WIDTH - Boundaries.RIGHT.getWidth() - BallTypes.LARGE.getDiameter()),
                 Boundaries.TOP.getHeight() + HEIGHT_OFFSET);
 
@@ -73,8 +76,10 @@ public class SurvivalLevelDecorator extends LevelDecorator {
         return life > MAX_BALL_LIFE ? MAX_BALL_LIFE : life;
     }
 
-    private void calculateScore() {
-        this.getGameDataManager().calculateScore((int) this.getGameDataManager().getGameData().getTime());
+    private void updateScore() {
+        final GameData gameData = this.getGameDataManager().getGameData();
+        this.getGameDataManager()
+                .calculateScore((int) (gameData.getTime() + gameData.getDestroyedBalls() * SCORE_MULTIPLIER));
     }
 
     private void tryToSpawn(final double elapsed) {

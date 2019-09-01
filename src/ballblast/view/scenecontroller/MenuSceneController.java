@@ -50,7 +50,7 @@ public class MenuSceneController extends AbstractSceneController {
      * Open leader board scene.
      */
     @FXML
-    protected void openLeaderboard() {
+    private void openLeaderboard() {
         this.leaderboard = true;
         this.gameMode = false;
         this.settings = false;
@@ -62,7 +62,7 @@ public class MenuSceneController extends AbstractSceneController {
      * Open settings scene.
      */
     @FXML
-    protected void openSettings() {
+    private void openSettings() {
         // TODO
 //        this.settings = true;
 //        this.nextScene();
@@ -77,7 +77,7 @@ public class MenuSceneController extends AbstractSceneController {
      * Open manual scene.
      */
     @FXML
-    protected void openManual() {
+    private void openManual() {
         this.manual = true;
         this.nextScene();
     }
@@ -86,12 +86,12 @@ public class MenuSceneController extends AbstractSceneController {
      * Quit game.
      */
     @FXML
-    protected void quitGame() {
+    private void quitGame() {
         Runtime.getRuntime().exit(0);
     }
 
     @Override
-    protected final GameScenes getNextScene() {
+    public final GameScenes getNextScene() {
         GameScenes selection = GameScenes.MENU;
         if (this.gameMode) {
             selection = GameScenes.GAME_MODE;

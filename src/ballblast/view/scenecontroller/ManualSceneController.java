@@ -13,7 +13,7 @@ import javafx.scene.input.KeyEvent;
 public class ManualSceneController extends AbstractSubSceneController {
 
     @Override
-    protected final GameScenes getNextScene() {
+    public final GameScenes getNextScene() {
         return GameScenes.MENU;
     }
 

@@ -1,7 +1,14 @@
 package ballblast.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
+import org.xml.sax.SAXException;
+
+import ballblast.controller.files.UserManager;
 import ballblast.model.Model;
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.GameObject;
@@ -10,13 +17,15 @@ import ballblast.model.inputs.InputTypes;
 import ballblast.view.View;
 
 /**
- * The imlementation of the Controller in the MVC architecture.
+ * The implementation of the Controller in the MVC architecture.
  */
 public class ControllerImpl implements Controller {
 
     private final Model model;
-    // private final View view;
-    private final GameLoop gameloop;
+    private final View view;
+    private GameLoop gameloop;
+    private final UserManager userManager;
+    private String currentUser;
 
     /**
      * Create a new instance of Controller.
@@ -25,13 +34,15 @@ public class ControllerImpl implements Controller {
      * @param view  The view of the MVC architecture.
      */
     public ControllerImpl(final Model model, final View view) {
+        DirectoryManager.setupApplication();
         this.model = model;
-        // this.view = view;
-        this.gameloop = new GameLoopImpl(this.model, view);
+        this.view = view;
+        this.userManager = new UserManager();
     }
 
     @Override
     public final void startSurvivalMode() {
+        this.createGameLoop();
         this.model.startSurvival();
         this.gameloop.start();
     }
@@ -48,12 +59,14 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final void gameOver() {
+//        System.out.println("Gameover true in ControllerImpl");
+//        this.view.setGameOver(true);
         this.gameloop.stopLoop();
     }
 
     @Override
-    public final void sendInput(final PlayerTags tag, final InputTypes input) {
-        this.gameloop.receiveInputs(tag, input);
+    public final void receiveInput(final PlayerTags tag, final InputTypes input) {
+        this.gameloop.receiveInput(tag, input);
     }
 
     @Override
@@ -66,4 +79,28 @@ public class ControllerImpl implements Controller {
         return this.model.getGameData();
     }
 
+    @Override
+    public final boolean checkLoginUser(final String username, final String password)
+            throws ParserConfigurationException, SAXException, IOException {
+        if (this.userManager.login(username, password).isPresent()) {
+            this.currentUser = username;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean checkRegisterUser(final String username, final String password)
+            throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        return this.userManager.register(username, password).isPresent();
+    }
+
+    @Override
+    public final String getCurrentUser() {
+        return this.currentUser;
+    }
+
+    private void createGameLoop() {
+        this.gameloop = new GameLoopImpl(this.model, view);
+    }
 }

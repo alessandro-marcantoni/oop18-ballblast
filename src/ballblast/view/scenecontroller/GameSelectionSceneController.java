@@ -10,10 +10,12 @@ import javafx.scene.input.KeyEvent;
  * 
  * 
  */
-public class GameSelectionSceneController extends AbstractSceneController {
+public class GameSelectionSceneController extends AbstractSubSceneController {
 
     @FXML
     private Button btnSurvivalMode;
+    @FXML
+    private Button btnBackToMenu;
 
     @FXML
     final void startSurvivalMode() {
@@ -22,7 +24,7 @@ public class GameSelectionSceneController extends AbstractSceneController {
     }
 
     @Override
-    protected final GameScenes getNextScene() {
+    public final GameScenes getNextScene() {
         return GameScenes.GAME;
     }
 

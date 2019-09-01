@@ -12,7 +12,7 @@ import javafx.scene.input.KeyEvent;
 public class MainSceneController extends AbstractSceneController {
 
     @Override
-    protected final GameScenes getNextScene() {
+    public final GameScenes getNextScene() {
         return GameScenes.LOGIN;
     }
 

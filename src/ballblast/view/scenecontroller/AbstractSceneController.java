@@ -61,7 +61,7 @@ public abstract class AbstractSceneController {
      * 
      * @return The next {@link GameScenes}.
      */
-    protected abstract GameScenes getNextScene();
+    public abstract GameScenes getNextScene();
 
     /**
      * Go to the previous scene.
@@ -84,6 +84,14 @@ public abstract class AbstractSceneController {
      */
     @FXML
     public void onKeyPressed(final KeyEvent event) {
+        // Empty for subclasses.
+    }
+    /**
+     * 
+     * @param gameover
+     *          gameover.
+     */
+    public void setGameover(final boolean gameover) {
         // Empty for subclasses.
     }
 }

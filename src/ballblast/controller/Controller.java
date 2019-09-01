@@ -1,6 +1,12 @@
 package ballblast.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
+import org.xml.sax.SAXException;
 
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.GameObject;
@@ -39,7 +45,7 @@ public interface Controller {
      * @param tag   the tag which identifies the {@link Player}.
      * @param input the input to be resolved.
      */
-    void sendInput(PlayerTags tag, InputTypes input);
+    void receiveInput(PlayerTags tag, InputTypes input);
 
     /**
      * Returns the list of active {@link GameObjects} to be rendered.
@@ -55,4 +61,33 @@ public interface Controller {
      */
     GameData getGameData();
 
+    /**
+     * Checks if login is successful.
+     * 
+     * @param username The user name.
+     * @param password The password.
+     * @return True if the login is successful. False otherwise.
+     * @throws IOException 
+     * @throws SAXException 
+     * @throws ParserConfigurationException 
+     */
+    boolean checkLoginUser(String username, String password) throws ParserConfigurationException, SAXException, IOException;
+    /**
+     * Checks if register is successful.
+     * 
+     * @param username The user name.
+     * @param password The password.
+     * @return True if the register is successful. False otherwise.
+     * @throws SAXException 
+     * @throws TransformerException 
+     * @throws IOException 
+     * @throws ParserConfigurationException 
+     */
+    boolean checkRegisterUser(String username, String password) throws ParserConfigurationException, IOException, TransformerException, SAXException;
+    /**
+     * 
+     * @return
+     *          The current user.
+     */
+    String getCurrentUser();
 }

@@ -165,7 +165,7 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
     }
 
     @Override
-    protected final GameScenes getNextScene() {
+    public final GameScenes getNextScene() {
         return GameScenes.MENU;
     }
 

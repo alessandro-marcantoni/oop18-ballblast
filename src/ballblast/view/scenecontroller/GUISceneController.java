@@ -11,7 +11,9 @@ import ballblast.view.states.PausedState;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -57,6 +59,7 @@ public class GUISceneController extends AbstractSceneController {
     private GUIState pausedState;
 //    private UIFactory userInterface;
     private CanvasDrawer canvasDrawer;
+    private boolean gameover;
     private static final double FONT_SIZE = 8.0;
 
     /**
@@ -98,6 +101,10 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     public final void render() {
+        if (this.isGameover()) {
+            System.out.println(gameover);
+            this.nextScene();
+        }
         this.clearCanvas();
         this.score.setText(Double.toString(this.getController().getGameData().getScore()));
         this.balls.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
@@ -144,7 +151,7 @@ public class GUISceneController extends AbstractSceneController {
     }
 
     @Override
-    protected final GameScenes getNextScene() {
+    public final GameScenes getNextScene() {
         return GameScenes.GAMEOVER;
     }
 
@@ -181,6 +188,21 @@ public class GUISceneController extends AbstractSceneController {
         return this.inGameState;
     }
 
+    /**
+     * @param gameover
+     *          true if the player has lost.
+     */
+    public void setGameover(final boolean gameover) {
+        this.gameover = gameover;
+    }
+
+    /**
+     * 
+     * @return True if the player has lost.
+     */
+    public boolean isGameover() {
+        return this.gameover;
+    }
     /**
      * POWER UP DA IMPLEMENTARE
      */

@@ -5,23 +5,32 @@ package ballblast.view.rendering;
  */
 public enum ImagePath {
     /**
-     * The image for balls.
+     * The image for {@link Ball}.
+     * String empty to use randomColor in the {@link ImageLoader}.
      */
-    BALL("/balls/blue.png"),
+    BALL(""),
     /**
-     * The image for the cannon.
+     * The image for {@link Player}.
      */
     PLAYER("/players/cannon.png"),
     /**
-     * The image for the bullet.
+     * The image for {@link Bullet}.
      */
     BULLET("/bullets/bullet.png"),
     /**
-     * The image for powers.
+     * The image for freeze {@link Power}.
      */
-    POWERS("/powers/powers.png"),
+    POWERUP_FREEZE("/powers/freeze.png"),
     /**
-     * The image for the wall.
+     * The image for shield {@link Power}.
+     */
+    POWERUP_SHIELD("/powers/shield.png"),
+    /**
+     * The image for double fire {@link Power}.
+     */
+    POWERUP_DOUBLEFIRE("/powers/doublefire.png"),
+    /**
+     * The image for {@link Wall}.
      */
     WALL("/walls/wall.png");
     private static final String IMAGE_PATH = "/view";

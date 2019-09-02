@@ -18,7 +18,7 @@ import ballblast.view.View;
  */
 public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
-    private static final long PERIOD = 40;
+    private static final long PERIOD = 30;
 
     private final Map<PlayerTags, List<InputTypes>> inputs;
     private boolean stopped;
@@ -79,12 +79,12 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     @Override
-    public final void pause() {
+    public final synchronized void pause() {
         this.paused = true;
     }
 
     @Override
-    public final void resumeLoop() {
+    public final synchronized void resumeLoop() {
         this.paused = false;
     }
 

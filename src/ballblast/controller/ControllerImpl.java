@@ -11,6 +11,7 @@ import org.xml.sax.SAXException;
 import ballblast.controller.files.UserManager;
 import ballblast.model.Model;
 import ballblast.model.data.GameDataManager.GameData;
+import ballblast.model.data.Leaderboard;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
@@ -26,6 +27,7 @@ public class ControllerImpl implements Controller {
     private GameLoop gameloop;
     private final UserManager userManager;
     private String currentUser;
+    private Leaderboard leaderboard;
 
     /**
      * Create a new instance of Controller.
@@ -38,6 +40,7 @@ public class ControllerImpl implements Controller {
         this.model = model;
         this.view = view;
         this.userManager = new UserManager();
+        this.leaderboard = new Leaderboard();
     }
 
     @Override
@@ -62,6 +65,9 @@ public class ControllerImpl implements Controller {
 //        System.out.println("Gameover true in ControllerImpl");
 //        this.view.setGameOver(true);
         this.gameloop.stopLoop();
+        if (this.leaderboard.isRecord(this.model.getGameData().getScore())) {
+            this.leaderboard.addRecord(this.currentUser, this.model.getGameData().getScore());
+        }
     }
 
     @Override
@@ -102,5 +108,10 @@ public class ControllerImpl implements Controller {
 
     private void createGameLoop() {
         this.gameloop = new GameLoopImpl(this.model, view);
+    }
+
+    @Override
+    public final Leaderboard getLeaderboard() {
+        return this.leaderboard;
     }
 }

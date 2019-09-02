@@ -9,6 +9,7 @@ import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
 
 import ballblast.model.data.GameDataManager.GameData;
+import ballblast.model.data.Leaderboard;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
@@ -84,10 +85,17 @@ public interface Controller {
      * @throws ParserConfigurationException 
      */
     boolean checkRegisterUser(String username, String password) throws ParserConfigurationException, IOException, TransformerException, SAXException;
+
     /**
      * 
-     * @return
-     *          The current user.
+     * @return The current user.
      */
     String getCurrentUser();
+
+    /**
+     * Returns the {@link Leaderboard}.
+     * 
+     * @return the {@link Leaderboard}.
+     */
+    Leaderboard getLeaderboard();
 }

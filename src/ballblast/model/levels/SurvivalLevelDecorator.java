@@ -17,14 +17,15 @@ import ballblast.model.gameobjects.GameObjectFactory;
  * Represents a concrete implementation of {@link LevelDecorator}.
  */
 public class SurvivalLevelDecorator extends LevelDecorator {
-    private static final int SPAWN_TIME = 10;
-    private static final int ENABLE_TIME = 2;
+    private static final double BALL_SPAWN_TIME = 10;
+    private static final double ENABLE_TIME = 2;
     private static final int MIN_BALL_LIFE = 4;
     private static final int MAX_BALL_LIFE = 200;
     private static final double HEIGHT_OFFSET = 4;
     private static final double LIFE_MULTIPLIER = 0.25;
     private static final double SCORE_MULTIPLIER = 0.8;
     private static final Vector2D BALL_VELOCITY = Vector2D.create(8, 0);
+    private static final double SPAWN_Y = Boundaries.TOP.getHeight() + HEIGHT_OFFSET;
 
     private double currentSpawnTime;
     private double currentEnableTime;
@@ -56,9 +57,9 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     }
 
     private void spawnBall() {
-        this.spawnedBall = Optional.of(GameObjectFactory.createBall(BallTypes.LARGE, this.calculateBallLife(),
-                this.getRandomPosition(), BALL_VELOCITY, this.getCollisionManager(), this.getGameObjectManager(),
-                this.getGameDataManager()));
+        this.spawnedBall = Optional.of(GameObjectFactory.createBall(
+                BallTypes.LARGE, this.calculateBallLife(), this.getRandomPosition(), BALL_VELOCITY, 
+                this.getCollisionManager(), this.getGameObjectManager(), this.getGameDataManager()));
         this.getGameObjectManager().addGameObjects(ImmutableList.of(this.spawnedBall.get()));
     }
 
@@ -66,7 +67,7 @@ public class SurvivalLevelDecorator extends LevelDecorator {
         final double min = Boundaries.LEFT.getWidth() + BallTypes.LARGE.getDiameter();
         final double max = Boundaries.RIGHT.getPosition().getX() - BallTypes.LARGE.getDiameter();
 
-        return new Coordinate(generateRandomDouble(min, max), Boundaries.TOP.getHeight() + HEIGHT_OFFSET);
+        return new Coordinate(generateRandomDouble(min, max), SPAWN_Y);
 
     }
 
@@ -85,7 +86,7 @@ public class SurvivalLevelDecorator extends LevelDecorator {
         this.currentSpawnTime -= elapsed;
         if (this.currentSpawnTime <= 0) {
             this.spawnBall();
-            this.currentSpawnTime = SPAWN_TIME;
+            this.currentSpawnTime = BALL_SPAWN_TIME;
         }
     }
 

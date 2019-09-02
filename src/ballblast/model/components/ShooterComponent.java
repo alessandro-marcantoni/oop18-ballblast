@@ -16,13 +16,17 @@ import ballblast.model.physics.CollisionManager;
  * Adds the shotting ability to a {@link GameObject}.
  */
 public class ShooterComponent extends AbstractComponent {
+    /**
+     * The default {@link ShooterComponent}'s shot interval.
+     */
+    public static final double DEFAULT_SHOT_INTERVAL = 0.15;
     private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -50);
-    private static final double SHOT_INTERVAL = 0.15;
 
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final GameDataManager gameDataManager;
     private boolean isShooting;
+    private double shotInterval;
     private double currentShotInterval;
 
     /**
@@ -42,13 +46,14 @@ public class ShooterComponent extends AbstractComponent {
         this.collisionManager = collisionManager;
         this.gameDataManager = gameDataManager;
         this.isShooting = false;
+        this.shotInterval = DEFAULT_SHOT_INTERVAL;
     }
 
     @Override
     public final void update(final double elapsed) {
         if (this.isEnabled() && this.isShooting && this.currentShotInterval <= 0) {
             this.shoot(this.spawnBullet());
-            this.currentShotInterval = SHOT_INTERVAL;
+            this.currentShotInterval = this.shotInterval;
         }
         this.currentShotInterval -= elapsed;
     }
@@ -73,14 +78,7 @@ public class ShooterComponent extends AbstractComponent {
      * @param interval The custom shot interval.
      */
     public void setShotInterval(final double interval) {
-        this.currentShotInterval = interval;
-    }
-
-    /**
-     * Sets the default shot interval.
-     */
-    public void setDefaultShotInterval() {
-        this.currentShotInterval = SHOT_INTERVAL;
+        this.shotInterval = interval;
     }
 
     private void shoot(final GameObject bullet) {

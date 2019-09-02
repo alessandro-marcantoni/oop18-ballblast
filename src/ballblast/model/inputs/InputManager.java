@@ -15,21 +15,21 @@ import ballblast.model.components.ComponentTypes;
 import ballblast.model.components.InputComponent;
 import ballblast.model.components.ShooterComponent;
 import ballblast.model.gameobjects.GameObject;
+import ballblast.model.gameobjects.Player;
 
 /**
  * Manages inputs and redirects them to the right {@link Player}.
  */
 public class InputManager {
     private static final Map<InputTypes, Consumer<GameObject>> COMMANDS_MAP;
-    private static final int MOVEMENT_SPEED = 45;
     private Map<PlayerTags, InputComponent> inputHandlers;
 
     static {
         COMMANDS_MAP = ImmutableMap.<InputTypes, Consumer<GameObject>>builder()
-                .put(InputTypes.MOVE_LEFT,         g -> g.setVelocity(Vector2D.create(-MOVEMENT_SPEED, 0)))
-                .put(InputTypes.MOVE_RIGHT,        g -> g.setVelocity(Vector2D.create(MOVEMENT_SPEED, 0)))
                 .put(InputTypes.SHOOT,             g -> findShooter(g).ifPresent(ShooterComponent::startShooting))
                 .put(InputTypes.STOP_SHOOTING,     g -> findShooter(g).ifPresent(ShooterComponent::stopShooting))
+                .put(InputTypes.MOVE_LEFT,         InputManager::moveLeft)
+                .put(InputTypes.MOVE_RIGHT,        InputManager::moveRight)
                 .put(InputTypes.STOP_MOVING_LEFT,  InputManager::stopMovingLeft)
                 .put(InputTypes.STOP_MOVING_RIGHT, InputManager::stopMovingRight)
                 .build();
@@ -100,6 +100,15 @@ public class InputManager {
         }
     }
 
+    private static void moveLeft(final GameObject g) {
+        final Player player = ((Player) g);
+        player.setVelocity(Vector2D.create(-player.getSpeed(), 0));
+    }
+
+    private static void moveRight(final GameObject g) {
+        final Player player = ((Player) g);
+        player.setVelocity(Vector2D.create(player.getSpeed(), 0));
+    }
     /**
      * All possible {@link Player}s.
      */

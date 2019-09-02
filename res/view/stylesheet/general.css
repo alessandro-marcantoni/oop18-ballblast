@@ -10,7 +10,7 @@
 
 .root {
 	-fx-font-family: 'Roboto';
-	-fx-background-color: rgb(153,255,255);
+	-fx-background-color: rgb(255,153,102);
 }
 
 .button{
@@ -27,7 +27,7 @@
 	-fx-font-family: "Lato";
 	-fx-background-color: transparent;
 	-fx-text-fill: rgb(66,65,65);
-	-fx-font-size: 60px;
+	-fx-font-size: 30px;
 }
 
 #title {

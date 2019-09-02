@@ -9,14 +9,16 @@ import ballblast.model.gameobjects.GameObjectTypes;
  */
 public abstract class AbstractPower extends AbstractGameObject implements Power {
 
-    private static final double AVAILABLE_TIME = 5;
+    private static final double AVAILABLE_TIME = 10;
+    private static final double LIFE_TIME = 5;
     private static final double DEFAULT_HEIGHT = 6;
     private static final double DEFAULT_WIDTH = 6;
 
     private GameObject player;
     private boolean active;
     private final PowerTypes powerType;
-    private double elapsedTime;
+    private double lifeTime;
+    private double availableTime;
 
     /**
      * Constructor for a generic {@Link Power}.
@@ -34,8 +36,11 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
     public final void update(final double elapsed) {
         super.update(elapsed);
         if (this.isActive()) {
-            this.elapsedTime += elapsed;
-            this.checkTime();
+            this.lifeTime += elapsed;
+            this.checkLife();
+        } else {
+            this.availableTime += elapsed;
+            this.checkAvailable();
         }
     }
 
@@ -88,9 +93,15 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
         return this.player;
     }
 
-    private void checkTime() {
-        if (this.elapsedTime >= AVAILABLE_TIME) {
+    private void checkLife() {
+        if (this.lifeTime >= LIFE_TIME) {
             this.deactivate();
+            this.destroy();
+        }
+    }
+
+    private void checkAvailable() {
+        if (this.availableTime >= AVAILABLE_TIME) {
             this.destroy();
         }
     }

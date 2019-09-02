@@ -3,6 +3,7 @@ package ballblast.model.physics.handlers;
 import org.locationtech.jts.geom.Coordinate;
 
 import ballblast.model.components.Component;
+import ballblast.model.components.ComponentTypes;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.levels.Boundaries;
 import ballblast.model.physics.Collidable;
@@ -24,6 +25,10 @@ public class PowerCollisionHandler implements CollisionHandler {
         case WALL:
             final GameObject floor = coll.getAttachedGameObject();
             this.stopFloor(floor, obj);
+            obj.getComponents().stream()
+                .filter(c -> c.getType().equals(ComponentTypes.GRAVITY) 
+                        || c.getType().equals(ComponentTypes.MOVEMENT))
+                .forEach(Component::disable);
             break;
         default:
             break;

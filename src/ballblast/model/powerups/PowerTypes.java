@@ -1,7 +1,7 @@
 package ballblast.model.powerups;
 
 /**
- * The enum representing the different types of {@Link Power}.
+ * The enum representing the different types of {@link Power}.
  */
 public enum PowerTypes {
 
@@ -16,8 +16,8 @@ public enum PowerTypes {
     DOUBLEFIRE,
 
     /**
-     * Freeze powerup.
+     * Speed powerup.
      */
-    FREEZE
+    SPEED
 
 }

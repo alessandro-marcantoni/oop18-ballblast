@@ -38,11 +38,11 @@ public class ImageLoader {
      * @throws FileNotFoundException the file not found.
      */
     public Image getImage(final ImagePath imagePath) throws FileNotFoundException {
-        if (imagePath.equals(ImagePath.BALL)) {
-//            final Image img = checkBall(BallColors.getRandomColor());
-//            return img;
-            return this.loadImageFromString(imagePath.getPath());
-        } else 
+//        if (imagePath.equals(ImagePath.BALL)) {
+////            final Image img = checkBall(BallColors.getRandomColor());
+////            return img;
+//            return this.loadImageFromString(imagePath.getPath());
+//        } else 
             if (!this.imageMap.containsKey(imagePath)) {
             final Image img = this.loadImage(imagePath);
             this.imageMap.put(imagePath, img);
@@ -58,7 +58,7 @@ public class ImageLoader {
      * @return the image of the ball required.
      * @throws FileNotFoundException the file not found.
      */
-    public Image checkBall(final String path) throws FileNotFoundException {
+//    public Image checkBall(final String path) throws FileNotFoundException {
 //        for (BallColors color : BallColors.values()) {
 //            if (color.getBallPath().equals(path)) {
 //                if (!this.ballMap.containsKey(color)) {
@@ -70,8 +70,8 @@ public class ImageLoader {
 //                }
 //            }
 //        }
-        return null;
-    }
+//        return null;
+//    }
 
     /**
      * 

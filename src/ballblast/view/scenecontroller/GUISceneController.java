@@ -102,7 +102,6 @@ public class GUISceneController extends AbstractSceneController {
     @Override
     public final void render() {
         if (this.isGameover()) {
-            System.out.println(gameover);
             this.nextScene();
         }
         this.clearCanvas();

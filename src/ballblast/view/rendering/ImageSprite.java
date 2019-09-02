@@ -22,7 +22,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     private static final double MIN_ALPHA = 0;
     private static final int TEXT_X_OFFSET = 1;
     private static final int TEXT_Y_OFFSET = 3;
-    private static final int MAX_TEXT_WIDTH = 4;
+    private static final int MAX_TEXT_WIDTH = 10;
     private static final int FONT_LARGE = 10;
     private static final int FONT_MEDIUM = 8;
     private static final int FONT_SMALL = 4;

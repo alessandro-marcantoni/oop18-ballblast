@@ -12,4 +12,7 @@
          </font>
       </Label>
    </center>
+<!--    <stylesheets>
+   <URL value="/view/stylesheet/main.css" />
+   </stylesheets> -->
 </BorderPane>

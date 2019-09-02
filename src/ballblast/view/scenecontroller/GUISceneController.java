@@ -5,15 +5,14 @@ import ballblast.model.Model;
 import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
 import ballblast.view.scenes.GameScenes;
+import ballblast.view.scenes.UIFactory;
 import ballblast.view.states.GUIState;
 import ballblast.view.states.InGameState;
 import ballblast.view.states.PausedState;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -57,7 +56,7 @@ public class GUISceneController extends AbstractSceneController {
     private GUIState currentState;
     private GUIState inGameState;
     private GUIState pausedState;
-//    private UIFactory userInterface;
+    private UIFactory userInterface;
     private CanvasDrawer canvasDrawer;
     private boolean gameover;
     private static final double FONT_SIZE = 8.0;
@@ -71,7 +70,7 @@ public class GUISceneController extends AbstractSceneController {
         super.init(controller, view);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
-//        this.userInterface = new UIFactory();
+        this.userInterface = new UIFactory();
 
         this.resetGameCanvasCoordinates();
         this.canvasDrawer = new CanvasDrawer(this.canvas);
@@ -202,8 +201,4 @@ public class GUISceneController extends AbstractSceneController {
     public boolean isGameover() {
         return this.gameover;
     }
-    /**
-     * POWER UP DA IMPLEMENTARE
-     */
-    // private void handlePickupEvent(final PowerUp powerUp, final Player player) {}
 }

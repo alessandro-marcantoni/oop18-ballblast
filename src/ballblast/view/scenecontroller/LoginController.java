@@ -58,14 +58,20 @@ public class LoginController extends AbstractSceneController {
     public void userLogin() throws ParserConfigurationException, SAXException, IOException {
         if (checkTextField()) {
             if (this.getController().checkLoginUser(userTextField.getText(), pswTextField.getText())) {
-//            if (UserManager.login(userTextField.getText(), pswTextField.getText()).isPresent()) {
                 this.nextScene();
+            } else {
+
+                final Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("");
+                alert.setHeaderText(null);
+                alert.setContentText("Data not correct");
+                alert.showAndWait();
             }
         } else {
             final Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("DANGER");
+            alert.setTitle("Hey!");
             alert.setHeaderText(null);
-            alert.setContentText("Data mismatch.");
+            alert.setContentText("Insert data.");
             alert.showAndWait();
         }
     }
@@ -82,17 +88,18 @@ public class LoginController extends AbstractSceneController {
         if (checkTextField()) {
             if (this.getController().checkRegisterUser(userTextField.getText(), pswTextField.getText())) {
                 this.nextScene();
-//            final Alert alert = new Alert(AlertType.WARNING);
-//            alert.setTitle("Work in progress...");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Not implemented yet.");
-//            alert.showAndWait();
+            } else {
+                final Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("DANGER");
+                alert.setHeaderText(null);
+                alert.setContentText("Register not successful.");
+                alert.showAndWait();
             }
         } else {
             final Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("DANGER");
             alert.setHeaderText(null);
-            alert.setContentText("Registrazione non effettuata.");
+            alert.setContentText("Insert data.");
             alert.showAndWait();
         }
     }

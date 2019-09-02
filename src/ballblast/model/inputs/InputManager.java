@@ -25,19 +25,14 @@ public class InputManager {
     private Map<PlayerTags, InputComponent> inputHandlers;
 
     static {
-        COMMANDS_MAP = ImmutableMap.of(
-                InputTypes.MOVE_LEFT,     g -> g.setVelocity(Vector2D.create(-MOVEMENT_SPEED, 0)),
-                InputTypes.MOVE_RIGHT,    g -> g.setVelocity(Vector2D.create(MOVEMENT_SPEED, 0)), 
-                InputTypes.STOP_MOVING,   g -> g.setVelocity(Vector2D.create(0, 0)), 
-                InputTypes.STOP_SHOOTING, g -> findShooter(g).ifPresent(ShooterComponent::stopShooting),
-                InputTypes.SHOOT,         g -> findShooter(g).ifPresent(ShooterComponent::startShooting)
-        );
-    }
-
-    private static Optional<ShooterComponent> findShooter(final GameObject g) {
-        return g.getComponents().stream()
-                .filter(c -> c.getType() == ComponentTypes.SHOOTER)
-                .map(c -> (ShooterComponent) c).findFirst();
+        COMMANDS_MAP = ImmutableMap.<InputTypes, Consumer<GameObject>>builder()
+                .put(InputTypes.MOVE_LEFT,         g -> g.setVelocity(Vector2D.create(-MOVEMENT_SPEED, 0)))
+                .put(InputTypes.MOVE_RIGHT,        g -> g.setVelocity(Vector2D.create(MOVEMENT_SPEED, 0)))
+                .put(InputTypes.SHOOT,             g -> findShooter(g).ifPresent(ShooterComponent::startShooting))
+                .put(InputTypes.STOP_SHOOTING,     g -> findShooter(g).ifPresent(ShooterComponent::stopShooting))
+                .put(InputTypes.STOP_MOVING_LEFT,  InputManager::stopMovingLeft)
+                .put(InputTypes.STOP_MOVING_RIGHT, InputManager::stopMovingRight)
+                .build();
     }
 
     /**
@@ -85,6 +80,24 @@ public class InputManager {
 
     private List<Consumer<GameObject>> translateInputs(final List<InputTypes> toBeTranslated) {
         return toBeTranslated.stream().map(i -> COMMANDS_MAP.get(i)).collect(ImmutableList.toImmutableList());
+    }
+
+    private static Optional<ShooterComponent> findShooter(final GameObject g) {
+        return g.getComponents().stream()
+                .filter(c -> c.getType() == ComponentTypes.SHOOTER)
+                .map(c -> (ShooterComponent) c).findFirst();
+    }
+
+    private static void stopMovingLeft(final GameObject g) {
+        if (g.getVelocity().getX() < 0) {
+            g.setVelocity(Vector2D.create(0, 0));
+        }
+    }
+
+    private static void stopMovingRight(final GameObject g) {
+        if (g.getVelocity().getX() > 0) {
+            g.setVelocity(Vector2D.create(0, 0));
+        }
     }
 
     /**

@@ -7,7 +7,6 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.model.Model;
 import ballblast.model.components.Component;
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.BallTypes;
@@ -64,10 +63,10 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     }
 
     private Coordinate getRandomPosition() {
-        return new Coordinate(
-                generateRandomDouble(Boundaries.LEFT.getWidth() + BallTypes.LARGE.getDiameter(),
-                        Model.WORLD_WIDTH - Boundaries.RIGHT.getWidth() - BallTypes.LARGE.getDiameter()),
-                Boundaries.TOP.getHeight() + HEIGHT_OFFSET);
+        final double min = Boundaries.LEFT.getWidth() + BallTypes.LARGE.getDiameter();
+        final double max = Boundaries.RIGHT.getPosition().getX() - BallTypes.LARGE.getDiameter();
+
+        return new Coordinate(generateRandomDouble(min, max), Boundaries.TOP.getHeight() + HEIGHT_OFFSET);
 
     }
 

@@ -16,9 +16,13 @@ public enum InputTypes {
      */
     SHOOT,
     /**
-     * Doesn't move.
+     * Doesn't move left.
      */
-    STOP_MOVING,
+    STOP_MOVING_LEFT,
+    /**
+     * Doesn't move left.
+     */
+    STOP_MOVING_RIGHT,
     /**
      * Doesn't shot.
      */

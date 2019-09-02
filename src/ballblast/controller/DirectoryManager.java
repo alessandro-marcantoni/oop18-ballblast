@@ -10,8 +10,9 @@ import javax.xml.transform.TransformerException;
 import ballblast.controller.files.XMLFileManager;
 
 /**
- * Class that contains constants used to find files saved on the user home directory.
- * It is responsible of checking if the install directory exist and if necessary creates it.
+ * Class that contains constants used to find files saved on the user home
+ * directory. It is responsible of checking if the install directory exist and
+ * if necessary creates it.
  */
 public final class DirectoryManager {
 
@@ -23,37 +24,28 @@ public final class DirectoryManager {
     /**
      * Static field that contains the route path of the application.
      */
-    public static final String APP_PATH = System.getProperty("user.home")
-                                          + SEPARATOR
-                                          + ".ballblast";
+    public static final String APP_PATH = System.getProperty("user.home") + SEPARATOR + ".ballblast";
 
     /**
      * The path to the scoreboard directory.
      */
-    public static final String SCOREBOARD_DIR = APP_PATH
-                                                + SEPARATOR
-                                                + "scoreboard";
+    public static final String SCOREBOARD_DIR = APP_PATH + SEPARATOR + "scoreboard";
 
     /**
      * The path to the users directory.
      */
-    public static final String USERS_DIR = APP_PATH
-                                           + SEPARATOR
-                                           + "users";
+    public static final String USERS_DIR = APP_PATH + SEPARATOR + "users";
 
     /**
      * Static field that contains the file of the users list.
      */
-    public static final String USERS_LIST_FILE = USERS_DIR
-                                                 + SEPARATOR
-                                                 + "userslist.xml";
+    public static final String USERS_LIST_FILE = USERS_DIR + SEPARATOR + "userslist.xml";
 
     /**
-     * Static field that contains the file with the leaderboard of the users in the survival mode.
+     * Static field that contains the file with the leaderboard of the users in the
+     * survival mode.
      */
-    public static final String SURVIVAL_FILE = SCOREBOARD_DIR
-                                               + SEPARATOR
-                                               + "survival.xml";
+    public static final String SURVIVAL_FILE = SCOREBOARD_DIR + SEPARATOR + "survival.xml";
 
     private DirectoryManager() {
         // Cannot create a DirectroyManager object.
@@ -61,16 +53,12 @@ public final class DirectoryManager {
 
     /**
      * Static method that get user file.
-     * @param userName
-     *       name of the user.
-     * @return
-     *       the file with the {@link UserData}.
+     * 
+     * @param userName name of the user.
+     * @return the file with the {@link UserData}.
      */
     public static String getUserFile(final String userName) {
-        return USERS_DIR
-               + SEPARATOR
-               + userName
-               + ".xml";
+        return USERS_DIR + SEPARATOR + userName + ".xml";
     }
 
     /**

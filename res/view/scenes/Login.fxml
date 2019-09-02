@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ballblast.view.scenecontroller.LoginController">
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ballblast.view.scenecontroller.LoginController">
    <top>
-      <Label text="USER" textAlignment="CENTER" BorderPane.alignment="CENTER">
+      <Label prefHeight="32.0" prefWidth="126.0" text="USER SIGN UP" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
          <BorderPane.margin>
-            <Insets top="100.0" />
+            <Insets left="300.0" right="300.0" top="100.0" />
          </BorderPane.margin>
       </Label>
    </top>
@@ -27,8 +27,8 @@
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <TextField fx:id="userTextField" maxWidth="400.0" prefHeight="50.0" prefWidth="400.0" />
@@ -46,18 +46,30 @@
          </children>
       </GridPane>
    </center>
-   <right>
-      <Button fx:id="btnRegister" mnemonicParsing="false" onMouseClicked="#userRegister" text="Register" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="18.0" />
-         </font>
-       </Button>
-   </right>
-   <left>
-      <Button fx:id="btnLogin" mnemonicParsing="false" onMouseClicked="#userLogin" text="Login" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-   </left>
+   <bottom>
+      <GridPane maxHeight="100.0" maxWidth="600.0" prefHeight="100.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <BorderPane.margin>
+            <Insets bottom="250.0" />
+         </BorderPane.margin>
+         <children>
+            <Button fx:id="btnLogin" mnemonicParsing="false" onMouseClicked="#userLogin" text="LOGIN">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRegister" mnemonicParsing="false" onMouseClicked="#userRegister" text="REGISTER" GridPane.columnIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+             </Button>
+         </children>
+      </GridPane>
+   </bottom>
 </BorderPane>

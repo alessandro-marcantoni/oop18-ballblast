@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ballblast.view.scenecontroller.MainSceneController">
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="/view/stylesheet/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ballblast.view.scenecontroller.MainSceneController">
    <bottom>
       <Label text="PRESS ENTER TO START" BorderPane.alignment="CENTER">
          <font>
@@ -15,12 +15,10 @@
       </Label>
    </bottom>
    <center>
-<!--       <ImageView pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+       <ImageView pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@../stylesheet/ballblast.png" />
-         </image></ImageView> -->
+            <Image url="/view/stylesheet/ballblast.png" />
+         </image></ImageView>
    </center>
-<!--    <stylesheets>
-   <URL value="/view/stylesheet/main.css" />
-   </stylesheets> -->
+
 </BorderPane>

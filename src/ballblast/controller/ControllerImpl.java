@@ -8,6 +8,8 @@ import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 
+import com.google.common.collect.Lists;
+
 import ballblast.controller.files.UserManager;
 import ballblast.model.Model;
 import ballblast.model.data.GameDataManager.GameData;
@@ -41,6 +43,7 @@ public class ControllerImpl implements Controller {
         this.view = view;
         this.userManager = new UserManager();
         this.leaderboard = new Leaderboard();
+        leaderboard.setRecordList(Lists.newArrayList());
     }
 
     @Override

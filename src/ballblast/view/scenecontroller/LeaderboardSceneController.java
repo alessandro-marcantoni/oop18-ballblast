@@ -133,25 +133,13 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
 
-        this.leaderboard = new Leaderboard();
+        this.leaderboard = this.getController().getLeaderboard();
         this.leaderboardScore = Lists.newArrayList();
         this.leaderboardUser = Lists.newArrayList();
         this.users = Lists.newArrayList(player1label, player2label, player3label, player4label, player5label,
                 player6label, player7label, player8label, player9label, player10label);
         this.scores = Lists.newArrayList(score1label, score2label, score3label, score4label, score5label, score6label,
                 score7label, score8label, score9label, score10label);
-
-        leaderboard.setRecordList(Lists.newArrayList());
-        leaderboard.addRecord("pippo", 10);
-        leaderboard.addRecord("ghinozz", 1345);
-        leaderboard.addRecord("ciao", 120);
-        leaderboard.addRecord("azz", 1);
-        leaderboard.addRecord("albi", 15);
-        leaderboard.addRecord("tommi", 100);
-        leaderboard.addRecord("luca", 5);
-        leaderboard.addRecord("francesco", 5000);
-        leaderboard.addRecord("cazzocm", 23);
-        leaderboard.addRecord("luchino", 90);
 
         for (Entry<Integer, String> entry : leaderboard.getLeaderboard().entrySet()) {
             leaderboardScore.add(entry.getKey());

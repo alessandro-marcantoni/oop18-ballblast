@@ -22,7 +22,7 @@ public enum ImagePath {
     /**
      * The image for speed {@link Power}.
      */
-    POWERUP_SPEED("/view/powers/freeze.png"),
+    POWERUP_SPEED("/view/powers/speed.png"),
     /**
      * The image for shield {@link Power}.
      */

@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane onKeyReleased="#handleReleased" stylesheets="/view/stylesheet/gui.css" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ballblast.view.scenecontroller.GUISceneController">
+<StackPane onKeyReleased="#handleReleased" prefHeight="1080.0" prefWidth="1920.0" stylesheets="/view/stylesheet/gui.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ballblast.view.scenecontroller.GUISceneController">
    <children>
       <GridPane minHeight="0.0" minWidth="0.0" onKeyReleased="#handleReleased" prefHeight="1920.0" prefWidth="1080">
         <columnConstraints>
@@ -78,19 +77,6 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
-                           <right>
-                              <Pane fx:id="playerShooter" prefHeight="48.0" prefWidth="58.0" BorderPane.alignment="CENTER" />
-                           </right>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </BorderPane>
-                        <BorderPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </BorderPane>
                         <Label alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="BALLS" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="20.0" />

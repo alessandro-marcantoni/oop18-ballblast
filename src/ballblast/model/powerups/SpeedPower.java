@@ -1,9 +1,13 @@
 package ballblast.model.powerups;
 
+import ballblast.model.gameobjects.Player;
+
 /**
  * The class representing the speed {@Link Power}.
  */
 public class SpeedPower extends AbstractPower {
+
+    private static final int SPEED = 60;
 
     /**
      * Creates a new instance of speed {@Link Power}.
@@ -13,13 +17,13 @@ public class SpeedPower extends AbstractPower {
     }
 
     @Override
-    public void performPower() {
-
+    public final void performPower() {
+        ((Player) this.getPlayer()).setSpeed(SPEED);
     }
 
     @Override
-    protected void stopPerforming() {
-
+    protected final void stopPerforming() {
+        ((Player) this.getPlayer()).setSpeed(Player.DEFAULT_SPEED);
     }
 
     /**

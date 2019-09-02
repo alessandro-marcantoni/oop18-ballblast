@@ -18,7 +18,7 @@ public final class Player extends AbstractGameObject { // NOPMD This class is us
     /**
      * The default {@link Player}'s speed.
      */
-    public static final double DEAULT_SPEED = 45;
+    public static final double DEFAULT_SPEED = 45;
 
     private double currentSpeed;
 

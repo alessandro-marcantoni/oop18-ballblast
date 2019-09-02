@@ -79,7 +79,6 @@ public class GUISceneController extends AbstractSceneController {
         this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
         this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
         this.statusBarContainer.prefWidthProperty().bind(this.canvas.widthProperty());
-
         this.setState(this.inGameState);
 
     }
@@ -112,7 +111,7 @@ public class GUISceneController extends AbstractSceneController {
     private void resetGameCanvasCoordinates() {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
         gc.setFont(new Font(FONT_SIZE));
-        gc.setFill(Color.AQUAMARINE);
+        gc.setFill(Color.LIGHTBLUE);
         gc.setStroke(Color.LIGHTGREY);
         gc.save();
         final double canvasWidth = this.canvas.getWidth();

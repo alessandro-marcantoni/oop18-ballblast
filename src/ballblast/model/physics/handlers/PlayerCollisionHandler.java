@@ -6,7 +6,7 @@ import ballblast.model.gameobjects.GameObject;
 import ballblast.model.levels.Boundaries;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
-import ballblast.model.powerups.Power;
+//import ballblast.model.powerups.Power;
 
 /**
  * Represents the handler for the behavior of a {@link Player} after a
@@ -24,20 +24,19 @@ public class PlayerCollisionHandler implements CollisionHandler {
             break;
         case WALL:
             final GameObject boundary = coll.getAttachedGameObject();
-            if (Boundaries.isRight(boundary.getPosition())) {
-                obj.setPosition(
-                        new Coordinate(boundary.getPosition().getX() - obj.getWidth(), obj.getPosition().getY()));
-            }
-            if (Boundaries.isLeft(boundary.getPosition())) {
-                obj.setPosition(
-                        new Coordinate(boundary.getPosition().getX() + boundary.getWidth(), obj.getPosition().getY()));
-            }
-            break;
-        case POWERUP:
-            ((Power) coll).activate(obj);
+            this.checkBoundLimit(boundary, obj);
             break;
         default:
             break;
+        }
+    }
+
+    private void checkBoundLimit(final GameObject bound, final GameObject obj) {
+        if (Boundaries.isRight(bound.getPosition())) {
+            obj.setPosition(new Coordinate(bound.getPosition().getX() - obj.getWidth(), obj.getPosition().getY()));
+        }
+        if (Boundaries.isLeft(bound.getPosition())) {
+            obj.setPosition(new Coordinate(bound.getPosition().getX() + bound.getWidth(), obj.getPosition().getY()));
         }
     }
 }

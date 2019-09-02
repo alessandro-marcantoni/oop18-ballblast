@@ -18,9 +18,9 @@
          <font>
             <Font size="18.0" />
          </font>
-         <padding>
+         <BorderPane.margin>
             <Insets bottom="100.0" />
-         </padding>
+         </BorderPane.margin>
       </Button>
    </bottom>
 </BorderPane>

@@ -11,11 +11,11 @@ public final class Bullet extends AbstractGameObject { // NOPMD This class is us
     /**
      * Default {@link Bullet}'s width.
      */
-    public static final double DEFAULT_WIDTH  = 1;
+    public static final double DEFAULT_WIDTH  = 1.5;
     /**
      * Default {@link Bullet}'s height.
      */
-    public static final double DEFAULT_HEIGHT = 1.5;
+    public static final double DEFAULT_HEIGHT = 2;
 
     /**
      * Create a {@link Bullet} instance.

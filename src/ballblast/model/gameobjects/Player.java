@@ -8,17 +8,19 @@ import com.google.common.base.MoreObjects;
  */
 public final class Player extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
     /**
-     * The static {@link Player}'s height used also inside the
-     * {@link SinglePlayerDecorator} class to put the {@link Player} in the center
-     * of the screen.
+     * The default {@link Player}'s height.
      */
     public static final double DEFAULT_HEIGHT = 12;
     /**
-     * The static {@link Player}'s width used also inside the
-     * {@link SinglePlayerDecorator} class to put the {@link Player} in the center
-     * of the screen.
+     * The default {@link Player}'s width.
      */
     public static final double DEFAULT_WIDTH = 6;
+    /**
+     * The default {@link Player}'s speed.
+     */
+    public static final double DEFAULT_SPEED = 45;
+
+    private double currentSpeed;
 
     /**
      * Class constructor.
@@ -27,6 +29,25 @@ public final class Player extends AbstractGameObject { // NOPMD This class is us
         super(GameObjectTypes.PLAYER);
         this.setHeight(DEFAULT_HEIGHT);
         this.setWidth(DEFAULT_WIDTH);
+        this.currentSpeed = DEAULT_SPEED;
+    }
+
+    /**
+     * Sets {@link Player}'s speed.
+     * 
+     * @param speed the current {@link Player}'s speed.
+     */
+    public void setSpeed(final double speed) {
+        this.currentSpeed = speed;
+    }
+
+    /**
+     * Gets {@link Player}'s speed.
+     * 
+     * @return the current {@link Player}'s speed.
+     */
+    public double getSpeed() {
+        return this.currentSpeed;
     }
 
     @Override
@@ -49,6 +70,17 @@ public final class Player extends AbstractGameObject { // NOPMD This class is us
 
         @Override
         protected final Builder getBuilder() {
+            return this;
+        }
+
+        /**
+         * Sets the {@link Player}'s speed.
+         * 
+         * @param speed the {@link Player}'s speed to be set.
+         * @return the concrete {@link Builder}.
+         */
+        public Builder setSpeed(final double speed) {
+            this.getGameObject().setSpeed(speed);
             return this;
         }
     }

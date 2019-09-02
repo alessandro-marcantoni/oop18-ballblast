@@ -24,8 +24,8 @@ public class PowerUpRenderer extends GameObjectRenderer<AbstractPower> {
         this.setLayer(Layers.POWERUP_LAYER);
         if (gameObject.getPowerType().equals(PowerTypes.DOUBLEFIRE)) {
             sprite.setSource(ImagePath.POWERUP_DOUBLEFIRE);
-        } else if (gameObject.getPowerType().equals(PowerTypes.FREEZE)) {
-            sprite.setSource(ImagePath.POWERUP_FREEZE);
+        } else if (gameObject.getPowerType().equals(PowerTypes.SPEED)) {
+            sprite.setSource(ImagePath.POWERUP_SPEED);
         } else if (gameObject.getPowerType().equals(PowerTypes.SHIELD)) {
             sprite.setSource(ImagePath.POWERUP_SHIELD);
         }

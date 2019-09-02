@@ -38,16 +38,11 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
     public final Geometry generateShape() {
         final GameObject parent = this.getParent();
         final Coordinate pos = parent.getPosition();
-
         final GeometricShapeFactory shapeFactory = new GeometricShapeFactory();
         shapeFactory.setBase(new Coordinate(pos.getX(), pos.getY()));
         shapeFactory.setHeight(parent.getHeight());
         shapeFactory.setWidth(parent.getWidth());
-        if (parent.getType() == GameObjectTypes.BALL) {
-            return shapeFactory.createCircle();
-        } else {
-            return shapeFactory.createRectangle();
-        }
+        return parent.getType() == GameObjectTypes.BALL ? shapeFactory.createCircle() : shapeFactory.createRectangle();
     }
 
     @Override

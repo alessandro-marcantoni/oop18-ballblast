@@ -26,7 +26,7 @@ public class PowerFactoryImpl implements PowerFactory {
         case 2:
             return this.createDoubleFirePower(velocity, position, collisionManager);
         default:
-            return this.createFreezePower(velocity, position, collisionManager);
+            return this.createSpeedPower(velocity, position, collisionManager);
         }
     }
 
@@ -52,9 +52,9 @@ public class PowerFactoryImpl implements PowerFactory {
                 .build();
     }
 
-    private Power createFreezePower(final Vector2D velocity, final Coordinate position,
+    private Power createSpeedPower(final Vector2D velocity, final Coordinate position,
             final CollisionManager collisionManager) {
-        return new FreezePower.Builder()
+        return new SpeedPower.Builder()
                 .setVelocity(velocity)
                 .setPosition(position)
                 .setCollisionHandler(new PowerCollisionHandler())

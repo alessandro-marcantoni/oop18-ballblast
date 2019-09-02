@@ -6,6 +6,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
+import ballblast.model.powerups.Power;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
@@ -62,32 +63,37 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         // Draw the gameObject
         this.gc.scale(1, -1);
         this.gc.setGlobalAlpha(this.getAlpha());
-        this.gc.drawImage(
-                // the source image
-                this.image,
-                // the source rectangle's coordinate position.
-                this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
-                // the source rectangle's dimension (width and height).
-                this.image.getWidth(), this.image.getHeight(),
-                // the destination rectangle's coordinate position.
-                this.gameObject.getPosition().getX(), this.gameObject.getPosition().getY(),
-                // the destination rectangle's dimension (width and height).
-                this.gameObject.getWidth(), this.gameObject.getHeight());
+        if (!this.gameObject.getType().equals(GameObjectTypes.POWERUP)
+                || (this.gameObject.getType().equals(GameObjectTypes.POWERUP)
+                        && (!((Power) this.gameObject).isActive()))) {
+            this.gc.drawImage(
+                    // the source image
+                    this.image,
+                    // the source rectangle's coordinate position.
+                    this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
+                    // the source rectangle's dimension (width and height).
+                    this.image.getWidth(), this.image.getHeight(),
+                    // the destination rectangle's coordinate position.
+                    this.gameObject.getPosition().getX(), this.gameObject.getPosition().getY(),
+                    // the destination rectangle's dimension (width and height).
+                    this.gameObject.getWidth(), this.gameObject.getHeight());
 
-        if (this.gameObject.getType().equals(GameObjectTypes.BALL) && ((Ball) this.gameObject).getCurrentLife() > 0) {
-            // Set the font
-            if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.LARGE.getDiameter())) {
-                this.gc.setFont(new Font(FONT_LARGE));
-            } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.MEDIUM.getDiameter())) {
-                this.gc.setFont(new Font(FONT_MEDIUM));
-            } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.SMALL.getDiameter())) {
-                this.gc.setFont(new Font(FONT_SMALL));
+            if (this.gameObject.getType().equals(GameObjectTypes.BALL)
+                    && ((Ball) this.gameObject).getCurrentLife() > 0) {
+                // Set the font
+                if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.LARGE.getDiameter())) {
+                    this.gc.setFont(new Font(FONT_LARGE));
+                } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.MEDIUM.getDiameter())) {
+                    this.gc.setFont(new Font(FONT_MEDIUM));
+                } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.SMALL.getDiameter())) {
+                    this.gc.setFont(new Font(FONT_SMALL));
+                }
+                // Draw life inside the ball
+                this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
+                        this.gameObject.getPosition().getX() + this.gameObject.getWidth() / 4 + TEXT_X_OFFSET,
+                        this.gameObject.getPosition().getY() + this.gameObject.getHeight() / 2 + TEXT_Y_OFFSET,
+                        MAX_TEXT_WIDTH);
             }
-            // Draw life inside the ball
-            this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
-                    this.gameObject.getPosition().getX() + this.gameObject.getWidth() / 4 + TEXT_X_OFFSET,
-                    this.gameObject.getPosition().getY() + this.gameObject.getHeight() / 2 + TEXT_Y_OFFSET,
-                    MAX_TEXT_WIDTH);
         }
     }
 

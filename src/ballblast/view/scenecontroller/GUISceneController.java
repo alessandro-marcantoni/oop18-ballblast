@@ -113,7 +113,7 @@ public class GUISceneController extends AbstractSceneController {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
         gc.setFont(new Font(FONT_SIZE));
         gc.setFill(Color.AQUAMARINE);
-        gc.setStroke(Color.DIMGRAY);
+        gc.setStroke(Color.LIGHTGREY);
         gc.save();
         final double canvasWidth = this.canvas.getWidth();
         final double canvasHeight = this.canvas.getHeight();

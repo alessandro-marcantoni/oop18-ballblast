@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane onKeyReleased="#handleReleased" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ballblast.view.scenecontroller.GUISceneController">
+<StackPane onKeyReleased="#handleReleased" stylesheets="/view/stylesheet/gui.css" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ballblast.view.scenecontroller.GUISceneController">
    <children>
       <GridPane minHeight="0.0" minWidth="0.0" onKeyReleased="#handleReleased" prefHeight="1920.0" prefWidth="1080">
         <columnConstraints>

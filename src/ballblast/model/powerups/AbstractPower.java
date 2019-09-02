@@ -10,6 +10,8 @@ import ballblast.model.gameobjects.GameObjectTypes;
 public abstract class AbstractPower extends AbstractGameObject implements Power {
 
     private static final double AVAILABLE_TIME = 5;
+    private static final double DEFAULT_HEIGHT = 6;
+    private static final double DEFAULT_WIDTH = 6;
 
     private GameObject player;
     private boolean active;
@@ -24,6 +26,8 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
     public AbstractPower(final PowerTypes powerType) {
         super(GameObjectTypes.POWERUP);
         this.powerType = powerType;
+        this.setHeight(DEFAULT_HEIGHT);
+        this.setWidth(DEFAULT_WIDTH);
     }
 
     @Override

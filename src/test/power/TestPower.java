@@ -15,7 +15,7 @@ import ballblast.model.levels.Level;
 import ballblast.model.levels.SinglePlayerDecorator;
 import ballblast.model.physics.CollisionTag;
 import ballblast.model.physics.SimpleCollisionManager;
-import ballblast.model.powerups.PowerFactoryImpl;
+import ballblast.model.powerups.PowerFactory;
 
 /**
  * JUnit test for {@link Power}.
@@ -23,8 +23,6 @@ import ballblast.model.powerups.PowerFactoryImpl;
 public class TestPower {
     private static final Coordinate POSITION = new Coordinate(30, 30);
     private static final Vector2D VELOCITY = new Vector2D(0, 0);
-
-    private PowerFactoryImpl factory = new PowerFactoryImpl();
     private Level level;
     private GameObject player;
 

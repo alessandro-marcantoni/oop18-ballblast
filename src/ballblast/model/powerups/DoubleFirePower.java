@@ -8,7 +8,7 @@ import ballblast.model.components.ShooterComponent;
  */
 public class DoubleFirePower extends AbstractPower {
 
-    private static final double DOUBLE_SHOT_INTERVAL = 0.075;
+    private static final double DOUBLE_SHOT_INTERVAL = 0.055;
 
     /**
      * Create a new instance of double shot {@Link Power}.
@@ -30,7 +30,7 @@ public class DoubleFirePower extends AbstractPower {
         this.getPlayer().getComponents().stream()
         .filter(c -> c.getType().equals(ComponentTypes.SHOOTER))
         .findFirst()
-        .ifPresent(c -> ((ShooterComponent) c).setDefaultShotInterval());
+        .ifPresent(c -> ((ShooterComponent) c).setShotInterval(ShooterComponent.DEFAULT_SHOT_INTERVAL));
     }
 
     /**

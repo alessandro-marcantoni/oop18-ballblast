@@ -29,7 +29,7 @@ public final class Player extends AbstractGameObject { // NOPMD This class is us
         super(GameObjectTypes.PLAYER);
         this.setHeight(DEFAULT_HEIGHT);
         this.setWidth(DEFAULT_WIDTH);
-        this.currentSpeed = DEAULT_SPEED;
+        this.currentSpeed = DEFAULT_SPEED;
     }
 
     /**

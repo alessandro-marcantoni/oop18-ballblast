@@ -7,7 +7,7 @@ import ballblast.model.gameobjects.Player;
  */
 public class SpeedPower extends AbstractPower {
 
-    private static final int SPEED = 60;
+    private static final int SPEED = 90;
 
     /**
      * Creates a new instance of speed {@Link Power}.

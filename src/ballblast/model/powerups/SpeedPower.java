@@ -1,15 +1,15 @@
 package ballblast.model.powerups;
 
 /**
- * The class representing the freeze {@Link Power}.
+ * The class representing the speed {@Link Power}.
  */
-public class FreezePower extends AbstractPower {
+public class SpeedPower extends AbstractPower {
 
     /**
-     * Creates a new instance of freeze {@Link Power}.
+     * Creates a new instance of speed {@Link Power}.
      */
-    public FreezePower() {
-        super(PowerTypes.FREEZE);
+    public SpeedPower() {
+        super(PowerTypes.SPEED);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class FreezePower extends AbstractPower {
 
         @Override
         protected final AbstractPower initGameObject() {
-            return new FreezePower();
+            return new SpeedPower();
         }
 
     }

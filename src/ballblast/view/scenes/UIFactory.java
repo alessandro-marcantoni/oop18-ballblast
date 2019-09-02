@@ -28,7 +28,7 @@ public class UIFactory {
     public ImageView createPowerIcon(final PowerTypes power) throws FileNotFoundException {
         final ImageView imageView = new ImageView();
         final Image imageDoublefire = ImageLoader.getLoader().getImage(ImagePath.POWERUP_DOUBLEFIRE);
-        final Image imageFreeze = ImageLoader.getLoader().getImage(ImagePath.POWERUP_FREEZE);
+        final Image imageFreeze = ImageLoader.getLoader().getImage(ImagePath.POWERUP_SPEED);
         final Image imageShield = ImageLoader.getLoader().getImage(ImagePath.POWERUP_SHIELD);
         switch (power) {
         case SHIELD:
@@ -40,7 +40,7 @@ public class UIFactory {
             imageView.setViewport(new Rectangle2D(0, 0, imageDoublefire.getWidth(), imageDoublefire.getHeight()));
             imageView.setImage(imageDoublefire);
             break;
-        case FREEZE:
+        case SPEED:
             imageView.setViewport(
                     new Rectangle2D(imageFreeze.getWidth(), 0, imageFreeze.getWidth(), imageFreeze.getHeight()));
             imageView.setImage(imageFreeze);

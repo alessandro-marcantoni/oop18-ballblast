@@ -20,9 +20,9 @@ public enum ImagePath {
      */
     BULLET("/view/bullets/bullet.png"),
     /**
-     * The image for freeze {@link Power}.
+     * The image for speed {@link Power}.
      */
-    POWERUP_FREEZE("/view/powers/freeze.png"),
+    POWERUP_SPEED("/view/powers/freeze.png"),
     /**
      * The image for shield {@link Power}.
      */

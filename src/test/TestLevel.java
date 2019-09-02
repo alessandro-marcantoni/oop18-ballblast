@@ -45,29 +45,30 @@ class TestLevel {
 
     @Test
     public void testSurvivalLevel() {
-        final Level level = new SurvivalLevelDecorator(new SinglePlayerDecorator(new BasicLevel()));
+        final Level level = new SurvivalLevelDecorator(new BasicLevel());
+        level.start();
+        final int enableTime = 20;
+        final long oldCount = this.getCollidablesCount(level);
+        level.update(SAMPLE_ELAPSED); //Spawn the Ball.
+        assertFalse(this.getCollidablesCount(level) > oldCount);
+        level.update(SAMPLE_ELAPSED); //Add the Ball to the GameObjectManager's list.
+        assertTrue(this.findBall(level).isPresent());
+        level.update(SAMPLE_ELAPSED * enableTime);
+        assertTrue(this.findBall(level).isPresent());
+        assertTrue(this.getCollidablesCount(level) > oldCount); //Now the Ball is moving.
+    }
+
+    @Test
+    public void testGameOver() {
+        final Level level = new SinglePlayerDecorator(new BasicLevel());
         assertSame(level.getGameStatus(), GameStatus.PAUSE);
         assertTrue(level.getGameObjectManager().getGameObjects().isEmpty());
         level.start();
-        level.update(SAMPLE_ELAPSED);
         assertFalse(level.getGameObjectManager().getGameObjects().isEmpty());
         assertTrue(this.findPlayer(level).isPresent());
-        this.ballSpawnerTest(level);
         this.findPlayer(level).get().destroy();
         level.update(SAMPLE_ELAPSED);
         assertSame(level.getGameStatus(), GameStatus.OVER);
-    }
-
-    private void ballSpawnerTest(final Level level) {
-        final int spawnTime = 100;
-        final int enableTime = 20;
-        final long oldCount = this.getCollidablesCount(level);
-        level.update(SAMPLE_ELAPSED * spawnTime);
-        assertFalse(this.getCollidablesCount(level) > oldCount);
-        assertFalse(this.findBall(level).isPresent());
-        level.update(SAMPLE_ELAPSED * enableTime);
-        assertTrue(this.findBall(level).isPresent());
-        assertTrue(this.getCollidablesCount(level) > oldCount);
     }
 
     private Optional<GameObject> findPlayer(final Level level) {

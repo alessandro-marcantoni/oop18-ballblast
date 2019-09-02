@@ -21,8 +21,8 @@ import ballblast.model.levels.SinglePlayerDecorator;
 
 class TestInputs {
     private static final double SAMPLE_ELAPSED = 1;
-    private static final Vector2D LEFT_VELOCITY = Vector2D.create(-5, 0);
-    private static final Vector2D RIGHT_VELOCITY = Vector2D.create(5, 0);
+    private static final Vector2D LEFT_VELOCITY = Vector2D.create(-45, 0);
+    private static final Vector2D RIGHT_VELOCITY = Vector2D.create(45, 0);
     private GameObject player;
     private Level level;
     private InputManager inputManager;
@@ -55,7 +55,7 @@ class TestInputs {
         this.level.update(SAMPLE_ELAPSED);
         assertEquals(expectedPosition, this.player.getPosition());
         // 5) Input test (stop moving).
-        this.inputManager.processInputs(PlayerTags.FIRST, ImmutableList.of(InputTypes.STOP_MOVING));
+        this.inputManager.processInputs(PlayerTags.FIRST, ImmutableList.of(InputTypes.STOP_MOVING_RIGHT));
         assertEquals(expectedPosition, this.player.getPosition());
     }
 
@@ -96,15 +96,14 @@ class TestInputs {
         assertEquals(expectedPosition, this.player.getPosition());
         // 3) Stop moving and shooting.
         this.inputManager.processInputs(PlayerTags.FIRST,
-                ImmutableList.of(InputTypes.STOP_MOVING, InputTypes.STOP_SHOOTING));
+                ImmutableList.of(InputTypes.STOP_MOVING_RIGHT, InputTypes.STOP_SHOOTING));
         //Nothing is changed.
         assertEquals(expectedSpawnedBall, this.countBullets());
         assertEquals(expectedPosition, this.player.getPosition());
     }
 
     private Coordinate getExpectedPosition(final Vector2D velocity) {
-        velocity.multiply(SAMPLE_ELAPSED);
-        return velocity.translate(this.player.getPosition());
+        return velocity.multiply(SAMPLE_ELAPSED).translate(this.player.getPosition());
     }
 
     private GameObject findPlayer() {

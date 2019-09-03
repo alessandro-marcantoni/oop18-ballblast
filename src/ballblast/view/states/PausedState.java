@@ -22,7 +22,7 @@ public class PausedState extends GUIState {
                 KeyCode.P, g -> g.getGUI().setState(g.getGUI().getInGameState()),
                 KeyCode.ESCAPE, g -> g.getGUI().setState(g.getGUI().getInGameState()), 
                 KeyCode.Q, g -> {
-                    g.getGUI().getController().gameOver();
+                    g.getGUI().getController().notifyGameOver();
                     g.getGUI().nextScene();
                 });
     }

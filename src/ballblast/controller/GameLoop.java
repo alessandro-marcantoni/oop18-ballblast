@@ -36,4 +36,16 @@ public interface GameLoop {
      * @param input the input to be resolved.
      */
     void receiveInput(PlayerTags tag, InputTypes input);
+
+    /**
+     * Adds a new {@link Observer}.
+     * 
+     * @param observer The {@link Observer} to be added.
+     */
+    void addObserver(GameLoopObserver observer);
+
+    /**
+     * Notifies the {@link Observer} when the state changes.
+     */
+    void sendState();
 }

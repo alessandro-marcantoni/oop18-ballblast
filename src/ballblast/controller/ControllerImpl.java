@@ -20,7 +20,7 @@ import ballblast.view.View;
 /**
  * The implementation of the Controller in the MVC architecture.
  */
-public class ControllerImpl implements Controller {
+public class ControllerImpl implements Controller, GameLoopObserver {
 
     private final Model model;
     private final View view;
@@ -65,14 +65,9 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public final void gameOver() {
-        this.endGame();
+    public final void notifyGameOver() {
+        this.updateLeaderboard();
         this.gameloop.stopLoop();
-//            this.leaderboard.addRecord(this.currentUser.get().getName(), this.model.getGameData().getScore());
-//            this.lbManager.saveSurvivalLeaderboard(leaderboard);
-//            this.currentUser.get().addGameData(this.model.getGameData());
-//            this.userManager.updateUserData(this.currentUser.get());
-
     }
 
     @Override
@@ -111,6 +106,7 @@ public class ControllerImpl implements Controller {
 
     private void createGameLoop() {
         this.gameloop = new GameLoopImpl(this.model, view);
+        this.gameloop.addObserver(this);
     }
 
     @Override
@@ -119,9 +115,9 @@ public class ControllerImpl implements Controller {
     }
 
     /**
-     * End of the game session.
+     * Updates the {@link Leaderboard}.
      */
-    protected void endGame() {
+    public void updateLeaderboard() {
         this.leaderboard.addRecord(currentUser.get().getName(), this.model.getGameData().getScore());
         this.lbManager.saveSurvivalLeaderboard(leaderboard);
         this.currentUser.get().addGameData(this.model.getGameData());

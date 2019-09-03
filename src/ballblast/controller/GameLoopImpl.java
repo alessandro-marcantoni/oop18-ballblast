@@ -25,6 +25,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private boolean paused;
     private final View view;
     private final Model model;
+    private List<GameLoopObserver> observers = new ArrayList<GameLoopObserver>();
 
     /**
      * Creates a new game loop instance.
@@ -59,6 +60,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
             lastTime = current;
         }
         this.view.setGameOver(true);
+        this.sendState();
     }
 
     private void waitForNextFrame(final long current) {
@@ -93,6 +95,16 @@ public class GameLoopImpl extends Thread implements GameLoop {
         this.inputs.get(tag).add(input);
     }
 
+    @Override
+    public final void addObserver(final GameLoopObserver observer) {
+        this.observers.add(observer);
+    }
+
+    @Override
+    public final void sendState() {
+        this.observers.forEach(GameLoopObserver::updateLeaderboard);
+    }
+
     private synchronized void processInput() {
         this.inputs.forEach((k, v) -> {
             if (!v.isEmpty()) {
@@ -117,4 +129,5 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private void render() {
         this.view.render();
     }
+
 }

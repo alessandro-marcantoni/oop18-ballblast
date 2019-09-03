@@ -38,7 +38,7 @@ public interface Controller {
     /**
      * Ends the game.
      */
-    void gameOver();
+    void notifyGameOver();
 
     /**
      * Sends an input to be resolved the next update by the right {@link Player} to

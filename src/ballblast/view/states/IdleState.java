@@ -29,7 +29,7 @@ public class IdleState extends GUIState {
 
     @Override
     public final void onStateEntry() {
-        this.getController().gameOver();
+        this.getController().notifyGameOver();
         this.message.setVisible(true);
     }
 

@@ -49,7 +49,6 @@ public class PausedState extends GUIState {
     public final void onStateExit() {
         this.getController().resume();
         this.pausePane.setVisible(false);
-//        this.getGUI().render();
     }
 
     @Override

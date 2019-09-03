@@ -4,18 +4,18 @@ import ballblast.view.scenecontroller.AbstractSceneController;
 import javafx.scene.Scene;
 
 /**
- * TODO.
+ * A simple wrapper for {@link Scene}.
  */
 public interface SceneWrapper {
     /**
      * 
-     * @return TODO.
+     * @return the {@link Scene}.
      */
     Scene getScene();
 
     /**
      * 
-     * @return TODO.
+     * @return the {@link SceneController}.
      */
     AbstractSceneController getController();
 }

@@ -1,15 +1,15 @@
 package ballblast.view.rendering.gameobject;
 
 import ballblast.model.gameobjects.GameObject;
-import ballblast.view.rendering.AbstractRenderer;
+import ballblast.view.rendering.Renderer;
 import ballblast.view.rendering.Sprite;
 
 /**
+ * A simple implementation of Renderer for {@link GameObject}s.
  * 
- * 
- * @param <G>
+ * @param <G> the {@link GameObject}.
  */
-public abstract class GameObjectRenderer<G extends GameObject> extends AbstractRenderer {
+public abstract class GameObjectRenderer<G extends GameObject> implements Renderer {
 
     private final Sprite sprite;
     private final G gameObject;

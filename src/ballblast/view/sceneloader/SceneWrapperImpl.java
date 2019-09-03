@@ -4,7 +4,7 @@ import ballblast.view.scenecontroller.AbstractSceneController;
 import javafx.scene.Scene;
 
 /**
- * TODO.
+ * A simple implementation of {@link SceneWrapper}.
  */
 public class SceneWrapperImpl implements SceneWrapper {
 
@@ -12,10 +12,9 @@ public class SceneWrapperImpl implements SceneWrapper {
     private final AbstractSceneController controller;
 
     /**
-     * TODO.
      * 
-     * @param scene      TODO.
-     * @param controller TODO.
+     * @param scene      the {@link Scene} to wrap to.
+     * @param controller the {@link SceneController}.
      */
     public SceneWrapperImpl(final Scene scene, final AbstractSceneController controller) {
         this.scene = scene;

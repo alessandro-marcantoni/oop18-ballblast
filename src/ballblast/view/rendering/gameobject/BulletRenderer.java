@@ -1,10 +1,8 @@
 package ballblast.view.rendering.gameobject;
 
 import java.io.FileNotFoundException;
-
 import ballblast.model.gameobjects.Bullet;
 import ballblast.view.rendering.ImagePath;
-import ballblast.view.rendering.Layers;
 import ballblast.view.rendering.Sprite;
 
 /**
@@ -20,9 +18,12 @@ public class BulletRenderer extends GameObjectRenderer<Bullet> {
      * @param gameObject The {@link Bullet} {@link GameObject}.
      * @throws FileNotFoundException the file not found.
      */
-    public BulletRenderer(final Sprite sprite, final Bullet gameObject) throws FileNotFoundException {
+    public BulletRenderer(final Sprite sprite, final Bullet gameObject) {
         super(sprite, gameObject);
-        this.setLayer(Layers.BULLET_LAYER);
-        sprite.setSource(ImagePath.BULLET);
+        try {
+            sprite.setSource(ImagePath.BULLET);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

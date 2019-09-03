@@ -46,10 +46,6 @@ public enum GameScenes {
      */
     MAIN("Main.fxml");
 
-    /*
-     * OPZIONALI REGISTER
-     */
-
     private final String selectedScene;
     private static final String PATH = "res/view/scenes/";
 

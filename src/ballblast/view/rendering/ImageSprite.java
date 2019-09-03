@@ -9,14 +9,13 @@ import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
-import ballblast.model.Model;
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.BallTypes;
 
 /**
  * 
  */
-public class ImageSprite extends AbstractRenderer implements Sprite {
+public class ImageSprite implements Sprite, Renderer {
 
     private static final double MAX_ALPHA = 1;
     private static final double MIN_ALPHA = 0;
@@ -75,12 +74,9 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         if (!this.gameObject.getType().equals(GameObjectTypes.POWERUP)
                 || (this.gameObject.getType().equals(GameObjectTypes.POWERUP)
                         && (!((Power) this.gameObject).isActive()))) {
-            this.gc.drawImage(
-                    this.image,
-                    this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
-                    this.image.getWidth(), this.image.getHeight(),
-                    this.getGameObjectPosition().getX(), this.getGameObjectPosition().getY(),
-                    this.getGameObjectWidth(), this.getGameObjectHeight());
+            this.gc.drawImage(this.image, this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
+                    this.image.getWidth(), this.image.getHeight(), this.getGameObjectPosition().getX(),
+                    this.getGameObjectPosition().getY(), this.getGameObjectWidth(), this.getGameObjectHeight());
 
             if (this.gameObject.getType().equals(GameObjectTypes.BALL)
                     && ((Ball) this.gameObject).getCurrentLife() > 0) {
@@ -126,7 +122,8 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     @Override
     public final void setSource(final ImagePath source) {
         this.image = ImageLoader.getLoader().getImage(source);
-        this.setSourceWindow(new Coordinate(0, 0), new Vector2D(this.getImageSourceWidth(), this.getImageSourceHeight()));
+        this.setSourceWindow(new Coordinate(0, 0),
+                new Vector2D(this.getImageSourceWidth(), this.getImageSourceHeight()));
     }
 
     @Override
@@ -148,14 +145,14 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         return this.sourceTopLeft;
     }
 
-//    /**
-//     * Returns the offset of the bottom-right corner from the top-left corner.
-//     * 
-//     * @return the offset in pixel.
-//     */
-//    protected final Vector2D getSourceOffset() {
-//        return this.sourceOffset;
-//    }
+    /**
+     * Returns the offset of the bottom-right corner from the top-left corner.
+     * 
+     * @return the offset in pixel.
+     */
+    protected final Vector2D getSourceOffset() {
+        return this.sourceOffset;
+    }
 
     @Override
     public final void setGameObjectWidth(final double width) {
@@ -197,6 +194,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     public static void renderBackground(final GraphicsContext gc, final double width, final double height) {
         gc.drawImage(ImageLoader.getLoader().getImage(ImagePath.BACKGROUND), 0, 0, width, height);
     }
+
     /**
      * Static method used to render the background.
      * 
@@ -206,8 +204,9 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
      */
     public void renderFireworks(final GraphicsContext gc, final double width, final double height) {
         gc.drawImage(ImageLoader.getLoader().getImage(ImagePath.FIREWORKS),
-                this.getGameObjectPosition().getX(), this.getGameObjectPosition().getY(),
-                this.getGameObjectWidth(), this.getGameObjectHeight());
+                this.getGameObjectPosition().getX() - this.getGameObjectWidth() / 2,
+                this.getGameObjectPosition().getY() - this.getGameObjectHeight() / 2, this.getGameObjectWidth() * 2,
+                this.getGameObjectHeight() * 2);
     }
 
     private void drawLife() {

@@ -6,7 +6,6 @@ import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
 import ballblast.view.rendering.ImageSprite;
 import ballblast.view.scenes.GameScenes;
-import ballblast.view.scenes.UIFactory;
 import ballblast.view.states.GUIState;
 import ballblast.view.states.InGameState;
 import ballblast.view.states.PausedState;
@@ -54,13 +53,16 @@ public class GUISceneController extends AbstractSceneController {
     @FXML
     private BorderPane pausePane;
 
+
+    private static final double FONT_SIZE = 8.0;
+    private static final int R = 204;
+    private static final int G = 204;
+    private static final int B = 204;
     private GUIState currentState;
     private GUIState inGameState;
     private GUIState pausedState;
-    private UIFactory userInterface;
     private CanvasDrawer canvasDrawer;
     private boolean gameover;
-    private static final double FONT_SIZE = 8.0;
 
     /**
      * @param controller the {@link Controller}.
@@ -71,7 +73,6 @@ public class GUISceneController extends AbstractSceneController {
         super.init(controller, view);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
-        this.userInterface = new UIFactory();
 
         this.resetGameCanvasCoordinates();
         this.canvasDrawer = new CanvasDrawer(this.canvas);
@@ -107,19 +108,16 @@ public class GUISceneController extends AbstractSceneController {
         this.score.setText(Double.toString(this.getController().getGameData().getScore()));
         this.balls.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
         this.canvasDrawer.draw(this.getController().getGameObjects());
-        
     }
 
     private void resetGameCanvasCoordinates() {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
         gc.setFont(new Font(FONT_SIZE));
-//        gc.setFill(Color.LIGHTBLUE);
-        gc.setStroke(Color.rgb(204, 204, 204));
+        gc.setStroke(Color.rgb(R, G, B));
         gc.save();
         final double canvasWidth = this.canvas.getWidth();
         final double canvasHeight = this.canvas.getHeight();
         gc.clearRect(0, 0, canvasWidth, canvasWidth);
-//        gc.fillRect(0, 0, canvasWidth, canvasHeight);
         ImageSprite.renderBackground(gc, this.canvas.getWidth(), this.canvas.getHeight());
         gc.scale(1, -1);
         gc.scale(canvasWidth / (Constants.WORLD_WIDTH), canvasHeight / Constants.WORLD_HEIGHT);
@@ -157,7 +155,7 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     protected final GameScenes getPreviousScene() {
-        return GameScenes.GAMEOVER;
+        return GameScenes.MENU;
     }
 
     /**

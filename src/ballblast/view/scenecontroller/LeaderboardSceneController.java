@@ -90,12 +90,8 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
 
     @FXML // fx:id="backToMenuBtn"
     private Button backToMenuBtn; // Value injected by FXMLLoader
-
-    //private Leaderboard leaderboard;
     private List<Label> scores;
     private List<Label> users;
-//    private List<Integer> leaderboardScore;
-//    private List<String> leaderboardUser;
     private List<RecordData> recordList;
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -128,17 +124,11 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
 
-        //this.leaderboard = this.getController().getLeaderboard();
         this.recordList = this.getController().getLeaderboard().getRecordList();
         this.users = Lists.newArrayList(player1label, player2label, player3label, player4label, player5label,
                 player6label, player7label, player8label, player9label, player10label);
         this.scores = Lists.newArrayList(score1label, score2label, score3label, score4label, score5label, score6label,
                 score7label, score8label, score9label, score10label);
-
-//        for (Entry<Integer, String> entry : leaderboard.getLeaderboard().entrySet()) {
-//            leaderboardScore.add(entry.getKey());
-//            leaderboardUser.add(entry.getValue());
-//        }
 
         for (int i = 0; i < 10; i++) {
             users.get(i).setText(recordList.get(i).getName());

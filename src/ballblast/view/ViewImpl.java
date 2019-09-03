@@ -2,7 +2,6 @@ package ballblast.view;
 
 import ballblast.controller.Controller;
 import ballblast.view.scenecontroller.AbstractSceneController;
-import ballblast.view.scenecontroller.GUISceneController;
 import ballblast.view.sceneloader.SceneLoader;
 import ballblast.view.sceneloader.SceneWrapper;
 import ballblast.view.scenes.GameScenes;
@@ -11,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 /**
- * TODO.
+ * A simple implementation of {@link View}.
  */
 public class ViewImpl implements View {
 

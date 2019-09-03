@@ -1,16 +1,9 @@
 package ballblast.view.rendering.gameobject;
 
 import java.io.FileNotFoundException;
-
 import ballblast.model.gameobjects.Ball;
 import ballblast.view.rendering.ImagePath;
-import ballblast.view.rendering.Layers;
 import ballblast.view.rendering.Sprite;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 /**
  * 
@@ -19,15 +12,15 @@ import javafx.scene.text.Text;
  */
 public class BallRenderer extends GameObjectRenderer<Ball> {
     /**
-     * @param sprite
-     *          the {@link Sprite} used to render.
-     * @param gameObject
-     *          the {@link Ball} {@link @link GameObject}.
-     * @throws FileNotFoundException 
+     * @param sprite     the {@link Sprite} used to render.
+     * @param gameObject the {@link Ball} {@link @link GameObject}.
      */
-    public BallRenderer(final Sprite sprite, final Ball gameObject) throws FileNotFoundException {
+    public BallRenderer(final Sprite sprite, final Ball gameObject) {
         super(sprite, gameObject);
-        this.setLayer(Layers.BALL_LAYER);
-        sprite.setSource(ImagePath.BALL);
+        try {
+            sprite.setSource(ImagePath.BALL);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

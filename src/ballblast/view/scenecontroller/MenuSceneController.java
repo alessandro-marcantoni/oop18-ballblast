@@ -29,10 +29,6 @@ public class MenuSceneController extends AbstractSceneController {
 
     @FXML
     private Button quitBtn;
-//    private boolean gameMode = false;
-//    private boolean leaderboard = false;
-//    private boolean settings = false;
-//    private boolean manual = false;
     private GameScenes selection;
 
     /**
@@ -40,10 +36,6 @@ public class MenuSceneController extends AbstractSceneController {
      */
     @FXML
     protected void openGameMode() {
-//        this.gameMode = true;
-//        this.manual = false;
-//        this.settings = false;
-//        this.leaderboard = false;
         this.selection = GameScenes.GAME_MODE;
         this.nextScene();
     }
@@ -53,10 +45,6 @@ public class MenuSceneController extends AbstractSceneController {
      */
     @FXML
     private void openLeaderboard() {
-//        this.leaderboard = true;
-//        this.gameMode = false;
-//        this.settings = false;
-//        this.manual = false;
         this.selection = GameScenes.LEADERBOARD;
         this.nextScene();
     }
@@ -81,7 +69,6 @@ public class MenuSceneController extends AbstractSceneController {
      */
     @FXML
     private void openManual() {
-//        this.manual = true;
         this.selection = GameScenes.MANUAL;
         this.nextScene();
     }

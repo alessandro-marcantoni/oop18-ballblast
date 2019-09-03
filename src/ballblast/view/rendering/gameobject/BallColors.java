@@ -41,11 +41,7 @@ public enum BallColors {
     /**
      * Ball color orange.
      */
-    BALL_ORANGE("/view/balls/orange.png"),
-    /**
-     * Ball color white.
-     */
-    BALL_WHITE("/view/balls/white.png");
+    BALL_ORANGE("/view/balls/orange.png");
 
     private static final List<BallColors> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();

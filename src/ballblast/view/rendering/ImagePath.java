@@ -42,7 +42,11 @@ public enum ImagePath {
     /**
      * The image for background.
      */
-    BACKGROUND("/view/walls/background.png");
+    BACKGROUND("/view/walls/background.png"),
+    /**
+     * The image for explosion.
+     */
+    FIREWORKS("/view/balls/explosion.png");
     private final String path;
 
     ImagePath(final String path) {

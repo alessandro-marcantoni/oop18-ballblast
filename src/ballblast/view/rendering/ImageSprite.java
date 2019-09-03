@@ -76,20 +76,18 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
                 || (this.gameObject.getType().equals(GameObjectTypes.POWERUP)
                         && (!((Power) this.gameObject).isActive()))) {
             this.gc.drawImage(
-                    // the source image
                     this.image,
-                    // the source rectangle's coordinate position.
                     this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
-                    // the source rectangle's dimension (width and height).
                     this.image.getWidth(), this.image.getHeight(),
-                    // the destination rectangle's coordinate position.
                     this.getGameObjectPosition().getX(), this.getGameObjectPosition().getY(),
-                    // the destination rectangle's dimension (width and height).
                     this.getGameObjectWidth(), this.getGameObjectHeight());
 
             if (this.gameObject.getType().equals(GameObjectTypes.BALL)
                     && ((Ball) this.gameObject).getCurrentLife() > 0) {
                 drawLife();
+            } else if (this.gameObject.getType().equals(GameObjectTypes.BALL)
+                    && !(((Ball) this.gameObject).getCurrentLife() > 0)) {
+                this.renderFireworks(gc, gameObjectWidth, gameObjectHeight);
             }
         }
     }
@@ -111,7 +109,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     }
 
     @Override
-    public final double getSourceWidth() {
+    public final double getImageSourceWidth() {
         return this.image.getWidth();
     }
 
@@ -120,31 +118,15 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         return this.image;
     }
 
-    /**
-     * 
-     * @return the image width.
-     */
-    public double getImageSourceWidth() {
-        return this.image.getWidth();
-    }
-
     @Override
-    public final double getSourceHeight() {
-        return this.image.getHeight();
-    }
-
-    /**
-     * 
-     * @return the image height.
-     */
-    public double getImageSourceHeight() {
+    public final double getImageSourceHeight() {
         return this.image.getHeight();
     }
 
     @Override
     public final void setSource(final ImagePath source) {
         this.image = ImageLoader.getLoader().getImage(source);
-        this.setSourceWindow(new Coordinate(0, 0), new Vector2D(this.getSourceWidth(), this.getSourceHeight()));
+        this.setSourceWindow(new Coordinate(0, 0), new Vector2D(this.getImageSourceWidth(), this.getImageSourceHeight()));
     }
 
     @Override
@@ -166,14 +148,14 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         return this.sourceTopLeft;
     }
 
-    /**
-     * Returns the offset of the bottom-right corner from the top-left corner.
-     * 
-     * @return the offset in pixel.
-     */
-    protected final Vector2D getSourceOffset() {
-        return this.sourceOffset;
-    }
+//    /**
+//     * Returns the offset of the bottom-right corner from the top-left corner.
+//     * 
+//     * @return the offset in pixel.
+//     */
+//    protected final Vector2D getSourceOffset() {
+//        return this.sourceOffset;
+//    }
 
     @Override
     public final void setGameObjectWidth(final double width) {
@@ -214,6 +196,18 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
      */
     public static void renderBackground(final GraphicsContext gc, final double width, final double height) {
         gc.drawImage(ImageLoader.getLoader().getImage(ImagePath.BACKGROUND), 0, 0, width, height);
+    }
+    /**
+     * Static method used to render the background.
+     * 
+     * @param gc     the {@link GraphicsContext} of the canvas.
+     * @param width  the width of the canvas.
+     * @param height the height of the canvas.
+     */
+    public void renderFireworks(final GraphicsContext gc, final double width, final double height) {
+        gc.drawImage(ImageLoader.getLoader().getImage(ImagePath.FIREWORKS),
+                this.getGameObjectPosition().getX(), this.getGameObjectPosition().getY(),
+                this.getGameObjectWidth(), this.getGameObjectHeight());
     }
 
     private void drawLife() {

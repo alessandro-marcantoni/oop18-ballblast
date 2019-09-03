@@ -121,7 +121,6 @@ public class GUISceneController extends AbstractSceneController {
         gc.clearRect(0, 0, canvasWidth, canvasWidth);
 //        gc.fillRect(0, 0, canvasWidth, canvasHeight);
         ImageSprite.renderBackground(gc, this.canvas.getWidth(), this.canvas.getHeight());
-        
         gc.scale(1, -1);
         gc.scale(canvasWidth / (Constants.WORLD_WIDTH), canvasHeight / Constants.WORLD_HEIGHT);
     }

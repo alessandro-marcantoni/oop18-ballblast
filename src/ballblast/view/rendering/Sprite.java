@@ -68,13 +68,13 @@ public interface Sprite extends Renderer {
      * 
      * @return return the image source height.
      */
-    double getSourceHeight();
+    double getImageSourceHeight();
 
     /**
      * 
      * @return return the image source width.
      */
-    double getSourceWidth();
+    double getImageSourceWidth();
 
     /**
      * Sets the width on the screen of the sprite, according to the

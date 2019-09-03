@@ -20,8 +20,8 @@ public final class SpriteSheet {
      */
     public SpriteSheet(final Sprite sprite, final int columns, final int rows) {
         this.sprite = sprite;
-        this.cellWidth = sprite.getSourceWidth() / columns;
-        this.cellHeight = sprite.getSourceHeight() / rows;
+        this.cellWidth = sprite.getImageSourceWidth() / columns;
+        this.cellHeight = sprite.getImageSourceHeight() / rows;
     }
 
     /**

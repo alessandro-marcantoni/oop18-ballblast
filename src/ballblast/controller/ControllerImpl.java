@@ -74,7 +74,7 @@ public class ControllerImpl implements Controller {
 //        System.out.println("Gameover true in ControllerImpl");
 //        this.view.setGameOver(true);
         this.gameloop.stopLoop();
-
+        this.endGame();
 //            this.leaderboard.addRecord(this.currentUser.get().getName(), this.model.getGameData().getScore());
 //            this.lbManager.saveSurvivalLeaderboard(leaderboard);
 //            this.currentUser.get().addGameData(this.model.getGameData());

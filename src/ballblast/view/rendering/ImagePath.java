@@ -38,7 +38,11 @@ public enum ImagePath {
     /**
      * The image for {@link Wall} vertical.
      */
-    WALL_VERTICAL("/view/walls/wall_vertical.png");
+    WALL_VERTICAL("/view/walls/wall_vertical.png"),
+    /**
+     * The image for background.
+     */
+    BACKGROUND("/view/walls/background.jpg");
     private final String path;
 
     ImagePath(final String path) {

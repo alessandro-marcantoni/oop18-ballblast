@@ -1,9 +1,7 @@
 package ballblast.view.rendering;
 
-import java.io.FileNotFoundException;
 import java.util.EnumMap;
 import java.util.Map;
-import ballblast.view.rendering.gameobject.BallColors;
 import javafx.scene.image.Image;
 
 /**
@@ -37,7 +35,7 @@ public class ImageLoader {
      * @return the image of the object required.
      * @throws FileNotFoundException the file not found.
      */
-    public Image getImage(final ImagePath imagePath) throws FileNotFoundException {
+    public Image getImage(final ImagePath imagePath){
 //        if (imagePath.equals(ImagePath.BALL)) {
 ////            final Image img = checkBall(BallColors.getRandomColor());
 ////            return img;
@@ -82,7 +80,7 @@ public class ImageLoader {
         return new Image(ImageLoader.class.getResourceAsStream(imagePath.getPath()));
     }
 
-    private Image loadImageFromString(final String path) throws FileNotFoundException {
-        return new Image(ImageLoader.class.getResourceAsStream(path));
-    }
+//    private Image loadImageFromString(final String path){
+//        return new Image(ImageLoader.class.getResourceAsStream(path));
+//    }
 }

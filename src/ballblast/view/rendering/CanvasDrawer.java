@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.function.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+
+import ballblast.model.Model;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.view.rendering.gameobject.RendererFactory;
@@ -18,16 +20,18 @@ import javafx.util.Pair;
  */
 public class CanvasDrawer {
     private static final Map<GameObjectTypes, Function<Pair<Sprite, GameObject>, Renderer>> RENDERER_MAP;
+    private static final ImagePath BACKGROUND = ImagePath.BACKGROUND;
     private final Canvas canvas;
 
     static {
         RENDERER_MAP = ImmutableMap.of(GameObjectTypes.BALL, p -> {
-            try {
-                return RendererFactory.createBallRenderer(p.getKey(), p.getValue());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            return null;
+                try {
+                    return RendererFactory.createBallRenderer(p.getKey(), p.getValue());
+                } catch (FileNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } 
+                return null;
         }, GameObjectTypes.BULLET, p -> {
             try {
                 return RendererFactory.createBulletRenderer(p.getKey(), p.getValue());

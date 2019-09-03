@@ -4,6 +4,9 @@ import ballblast.controller.Controller;
 import ballblast.model.Model;
 import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
+import ballblast.view.rendering.ImageLoader;
+import ballblast.view.rendering.ImagePath;
+import ballblast.view.rendering.ImageSprite;
 import ballblast.view.scenes.GameScenes;
 import ballblast.view.scenes.UIFactory;
 import ballblast.view.states.GUIState;
@@ -106,18 +109,21 @@ public class GUISceneController extends AbstractSceneController {
         this.score.setText(Double.toString(this.getController().getGameData().getScore()));
         this.balls.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
         this.canvasDrawer.draw(this.getController().getGameObjects());
+        
     }
 
     private void resetGameCanvasCoordinates() {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
         gc.setFont(new Font(FONT_SIZE));
-        gc.setFill(Color.LIGHTBLUE);
+//        gc.setFill(Color.LIGHTBLUE);
         gc.setStroke(Color.LIGHTGREY);
         gc.save();
         final double canvasWidth = this.canvas.getWidth();
         final double canvasHeight = this.canvas.getHeight();
         gc.clearRect(0, 0, canvasWidth, canvasWidth);
-        gc.fillRect(0, 0, canvasWidth, canvasHeight);
+//        gc.fillRect(0, 0, canvasWidth, canvasHeight);
+        ImageSprite.renderBackground(gc, this.canvas.getWidth(), this.canvas.getHeight());
+        
         gc.scale(1, -1);
         gc.scale(canvasWidth / (Model.WORLD_WIDTH), canvasHeight / Model.WORLD_HEIGHT);
     }

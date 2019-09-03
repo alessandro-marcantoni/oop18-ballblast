@@ -15,29 +15,24 @@ import ballblast.model.levels.Level;
 import ballblast.model.levels.SinglePlayerDecorator;
 import ballblast.model.physics.CollisionTag;
 import ballblast.model.physics.SimpleCollisionManager;
-import ballblast.model.powerups.PowerFactory;
-
 /**
  * JUnit test for {@link Power}.
  */
 public class TestPower {
     private static final Coordinate POSITION = new Coordinate(30, 30);
     private static final Vector2D VELOCITY = new Vector2D(0, 0);
-    private Level level;
-    private GameObject player;
-
     /**
      * Gets the environment ready for the tests.
      */
     @Before
     public void initializeEnv() {
-        this.level = new SinglePlayerDecorator(new BasicLevel());
-        this.player = GameObjectFactory.createPlayer(this.level.getGameObjectManager(), null, PlayerTags.FIRST,
-                this.level.getCollisionManager(), VELOCITY, POSITION, null);
-        this.level.getGameObjectManager().getGameObjects().add(this.player);
+        final Level level = new SinglePlayerDecorator(new BasicLevel());
+        final GameObject player = GameObjectFactory.createPlayer(level.getGameObjectManager(), null, PlayerTags.FIRST,
+                level.getCollisionManager(), VELOCITY, POSITION, null);
+        level.getGameObjectManager().getGameObjects().add(player);
         final Component collisionComponent = new CollisionComponent(new SimpleCollisionManager(), CollisionTag.PLAYER);
-        collisionComponent.setParent(this.player);
-        System.out.println(this.level.getGameObjectManager().getGameObjects());
+        collisionComponent.setParent(player);
+        System.out.println(level.getGameObjectManager().getGameObjects());
     }
 
     /**

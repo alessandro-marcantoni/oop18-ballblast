@@ -16,7 +16,6 @@ import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
-import ballblast.model.powerups.PowerFactory;
 
 /**
  * Generic implementation of the {@link Level} interface. Defines base behavior
@@ -115,7 +114,7 @@ public final class BasicLevel implements Level {
     }
 
     private void spawnPowerUp() {
-        final GameObject power = ((GameObject) PowerFactory.createRandomPower(
+        final GameObject power = ((GameObject) Utils.createRandomPower(
                 Vector2D.create(0, 0), Utils.getRandomSpawnPosition(), this.collisionManager));
         Utils.activeComponents(power);
         this.getGameObjectManager().addGameObjects(ImmutableList.of(power));

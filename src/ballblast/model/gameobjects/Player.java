@@ -8,7 +8,7 @@ import ballblast.model.commons.Constants;
  * Represents the entity used by the user, who is able to move and shoot. When
  * hit by a ball it dies.
  */
-public final class Player extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
+public final class Player extends AbstractGameObject {
     private double currentSpeed;
 
     /**
@@ -52,16 +52,6 @@ public final class Player extends AbstractGameObject { // NOPMD This class is us
      * Concrete implementation of {@link AbstractGameObject.AbstractBuilder}.
      */
     public static class Builder extends AbstractGameObject.AbstractBuilder<Player, Builder> {
-        @Override
-        protected final Player initGameObject() {
-            return new Player();
-        }
-
-        @Override
-        protected final Builder getBuilder() {
-            return this;
-        }
-
         /**
          * Sets the {@link Player}'s speed.
          * 
@@ -70,6 +60,21 @@ public final class Player extends AbstractGameObject { // NOPMD This class is us
          */
         public Builder setSpeed(final double speed) {
             this.getGameObject().setSpeed(speed);
+            return this;
+        }
+
+        @Override
+        public final Player build() {
+            return this.getGameObject();
+        }
+
+        @Override
+        protected final Player initGameObject() {
+            return new Player();
+        }
+
+        @Override
+        protected final Builder getBuilder() {
             return this;
         }
     }

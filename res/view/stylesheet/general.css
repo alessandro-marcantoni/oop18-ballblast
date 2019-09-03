@@ -1,15 +1,13 @@
 @font-face {
 	-fx-font-family: Roboto;
-	src: url("roboto.ttf");
 }
 
 @font-face {
 	-fx-font-family: Lato;
-	src: url("lato.ttf");
 }
 
 .root {
-	-fx-font-family: 'Roboto';
+	-fx-font-family: 'Lato';
 	-fx-background-color: rgb(255,153,102);
 }
 

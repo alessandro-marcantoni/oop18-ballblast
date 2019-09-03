@@ -1,7 +1,5 @@
 package ballblast.model.powerups;
 
-import java.util.Random;
-
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
@@ -19,27 +17,14 @@ public final class PowerFactory {
     private PowerFactory() { }
 
     /**
-     * Creates a new random {@link Power}.
+     * Creates a new {@link ShieldPower}.
      * 
      * @param velocity         The initial velocity.
      * @param position         The initial position.
      * @param collisionManager The collision manager.
      * @return The new {@link Power}.
      */
-    public static Power createRandomPower(final Vector2D velocity, final Coordinate position,
-            final CollisionManager collisionManager) {
-        final int powerTypePick = new Random().nextInt(PowerTypes.values().length);
-        switch (powerTypePick) {
-        case 1:
-            return createShieldPower(velocity, position, collisionManager);
-        case 2:
-            return createDoubleFirePower(velocity, position, collisionManager);
-        default:
-            return createSpeedPower(velocity, position, collisionManager);
-        }
-    }
-
-    private static Power createShieldPower(final Vector2D velocity, final Coordinate position,
+    public static Power createShieldPower(final Vector2D velocity, final Coordinate position,
             final CollisionManager collisionManager) {
         return new ShieldPower.Builder()
                 .setVelocity(velocity)
@@ -50,8 +35,15 @@ public final class PowerFactory {
                 .addComponent(new GravityComponent())
                 .build();
     }
-
-    private static Power createDoubleFirePower(final Vector2D velocity, final Coordinate position,
+    /**
+     * Creates a new {@link DoubleFirePower}.
+     * 
+     * @param velocity         The initial velocity.
+     * @param position         The initial position.
+     * @param collisionManager The collision manager.
+     * @return The new {@link Power}.
+     */
+    public static Power createDoubleFirePower(final Vector2D velocity, final Coordinate position,
             final CollisionManager collisionManager) {
         return new DoubleFirePower.Builder()
                 .setVelocity(velocity)
@@ -62,8 +54,15 @@ public final class PowerFactory {
                 .addComponent(new GravityComponent())
                 .build();
     }
-
-    private static Power createSpeedPower(final Vector2D velocity, final Coordinate position,
+    /**
+     * Creates a new {@link SpeedPower}.
+     * 
+     * @param velocity         The initial velocity.
+     * @param position         The initial position.
+     * @param collisionManager The collision manager.
+     * @return The new {@link Power}.
+     */
+    public static Power createSpeedPower(final Vector2D velocity, final Coordinate position,
             final CollisionManager collisionManager) {
         return new SpeedPower.Builder()
                 .setVelocity(velocity)

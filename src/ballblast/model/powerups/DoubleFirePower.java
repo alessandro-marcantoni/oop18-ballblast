@@ -3,23 +3,24 @@ package ballblast.model.powerups;
 import ballblast.model.commons.Constants;
 import ballblast.model.components.ComponentTypes;
 import ballblast.model.components.ShooterComponent;
+import ballblast.model.gameobjects.AbstractGameObject;
 
 /**
  * The class representing the double shot {@Link Power}.
  */
-public class DoubleFirePower extends AbstractPower {
+public final class DoubleFirePower extends AbstractPower {
 
     private static final double DOUBLE_SHOT_INTERVAL = 0.055;
 
     /**
      * Create a new instance of double shot {@Link Power}.
      */
-    public DoubleFirePower() {
+    private DoubleFirePower() {
         super(PowerTypes.DOUBLEFIRE);
     }
 
     @Override
-    public final void performPower() {
+    public void performPower() {
         this.getPlayer().getComponents().stream()
         .filter(c -> c.getType().equals(ComponentTypes.SHOOTER))
         .findFirst()
@@ -27,7 +28,7 @@ public class DoubleFirePower extends AbstractPower {
     }
 
     @Override
-    public final void stopPerforming() {
+    public void stopPerforming() {
         this.getPlayer().getComponents().stream()
         .filter(c -> c.getType().equals(ComponentTypes.SHOOTER))
         .findFirst()
@@ -35,15 +36,18 @@ public class DoubleFirePower extends AbstractPower {
     }
 
     /**
-     * Concrete implementation of {@link AbstractPower.Builder}.
+     * Concrete implementation of {@link AbstractGameObject.AbstractBuilder}.
      */
-    public static class Builder extends AbstractPower.Builder {
-
+    public static class Builder extends AbstractGameObject.AbstractBuilder<DoubleFirePower, Builder> {
         @Override
-        protected final AbstractPower initGameObject() {
+        protected final DoubleFirePower initGameObject() {
             return new DoubleFirePower();
         }
 
+        @Override
+        protected final Builder getBuilder() {
+            return this;
+        }
     }
 
 }

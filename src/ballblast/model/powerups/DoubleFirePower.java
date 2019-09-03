@@ -12,9 +12,6 @@ public final class DoubleFirePower extends AbstractPower {
 
     private static final double DOUBLE_SHOT_INTERVAL = 0.055;
 
-    /**
-     * Create a new instance of double shot {@Link Power}.
-     */
     private DoubleFirePower() {
         super(PowerTypes.DOUBLEFIRE);
     }

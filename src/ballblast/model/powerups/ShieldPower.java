@@ -9,9 +9,6 @@ import ballblast.model.gameobjects.AbstractGameObject;
  */
 public final class ShieldPower extends AbstractPower {
 
-    /**
-     * Create a new instance of shield {@Link Power}.
-     */
     private ShieldPower() {
         super(PowerTypes.SHIELD);
     }

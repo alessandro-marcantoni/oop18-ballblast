@@ -11,9 +11,6 @@ public final class SpeedPower extends AbstractPower {
 
     private static final int SPEED = 90;
 
-    /**
-     * Creates a new instance of speed {@Link Power}.
-     */
     private SpeedPower() {
         super(PowerTypes.SPEED);
     }

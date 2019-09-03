@@ -14,7 +14,7 @@ public interface Collidable {
      * 
      * @return the geometric limits of the {@link GameObject}.
      */
-    Geometry generateShape();
+    Geometry getCollisionBox();
 
     /**
      * Returns the {@link CollisionTag} for this collidable.

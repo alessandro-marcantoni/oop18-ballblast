@@ -38,8 +38,8 @@ public class SimpleCollisionManager implements CollisionManager {
         final CollisionTag t2 = c2.getCollisionTag();
 
         if (t1.canCollideWith(t2)) {
-            final Geometry s1 = c1.generateShape();
-            final Geometry s2 = c2.generateShape();
+            final Geometry s1 = c1.getCollisionBox();
+            final Geometry s2 = c2.getCollisionBox();
             if (s1.intersects(s2)) {
                 c1.notifyCollision(new Collision(c1, c2));
                 c2.notifyCollision(new Collision(c2, c1));

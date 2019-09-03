@@ -3,6 +3,7 @@ package ballblast.view.rendering;
 import org.locationtech.jts.geom.Coordinate;
 
 import ballblast.model.Model;
+import ballblast.model.commons.Constants;
 
 /**
  * A renderer for the background of the GUI.
@@ -19,8 +20,8 @@ public class BackgroundRenderer extends AbstractRenderer {
     public BackgroundRenderer(final Sprite sprite) {
         this.sprite = sprite;
         this.sprite.setPosition(new Coordinate(0, 0));
-        this.sprite.setGameObjectWidth(Model.WORLD_WIDTH);
-        this.sprite.setGameObjectHeight(Model.WORLD_HEIGHT);
+        this.sprite.setGameObjectWidth(Constants.WORLD_WIDTH);
+        this.sprite.setGameObjectHeight(Constants.WORLD_HEIGHT);
     }
 
     /**

@@ -1,5 +1,6 @@
 package ballblast.model.powerups;
 
+import ballblast.model.commons.Constants;
 import ballblast.model.components.ComponentTypes;
 import ballblast.model.components.ShooterComponent;
 
@@ -30,7 +31,7 @@ public class DoubleFirePower extends AbstractPower {
         this.getPlayer().getComponents().stream()
         .filter(c -> c.getType().equals(ComponentTypes.SHOOTER))
         .findFirst()
-        .ifPresent(c -> ((ShooterComponent) c).setShotInterval(ShooterComponent.DEFAULT_SHOT_INTERVAL));
+        .ifPresent(c -> ((ShooterComponent) c).setShotInterval(Constants.DEFAULT_SHOT_INTERVAL));
     }
 
     /**

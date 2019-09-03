@@ -1,14 +1,12 @@
 package ballblast.model.levels;
 
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.model.Model;
+import ballblast.model.commons.Constants;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
-import ballblast.model.gameobjects.Player;
 import ballblast.model.inputs.InputManager.PlayerTags;
 
 /**
@@ -16,14 +14,7 @@ import ballblast.model.inputs.InputManager.PlayerTags;
  * the player is dead.
  */
 public class SinglePlayerDecorator extends LevelDecorator {
-    private static final Coordinate PLAYER_POSITION;
-    private static final double FLOOR_OFFSET = 5.1;
     private final GameObject player;
-
-    static {
-        PLAYER_POSITION = new Coordinate(Model.WORLD_WIDTH / 2,
-                Model.WORLD_HEIGHT - (FLOOR_OFFSET + Player.DEFAULT_HEIGHT));
-    }
 
     /**
      * Class constructor.
@@ -49,8 +40,10 @@ public class SinglePlayerDecorator extends LevelDecorator {
     }
 
     private GameObject createPlayer() {
-        return GameObjectFactory.createPlayer(this.getGameObjectManager(), this.getInputManager(), PlayerTags.FIRST,
-                this.getCollisionManager(), Vector2D.create(0, 0), PLAYER_POSITION, this.getGameDataManager());
+        return GameObjectFactory.createPlayer(
+                this.getGameObjectManager(), this.getInputManager(), PlayerTags.FIRST, 
+                this.getCollisionManager(), Vector2D.create(0, 0), Constants.PLAYER_POSITION, 
+                this.getGameDataManager());
     }
 
     private void checkGameOver() {

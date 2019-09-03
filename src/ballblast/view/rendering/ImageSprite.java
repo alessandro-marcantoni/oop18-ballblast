@@ -7,6 +7,7 @@ import org.locationtech.jts.math.Vector2D;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.model.powerups.Power;
+import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
@@ -21,8 +22,8 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     private static final double DEFAULT = 100;
     private static final double MAX_ALPHA = 1;
     private static final double MIN_ALPHA = 0;
-    private static final int TEXT_X_OFFSET = 1;
-    private static final int TEXT_Y_OFFSET = 3;
+    private static final int TEXT_X_OFFSET = 3;
+    private static final int TEXT_Y_OFFSET = 5;
     private static final int MAX_TEXT_WIDTH = 10;
     private static final int FONT_LARGE = 10;
     private static final int FONT_MEDIUM = 8;
@@ -37,6 +38,10 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
     private double gameObjectWidth;
     private double gameObjectHeight;
     private Coordinate gameObjectPosition;
+    private Font usingFont;
+    private final Font fontLarge;
+    private final Font fontMedium;
+    private final Font fontSmall;
 
     /**
      * Creates a new Image sprite with the given GraphicsContext.
@@ -56,6 +61,9 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         this.gameObjectWidth = DEFAULT;
         this.gameObjectWidth = DEFAULT;
         this.gameObjectPosition = new Coordinate(0, 0);
+        this.fontLarge = Font.font("Roboto", FONT_LARGE);
+        this.fontMedium = Font.font("Roboto", FONT_MEDIUM);
+        this.fontSmall = Font.font("Roboto", FONT_SMALL);
     }
 
     @Override
@@ -63,6 +71,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
         // Draw the gameObject
         this.gc.scale(1, -1);
         this.gc.setGlobalAlpha(this.getAlpha());
+        this.gc.setTextBaseline(VPos.TOP);
         if (!this.gameObject.getType().equals(GameObjectTypes.POWERUP)
                 || (this.gameObject.getType().equals(GameObjectTypes.POWERUP)
                         && (!((Power) this.gameObject).isActive()))) {
@@ -82,16 +91,19 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
                     && ((Ball) this.gameObject).getCurrentLife() > 0) {
                 // Set the font
                 if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.LARGE.getDiameter())) {
-                    this.gc.setFont(new Font(FONT_LARGE));
+                    this.gc.setFont(fontLarge);
+                    this.usingFont = fontLarge;
                 } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.MEDIUM.getDiameter())) {
-                    this.gc.setFont(new Font(FONT_MEDIUM));
+                    this.gc.setFont(fontMedium);
+                    this.usingFont = fontMedium;
                 } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.SMALL.getDiameter())) {
-                    this.gc.setFont(new Font(FONT_SMALL));
+                    this.gc.setFont(fontSmall);
+                    this.usingFont = fontSmall;
                 }
                 // Draw life inside the ball
                 this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
-                        this.gameObject.getPosition().getX() + this.gameObject.getWidth() / 4 + TEXT_X_OFFSET,
-                        this.gameObject.getPosition().getY() + this.gameObject.getHeight() / 2 + TEXT_Y_OFFSET,
+                        this.gameObject.getPosition().getX() + (((Ball) this.gameObject).getBallType().getDiameter() / 2) - (this.usingFont.getSize() / 3),
+                        this.gameObject.getPosition().getY() + (((Ball) this.gameObject).getBallType().getDiameter() / 2) - (this.usingFont.getSize() / 2),
                         MAX_TEXT_WIDTH);
             }
         }

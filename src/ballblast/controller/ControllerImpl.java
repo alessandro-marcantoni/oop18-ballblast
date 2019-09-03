@@ -3,14 +3,9 @@ package ballblast.controller;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-
 import org.xml.sax.SAXException;
-
-import com.google.common.collect.Lists;
-
 import ballblast.controller.files.LeaderboardManager;
 import ballblast.controller.files.UserManager;
 import ballblast.model.Model;

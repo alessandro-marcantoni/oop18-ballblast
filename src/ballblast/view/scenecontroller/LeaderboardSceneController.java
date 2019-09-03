@@ -4,17 +4,10 @@ package ballblast.view.scenecontroller;
  */
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
-import java.util.Set;
-
 import com.google.common.collect.Lists;
-
 import ballblast.controller.Controller;
-import ballblast.model.data.Leaderboard;
 import ballblast.model.data.RecordData;
 import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;

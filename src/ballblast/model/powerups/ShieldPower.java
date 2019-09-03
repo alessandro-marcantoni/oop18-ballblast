@@ -37,6 +37,11 @@ public final class ShieldPower extends AbstractPower {
      */
     public static class Builder extends AbstractGameObject.AbstractBuilder<ShieldPower, Builder> {
         @Override
+        public final ShieldPower build() {
+            return this.getGameObject();
+        }
+
+        @Override
         protected final ShieldPower initGameObject() {
             return new ShieldPower();
         }

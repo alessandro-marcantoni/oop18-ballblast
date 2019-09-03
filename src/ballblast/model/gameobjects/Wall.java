@@ -6,7 +6,7 @@ import com.google.common.base.MoreObjects;
  * Represents a {@link Wall} object used to create the {@link Level}'s
  * boundaries.
  */
-public final class Wall extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
+public final class Wall extends AbstractGameObject {
     /**
      * Class constructor.
      */
@@ -27,6 +27,10 @@ public final class Wall extends AbstractGameObject { // NOPMD This class is usab
      * Concrete implementation of {@link AbstractGameObject.AbstractBuilder}.
      */
     public static class Builder extends AbstractGameObject.AbstractBuilder<Wall, Builder> {
+        @Override
+        public final Wall build() {
+            return this.getGameObject();
+        }
         /**
          * Sets the {@link Wall}'s height.
          * 

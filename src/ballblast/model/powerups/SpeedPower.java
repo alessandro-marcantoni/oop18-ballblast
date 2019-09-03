@@ -33,6 +33,11 @@ public final class SpeedPower extends AbstractPower {
      */
     public static class Builder extends AbstractGameObject.AbstractBuilder<SpeedPower, Builder> {
         @Override
+        public final SpeedPower build() {
+            return this.getGameObject();
+        }
+ 
+        @Override
         protected final SpeedPower initGameObject() {
             return new SpeedPower();
         }

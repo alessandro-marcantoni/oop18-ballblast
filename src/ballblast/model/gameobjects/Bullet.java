@@ -9,7 +9,7 @@ import ballblast.model.commons.Constants;
  * balls. It can collide only with {@link Wall}s and {@link Ball}s.
  *
  */
-public final class Bullet extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
+public final class Bullet extends AbstractGameObject {
     /**
      * Create a {@link Bullet} instance.
      */
@@ -32,6 +32,11 @@ public final class Bullet extends AbstractGameObject { // NOPMD This class is us
      * Concrete implementation of {@link AbstractGameObject.AbstractBuilder}.
      */
     public static class Builder extends AbstractGameObject.AbstractBuilder<Bullet, Builder> {
+        @Override
+        public final Bullet build() {
+            return this.getGameObject();
+        }
+
         @Override
         protected final Bullet initGameObject() {
             return new Bullet();

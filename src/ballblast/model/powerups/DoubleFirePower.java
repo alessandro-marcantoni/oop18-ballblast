@@ -40,6 +40,11 @@ public final class DoubleFirePower extends AbstractPower {
      */
     public static class Builder extends AbstractGameObject.AbstractBuilder<DoubleFirePower, Builder> {
         @Override
+        public final DoubleFirePower build() {
+            return this.getGameObject();
+        }
+
+        @Override
         protected final DoubleFirePower initGameObject() {
             return new DoubleFirePower();
         }

@@ -23,7 +23,7 @@ public class PausedState extends GUIState {
                 KeyCode.ESCAPE, g -> g.getGUI().setState(g.getGUI().getInGameState()), 
                 KeyCode.Q, g -> {
                     g.getGUI().getController().gameOver();
-                    g.getGUI().backScene();
+                    g.getGUI().nextScene();
                 });
     }
 
@@ -49,7 +49,7 @@ public class PausedState extends GUIState {
     public final void onStateExit() {
         this.getController().resume();
         this.pausePane.setVisible(false);
-        this.getGUI().render();
+//        this.getGUI().render();
     }
 
     @Override

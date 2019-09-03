@@ -154,7 +154,7 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     protected final GameScenes getPreviousScene() {
-        return GameScenes.MENU;
+        return GameScenes.GAMEOVER;
     }
 
     /**

@@ -103,7 +103,7 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
     private List<Label> users;
 //    private List<Integer> leaderboardScore;
 //    private List<String> leaderboardUser;
-    private List<RecordData> recList;
+    private List<RecordData> recordList;
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     private void initialize() {
@@ -136,7 +136,7 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
         super.init(controller, view);
 
         //this.leaderboard = this.getController().getLeaderboard();
-        this.recList = this.getController().getLeaderboard().getRecordList();
+        this.recordList = this.getController().getLeaderboard().getRecordList();
         this.users = Lists.newArrayList(player1label, player2label, player3label, player4label, player5label,
                 player6label, player7label, player8label, player9label, player10label);
         this.scores = Lists.newArrayList(score1label, score2label, score3label, score4label, score5label, score6label,
@@ -148,8 +148,8 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
 //        }
 
         for (int i = 0; i < 10; i++) {
-            users.get(i).setText(recList.get(i).getName());
-            scores.get(i).setText(String.valueOf((recList).get(i).getScore()));
+            users.get(i).setText(recordList.get(i).getName());
+            scores.get(i).setText(String.valueOf((recordList).get(i).getScore()));
         }
     }
 

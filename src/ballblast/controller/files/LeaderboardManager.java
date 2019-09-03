@@ -10,8 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import com.google.common.collect.Lists;
-
 import ballblast.controller.DirectoryManager;
 import ballblast.model.data.Leaderboard;
 
@@ -52,7 +50,8 @@ public class LeaderboardManager {
     private Optional<Leaderboard> load(final String path) {
         if (!Files.exists(Paths.get(path))) {
             final Leaderboard leaderboard = new Leaderboard();
-            leaderboard.setRecordList(Lists.newArrayList());
+            leaderboard.setRecordList(leaderboard.initList());
+            this.save(leaderboard, path);
             return Optional.of(leaderboard);
         }
         try (FileInputStream fis = new FileInputStream(new File(path)); XMLDecoder dec = new XMLDecoder(fis)) {

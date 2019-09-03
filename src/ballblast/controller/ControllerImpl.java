@@ -2,6 +2,7 @@ package ballblast.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -10,10 +11,12 @@ import org.xml.sax.SAXException;
 
 import com.google.common.collect.Lists;
 
+import ballblast.controller.files.LeaderboardManager;
 import ballblast.controller.files.UserManager;
 import ballblast.model.Model;
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.data.Leaderboard;
+import ballblast.model.data.UserData;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
@@ -27,9 +30,11 @@ public class ControllerImpl implements Controller {
     private final Model model;
     private final View view;
     private GameLoop gameloop;
+    //private String currentUser;
+    private Optional<UserData> currentUser;
     private final UserManager userManager;
-    private String currentUser;
     private Leaderboard leaderboard;
+    private LeaderboardManager lbManager;
 
     /**
      * Create a new instance of Controller.
@@ -42,8 +47,9 @@ public class ControllerImpl implements Controller {
         this.model = model;
         this.view = view;
         this.userManager = new UserManager();
-        this.leaderboard = new Leaderboard();
-        leaderboard.setRecordList(Lists.newArrayList());
+        this.currentUser = Optional.empty();
+        this.lbManager = new LeaderboardManager();
+        this.leaderboard = this.lbManager.loadSurvivalLeaderboard().get();
     }
 
     @Override
@@ -68,9 +74,12 @@ public class ControllerImpl implements Controller {
 //        System.out.println("Gameover true in ControllerImpl");
 //        this.view.setGameOver(true);
         this.gameloop.stopLoop();
-        if (this.leaderboard.isRecord(this.model.getGameData().getScore())) {
-            this.leaderboard.addRecord(this.currentUser, this.model.getGameData().getScore());
-        }
+
+//            this.leaderboard.addRecord(this.currentUser.get().getName(), this.model.getGameData().getScore());
+//            this.lbManager.saveSurvivalLeaderboard(leaderboard);
+//            this.currentUser.get().addGameData(this.model.getGameData());
+//            this.userManager.updateUserData(this.currentUser.get());
+
     }
 
     @Override
@@ -91,22 +100,20 @@ public class ControllerImpl implements Controller {
     @Override
     public final boolean checkLoginUser(final String username, final String password)
             throws ParserConfigurationException, SAXException, IOException {
-        if (this.userManager.login(username, password).isPresent()) {
-            this.currentUser = username;
-            return true;
-        }
-        return false;
+        this.currentUser = this.userManager.login(username, password);
+        return this.currentUser.isPresent();
     }
 
     @Override
     public final boolean checkRegisterUser(final String username, final String password)
             throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        return this.userManager.register(username, password).isPresent();
+        this.currentUser = this.userManager.register(username, password);
+        return this.currentUser.isPresent();
     }
 
     @Override
     public final String getCurrentUser() {
-        return this.currentUser;
+        return this.currentUser.get().getName();
     }
 
     private void createGameLoop() {
@@ -115,6 +122,16 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final Leaderboard getLeaderboard() {
-        return this.leaderboard;
+        return this.lbManager.loadSurvivalLeaderboard().get();
+    }
+
+    /**
+     * End of the game session.
+     */
+    protected void endGame() {
+        this.leaderboard.addRecord(currentUser.get().getName(), this.model.getGameData().getScore());
+        this.lbManager.saveSurvivalLeaderboard(leaderboard);
+        this.currentUser.get().addGameData(this.model.getGameData());
+        this.userManager.updateUserData(this.currentUser.get());
     }
 }

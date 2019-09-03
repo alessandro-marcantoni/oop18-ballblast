@@ -8,6 +8,8 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.google.common.collect.Lists;
+
 /**
  * Keeps track of users {@link RecordData}.
  */
@@ -55,7 +57,12 @@ public class Leaderboard {
      * @param score the score to verify.
      * @return true if the score is an high score.
      */
-    public boolean isRecord(final int score) {
+    private boolean isRecord(final int score) {
+        for (final RecordData rec : recordList) {
+            if (rec.getScore() == score) {
+                return false;
+            }
+        }
         return score > this.getRecords().max(COMPARATOR).get().getScore();
     }
 
@@ -109,6 +116,22 @@ public class Leaderboard {
      */
     public void setRecordList(final List<RecordData> records) {
         this.recordList = records;
+    }
+
+    /**
+     * Initialize the record list with empty {@link RecordData}s.
+     * 
+     * @return the empty record list.
+     */
+    public List<RecordData> initList() {
+        List<RecordData> list = Lists.newArrayList();
+        for (int i = 1; i <= MAX_SCORES; i++) {
+            final RecordData rec = new RecordData();
+            rec.setName("---");
+            rec.setScore(-i);
+            list.add(rec);
+        }
+        return list;
     }
 
 }

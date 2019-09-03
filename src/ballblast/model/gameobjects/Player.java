@@ -2,24 +2,13 @@ package ballblast.model.gameobjects;
 
 import com.google.common.base.MoreObjects;
 
+import ballblast.model.commons.Constants;
+
 /**
  * Represents the entity used by the user, who is able to move and shoot. When
  * hit by a ball it dies.
  */
 public final class Player extends AbstractGameObject { // NOPMD This class is usable only trought a Builder.
-    /**
-     * The default {@link Player}'s height.
-     */
-    public static final double DEFAULT_HEIGHT = 12;
-    /**
-     * The default {@link Player}'s width.
-     */
-    public static final double DEFAULT_WIDTH = 6;
-    /**
-     * The default {@link Player}'s speed.
-     */
-    public static final double DEFAULT_SPEED = 45;
-
     private double currentSpeed;
 
     /**
@@ -27,9 +16,9 @@ public final class Player extends AbstractGameObject { // NOPMD This class is us
      */
     private Player() {
         super(GameObjectTypes.PLAYER);
-        this.setHeight(DEFAULT_HEIGHT);
-        this.setWidth(DEFAULT_WIDTH);
-        this.currentSpeed = DEFAULT_SPEED;
+        this.setHeight(Constants.PLAYER_HEIGHT);
+        this.setWidth(Constants.PLAYER_WIDTH);
+        this.currentSpeed = Constants.PLAYER_SPEED;
     }
 
     /**

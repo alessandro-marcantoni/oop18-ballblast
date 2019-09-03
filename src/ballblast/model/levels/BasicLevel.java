@@ -3,13 +3,12 @@ package ballblast.model.levels;
 import java.util.Arrays;
 import java.util.List;
 
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.model.Model;
-import ballblast.model.components.Component;
+import ballblast.model.commons.Constants;
+import ballblast.model.commons.Utils;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
@@ -24,11 +23,6 @@ import ballblast.model.powerups.PowerFactory;
  * that all levels share.
  */
 public final class BasicLevel implements Level {
-    private static final double POWER_SPAWN_TIME = 20.0;
-    private static final double SPAWN_OFFSET = 4.0;
-    private static final double SPAWN_X = Model.WORLD_WIDTH / 2;
-    private static final double SPAWN_Y = Boundaries.TOP.getHeight() + SPAWN_OFFSET;
-
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
@@ -45,7 +39,7 @@ public final class BasicLevel implements Level {
         this.collisionManager = new SimpleCollisionManager();
         this.inputManager = new InputManager();
         this.gameDataManager = new GameDataManager();
-        this.currentSpawnTime = POWER_SPAWN_TIME;
+        this.currentSpawnTime = Constants.POWER_SPAWN_TIME;
         this.createBoundaries();
     }
 
@@ -107,27 +101,23 @@ public final class BasicLevel implements Level {
                 b.getPosition(), Vector2D.create(0, 0), this.collisionManager);
     }
 
-    private void activeComponents(final GameObject gameObject) {
-        gameObject.getComponents().forEach(Component::enable);
-    }
-
     private void initGameObjectManager() {
         this.gameObjectManager.update(0);
-        this.gameObjectManager.getGameObjects().forEach(this::activeComponents);
+        this.gameObjectManager.getGameObjects().forEach(Utils::activeComponents);
     }
 
     private void tryToSpawn(final double elapsed) {
         this.currentSpawnTime -= elapsed;
         if (this.currentSpawnTime <= 0) {
             this.spawnPowerUp();
-            this.currentSpawnTime = POWER_SPAWN_TIME;
+            this.currentSpawnTime = Constants.POWER_SPAWN_TIME;
         }
     }
 
     private void spawnPowerUp() {
         final GameObject power = ((GameObject) PowerFactory.createRandomPower(
-                Vector2D.create(0, 0), new Coordinate(SPAWN_X, SPAWN_Y), this.collisionManager));
-        this.activeComponents(power);
+                Vector2D.create(0, 0), Utils.getRandomSpawnPosition(), this.collisionManager));
+        Utils.activeComponents(power);
         this.getGameObjectManager().addGameObjects(ImmutableList.of(power));
     }
 }

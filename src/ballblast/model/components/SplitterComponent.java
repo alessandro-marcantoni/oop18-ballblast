@@ -17,7 +17,7 @@ import ballblast.model.physics.CollisionManager;
  * Adds the ability to a {@link GameObject} to be split when destroyed.
  */
 public class SplitterComponent extends AbstractComponent {
-    private static final double Y_SPLIT_VELOCITY = -90;
+    private static final double Y_SPLIT_VELOCITY = -110;
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final GameDataManager gameDataManager;

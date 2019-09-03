@@ -1,7 +1,7 @@
 package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
-import ballblast.model.Model;
+import ballblast.model.commons.Constants;
 import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
 import ballblast.view.scenes.GameScenes;
@@ -119,7 +119,7 @@ public class GUISceneController extends AbstractSceneController {
         gc.clearRect(0, 0, canvasWidth, canvasWidth);
         gc.fillRect(0, 0, canvasWidth, canvasHeight);
         gc.scale(1, -1);
-        gc.scale(canvasWidth / (Model.WORLD_WIDTH), canvasHeight / Model.WORLD_HEIGHT);
+        gc.scale(canvasWidth / (Constants.WORLD_WIDTH), canvasHeight / Constants.WORLD_HEIGHT);
     }
 
     // Clear the canvas after every render. It avoids ghosting effect.
@@ -133,7 +133,7 @@ public class GUISceneController extends AbstractSceneController {
         final double parentWidth = this.canvasContainer.getWidth();
         final double parentHeight = this.canvasContainer.getHeight();
         final double ratio = parentWidth / parentHeight;
-        final double expectedRatio = Model.WORLD_WIDTH / Model.WORLD_HEIGHT;
+        final double expectedRatio = Constants.WORLD_WIDTH / Constants.WORLD_HEIGHT;
 
         if (ratio < expectedRatio) {
             this.canvas.setWidth(parentWidth);

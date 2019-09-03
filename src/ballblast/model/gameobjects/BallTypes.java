@@ -1,6 +1,7 @@
 package ballblast.model.gameobjects;
 
 import java.util.Optional;
+import ballblast.model.commons.Constants;
 
 /**
  * All different types of {@link Ball}.
@@ -9,18 +10,18 @@ public enum BallTypes {
     /**
      * small.
      */
-    SMALL(8),
+    SMALL(Constants.SMALL_BALL_SIZE),
     /**
      * medium.
      */
-    MEDIUM(12),
+    MEDIUM(Constants.MEDIUM_BALL_SIZE),
     /**
      * large.
      */
-    LARGE(16);
+    LARGE(Constants.LARGE_BALL_SIZE);
 
     private BallTypes child;
-    private int diameter;
+    private double diameter;
 
     static {
         SMALL.child = null;
@@ -33,7 +34,7 @@ public enum BallTypes {
      * 
      * @param diameter the diameter of the {@link Ball}.
      */
-    BallTypes(final int diameter) {
+    BallTypes(final double diameter) {
         this.diameter = diameter;
     }
 
@@ -52,7 +53,7 @@ public enum BallTypes {
      * 
      * @return the diameter of the {@link Ball}.
      */
-    public int getDiameter() {
+    public double getDiameter() {
         return this.diameter;
     }
 }

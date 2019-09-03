@@ -1,5 +1,6 @@
 package ballblast.model.powerups;
 
+import ballblast.model.commons.Constants;
 import ballblast.model.gameobjects.Player;
 
 /**
@@ -23,7 +24,7 @@ public class SpeedPower extends AbstractPower {
 
     @Override
     protected final void stopPerforming() {
-        ((Player) this.getPlayer()).setSpeed(Player.DEFAULT_SPEED);
+        ((Player) this.getPlayer()).setSpeed(Constants.PLAYER_SPEED);
     }
 
     /**

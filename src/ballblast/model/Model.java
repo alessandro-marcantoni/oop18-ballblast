@@ -14,22 +14,6 @@ import ballblast.model.levels.GameStatus;
  */
 public interface Model {
     /**
-     * Default width for the levels.
-     */
-    double WORLD_WIDTH = 200;
-    /**
-     * Default height for the levels.
-     */
-    double WORLD_HEIGHT = 100;
-    // TO delete maybe.
-    /**
-     * Returns the current level, it can be null, this is the reason of Optional.
-     * 
-     * @return the current level.
-     */
-
-    // Optional<Level> getCurrentLevel();
-    /**
      * Starts new survival session.
      */
     void startSurvival();

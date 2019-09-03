@@ -6,20 +6,16 @@ import org.locationtech.jts.math.Vector2D;
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.data.GameDataManager;
-import ballblast.model.gameobjects.Bullet;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.physics.CollisionManager;
+import ballblast.model.commons.Constants;
 
 /**
  * Adds the shotting ability to a {@link GameObject}.
  */
 public class ShooterComponent extends AbstractComponent {
-    /**
-     * The default {@link ShooterComponent}'s shot interval.
-     */
-    public static final double DEFAULT_SHOT_INTERVAL = 0.15;
     private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -50);
 
     private final GameObjectManager gameObjectManager;
@@ -46,7 +42,7 @@ public class ShooterComponent extends AbstractComponent {
         this.collisionManager = collisionManager;
         this.gameDataManager = gameDataManager;
         this.isShooting = false;
-        this.shotInterval = DEFAULT_SHOT_INTERVAL;
+        this.shotInterval = Constants.DEFAULT_SHOT_INTERVAL;
     }
 
     @Override
@@ -93,8 +89,8 @@ public class ShooterComponent extends AbstractComponent {
 
     private Coordinate getSpawnPosition() {
         final Coordinate parentPos = this.getParent().getPosition();
-        return new Coordinate(parentPos.getX() + this.getParent().getWidth() / 2 - Bullet.DEFAULT_WIDTH / 2,
-                parentPos.getY() - Bullet.DEFAULT_HEIGHT);
+        return new Coordinate(parentPos.getX() + this.getParent().getWidth() / 2 - Constants.BULLET_WIDTH / 2,
+                parentPos.getY() - Constants.BULLET_HEIGHT);
     }
 
 }

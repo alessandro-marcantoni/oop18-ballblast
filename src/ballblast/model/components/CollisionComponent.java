@@ -34,15 +34,18 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
         this.manager = man;
     }
 
-    @Override
-    public final Geometry generateShape() {
+    private Geometry generateCollisionBox() {
         final GameObject parent = this.getParent();
-        final Coordinate pos = parent.getPosition();
         final GeometricShapeFactory shapeFactory = new GeometricShapeFactory();
-        shapeFactory.setBase(new Coordinate(pos.getX(), pos.getY()));
+        shapeFactory.setBase(new Coordinate(parent.getPosition().getX(), parent.getPosition().getY()));
         shapeFactory.setHeight(parent.getHeight());
         shapeFactory.setWidth(parent.getWidth());
         return parent.getType() == GameObjectTypes.BALL ? shapeFactory.createCircle() : shapeFactory.createRectangle();
+    }
+
+    @Override
+    public final Geometry getCollisionBox() {
+        return this.generateCollisionBox();
     }
 
     @Override

@@ -5,7 +5,6 @@ import org.locationtech.jts.geom.Coordinate;
  * Groups all the {@link Model}'s constants.
  */
 public final class Constants {
-    private Constants() { }
     /**
      * Default width for the levels.
      */
@@ -63,5 +62,5 @@ public final class Constants {
      * Default {@link Ball}'s spawn time.
      */
     public static final double BALL_SPAWN_TIME = 10;
-
+    private Constants() { }
 }

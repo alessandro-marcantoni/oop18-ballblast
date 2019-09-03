@@ -39,7 +39,7 @@ public final class DirectoryManager {
     /**
      * Static field that contains the file of the users list.
      */
-    public static final String USERS_LIST_FILE = USERS_DIR + SEPARATOR + "userslist.xml";
+    public static final String USERS_LIST_FILE = USERS_DIR + SEPARATOR + "users_list.xml";
 
     /**
      * Static field that contains the file with the leaderboard of the users in the

@@ -2,21 +2,19 @@ package ballblast.model.powerups;
 
 import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.ComponentTypes;
+import ballblast.model.gameobjects.AbstractGameObject;
 
 /**
  * The class representing the shield {@Link Power}.
  */
-public class ShieldPower extends AbstractPower {
+public final class ShieldPower extends AbstractPower {
 
-    /**
-     * Create a new instance of shield {@Link Power}.
-     */
-    public ShieldPower() {
+    private ShieldPower() {
         super(PowerTypes.SHIELD);
     }
 
     @Override
-    public final void performPower() {
+    public void performPower() {
         this.getPlayer().getComponents().stream()
         .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
         .findFirst()
@@ -24,7 +22,7 @@ public class ShieldPower extends AbstractPower {
     }
 
     @Override
-    protected final void stopPerforming() {
+    protected void stopPerforming() {
         this.getPlayer().getComponents().stream()
         .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
         .findFirst()
@@ -32,15 +30,23 @@ public class ShieldPower extends AbstractPower {
     }
 
     /**
-     * Concrete implementation of {@link AbstractPower.Builder}.
+     * Concrete implementation of {@link AbstractGameObject.AbstractBuilder}.
      */
-    public static class Builder extends AbstractPower.Builder {
+    public static class Builder extends AbstractGameObject.AbstractBuilder<ShieldPower, Builder> {
+        @Override
+        public final ShieldPower build() {
+            return this.getGameObject();
+        }
 
         @Override
-        protected final AbstractPower initGameObject() {
+        protected final ShieldPower initGameObject() {
             return new ShieldPower();
         }
 
+        @Override
+        protected final Builder getBuilder() {
+            return this;
+        }
     }
 
 }

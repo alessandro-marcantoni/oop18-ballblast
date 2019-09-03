@@ -25,7 +25,7 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
      * 
      * @param powerType The type of the {@Link Power}.
      */
-    public AbstractPower(final PowerTypes powerType) {
+    protected AbstractPower(final PowerTypes powerType) {
         super(GameObjectTypes.POWERUP);
         this.powerType = powerType;
         this.setHeight(DEFAULT_HEIGHT);
@@ -103,20 +103,6 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
     private void checkAvailable() {
         if (this.availableTime >= AVAILABLE_TIME) {
             this.destroy();
-        }
-    }
-
-    /**
-     * Implementation of {@link AbstractGameObject.AbstractBuilder}.
-     */
-    public abstract static class Builder extends AbstractGameObject.AbstractBuilder<AbstractPower, Builder> {
-
-        @Override
-        protected abstract AbstractPower initGameObject();
-
-        @Override
-        protected final Builder getBuilder() {
-            return this;
         }
     }
 }

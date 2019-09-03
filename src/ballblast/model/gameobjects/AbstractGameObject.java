@@ -192,9 +192,7 @@ public abstract class AbstractGameObject implements GameObject {
          * 
          * @return the set {@link GameObject}.
          */
-        public A build() {
-            return this.gameObject;
-        }
+        protected abstract A build();
 
         /**
          * Sets the {@link GameObject}'s velocity.

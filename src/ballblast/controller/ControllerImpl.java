@@ -25,7 +25,6 @@ public class ControllerImpl implements Controller, GameLoopObserver {
     private final Model model;
     private final View view;
     private GameLoop gameloop;
-    //private String currentUser;
     private Optional<UserData> currentUser;
     private final UserManager userManager;
     private Leaderboard leaderboard;

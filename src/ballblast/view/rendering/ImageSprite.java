@@ -18,11 +18,10 @@ import ballblast.model.gameobjects.BallTypes;
  */
 public class ImageSprite extends AbstractRenderer implements Sprite {
 
-    private static final double DEFAULT = 100;
     private static final double MAX_ALPHA = 1;
     private static final double MIN_ALPHA = 0;
-    private static final int TEXT_X_OFFSET = 3;
-    private static final int TEXT_Y_OFFSET = 5;
+    private static final int DECS_OFFSET = 2;
+    private static final int CENTS_OFFSET = 2;
     private static final int MAX_TEXT_WIDTH = 10;
     private static final int FONT_LARGE = 10;
     private static final int FONT_MEDIUM = 8;
@@ -90,24 +89,7 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
 
             if (this.gameObject.getType().equals(GameObjectTypes.BALL)
                     && ((Ball) this.gameObject).getCurrentLife() > 0) {
-                // Set the font
-                if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.LARGE.getDiameter())) {
-                    this.gc.setFont(fontLarge);
-                    this.usingFont = fontLarge;
-                } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.MEDIUM.getDiameter())) {
-                    this.gc.setFont(fontMedium);
-                    this.usingFont = fontMedium;
-                } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.SMALL.getDiameter())) {
-                    this.gc.setFont(fontSmall);
-                    this.usingFont = fontSmall;
-                }
-                // Draw life inside the ball
-                this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
-                        this.getGameObjectPosition().getX() + (((Ball) this.gameObject).getBallType().getDiameter() / 2)
-                                - (this.usingFont.getSize() / 3),
-                        this.getGameObjectPosition().getY() + (((Ball) this.gameObject).getBallType().getDiameter() / 2)
-                                - (this.usingFont.getSize() / 2),
-                        MAX_TEXT_WIDTH);
+                drawLife();
             }
         }
     }
@@ -225,15 +207,63 @@ public class ImageSprite extends AbstractRenderer implements Sprite {
 
     /**
      * Static method used to render the background.
-     * @param gc
-     *          the {@link GraphicsContext} of the canvas.
-     * @param width
-     *          the width of the canvas.
-     * @param height
-     *          the height of the canvas.
+     * 
+     * @param gc     the {@link GraphicsContext} of the canvas.
+     * @param width  the width of the canvas.
+     * @param height the height of the canvas.
      */
     public static void renderBackground(final GraphicsContext gc, final double width, final double height) {
         gc.drawImage(ImageLoader.getLoader().getImage(ImagePath.BACKGROUND), 0, 0, width, height);
+    }
+
+    private void drawLife() {
+        // Set the font
+        if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.LARGE.getDiameter())) {
+            this.gc.setFont(fontLarge);
+            this.usingFont = fontLarge;
+        } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.MEDIUM.getDiameter())) {
+            this.gc.setFont(fontMedium);
+            this.usingFont = fontMedium;
+        } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.SMALL.getDiameter())) {
+            this.gc.setFont(fontSmall);
+            this.usingFont = fontSmall;
+        }
+        if (((Ball) this.gameObject).getCurrentLife() < 10) {
+            drawUnits();
+        } else if (((Ball) this.gameObject).getCurrentLife() < 100) {
+            drawDecs();
+        } else {
+            drawCents();
+        }
+        // Draw life inside the ball
+
+    }
+
+    private void drawUnits() {
+        this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
+                this.getGameObjectPosition().getX() + (((Ball) this.gameObject).getBallType().getDiameter() / 2)
+                        - (this.usingFont.getSize() / 3),
+                this.getGameObjectPosition().getY() + (((Ball) this.gameObject).getBallType().getDiameter() / 2)
+                        - (this.usingFont.getSize() / 2),
+                MAX_TEXT_WIDTH);
+    }
+
+    private void drawDecs() {
+        this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
+                this.getGameObjectPosition().getX() + (((Ball) this.gameObject).getBallType().getDiameter() / 2)
+                        - (this.usingFont.getSize() / 3) - DECS_OFFSET,
+                this.getGameObjectPosition().getY() + (((Ball) this.gameObject).getBallType().getDiameter() / 2)
+                        - (this.usingFont.getSize() / 2),
+                MAX_TEXT_WIDTH);
+    }
+
+    private void drawCents() {
+        this.gc.strokeText(Integer.toString(((Ball) (this.gameObject)).getCurrentLife()),
+                this.getGameObjectPosition().getX() + (((Ball) this.gameObject).getBallType().getDiameter() / 2)
+                        - (this.usingFont.getSize() / 3) - CENTS_OFFSET,
+                this.getGameObjectPosition().getY() + (((Ball) this.gameObject).getBallType().getDiameter() / 2)
+                        - (this.usingFont.getSize() / 2),
+                MAX_TEXT_WIDTH);
     }
 
 }

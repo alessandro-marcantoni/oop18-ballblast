@@ -4,8 +4,6 @@ import ballblast.controller.Controller;
 import ballblast.model.commons.Constants;
 import ballblast.view.View;
 import ballblast.view.rendering.CanvasDrawer;
-import ballblast.view.rendering.ImageLoader;
-import ballblast.view.rendering.ImagePath;
 import ballblast.view.rendering.ImageSprite;
 import ballblast.view.scenes.GameScenes;
 import ballblast.view.scenes.UIFactory;
@@ -116,7 +114,7 @@ public class GUISceneController extends AbstractSceneController {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
         gc.setFont(new Font(FONT_SIZE));
 //        gc.setFill(Color.LIGHTBLUE);
-        gc.setStroke(Color.LIGHTGREY);
+        gc.setStroke(Color.rgb(204, 204, 204));
         gc.save();
         final double canvasWidth = this.canvas.getWidth();
         final double canvasHeight = this.canvas.getHeight();

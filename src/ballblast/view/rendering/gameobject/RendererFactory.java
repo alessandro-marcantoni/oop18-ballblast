@@ -8,7 +8,6 @@ import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.Player;
 import ballblast.model.gameobjects.Wall;
 import ballblast.model.powerups.AbstractPower;
-import ballblast.view.rendering.BackgroundRenderer;
 import ballblast.view.rendering.Renderer;
 import ballblast.view.rendering.Sprite;
 
@@ -83,12 +82,4 @@ public final class RendererFactory {
         return new PowerUpRenderer(sprite, (AbstractPower) gameObject);
     }
 
-    /**
-     * 
-     * @param sprite the {@link Sprite}.
-     * @return the {@link Renderer} used to render the background.
-     */
-    public static Renderer createBackgrund(final Sprite sprite) {
-        return new BackgroundRenderer(sprite);
-    }
 }

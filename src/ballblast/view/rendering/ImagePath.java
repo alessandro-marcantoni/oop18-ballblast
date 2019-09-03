@@ -42,7 +42,7 @@ public enum ImagePath {
     /**
      * The image for background.
      */
-    BACKGROUND("/view/walls/background.jpg");
+    BACKGROUND("/view/walls/background.png");
     private final String path;
 
     ImagePath(final String path) {

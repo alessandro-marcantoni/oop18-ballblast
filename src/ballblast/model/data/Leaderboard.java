@@ -128,7 +128,7 @@ public class Leaderboard {
         for (int i = 1; i <= MAX_SCORES; i++) {
             final RecordData rec = new RecordData();
             rec.setName("---");
-            rec.setScore(-i);
+            rec.setScore(0);
             list.add(rec);
         }
         return list;

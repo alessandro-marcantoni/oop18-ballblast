@@ -10,6 +10,7 @@ import org.xml.sax.SAXException;
 
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.data.Leaderboard;
+import ballblast.model.data.UserData;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
@@ -90,7 +91,7 @@ public interface Controller {
      * 
      * @return The current user.
      */
-    String getCurrentUser();
+    UserData getCurrentUser();
 
     /**
      * Returns the {@link Leaderboard}.

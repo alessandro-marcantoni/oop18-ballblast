@@ -112,8 +112,8 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public final String getCurrentUser() {
-        return this.currentUser.get().getName();
+    public final UserData getCurrentUser() {
+        return this.currentUser.get();
     }
 
     private void createGameLoop() {

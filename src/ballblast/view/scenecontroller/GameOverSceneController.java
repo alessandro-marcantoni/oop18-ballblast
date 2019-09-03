@@ -33,7 +33,7 @@ public class GameOverSceneController extends AbstractSubSceneController {
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
         this.selection = GameScenes.MENU;
-        this.user.setText(controller.getCurrentUser());
+        this.user.setText(controller.getCurrentUser().getName());
         this.score.setText(String.valueOf(controller.getGameData().getScore()));
         this.ballsDestroyed.setText(String.valueOf(controller.getGameData().getDestroyedBalls()));
         this.bulletsShot.setText(String.valueOf(controller.getGameData().getSpawnedBullets()));

@@ -1,9 +1,14 @@
 package ballblast.model.commons;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
 import ballblast.model.components.Component;
 import ballblast.model.gameobjects.GameObject;
@@ -14,16 +19,23 @@ import ballblast.model.powerups.PowerFactory;
 import ballblast.model.powerups.PowerTypes;
 
 /**
- * 
+ * Contains some useful methods used by more than one class.
  */
 public final class Utils {
+    private static final Random RANDOM = new Random();
     private static final double SPAWN_OFFSET = 5.0;
     private static final double SPAWN_Y = Boundaries.TOP.getHeight() + SPAWN_OFFSET;
-    private static final double MIN_SPAWN_X = Boundaries.LEFT.getWidth() + Constants.LARGE_BALL_SIZE + SPAWN_OFFSET;
+    private static final double MIN_SPAWN_X = Boundaries.LEFT.getWidth()
+            + Constants.LARGE_BALL_SIZE + SPAWN_OFFSET;
     private static final double MAX_SPAWN_X = Constants.WORLD_WIDTH - Boundaries.RIGHT.getWidth()
             - Constants.LARGE_BALL_SIZE - SPAWN_OFFSET;
+    private static final List<PowerTypes> POWERS = ImmutableList.copyOf(PowerTypes.values());
+    private static final Map<PowerTypes, PowerConsumer> POWER_MAP = ImmutableMap.of(
+            PowerTypes.DOUBLEFIRE, PowerFactory::createDoubleFirePower,
+            PowerTypes.SPEED, PowerFactory::createSpeedPower,
+            PowerTypes.SHIELD, PowerFactory::createShieldPower
+    );
 
-    private Utils() { }
     /**
      * Generates a random spawn position based on World dimensions.
      * @return a random spawn position.
@@ -49,15 +61,17 @@ public final class Utils {
      */
     public static Power createRandomPower(final Vector2D velocity, final Coordinate position,
             final CollisionManager collisionManager) {
-        final int powerTypePick = new Random().nextInt(PowerTypes.values().length);
-        switch (powerTypePick) {
-        case 1:
-            return PowerFactory.createShieldPower(velocity, position, collisionManager);
-        case 2:
-            return PowerFactory.createDoubleFirePower(velocity, position, collisionManager);
-        default:
-            return PowerFactory.createSpeedPower(velocity, position, collisionManager);
-        }
+        return POWER_MAP.get(getRandomPowerType()).apply(velocity, position, collisionManager);
+    }
+
+    private Utils() { }
+
+    private interface PowerConsumer {
+        Power apply(Vector2D v, Coordinate p, CollisionManager c);
+    }
+
+    private static PowerTypes getRandomPowerType() {
+        return POWERS.get(RANDOM.nextInt(POWERS.size()));
     }
 
 }

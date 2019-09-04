@@ -7,6 +7,7 @@ import java.util.Map;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
+import ballblast.controller.sound.Sound;
 import ballblast.model.Model;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
@@ -44,6 +45,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     @Override
     public final void run() {
+        Sound.THEME.loopSound();
         this.stopped = false;
         //this.render();
         long lastTime = System.currentTimeMillis();
@@ -61,6 +63,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
         }
         this.view.setGameOver(true);
         this.sendState();
+        Sound.THEME.stopSound();
     }
 
     private void waitForNextFrame(final long current) {

@@ -8,6 +8,7 @@ import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
 import ballblast.controller.files.LeaderboardManager;
 import ballblast.controller.files.UserManager;
+import ballblast.controller.sound.Sound;
 import ballblast.model.Model;
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.data.Leaderboard;
@@ -27,8 +28,8 @@ public class ControllerImpl implements Controller, GameLoopObserver {
     private GameLoop gameloop;
     private Optional<UserData> currentUser;
     private final UserManager userManager;
-    private Leaderboard leaderboard;
-    private LeaderboardManager lbManager;
+    private final Leaderboard leaderboard;
+    private final LeaderboardManager lbManager;
 
     /**
      * Create a new instance of Controller.
@@ -44,6 +45,7 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         this.currentUser = Optional.empty();
         this.lbManager = new LeaderboardManager();
         this.leaderboard = this.lbManager.loadSurvivalLeaderboard().get();
+        Sound.loadSounds();
     }
 
     @Override

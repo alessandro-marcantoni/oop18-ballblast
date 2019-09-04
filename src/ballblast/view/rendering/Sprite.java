@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
@@ -118,5 +119,16 @@ public interface Sprite extends Renderer {
      * @return the height of the {@link GameObject}.
      */
     double getGameObjectHeight();
+    /**
+     * Returns the position of the top-left corner of the source rectangle.
+     * 
+     * @return the top-left corner.
+     */
+    Coordinate getSourceTopLeftCorner();
+    /**
+     * 
+     * @return the {@link GraphicsContext}.
+     */
+    GraphicsContext getGraphicsContext();
 
 }

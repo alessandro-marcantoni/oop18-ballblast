@@ -19,6 +19,9 @@ public class PlayerRenderer extends GameObjectRenderer<Player> {
     public PlayerRenderer(final Sprite sprite, final Player gameObject) {
         super(sprite, gameObject);
         try {
+            sprite.setGameObjectWidth(gameObject.getWidth());
+            sprite.setGameObjectHeight(gameObject.getHeight());
+            sprite.setGameObjectPosition(gameObject.getPosition());
             sprite.setSource(ImagePath.PLAYER);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

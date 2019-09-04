@@ -21,6 +21,9 @@ public class BulletRenderer extends GameObjectRenderer<Bullet> {
     public BulletRenderer(final Sprite sprite, final Bullet gameObject) {
         super(sprite, gameObject);
         try {
+            sprite.setGameObjectWidth(gameObject.getWidth());
+            sprite.setGameObjectHeight(gameObject.getHeight());
+            sprite.setGameObjectPosition(gameObject.getPosition());
             sprite.setSource(ImagePath.BULLET);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

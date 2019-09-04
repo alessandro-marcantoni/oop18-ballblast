@@ -4,7 +4,6 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
-import ballblast.model.powerups.Power;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -17,8 +16,9 @@ import ballblast.model.gameobjects.BallTypes;
  */
 public class ImageSprite implements Sprite, Renderer {
 
-    private static final double MAX_ALPHA = 1;
-    private static final double MIN_ALPHA = 0;
+    private static final double DEFAULT = 100.0;
+    private static final double MAX_ALPHA = 1.0;
+    private static final double MIN_ALPHA = 0.0;
     private static final int DECS_OFFSET = 2;
     private static final int CENTS_OFFSET = 2;
     private static final int MAX_TEXT_WIDTH = 10;
@@ -55,9 +55,9 @@ public class ImageSprite implements Sprite, Renderer {
         this.gc = gc;
         this.image = null;
         this.gameObject = gameObject;
-        this.gameObjectHeight = this.gameObject.getHeight();
-        this.gameObjectWidth = this.gameObject.getWidth();
-        this.gameObjectPosition = this.gameObject.getPosition();
+        this.gameObjectHeight = DEFAULT;
+        this.gameObjectWidth = DEFAULT;
+        this.gameObjectPosition = null;
 
         this.fontLarge = Font.font("Roboto", FONT_LARGE);
         this.fontMedium = Font.font("Roboto", FONT_MEDIUM);
@@ -70,21 +70,15 @@ public class ImageSprite implements Sprite, Renderer {
         this.gc.scale(1, -1);
         this.gc.setGlobalAlpha(this.getAlpha());
         this.gc.setTextBaseline(VPos.TOP);
+        this.gc.drawImage(this.image, this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
+                this.image.getWidth(), this.image.getHeight(), this.getGameObjectPosition().getX(),
+                this.getGameObjectPosition().getY(), this.getGameObjectWidth(), this.getGameObjectHeight());
 
-        if (!this.gameObject.getType().equals(GameObjectTypes.POWERUP)
-                || (this.gameObject.getType().equals(GameObjectTypes.POWERUP)
-                        && (!((Power) this.gameObject).isActive()))) {
-            this.gc.drawImage(this.image, this.getSourceTopLeftCorner().getX(), this.getSourceTopLeftCorner().getY(),
-                    this.image.getWidth(), this.image.getHeight(), this.getGameObjectPosition().getX(),
-                    this.getGameObjectPosition().getY(), this.getGameObjectWidth(), this.getGameObjectHeight());
-
-            if (this.gameObject.getType().equals(GameObjectTypes.BALL)
-                    && ((Ball) this.gameObject).getCurrentLife() > 0) {
-                drawLife();
-            } else if (this.gameObject.getType().equals(GameObjectTypes.BALL)
-                    && !(((Ball) this.gameObject).getCurrentLife() > 0)) {
-                this.renderFireworks(gc, gameObjectWidth, gameObjectHeight);
-            }
+        if (this.gameObject.getType().equals(GameObjectTypes.BALL) && ((Ball) this.gameObject).getCurrentLife() > 0) {
+            drawLife();
+        } else if (this.gameObject.getType().equals(GameObjectTypes.BALL)
+                && !(((Ball) this.gameObject).getCurrentLife() > 0)) {
+            this.renderFireworks(gc, gameObjectWidth, gameObjectHeight);
         }
     }
 
@@ -136,12 +130,8 @@ public class ImageSprite implements Sprite, Renderer {
         return this.alpha;
     }
 
-    /**
-     * Returns the position of the top-left corner of the source rectangle.
-     * 
-     * @return the top-left corner.
-     */
-    protected final Coordinate getSourceTopLeftCorner() {
+    @Override
+    public final Coordinate getSourceTopLeftCorner() {
         return this.sourceTopLeft;
     }
 
@@ -209,7 +199,10 @@ public class ImageSprite implements Sprite, Renderer {
                 this.getGameObjectHeight() * 2);
     }
 
-    private void drawLife() {
+    /**
+     * 
+     */
+    public void drawLife() {
         // Set the font
         if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.LARGE.getDiameter())) {
             this.gc.setFont(fontLarge);
@@ -257,6 +250,11 @@ public class ImageSprite implements Sprite, Renderer {
                 this.getGameObjectPosition().getY() + (((Ball) this.gameObject).getBallType().getDiameter() / 2)
                         - (this.usingFont.getSize() / 2),
                 MAX_TEXT_WIDTH);
+    }
+
+    @Override
+    public final GraphicsContext getGraphicsContext() {
+        return this.gc;
     }
 
 }

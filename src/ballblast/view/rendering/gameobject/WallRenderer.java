@@ -20,6 +20,9 @@ public class WallRenderer extends GameObjectRenderer<Wall> {
     public WallRenderer(final Sprite sprite, final Wall gameObject) {
         super(sprite, gameObject);
         try {
+            sprite.setGameObjectWidth(gameObject.getWidth());
+            sprite.setGameObjectHeight(gameObject.getHeight());
+            sprite.setGameObjectPosition(gameObject.getPosition());
         if (Boundaries.isFloor(gameObject.getPosition()) || Boundaries.isRoof(gameObject.getPosition())) {
             sprite.setSource(ImagePath.WALL_VERTICAL);
         } else if (Boundaries.isLeft(gameObject.getPosition()) || Boundaries.isRight(gameObject.getPosition())) {

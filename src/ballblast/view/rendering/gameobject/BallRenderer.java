@@ -18,6 +18,9 @@ public class BallRenderer extends GameObjectRenderer<Ball> {
     public BallRenderer(final Sprite sprite, final Ball gameObject) {
         super(sprite, gameObject);
         try {
+            sprite.setGameObjectWidth(gameObject.getWidth());
+            sprite.setGameObjectHeight(gameObject.getHeight());
+            sprite.setGameObjectPosition(gameObject.getPosition());
             sprite.setSource(ImagePath.BALL);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

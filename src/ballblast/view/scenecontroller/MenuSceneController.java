@@ -111,6 +111,7 @@ public class MenuSceneController extends AbstractSceneController {
     @Override
     public final void onKeyPressed(final KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
+            this.selection = GameScenes.GAME_MODE;
             this.nextScene();
         }
     }

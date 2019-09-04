@@ -38,9 +38,9 @@ public class GameSelectionSceneController extends AbstractSubSceneController {
 
     @Override
     public final void onKeyPressed(final KeyEvent event) {
-//        if (event.getCode() == KeyCode.ENTER) {
-//            this.startSurvivalMode();
-//        }
+        if (event.getCode() == KeyCode.ENTER) {
+            this.startSurvivalMode();
+        }
     }
 
 }

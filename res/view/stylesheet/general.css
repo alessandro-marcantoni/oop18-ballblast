@@ -1,11 +1,3 @@
-@font-face {
-	-fx-font-family: Roboto;
-}
-
-@font-face {
-	-fx-font-family: Lato;
-}
-
 .root {
 	-fx-font-family: 'Lato';
 	-fx-background-color: rgb(255,153,102);

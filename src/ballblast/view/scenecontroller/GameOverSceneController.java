@@ -38,13 +38,19 @@ public class GameOverSceneController extends AbstractSubSceneController {
         this.ballsDestroyed.setText(String.valueOf(controller.getGameData().getDestroyedBalls()));
         this.bulletsShot.setText(String.valueOf(controller.getGameData().getSpawnedBullets()));
     }
-
+    /**
+    * Method is used when the user clicks the "START NEW GAME" button.
+    * It is handled from JavaFX Gameover.fxml file.
+    */
     @FXML
     private void openNewGame() {
         this.selection = GameScenes.GAME_MODE;
         this.nextScene();
     }
-
+    /**
+    * Method is used when the user clicks the "LEADERBOARD" button.
+    * It is handled from JavaFX Gameover.fxml file.
+    */
     @FXML
     private void openLeaderboard() {
         this.selection = GameScenes.LEADERBOARD;
@@ -60,5 +66,4 @@ public class GameOverSceneController extends AbstractSubSceneController {
     protected final GameScenes getPreviousScene() {
         return GameScenes.MENU;
     }
-
 }

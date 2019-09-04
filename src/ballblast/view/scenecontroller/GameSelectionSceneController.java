@@ -16,7 +16,10 @@ public class GameSelectionSceneController extends AbstractSubSceneController {
     private Button btnSurvivalMode;
     @FXML
     private Button btnBackToMenu;
-
+    /**
+    * Method is used when the user clicks the "SURVIVAL" button.
+    * It is handled from JavaFX GameSelection.fxml file.
+    */
     @FXML
     final void startSurvivalMode() {
         this.getController().startSurvivalMode();

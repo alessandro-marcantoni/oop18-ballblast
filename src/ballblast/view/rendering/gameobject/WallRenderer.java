@@ -1,6 +1,5 @@
 package ballblast.view.rendering.gameobject;
 
-
 import ballblast.model.gameobjects.Wall;
 import ballblast.model.levels.Boundaries;
 import ballblast.view.rendering.ImagePath;
@@ -22,13 +21,13 @@ public class WallRenderer extends GameObjectRenderer<Wall> {
             sprite.setGameObjectWidth(gameObject.getWidth());
             sprite.setGameObjectHeight(gameObject.getHeight());
             sprite.setGameObjectPosition(gameObject.getPosition());
-        if (Boundaries.isFloor(gameObject.getPosition()) || Boundaries.isRoof(gameObject.getPosition())) {
-            sprite.setSource(ImagePath.WALL_HORIZONTAL);
-        } else if (Boundaries.isLeft(gameObject.getPosition()) || Boundaries.isRight(gameObject.getPosition())) {
-        sprite.setSource(ImagePath.WALL_VERTICAL);
+            if (Boundaries.isFloor(gameObject.getPosition()) || Boundaries.isRoof(gameObject.getPosition())) {
+                sprite.setSource(ImagePath.WALL_HORIZONTAL);
+            } else if (Boundaries.isLeft(gameObject.getPosition()) || Boundaries.isRight(gameObject.getPosition())) {
+                sprite.setSource(ImagePath.WALL_VERTICAL);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
     }
 }

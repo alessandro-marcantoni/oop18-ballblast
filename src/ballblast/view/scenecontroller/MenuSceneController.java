@@ -33,6 +33,8 @@ public class MenuSceneController extends AbstractSceneController {
 
     /**
      * Open the game mode selection scene.
+     * Method is used when the user clicks the "START NEW GAME" button.
+     * It is handled from JavaFX GameSelection.fxml file.
      */
     @FXML
     protected void openGameMode() {
@@ -42,6 +44,8 @@ public class MenuSceneController extends AbstractSceneController {
 
     /**
      * Open leader board scene.
+     * Method is used when the user clicks the "LEADERBOARD" button.
+     * It is handled from JavaFX Menu.fxml file.
      */
     @FXML
     private void openLeaderboard() {
@@ -51,6 +55,8 @@ public class MenuSceneController extends AbstractSceneController {
 
     /**
      * Open settings scene.
+     * Method is used when the user clicks the "SETTINGS" button.
+     * It is handled from JavaFX Menu.fxml file.
      */
     @FXML
     private void openSettings() {
@@ -66,6 +72,8 @@ public class MenuSceneController extends AbstractSceneController {
 
     /**
      * Open manual scene.
+     * Method is used when the user clicks the "MANUAL" button.
+     * It is handled from JavaFX Menu.fxml file.
      */
     @FXML
     private void openManual() {
@@ -75,6 +83,8 @@ public class MenuSceneController extends AbstractSceneController {
 
     /**
      * Quit game.
+     * Method is used when the user clicks the "QUIT" button.
+     * It is handled from JavaFX Menu.fxml file.
      */
     @FXML
     private void quitGame() {

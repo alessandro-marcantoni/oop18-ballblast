@@ -15,7 +15,6 @@ public class WallRenderer extends GameObjectRenderer<Wall> {
      * 
      * @param sprite     The {@link Sprite} used to render.
      * @param gameObject The {@link Wall} {@link GameObject}.
-     * @throws FileNotFoundException the file not found.
      */
     public WallRenderer(final Sprite sprite, final Wall gameObject) {
         super(sprite, gameObject);

@@ -35,12 +35,7 @@ public class ImageLoader {
      * @return the image of the object required.
      */
     public Image getImage(final ImagePath imagePath) {
-//        if (imagePath.equals(ImagePath.BALL)) {
-////            final Image img = checkBall(BallColors.getRandomColor());
-////            return img;
-//            return this.loadImageFromString(imagePath.getPath());
-//        } else 
-            if (!this.imageMap.containsKey(imagePath)) {
+        if (!this.imageMap.containsKey(imagePath)) {
             final Image img = this.loadImage(imagePath);
             this.imageMap.put(imagePath, img);
             return img;
@@ -57,29 +52,4 @@ public class ImageLoader {
     public Image loadImage(final ImagePath imagePath) {
         return new Image(ImageLoader.class.getResourceAsStream(imagePath.getPath()));
     }
-
-//  /**
-//  * 
-//  * @param path the path of the ball.
-//  * @return the image of the ball required.
-//  * @throws FileNotFoundException the file not found.
-//  */
-// public Image checkBall(final String path) throws FileNotFoundException {
-//     for (BallColors color : BallColors.values()) {
-//         if (color.getBallPath().equals(path)) {
-//             if (!this.ballMap.containsKey(color)) {
-//                 final Image img = this.loadImageFromString(color.getBallPath());
-//                 this.ballMap.put(color, img);
-//                 return img;
-//             } else {
-//                 return this.ballMap.get(color);
-//             }
-//         }
-//     }
-//     return null;
-// }
-//
-//    private Image loadImageFromString(final String path){
-//        return new Image(ImageLoader.class.getResourceAsStream(path));
-//    }
 }

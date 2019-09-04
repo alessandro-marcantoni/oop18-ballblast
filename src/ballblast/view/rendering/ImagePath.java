@@ -52,7 +52,6 @@ public enum ImagePath {
     ImagePath(final String path) {
         this.path = path;
     }
-
     /**
      * 
      * @return the path of the image.

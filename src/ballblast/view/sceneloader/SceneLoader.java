@@ -32,7 +32,7 @@ public final class SceneLoader {
      * 
      * @param scene the {@link GameScenes} to be loaded.
      * @return a new {@link SceneWrapper} for the scene which will be loaded.
-     * @throws IOException help
+     * @throws IOException IOException
      */
     public SceneWrapper getScene(final GameScenes scene) throws IOException {
         final FXMLLoader loader = new FXMLLoader();

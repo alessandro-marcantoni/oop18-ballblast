@@ -25,20 +25,20 @@ public class ImageSprite implements Sprite, Renderer {
     private static final int LARGE_FONT_SIZE = 10;
     private static final int MEDIUM_FONT_SIZE = 8;
     private static final int SMALL_FONT_SIZE = 4;
-    private Coordinate sourceTopLeft;
-    private Vector2D sourceOffset;
-    private Coordinate position;
-    private double alpha;
-    private Image image;
+    private static final Font FONT_LARGE = Font.font("Roboto", LARGE_FONT_SIZE);
+    private static final Font FONT_MEDIUM = Font.font("Roboto", MEDIUM_FONT_SIZE);
+    private static final Font FONT_SMALL = Font.font("Roboto", SMALL_FONT_SIZE);
     private final GraphicsContext gc;
     private final GameObject gameObject;
     private double gameObjectWidth;
     private double gameObjectHeight;
+    private double alpha;
+    private Coordinate sourceTopLeft;
+    private Vector2D sourceOffset;
+    private Coordinate position;
+    private Image image;
     private Coordinate gameObjectPosition;
     private Font usingFont;
-    private static final Font FONT_LARGE = Font.font("Roboto", LARGE_FONT_SIZE);
-    private static final Font FONT_MEDIUM = Font.font("Roboto", MEDIUM_FONT_SIZE);
-    private static final Font FONT_SMALL = Font.font("Roboto", SMALL_FONT_SIZE);
 
     /**
      * Creates a new Image sprite with the given GraphicsContext.

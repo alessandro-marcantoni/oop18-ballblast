@@ -7,6 +7,7 @@ import ballblast.model.ModelImpl;
 import ballblast.view.View;
 import ballblast.view.ViewImpl;
 import javafx.application.Application;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 /**
@@ -20,7 +21,6 @@ public final class BallBlast extends Application {
         final Model model = new ModelImpl();
         final Controller controller = new ControllerImpl(model, view);
         view.launch(controller);
-
     }
     /**
      * The main entry point of the application.
@@ -29,6 +29,5 @@ public final class BallBlast extends Application {
      */
     public static void main(final String [] args) {
         launch();
-
     }
 }

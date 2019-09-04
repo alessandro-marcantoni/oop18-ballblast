@@ -16,7 +16,6 @@ public class BulletRenderer extends GameObjectRenderer<Bullet> {
      * 
      * @param sprite     The {@link Sprite} used to render.
      * @param gameObject The {@link Bullet} {@link GameObject}.
-     * @throws FileNotFoundException the file not found.
      */
     public BulletRenderer(final Sprite sprite, final Bullet gameObject) {
         super(sprite, gameObject);

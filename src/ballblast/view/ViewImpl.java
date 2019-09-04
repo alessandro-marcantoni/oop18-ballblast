@@ -56,12 +56,9 @@ public class ViewImpl implements View {
     @Override
     public final void loadScene(final GameScenes scene) {
         try {
-            final SceneWrapper wrapper;
-            if (gameover) {
-                wrapper = SceneLoader.getLoader().getScene(this.currentSceneController.getNextScene());
-            } else {
-                wrapper = SceneLoader.getLoader().getScene(scene);
-            }
+            final SceneWrapper wrapper = SceneLoader
+                    .getLoader()
+                    .getScene(gameover ? this.currentSceneController.getNextScene() : scene);
             wrapper.getController().init(controller, this);
             this.currentSceneController = wrapper.getController();
 
@@ -69,20 +66,21 @@ public class ViewImpl implements View {
             root.requestFocus();
             root.setOnKeyPressed(wrapper.getController()::onKeyPressed);
 
-            Platform.runLater(() -> {
-                final double oldWidth = this.stage.getWidth();
-                final double oldHeigth = this.stage.getHeight();
-                this.stage.setScene(wrapper.getScene());
-                this.stage.setWidth(oldWidth);
-                this.stage.setHeight(oldHeigth);
-                if (!this.viewStarted) {
-                    this.stage.show();
-                    this.viewStarted = true;
-                }
-            });
-
+            Platform.runLater(() -> this.initStage(wrapper));
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void initStage(final SceneWrapper wrapper) {
+        final double oldWidth = this.stage.getWidth();
+        final double oldHeigth = this.stage.getHeight();
+        this.stage.setScene(wrapper.getScene());
+        this.stage.setWidth(oldWidth);
+        this.stage.setHeight(oldHeigth);
+        if (!this.viewStarted) {
+            this.stage.show();
+            this.viewStarted = true;
         }
     }
 

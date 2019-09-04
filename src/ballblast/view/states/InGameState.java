@@ -45,7 +45,6 @@ public class InGameState extends GUIState {
 
     @Override
     public void onStateEntry() {
-
     }
 
     @Override

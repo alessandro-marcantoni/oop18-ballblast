@@ -110,6 +110,12 @@ public class GUISceneController extends AbstractSceneController {
         this.canvasDrawer.draw(this.getController().getGameObjects());
     }
 
+    // Clear the canvas after every render. It avoids ghosting effect.
+    private void clearCanvas() {
+        this.canvas.getGraphicsContext2D().restore();
+        this.resetGameCanvasCoordinates();
+    }
+
     private void resetGameCanvasCoordinates() {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
         gc.setFont(new Font(FONT_SIZE));
@@ -121,12 +127,6 @@ public class GUISceneController extends AbstractSceneController {
         ImageSprite.renderBackground(gc, this.canvas.getWidth(), this.canvas.getHeight());
         gc.scale(1, -1);
         gc.scale(canvasWidth / (Constants.WORLD_WIDTH), canvasHeight / Constants.WORLD_HEIGHT);
-    }
-
-    // Clear the canvas after every render. It avoids ghosting effect.
-    private void clearCanvas() {
-        this.canvas.getGraphicsContext2D().restore();
-        this.resetGameCanvasCoordinates();
     }
 
     // Resize the canvas proportionally when the app window is resized by the user.

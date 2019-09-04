@@ -50,10 +50,10 @@ public class LoginController extends AbstractSceneController {
     }
 
     /**
-     * @throws IOException                  ...
-     * @throws SAXException                 ...
-     * @throws ParserConfigurationException ...
-     * 
+     * @throws SAXException                 SAXException
+     * @throws TransformerException         TransformerException
+     * @throws IOException                  IOException
+     * @throws ParserConfigurationException ParserConfigurationException
      */
     @FXML
     public void userLogin() throws ParserConfigurationException, SAXException, IOException {
@@ -78,11 +78,10 @@ public class LoginController extends AbstractSceneController {
     }
 
     /**
-     * @throws SAXException                 ...
-     * @throws TransformerException         ...
-     * @throws IOException                  ...
-     * @throws ParserConfigurationException ...
-     * 
+     * @throws SAXException                 SAXException
+     * @throws TransformerException         TransformerException
+     * @throws IOException                  IOException
+     * @throws ParserConfigurationException ParserConfigurationException
      */
     @FXML
     public void userRegister() throws ParserConfigurationException, IOException, TransformerException, SAXException {

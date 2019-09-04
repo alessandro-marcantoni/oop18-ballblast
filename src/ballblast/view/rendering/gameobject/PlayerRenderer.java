@@ -14,7 +14,6 @@ public class PlayerRenderer extends GameObjectRenderer<Player> {
      * 
      * @param sprite     The {@link Sprite} used to render.
      * @param gameObject The {@link Player} {@link GameObject}
-     * @throws FileNotFoundException file not found.
      */
     public PlayerRenderer(final Sprite sprite, final Player gameObject) {
         super(sprite, gameObject);

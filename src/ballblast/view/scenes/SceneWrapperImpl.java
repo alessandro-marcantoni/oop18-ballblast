@@ -1,4 +1,4 @@
-package ballblast.view.sceneloader;
+package ballblast.view.scenes;
 
 import ballblast.view.scenecontroller.AbstractSceneController;
 import javafx.scene.Scene;

@@ -2,9 +2,9 @@ package ballblast.view;
 
 import ballblast.controller.Controller;
 import ballblast.view.scenecontroller.AbstractSceneController;
-import ballblast.view.sceneloader.SceneLoader;
-import ballblast.view.sceneloader.SceneWrapper;
 import ballblast.view.scenes.GameScenes;
+import ballblast.view.scenes.SceneLoader;
+import ballblast.view.scenes.SceneWrapper;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.stage.Stage;

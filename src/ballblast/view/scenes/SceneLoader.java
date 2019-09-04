@@ -1,11 +1,10 @@
-package ballblast.view.sceneloader;
+package ballblast.view.scenes;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

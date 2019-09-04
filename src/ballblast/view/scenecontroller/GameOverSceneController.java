@@ -2,6 +2,7 @@ package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
 import ballblast.view.View;
+import ballblast.view.images.ImageLoader;
 import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,6 +38,8 @@ public class GameOverSceneController extends AbstractSubSceneController {
         this.score.setText(String.valueOf(controller.getGameData().getScore()));
         this.ballsDestroyed.setText(String.valueOf(controller.getGameData().getDestroyedBalls()));
         this.bulletsShot.setText(String.valueOf(controller.getGameData().getSpawnedBullets()));
+
+        ImageLoader.getLoader().removeBall();
     }
     /**
     * Method is used when the user clicks the "START NEW GAME" button.

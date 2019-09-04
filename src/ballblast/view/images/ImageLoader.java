@@ -1,37 +1,35 @@
 package ballblast.view.images;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
 import javafx.scene.image.Image;
 
 /**
- * 
+ * A simple image loader with caching.
  * 
  */
 public class ImageLoader {
     private static final ImageLoader SINGLETON = new ImageLoader();
     private final Map<ImagePath, Image> imageMap;
-//    private final Map<BallColors, Image> ballMap;
 
     /**
      * Simple constructor.
      */
     public ImageLoader() {
         this.imageMap = new EnumMap<>(ImagePath.class);
-//        this.ballMap = new EnumMap<>(BallColors.class);
     }
 
     /**
      * 
-     * @return the imageLoader.
+     * @return the {@link ImageLoader}.
      */
     public static ImageLoader getLoader() {
         return SINGLETON;
     }
 
     /**
-     * 
      * @param imagePath the path of the image to get.
      * @return the image of the object required.
      */
@@ -52,5 +50,17 @@ public class ImageLoader {
      */
     public Image loadImage(final ImagePath imagePath) {
         return new Image(ImageLoader.class.getResourceAsStream(imagePath.getPath()));
+    }
+    /**
+     * Loads all images.
+     */
+    public void loadAll() {
+        Arrays.stream(ImagePath.values()).forEach(this::getImage);
+    }
+    /**
+     * Remove ball image.
+     */
+    public void removeBall() {
+        this.imageMap.remove(ImagePath.BALL);
     }
 }

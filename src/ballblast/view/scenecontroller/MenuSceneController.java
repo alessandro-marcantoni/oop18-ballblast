@@ -1,5 +1,7 @@
 package ballblast.view.scenecontroller;
 
+import ballblast.controller.Controller;
+import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -31,6 +33,11 @@ public class MenuSceneController extends AbstractSceneController {
     private Button quitBtn;
     private GameScenes selection;
 
+    @Override
+    public final void init(final Controller controller, final View view) {
+        super.init(controller, view);
+        this.selection = GameScenes.MENU;
+    }
     /**
      * Open the game mode selection scene.
      * Method is used when the user clicks the "START NEW GAME" button.

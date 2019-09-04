@@ -93,6 +93,7 @@ public class ViewImpl implements View {
         if (gameover) {
             this.currentSceneController.nextScene();
         }
+        this.gameover = false;
     }
 
 }

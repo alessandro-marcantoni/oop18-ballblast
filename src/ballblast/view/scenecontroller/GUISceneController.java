@@ -65,12 +65,8 @@ public class GUISceneController extends AbstractSceneController {
     private CanvasDrawer canvasDrawer;
     private boolean gameover;
 
-    /**
-     * @param controller the {@link Controller}.
-     * @param view       the {@link View}.
-     */
     @Override
-    public void init(final Controller controller, final View view) {
+    public final void init(final Controller controller, final View view) {
         super.init(controller, view);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
@@ -155,7 +151,7 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     protected final GameScenes getPreviousScene() {
-        return GameScenes.MENU;
+        return GameScenes.GAMEOVER;
     }
 
     /**

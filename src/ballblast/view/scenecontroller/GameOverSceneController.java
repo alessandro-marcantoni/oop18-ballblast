@@ -2,7 +2,7 @@ package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
 import ballblast.view.View;
-import ballblast.view.images.ImageLoader;
+import ballblast.view.imageloader.ImageLoader;
 import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,4 +1,4 @@
-package ballblast.view.images;
+package ballblast.view.imageloader;
 
 /**
  * Identifies an image stored on the disk and its path.

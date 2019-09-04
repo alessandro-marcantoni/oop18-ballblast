@@ -2,7 +2,7 @@ package ballblast.view.rendering.gameobject;
 
 import ballblast.model.gameobjects.Wall;
 import ballblast.model.levels.Boundaries;
-import ballblast.view.images.ImagePath;
+import ballblast.view.imageloader.ImagePath;
 import ballblast.view.rendering.Sprite;
 
 /**

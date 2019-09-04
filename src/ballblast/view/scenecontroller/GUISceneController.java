@@ -3,7 +3,7 @@ package ballblast.view.scenecontroller;
 import ballblast.controller.Controller;
 import ballblast.model.commons.Constants;
 import ballblast.view.View;
-import ballblast.view.images.ImageLoader;
+import ballblast.view.imageloader.ImageLoader;
 import ballblast.view.rendering.CanvasDrawer;
 import ballblast.view.rendering.ImageSprite;
 import ballblast.view.scenes.GameScenes;

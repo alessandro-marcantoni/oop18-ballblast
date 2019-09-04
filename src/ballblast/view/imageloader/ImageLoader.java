@@ -1,4 +1,4 @@
-package ballblast.view.images;
+package ballblast.view.imageloader;
 
 import java.util.Arrays;
 import java.util.EnumMap;

@@ -1,7 +1,7 @@
 package ballblast.view;
 
 import ballblast.controller.Controller;
-import ballblast.view.images.ImageLoader;
+import ballblast.view.imageloader.ImageLoader;
 import ballblast.view.scenecontroller.AbstractSceneController;
 import ballblast.view.scenes.GameScenes;
 import ballblast.view.scenes.SceneLoader;

@@ -9,19 +9,19 @@ import java.util.List;
 public interface SoundHandler {
 
     /**
-     * Handles an {@link EventTypes}.
+     * Handles an {@link SoundTypes}.
      * 
-     * @param event The {@link EventTypes} to be handled.
+     * @param sound The {@link SoundtTypes} to be handled.
      */
-    void handleSound(SoundTypes event);
+    void handleSound(SoundTypes sound);
 
     /**
-     * Handles all the available {@link EventTypes}.
+     * Handles all the available {@link SoundTypes}.
      * 
-     * @param events The list of {@link EventTypes}.
+     * @param sounds The list of {@link SoundTypes}.
      */
-    default void handleAll(List<SoundTypes> events) {
-        events.forEach(this::handleSound);
+    default void handleAll(List<SoundTypes> sounds) {
+        sounds.forEach(this::handleSound);
     }
 
 }

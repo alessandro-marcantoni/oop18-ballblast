@@ -21,12 +21,12 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
     private static final long PERIOD = 30;
 
+    private final List<GameLoopObserver> observers = new ArrayList<GameLoopObserver>();
     private final Map<PlayerTags, List<InputTypes>> inputs;
-    private boolean stopped;
-    private boolean paused;
     private final View view;
     private final Model model;
-    private List<GameLoopObserver> observers = new ArrayList<GameLoopObserver>();
+    private boolean stopped;
+    private boolean paused;
 
     /**
      * Creates a new game loop instance.
@@ -47,7 +47,6 @@ public class GameLoopImpl extends Thread implements GameLoop {
     public final void run() {
         Sound.THEME.loopSound();
         this.stopped = false;
-        //this.render();
         long lastTime = System.currentTimeMillis();
         while (!this.isStopped()) {
             final long current = System.currentTimeMillis();
@@ -62,19 +61,8 @@ public class GameLoopImpl extends Thread implements GameLoop {
             lastTime = current;
         }
         this.view.setGameOver(true);
-        this.sendState();
+        this.updateLeaderboard();
         Sound.THEME.stopSound();
-    }
-
-    private void waitForNextFrame(final long current) {
-        final long dt = System.currentTimeMillis() - current;
-        if (dt < PERIOD) {
-            try {
-                Thread.sleep(PERIOD - dt);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     @Override
@@ -104,8 +92,19 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     @Override
-    public final void sendState() {
+    public final void updateLeaderboard() {
         this.observers.forEach(GameLoopObserver::updateLeaderboard);
+    }
+
+    private void waitForNextFrame(final long current) {
+        final long dt = System.currentTimeMillis() - current;
+        if (dt < PERIOD) {
+            try {
+                Thread.sleep(PERIOD - dt);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private synchronized void processInput() {
@@ -122,7 +121,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private boolean isPaused() {
-        return this.paused;
+        return this.paused || model.getGameStatus().equals(GameStatus.PAUSE);
     }
 
     private void updateGame(final double elapsed) {

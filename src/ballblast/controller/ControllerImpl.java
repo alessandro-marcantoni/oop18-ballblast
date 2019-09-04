@@ -67,7 +67,6 @@ public class ControllerImpl implements Controller, GameLoopObserver {
 
     @Override
     public final void notifyGameOver() {
-        this.updateLeaderboard();
         this.gameloop.stopLoop();
     }
 
@@ -105,23 +104,21 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         return this.currentUser.get();
     }
 
-    private void createGameLoop() {
-        this.gameloop = new GameLoopImpl(this.model, view);
-        this.gameloop.addObserver(this);
-    }
-
     @Override
     public final Leaderboard getLeaderboard() {
         return this.lbManager.loadSurvivalLeaderboard().get();
     }
 
-    /**
-     * Updates the {@link Leaderboard}.
-     */
-    public void updateLeaderboard() {
+    @Override
+    public final void updateLeaderboard() {
         this.leaderboard.addRecord(currentUser.get().getName(), this.model.getGameData().getScore());
         this.lbManager.saveSurvivalLeaderboard(leaderboard);
         this.currentUser.get().addGameData(this.model.getGameData());
         this.userManager.updateUserData(this.currentUser.get());
+    }
+
+    private void createGameLoop() {
+        this.gameloop = new GameLoopImpl(this.model, view);
+        this.gameloop.addObserver(this);
     }
 }

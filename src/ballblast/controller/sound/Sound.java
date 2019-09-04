@@ -37,9 +37,31 @@ public enum Sound {
     private static final String PATH = "res/sound/";
     private Clip clip;
 
+    /**
+     * 
+     */
+    public static final SoundHandler HANDLER = new SoundHandler() {
+        @Override
+        public void handleSound(final SoundTypes sound) {
+            switch (sound) {
+            case BOUNCE:
+                Sound.BOUNCE.playSound();
+                break;
+            case SHOT:
+                Sound.SHOT.playSound();
+                break;
+            case POWERUP:
+                Sound.SHOT.playSound();
+                break;
+            default:
+                break;
+            }
+        }
+    };
+
     Sound(final String fileName) {
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(PATH + fileName));
+            final AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(PATH + fileName));
             this.clip = AudioSystem.getClip();
             this.clip.open(audioInputStream);
         } catch (UnsupportedAudioFileException e) {

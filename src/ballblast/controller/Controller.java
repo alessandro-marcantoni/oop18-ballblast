@@ -57,7 +57,7 @@ public interface Controller {
     List<GameObject> getGameObjects();
 
     /**
-     * Gets the game data (score, time, destroyed balls ecc..).
+     * Gets the {@link GameData} (score, time, destroyed balls ecc..).
      * 
      * @return The {@link GameData}.
      */
@@ -75,11 +75,11 @@ public interface Controller {
      */
     boolean checkLoginUser(String username, String password) throws ParserConfigurationException, SAXException, IOException;
     /**
-     * Checks if register is successful.
+     * Checks if registration is successful.
      * 
      * @param username The user name.
      * @param password The password.
-     * @return True if the register is successful. False otherwise.
+     * @return True if the registration is successful. False otherwise.
      * @throws SAXException 
      * @throws TransformerException 
      * @throws IOException 
@@ -88,13 +88,14 @@ public interface Controller {
     boolean checkRegisterUser(String username, String password) throws ParserConfigurationException, IOException, TransformerException, SAXException;
 
     /**
+     * Gets the current user.
      * 
      * @return The current user.
      */
     UserData getCurrentUser();
 
     /**
-     * Returns the {@link Leaderboard}.
+     * Gets the {@link Leaderboard}.
      * 
      * @return the {@link Leaderboard}.
      */

@@ -45,7 +45,8 @@ public interface GameLoop {
     void addObserver(GameLoopObserver observer);
 
     /**
-     * Notifies the {@link Observer} when the state changes.
+     * Notifies the {@link Observer} when the game ends and it needs to update the
+     * {@link Leaderboard}.
      */
-    void sendState();
+    void updateLeaderboard();
 }

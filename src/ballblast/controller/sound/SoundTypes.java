@@ -6,18 +6,13 @@ package ballblast.controller.sound;
 public enum SoundTypes {
 
     /**
-     * The ball's bounce.
+     * A ball gets destroyed.
      */
-    BOUNCE,
+    DESTROY,
 
     /**
      * The player's shot.
      */
-    SHOT,
-
-    /**
-     * The player's powerup.
-     */
-    POWERUP
+    SHOT
 
 }

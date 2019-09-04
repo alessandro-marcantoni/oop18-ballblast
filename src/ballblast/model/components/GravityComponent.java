@@ -4,7 +4,7 @@ import org.locationtech.jts.math.Vector2D;
 
 /**
  * Adds the ability to move and update the position of a {@link GameObject}
- * based on gravity.
+ * thanks to gravity.
  */
 public class GravityComponent extends AbstractComponent {
 
@@ -27,6 +27,8 @@ public class GravityComponent extends AbstractComponent {
      * @param gravity the gravity acceleration.
      */
     public GravityComponent(final Vector2D gravity) {
+        // May be used to make the game more difficult by having balls with different
+        // gravity settings.
         super(ComponentTypes.GRAVITY);
         this.gravity = gravity;
     }
@@ -59,6 +61,7 @@ public class GravityComponent extends AbstractComponent {
      * @param gravity the gravity vector.
      */
     public void setGravity(final Vector2D gravity) {
+        // May be used to slow down the balls with a powerup.
         this.gravity = gravity;
     }
 

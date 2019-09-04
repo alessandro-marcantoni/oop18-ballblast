@@ -48,7 +48,7 @@ public final class Constants {
     /**
      * Default {@link Player}'s speed.
      */
-    public static final double PLAYER_SPEED = 45;
+    public static final double PLAYER_SPEED = 50;
     /**
      * Default initial {@link Player}'s position.
      */

@@ -22,23 +22,23 @@ public class ImageSprite implements Sprite, Renderer {
     private static final int DECS_OFFSET = 2;
     private static final int CENTS_OFFSET = 2;
     private static final int MAX_TEXT_WIDTH = 10;
-    private static final int FONT_LARGE = 10;
-    private static final int FONT_MEDIUM = 8;
-    private static final int FONT_SMALL = 4;
+    private static final int LARGE_FONT_SIZE = 10;
+    private static final int MEDIUM_FONT_SIZE = 8;
+    private static final int SMALL_FONT_SIZE = 4;
     private Coordinate sourceTopLeft;
     private Vector2D sourceOffset;
     private Coordinate position;
     private double alpha;
     private Image image;
     private final GraphicsContext gc;
-    private GameObject gameObject;
+    private final GameObject gameObject;
     private double gameObjectWidth;
     private double gameObjectHeight;
     private Coordinate gameObjectPosition;
     private Font usingFont;
-    private Font fontLarge;
-    private Font fontMedium;
-    private Font fontSmall;
+    private static final Font FONT_LARGE = Font.font("Roboto", LARGE_FONT_SIZE);
+    private static final Font FONT_MEDIUM = Font.font("Roboto", MEDIUM_FONT_SIZE);
+    private static final Font FONT_SMALL = Font.font("Roboto", SMALL_FONT_SIZE);
 
     /**
      * Creates a new Image sprite with the given GraphicsContext.
@@ -58,10 +58,6 @@ public class ImageSprite implements Sprite, Renderer {
         this.gameObjectHeight = DEFAULT;
         this.gameObjectWidth = DEFAULT;
         this.gameObjectPosition = null;
-
-        this.fontLarge = Font.font("Roboto", FONT_LARGE);
-        this.fontMedium = Font.font("Roboto", FONT_MEDIUM);
-        this.fontSmall = Font.font("Roboto", FONT_SMALL);
     }
 
     @Override
@@ -77,7 +73,7 @@ public class ImageSprite implements Sprite, Renderer {
         if (this.gameObject.getType().equals(GameObjectTypes.BALL) && ((Ball) this.gameObject).getCurrentLife() > 0) {
             drawLife();
         } else if (this.gameObject.getType().equals(GameObjectTypes.BALL)
-                && !(((Ball) this.gameObject).getCurrentLife() > 0)) {
+                && (((Ball) this.gameObject).getCurrentLife() <= 0)) {
             this.renderFireworks(gc, gameObjectWidth, gameObjectHeight);
         }
     }
@@ -205,14 +201,14 @@ public class ImageSprite implements Sprite, Renderer {
     public void drawLife() {
         // Set the font
         if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.LARGE.getDiameter())) {
-            this.gc.setFont(fontLarge);
-            this.usingFont = fontLarge;
+            this.gc.setFont(FONT_LARGE);
+            this.usingFont = FONT_LARGE;
         } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.MEDIUM.getDiameter())) {
-            this.gc.setFont(fontMedium);
-            this.usingFont = fontMedium;
+            this.gc.setFont(FONT_MEDIUM);
+            this.usingFont = FONT_MEDIUM;
         } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.SMALL.getDiameter())) {
-            this.gc.setFont(fontSmall);
-            this.usingFont = fontSmall;
+            this.gc.setFont(FONT_SMALL);
+            this.usingFont = FONT_SMALL;
         }
         if (((Ball) this.gameObject).getCurrentLife() < 10) {
             drawUnits();
@@ -250,11 +246,6 @@ public class ImageSprite implements Sprite, Renderer {
                 this.getGameObjectPosition().getY() + (((Ball) this.gameObject).getBallType().getDiameter() / 2)
                         - (this.usingFont.getSize() / 2),
                 MAX_TEXT_WIDTH);
-    }
-
-    @Override
-    public final GraphicsContext getGraphicsContext() {
-        return this.gc;
     }
 
 }

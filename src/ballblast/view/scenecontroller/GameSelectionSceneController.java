@@ -33,8 +33,6 @@ public class GameSelectionSceneController extends AbstractSubSceneController {
         return GameScenes.MENU;
     }
 
-    // TO DELETE
-    // Inserito per andare più veloce nel testing.
     @Override
     public final void onKeyPressed(final KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {

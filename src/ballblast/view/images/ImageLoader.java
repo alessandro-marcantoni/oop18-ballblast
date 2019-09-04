@@ -1,7 +1,8 @@
-package ballblast.view.rendering;
+package ballblast.view.images;
 
 import java.util.EnumMap;
 import java.util.Map;
+
 import javafx.scene.image.Image;
 
 /**

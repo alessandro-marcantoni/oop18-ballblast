@@ -3,6 +3,8 @@ package ballblast.view.rendering;
 import java.io.FileNotFoundException;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
+
+import ballblast.view.images.ImagePath;
 import javafx.scene.image.Image;
 
 /**

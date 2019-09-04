@@ -1,6 +1,4 @@
-package ballblast.view.rendering;
-
-import ballblast.view.rendering.gameobject.BallColors;
+package ballblast.view.images;
 
 /**
  * Identifies an image stored on the disk and its path.
@@ -34,7 +32,11 @@ public enum ImagePath {
     /**
      * The image for {@link Wall} horizontal.
      */
-    WALL_HORIZONTAL("/view/walls/wall_horizontal.png"),
+    WALL_FLOOR("/view/walls/wall_floor.png"),
+    /**
+     * The image for {@link Wall} roof.
+     */
+    WALL_ROOF("/view/walls/wall_roof.png"),
     /**
      * The image for {@link Wall} vertical.
      */

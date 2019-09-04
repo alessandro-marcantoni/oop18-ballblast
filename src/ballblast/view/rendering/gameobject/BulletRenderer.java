@@ -2,7 +2,7 @@ package ballblast.view.rendering.gameobject;
 
 import java.io.FileNotFoundException;
 import ballblast.model.gameobjects.Bullet;
-import ballblast.view.rendering.ImagePath;
+import ballblast.view.images.ImagePath;
 import ballblast.view.rendering.Sprite;
 
 /**

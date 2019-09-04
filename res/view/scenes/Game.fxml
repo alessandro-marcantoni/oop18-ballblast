@@ -71,7 +71,7 @@
 										<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
 									</padding>
 								</Label>
-								<Label alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="BALLS">
+								<Label alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="BALLS" GridPane.rowIndex="1">
 									<font>
 										<Font size="20.0" />
 									</font>
@@ -82,7 +82,7 @@
 										<Insets />
 									</GridPane.margin>
 								</Label>
-								<Label fx:id="balls" alignment="BOTTOM_RIGHT" layoutX="232.0" layoutY="86.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="&lt;BALLS&gt;">
+								<Label fx:id="balls" alignment="BOTTOM_RIGHT" layoutX="232.0" layoutY="86.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="&lt;BALLS&gt;" GridPane.rowIndex="1">
 									<font>
 										<Font size="20.0" />
 									</font>
@@ -93,17 +93,17 @@
 										<Insets />
 									</GridPane.margin>
 								</Label>
-                        <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                        <ImageView fitHeight="50.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                            <image>
                               <Image url="/view/powers/doublefire.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <ImageView fitHeight="50.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <image>
                               <Image url="/view/powers/shield.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <ImageView fitHeight="50.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <image>
                               <Image url="/view/powers/speed.png" />
                            </image>

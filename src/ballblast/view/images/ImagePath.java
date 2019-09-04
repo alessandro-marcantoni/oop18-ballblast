@@ -8,7 +8,7 @@ public enum ImagePath {
      * The image for {@link Ball}. String empty to use randomColor in the
      * {@link ImageLoader}.
      */
-    BALL(BallColors.getRandomColor()),
+    BALL(""),
     /**
      * The image for {@link Player}.
      */
@@ -54,6 +54,7 @@ public enum ImagePath {
     ImagePath(final String path) {
         this.path = path;
     }
+
     /**
      * 
      * @return the path of the image.

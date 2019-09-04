@@ -6,6 +6,7 @@ import ballblast.model.Model;
 import ballblast.model.ModelImpl;
 import ballblast.view.View;
 import ballblast.view.ViewImpl;
+import ballblast.view.images.ImagePath;
 import javafx.application.Application;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;

@@ -74,10 +74,8 @@ public class GUISceneController extends AbstractSceneController {
         super.init(controller, view);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
-
         this.resetGameCanvasCoordinates();
         this.canvasDrawer = new CanvasDrawer(this.canvas);
-
         // Listeners for resized windows.
         this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
         this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
@@ -104,6 +102,7 @@ public class GUISceneController extends AbstractSceneController {
     public final void render() {
         if (this.isGameover()) {
             this.nextScene();
+            ImageLoader.getLoader().removeBall();
         }
         this.clearCanvas();
         this.score.setText(Double.toString(this.getController().getGameData().getScore()));

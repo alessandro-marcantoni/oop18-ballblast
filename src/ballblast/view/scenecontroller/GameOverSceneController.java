@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
- * 
+ * The {@link SceneController} for the game over scene.
  *
  */
 public class GameOverSceneController extends AbstractSubSceneController {
@@ -38,8 +38,6 @@ public class GameOverSceneController extends AbstractSubSceneController {
         this.score.setText(String.valueOf(controller.getGameData().getScore()));
         this.ballsDestroyed.setText(String.valueOf(controller.getGameData().getDestroyedBalls()));
         this.bulletsShot.setText(String.valueOf(controller.getGameData().getSpawnedBullets()));
-
-        ImageLoader.getLoader().removeBall();
     }
     /**
     * Method is used when the user clicks the "START NEW GAME" button.
@@ -62,6 +60,7 @@ public class GameOverSceneController extends AbstractSubSceneController {
 
     @Override
     public final GameScenes getNextScene() {
+        ImageLoader.getLoader().removeBall();
         return this.selection;
     }
 

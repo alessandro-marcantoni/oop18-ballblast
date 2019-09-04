@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * 
- * Simple implementation for "Menu.fxml" controller class.
+ * The {@link SceneController} for the main menu scene.
  * 
  */
 public class MenuSceneController extends AbstractSceneController {

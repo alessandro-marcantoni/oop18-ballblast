@@ -18,7 +18,7 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * 
- * Login scene controller.
+ * The {@link SceneController} for login scene.
  * 
  */
 public class LoginController extends AbstractSceneController {

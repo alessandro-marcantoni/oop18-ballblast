@@ -34,8 +34,12 @@ public class ImageLoader {
      * @return the image of the object required.
      */
     public Image getImage(final ImagePath imagePath) {
-        if (!this.imageMap.containsKey(imagePath)) {
-            final Image img = this.loadImage(imagePath);
+        if (imagePath.equals(ImagePath.BALL) && !this.imageMap.containsKey(imagePath)) {
+            final Image img = this.loadImage(BallColors.getRandomColor());
+            this.imageMap.put(imagePath, img);
+            return img;
+        } else if (!this.imageMap.containsKey(imagePath)) {
+            final Image img = this.loadImage(imagePath.getPath());
             this.imageMap.put(imagePath, img);
             return img;
         } else {
@@ -44,23 +48,20 @@ public class ImageLoader {
     }
 
     /**
-     * 
-     * @param imagePath the path of the image to be loaded.
-     * @return the Image.
-     */
-    public Image loadImage(final ImagePath imagePath) {
-        return new Image(ImageLoader.class.getResourceAsStream(imagePath.getPath()));
-    }
-    /**
      * Loads all images.
      */
     public void loadAll() {
         Arrays.stream(ImagePath.values()).forEach(this::getImage);
     }
+
     /**
-     * Remove ball image.
+     * Remove ball image to change it for another game.
      */
     public void removeBall() {
-        this.imageMap.remove(ImagePath.BALL);
+        this.imageMap.remove(ImagePath.BALL, imageMap.get(ImagePath.BALL));
+    }
+
+    private Image loadImage(final String imagePath) {
+        return new Image(ImageLoader.class.getResourceAsStream(imagePath));
     }
 }

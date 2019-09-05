@@ -2,13 +2,14 @@ package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
 import ballblast.view.View;
+import ballblast.view.imageloader.ImageLoader;
 import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
- * 
+ * The {@link SceneController} for the game over scene.
  *
  */
 public class GameOverSceneController extends AbstractSubSceneController {
@@ -38,13 +39,19 @@ public class GameOverSceneController extends AbstractSubSceneController {
         this.ballsDestroyed.setText(String.valueOf(controller.getGameData().getDestroyedBalls()));
         this.bulletsShot.setText(String.valueOf(controller.getGameData().getSpawnedBullets()));
     }
-
+    /**
+    * Method is used when the user clicks the "START NEW GAME" button.
+    * It is handled from JavaFX Gameover.fxml file.
+    */
     @FXML
     private void openNewGame() {
         this.selection = GameScenes.GAME_MODE;
         this.nextScene();
     }
-
+    /**
+    * Method is used when the user clicks the "LEADERBOARD" button.
+    * It is handled from JavaFX Gameover.fxml file.
+    */
     @FXML
     private void openLeaderboard() {
         this.selection = GameScenes.LEADERBOARD;
@@ -53,6 +60,7 @@ public class GameOverSceneController extends AbstractSubSceneController {
 
     @Override
     public final GameScenes getNextScene() {
+        ImageLoader.getLoader().removeBall();
         return this.selection;
     }
 
@@ -60,5 +68,4 @@ public class GameOverSceneController extends AbstractSubSceneController {
     protected final GameScenes getPreviousScene() {
         return GameScenes.MENU;
     }
-
 }

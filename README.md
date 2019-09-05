@@ -2,7 +2,7 @@
 
 Lo scopo del progetto e' realizzare un gioco arcade ispirato a Ball Blast, sviluppato dalla Voodoo e disponibile per smartphone. Un esempio di gameplay: [watch](https://www.youtube.com/watch?v=vyVFkBUYbBE).
 
-Il giocatore deve sopravvivere alle ondate di sfere nemiche, le quali variano per dimensione e punti vita. Il giocatore potrà distruggere le sfere spostandosi orizzontalmente (tramite tastiera), poiché solamente quando questo è in movimento i proiettili verranno sparati. Le sfere più grandi, quando eliminate, si sdoppiano in sfere più piccole. Il gioco termina se il cannone entra in contatto con una sfera nemica.
+Il giocatore deve sopravvivere alle ondate di sfere nemiche, le quali variano per dimensione e punti vita. Il giocatore potrà distruggere le sfere spostandosi sparando raffiche di proiettili e potrà schivarle muovendosi orizzontalmente. Le sfere più grandi, quando eliminate, si sdoppiano in sfere più piccole. Il gioco termina se il cannone entra in contatto con una sfera nemica.
 
 ---
 

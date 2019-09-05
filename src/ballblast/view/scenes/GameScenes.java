@@ -8,46 +8,45 @@ public enum GameScenes {
     /**
      * The game scene.
      */
-    GAME("Game.fxml"),
+    GAME("res/view/scenes/Game.fxml"),
     /**
      * The game mode selection menu scene.
      */
-    GAME_MODE("GameSelection.fxml"),
+    GAME_MODE("res/view/scenes/GameSelection.fxml"),
     /**
      * The main menu scene.
      */
-    MENU("Menu.fxml"),
+    MENU("res/view/scenes/Menu.fxml"),
     /**
      * The pause scene.
      */
-    PAUSE("Pause.fxml"),
+    PAUSE("res/view/scenes/Pause.fxml"),
     /**
      * The settings scene.
      */
-    SETTINGS("Settings.fxml"),
+    SETTINGS("res/view/scenes/Settings.fxml"),
     /**
      * The leader board scene.
      */
-    LEADERBOARD("Leaderboard.fxml"),
+    LEADERBOARD("res/view/scenes/Leaderboard.fxml"),
     /**
      * The manual scene.
      */
-    MANUAL("Manual.fxml"),
+    MANUAL("res/view/scenes/Manual.fxml"),
     /**
      * The game over scene.
      */
-    GAMEOVER("Gameover.fxml"),
+    GAMEOVER("res/view/scenes/Gameover.fxml"),
     /**
      * The login scene.
      */
-    LOGIN("Login.fxml"),
+    LOGIN("res/view/scenes/Login.fxml"),
     /**
      * The initial scene.
      */
-    MAIN("Main.fxml");
+    MAIN("res/view/scenes/Main.fxml");
 
     private final String selectedScene;
-    private static final String PATH = "res/view/scenes/";
 
     /**
      * 
@@ -62,6 +61,6 @@ public enum GameScenes {
      * @return the Path where the scene is stored.
      */
     public String getPath() {
-        return GameScenes.PATH + this.selectedScene;
+        return this.selectedScene;
     }
 }

@@ -1,6 +1,4 @@
-package ballblast.view.rendering;
-
-import ballblast.view.rendering.gameobject.BallColors;
+package ballblast.view.imageloader;
 
 /**
  * Identifies an image stored on the disk and its path.
@@ -10,7 +8,7 @@ public enum ImagePath {
      * The image for {@link Ball}. String empty to use randomColor in the
      * {@link ImageLoader}.
      */
-    BALL(BallColors.getRandomColor()),
+    BALL(""),
     /**
      * The image for {@link Player}.
      */
@@ -34,7 +32,11 @@ public enum ImagePath {
     /**
      * The image for {@link Wall} horizontal.
      */
-    WALL_HORIZONTAL("/view/walls/wall_horizontal.png"),
+    WALL_FLOOR("/view/walls/wall_floor.png"),
+    /**
+     * The image for {@link Wall} roof.
+     */
+    WALL_ROOF("/view/walls/wall_roof.png"),
     /**
      * The image for {@link Wall} vertical.
      */

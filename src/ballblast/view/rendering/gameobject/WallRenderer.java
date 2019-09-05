@@ -1,9 +1,8 @@
 package ballblast.view.rendering.gameobject;
 
-
 import ballblast.model.gameobjects.Wall;
 import ballblast.model.levels.Boundaries;
-import ballblast.view.rendering.ImagePath;
+import ballblast.view.imageloader.ImagePath;
 import ballblast.view.rendering.Sprite;
 
 /**
@@ -15,7 +14,6 @@ public class WallRenderer extends GameObjectRenderer<Wall> {
      * 
      * @param sprite     The {@link Sprite} used to render.
      * @param gameObject The {@link Wall} {@link GameObject}.
-     * @throws FileNotFoundException the file not found.
      */
     public WallRenderer(final Sprite sprite, final Wall gameObject) {
         super(sprite, gameObject);
@@ -23,13 +21,15 @@ public class WallRenderer extends GameObjectRenderer<Wall> {
             sprite.setGameObjectWidth(gameObject.getWidth());
             sprite.setGameObjectHeight(gameObject.getHeight());
             sprite.setGameObjectPosition(gameObject.getPosition());
-        if (Boundaries.isFloor(gameObject.getPosition()) || Boundaries.isRoof(gameObject.getPosition())) {
-            sprite.setSource(ImagePath.WALL_VERTICAL);
-        } else if (Boundaries.isLeft(gameObject.getPosition()) || Boundaries.isRight(gameObject.getPosition())) {
-        sprite.setSource(ImagePath.WALL_HORIZONTAL);
+            if (Boundaries.isFloor(gameObject.getPosition())) {
+                sprite.setSource(ImagePath.WALL_FLOOR);
+            } else if (Boundaries.isRoof(gameObject.getPosition())) {
+                sprite.setSource(ImagePath.WALL_ROOF);
+            } else if (Boundaries.isLeft(gameObject.getPosition()) || Boundaries.isRight(gameObject.getPosition())) {
+                sprite.setSource(ImagePath.WALL_VERTICAL);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
     }
 }

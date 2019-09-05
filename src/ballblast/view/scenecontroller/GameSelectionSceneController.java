@@ -7,7 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 /**
- * 
+ * The {@link SceneController} for the game mode selection scene.
  * 
  */
 public class GameSelectionSceneController extends AbstractSubSceneController {
@@ -16,7 +16,10 @@ public class GameSelectionSceneController extends AbstractSubSceneController {
     private Button btnSurvivalMode;
     @FXML
     private Button btnBackToMenu;
-
+    /**
+    * Method is used when the user clicks the "SURVIVAL" button.
+    * It is handled from JavaFX GameSelection.fxml file.
+    */
     @FXML
     final void startSurvivalMode() {
         this.getController().startSurvivalMode();
@@ -33,8 +36,6 @@ public class GameSelectionSceneController extends AbstractSubSceneController {
         return GameScenes.MENU;
     }
 
-    // TO DELETE
-    // Inserito per andare più veloce nel testing.
     @Override
     public final void onKeyPressed(final KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {

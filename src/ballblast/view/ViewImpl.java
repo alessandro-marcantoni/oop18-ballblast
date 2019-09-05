@@ -1,10 +1,11 @@
 package ballblast.view;
 
 import ballblast.controller.Controller;
+import ballblast.view.imageloader.ImageLoader;
 import ballblast.view.scenecontroller.AbstractSceneController;
-import ballblast.view.sceneloader.SceneLoader;
-import ballblast.view.sceneloader.SceneWrapper;
 import ballblast.view.scenes.GameScenes;
+import ballblast.view.scenes.SceneLoader;
+import ballblast.view.scenes.SceneWrapper;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
@@ -43,6 +44,7 @@ public class ViewImpl implements View {
         this.stage.setOnCloseRequest(e -> Runtime.getRuntime().exit(0));
         this.gameover = false;
         this.loadScene(GameScenes.MAIN);
+        ImageLoader.getLoader().loadAll();
     }
 
     @Override
@@ -56,12 +58,9 @@ public class ViewImpl implements View {
     @Override
     public final void loadScene(final GameScenes scene) {
         try {
-            final SceneWrapper wrapper;
-            if (gameover) {
-                wrapper = SceneLoader.getLoader().getScene(this.currentSceneController.getNextScene());
-            } else {
-                wrapper = SceneLoader.getLoader().getScene(scene);
-            }
+            final SceneWrapper wrapper = SceneLoader
+                    .getLoader()
+                    .getScene(gameover ? this.currentSceneController.getNextScene() : scene);
             wrapper.getController().init(controller, this);
             this.currentSceneController = wrapper.getController();
 
@@ -69,20 +68,21 @@ public class ViewImpl implements View {
             root.requestFocus();
             root.setOnKeyPressed(wrapper.getController()::onKeyPressed);
 
-            Platform.runLater(() -> {
-                final double oldWidth = this.stage.getWidth();
-                final double oldHeigth = this.stage.getHeight();
-                this.stage.setScene(wrapper.getScene());
-                this.stage.setWidth(oldWidth);
-                this.stage.setHeight(oldHeigth);
-                if (!this.viewStarted) {
-                    this.stage.show();
-                    this.viewStarted = true;
-                }
-            });
-
+            Platform.runLater(() -> this.initStage(wrapper));
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void initStage(final SceneWrapper wrapper) {
+        final double oldWidth = this.stage.getWidth();
+        final double oldHeigth = this.stage.getHeight();
+        this.stage.setScene(wrapper.getScene());
+        this.stage.setWidth(oldWidth);
+        this.stage.setHeight(oldHeigth);
+        if (!this.viewStarted) {
+            this.stage.show();
+            this.viewStarted = true;
         }
     }
 
@@ -93,6 +93,7 @@ public class ViewImpl implements View {
         if (gameover) {
             this.currentSceneController.nextScene();
         }
+        this.gameover = false;
     }
 
 }

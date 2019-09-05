@@ -18,7 +18,7 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * 
- * Login scene controller.
+ * The {@link SceneController} for login scene.
  * 
  */
 public class LoginController extends AbstractSceneController {
@@ -31,6 +31,7 @@ public class LoginController extends AbstractSceneController {
     private Button btnRegister;
     @FXML
     private Button btnLogin;
+    private static final String DANGER = "DANGER";
 
     @Override
     public final void init(final Controller controller, final View view) {
@@ -49,10 +50,10 @@ public class LoginController extends AbstractSceneController {
     }
 
     /**
-     * @throws IOException                  ...
-     * @throws SAXException                 ...
-     * @throws ParserConfigurationException ...
-     * 
+     * @throws SAXException                 SAXException
+     * @throws TransformerException         TransformerException
+     * @throws IOException                  IOException
+     * @throws ParserConfigurationException ParserConfigurationException
      */
     @FXML
     public void userLogin() throws ParserConfigurationException, SAXException, IOException {
@@ -62,14 +63,14 @@ public class LoginController extends AbstractSceneController {
             } else {
 
                 final Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("");
+                alert.setTitle(DANGER);
                 alert.setHeaderText(null);
                 alert.setContentText("Data not correct");
                 alert.showAndWait();
             }
         } else {
             final Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Hey!");
+            alert.setTitle(DANGER);
             alert.setHeaderText(null);
             alert.setContentText("Insert data.");
             alert.showAndWait();
@@ -77,11 +78,10 @@ public class LoginController extends AbstractSceneController {
     }
 
     /**
-     * @throws SAXException                 ...
-     * @throws TransformerException         ...
-     * @throws IOException                  ...
-     * @throws ParserConfigurationException ...
-     * 
+     * @throws SAXException                 SAXException
+     * @throws TransformerException         TransformerException
+     * @throws IOException                  IOException
+     * @throws ParserConfigurationException ParserConfigurationException
      */
     @FXML
     public void userRegister() throws ParserConfigurationException, IOException, TransformerException, SAXException {
@@ -90,14 +90,14 @@ public class LoginController extends AbstractSceneController {
                 this.nextScene();
             } else {
                 final Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("DANGER");
+                alert.setTitle(DANGER);
                 alert.setHeaderText(null);
-                alert.setContentText("Register not successful.");
+                alert.setContentText("User already exists.");
                 alert.showAndWait();
             }
         } else {
             final Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("DANGER");
+            alert.setTitle(DANGER);
             alert.setHeaderText(null);
             alert.setContentText("Insert data.");
             alert.showAndWait();
@@ -107,13 +107,13 @@ public class LoginController extends AbstractSceneController {
     private boolean checkTextField() {
         if (this.userTextField.getText().equals("")) {
             final Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("DANGER");
+            alert.setTitle(DANGER);
             alert.setHeaderText(null);
             alert.setContentText("Insert a user name");
             alert.showAndWait();
         } else if (this.pswTextField.getText().equals("")) {
             final Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("DANGER");
+            alert.setTitle(DANGER);
             alert.setHeaderText(null);
             alert.setContentText("Insert a password");
             alert.showAndWait();

@@ -3,6 +3,7 @@ package ballblast.view.scenecontroller;
 import ballblast.controller.Controller;
 import ballblast.model.commons.Constants;
 import ballblast.view.View;
+import ballblast.view.imageloader.ImageLoader;
 import ballblast.view.rendering.CanvasDrawer;
 import ballblast.view.rendering.ImageSprite;
 import ballblast.view.scenes.GameScenes;
@@ -64,19 +65,13 @@ public class GUISceneController extends AbstractSceneController {
     private CanvasDrawer canvasDrawer;
     private boolean gameover;
 
-    /**
-     * @param controller the {@link Controller}.
-     * @param view       the {@link View}.
-     */
     @Override
-    public void init(final Controller controller, final View view) {
+    public final void init(final Controller controller, final View view) {
         super.init(controller, view);
         this.inGameState = new InGameState(this, controller);
         this.pausedState = new PausedState(this, controller, this.pausePane);
-
         this.resetGameCanvasCoordinates();
         this.canvasDrawer = new CanvasDrawer(this.canvas);
-
         // Listeners for resized windows.
         this.canvasContainer.widthProperty().addListener(w -> this.resizeCanvas());
         this.canvasContainer.heightProperty().addListener(h -> this.resizeCanvas());
@@ -103,11 +98,18 @@ public class GUISceneController extends AbstractSceneController {
     public final void render() {
         if (this.isGameover()) {
             this.nextScene();
+            ImageLoader.getLoader().removeBall();
         }
         this.clearCanvas();
         this.score.setText(Double.toString(this.getController().getGameData().getScore()));
         this.balls.setText(Integer.toString(this.getController().getGameData().getDestroyedBalls()));
         this.canvasDrawer.draw(this.getController().getGameObjects());
+    }
+
+    // Clear the canvas after every render. It avoids ghosting effect.
+    private void clearCanvas() {
+        this.canvas.getGraphicsContext2D().restore();
+        this.resetGameCanvasCoordinates();
     }
 
     private void resetGameCanvasCoordinates() {
@@ -121,12 +123,6 @@ public class GUISceneController extends AbstractSceneController {
         ImageSprite.renderBackground(gc, this.canvas.getWidth(), this.canvas.getHeight());
         gc.scale(1, -1);
         gc.scale(canvasWidth / (Constants.WORLD_WIDTH), canvasHeight / Constants.WORLD_HEIGHT);
-    }
-
-    // Clear the canvas after every render. It avoids ghosting effect.
-    private void clearCanvas() {
-        this.canvas.getGraphicsContext2D().restore();
-        this.resetGameCanvasCoordinates();
     }
 
     // Resize the canvas proportionally when the app window is resized by the user.
@@ -155,7 +151,7 @@ public class GUISceneController extends AbstractSceneController {
 
     @Override
     protected final GameScenes getPreviousScene() {
-        return GameScenes.MENU;
+        return GameScenes.GAMEOVER;
     }
 
     /**

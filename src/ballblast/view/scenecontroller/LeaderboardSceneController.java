@@ -17,7 +17,7 @@ import javafx.scene.control.Label;
 
 /**
  * 
- * Scene controller for Leader board scene.
+ * The {@link SceneController} for leaderboard scene.
  * 
  */
 public class LeaderboardSceneController extends AbstractSubSceneController {
@@ -90,44 +90,18 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
 
     @FXML // fx:id="backToMenuBtn"
     private Button backToMenuBtn; // Value injected by FXMLLoader
-    private List<Label> scores;
-    private List<Label> users;
-    private List<RecordData> recordList;
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    private void initialize() {
-        assert player1label != null : "fx:id=\"player1label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert score1label != null : "fx:id=\"score1label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert player2label != null : "fx:id=\"player2label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert player3label != null : "fx:id=\"player3label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert player4label != null : "fx:id=\"player4label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert player5label != null : "fx:id=\"player5label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert player6label != null : "fx:id=\"player6label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert player7label != null : "fx:id=\"player7label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert player8label != null : "fx:id=\"player8label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert score2label != null : "fx:id=\"score2label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert score3label != null : "fx:id=\"score3label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert score4label != null : "fx:id=\"score4label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert score5label != null : "fx:id=\"score5label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert score6label != null : "fx:id=\"score6label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert score7label != null : "fx:id=\"score7label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert score8label != null : "fx:id=\"score8label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert player9label != null : "fx:id=\"player9label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert player10label != null : "fx:id=\"player10label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert score9label != null : "fx:id=\"score9label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert score10label != null : "fx:id=\"score10label\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-        assert backToMenuBtn != null : "fx:id=\"backToMenuBtn\" was not injected: check your FXML file 'Leaderboard.fxml'.";
-
-    }
 
     @Override
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
+        final List<Label> scores;
+        final List<Label> users;
+        final List<RecordData> recordList;
 
-        this.recordList = this.getController().getLeaderboard().getRecordList();
-        this.users = Lists.newArrayList(player1label, player2label, player3label, player4label, player5label,
+        recordList = this.getController().getLeaderboard().getRecordList();
+        users = Lists.newArrayList(player1label, player2label, player3label, player4label, player5label,
                 player6label, player7label, player8label, player9label, player10label);
-        this.scores = Lists.newArrayList(score1label, score2label, score3label, score4label, score5label, score6label,
+        scores = Lists.newArrayList(score1label, score2label, score3label, score4label, score5label, score6label,
                 score7label, score8label, score9label, score10label);
 
         for (int i = 0; i < 10; i++) {

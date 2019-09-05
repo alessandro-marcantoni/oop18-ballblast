@@ -2,9 +2,7 @@ package ballblast.view.states;
 
 import java.util.Map;
 import java.util.function.Consumer;
-
 import com.google.common.collect.ImmutableMap;
-
 import ballblast.controller.Controller;
 import ballblast.model.inputs.InputTypes;
 import ballblast.model.inputs.InputManager.PlayerTags;
@@ -45,7 +43,6 @@ public class InGameState extends GUIState {
 
     @Override
     public void onStateEntry() {
-
     }
 
     @Override

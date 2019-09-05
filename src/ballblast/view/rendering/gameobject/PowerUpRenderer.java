@@ -2,7 +2,7 @@ package ballblast.view.rendering.gameobject;
 
 import ballblast.model.powerups.AbstractPower;
 import ballblast.model.powerups.PowerTypes;
-import ballblast.view.rendering.ImagePath;
+import ballblast.view.imageloader.ImagePath;
 import ballblast.view.rendering.Sprite;
 
 /**
@@ -13,7 +13,6 @@ public class PowerUpRenderer extends GameObjectRenderer<AbstractPower> {
      * 
      * @param sprite     the {@link Sprite} used to render.
      * @param gameObject the {@link Power} {@link GameObject}.
-     * @throws FileNotFoundException the file not found.
      */
     public PowerUpRenderer(final Sprite sprite, final AbstractPower gameObject) {
         super(sprite, gameObject);

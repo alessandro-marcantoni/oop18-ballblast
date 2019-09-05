@@ -1,5 +1,7 @@
 package ballblast.view.scenecontroller;
 
+import ballblast.controller.Controller;
+import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,7 +12,7 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * 
- * Simple implementation for "Menu.fxml" controller class.
+ * The {@link SceneController} for the main menu scene.
  * 
  */
 public class MenuSceneController extends AbstractSceneController {
@@ -31,8 +33,15 @@ public class MenuSceneController extends AbstractSceneController {
     private Button quitBtn;
     private GameScenes selection;
 
+    @Override
+    public final void init(final Controller controller, final View view) {
+        super.init(controller, view);
+        this.selection = GameScenes.MENU;
+    }
     /**
      * Open the game mode selection scene.
+     * Method is used when the user clicks the "START NEW GAME" button.
+     * It is handled from JavaFX GameSelection.fxml file.
      */
     @FXML
     protected void openGameMode() {
@@ -42,6 +51,8 @@ public class MenuSceneController extends AbstractSceneController {
 
     /**
      * Open leader board scene.
+     * Method is used when the user clicks the "LEADERBOARD" button.
+     * It is handled from JavaFX Menu.fxml file.
      */
     @FXML
     private void openLeaderboard() {
@@ -51,6 +62,8 @@ public class MenuSceneController extends AbstractSceneController {
 
     /**
      * Open settings scene.
+     * Method is used when the user clicks the "SETTINGS" button.
+     * It is handled from JavaFX Menu.fxml file.
      */
     @FXML
     private void openSettings() {
@@ -66,6 +79,8 @@ public class MenuSceneController extends AbstractSceneController {
 
     /**
      * Open manual scene.
+     * Method is used when the user clicks the "MANUAL" button.
+     * It is handled from JavaFX Menu.fxml file.
      */
     @FXML
     private void openManual() {
@@ -75,6 +90,8 @@ public class MenuSceneController extends AbstractSceneController {
 
     /**
      * Quit game.
+     * Method is used when the user clicks the "QUIT" button.
+     * It is handled from JavaFX Menu.fxml file.
      */
     @FXML
     private void quitGame() {
@@ -94,6 +111,7 @@ public class MenuSceneController extends AbstractSceneController {
     @Override
     public final void onKeyPressed(final KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
+            this.selection = GameScenes.GAME_MODE;
             this.nextScene();
         }
     }

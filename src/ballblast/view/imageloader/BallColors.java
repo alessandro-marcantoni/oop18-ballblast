@@ -1,4 +1,4 @@
-package ballblast.view.rendering.gameobject;
+package ballblast.view.imageloader;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -66,13 +66,5 @@ public enum BallColors {
      */
     public String getBallPath() {
         return this.ballPath;
-    }
-
-    /**
-     * 
-     * @return the {@link BallColors} color.
-     */
-    public String getBallColor() {
-        return this.toString();
     }
 }

@@ -9,23 +9,19 @@ import org.locationtech.jts.math.Vector2D;
 public class GravityComponent extends AbstractComponent {
 
     private static final Vector2D STANDARD_GRAVITY = Vector2D.create(0, 100);
-    private static final Vector2D UPWARDS_GRAVITY = Vector2D.create(0, 98.5);
-
-    private Vector2D gravity;
+    private static final Vector2D UPWARDS_GRAVITY = Vector2D.create(0, 98.7);
 
     /**
      * Creates a new GravityComponent instance.
      */
     public GravityComponent() {
         super(ComponentTypes.GRAVITY);
-        this.gravity = STANDARD_GRAVITY;
     }
 
     @Override
     public final void update(final double elapsed) {
         if (this.isEnabled()) {
-            this.gravity = this.isGoingUpwards() ? UPWARDS_GRAVITY : STANDARD_GRAVITY;
-            final Vector2D dV = gravity.multiply(elapsed);
+            final Vector2D dV = this.getGravity().multiply(elapsed);
             this.getParent().setVelocity(this.getParent().getVelocity().add(dV));
         }
     }
@@ -40,7 +36,8 @@ public class GravityComponent extends AbstractComponent {
      * @return the gravity value.
      */
     public Vector2D getGravity() {
-        return this.gravity;
+        return this.isGoingUpwards() ? UPWARDS_GRAVITY : STANDARD_GRAVITY;
     }
 
 }
+

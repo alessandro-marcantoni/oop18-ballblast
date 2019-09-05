@@ -7,6 +7,8 @@ import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /**
  * The {@link SceneController} for the game over scene.
@@ -64,5 +66,13 @@ public class GameOverSceneController extends AbstractSubSceneController {
     @Override
     protected final GameScenes getPreviousScene() {
         return GameScenes.MENU;
+    }
+
+    @Override
+    public final void onKeyPressed(final KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            this.selection = GameScenes.GAME_MODE;
+            this.nextScene();
+        }
     }
 }

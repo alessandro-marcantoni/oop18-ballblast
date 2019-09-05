@@ -1,7 +1,8 @@
 package ballblast.controller.sound;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
-
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
@@ -64,8 +65,10 @@ public enum Sound {
     Sound(final String fileName) {
         try {
             this.clip = AudioSystem.getClip();
-            this.clip.open(AudioSystem.getAudioInputStream(
-                    Sound.class.getResourceAsStream("/sound/" + fileName)));
+            AudioInputStream audioInputStream = AudioSystem
+                    .getAudioInputStream(
+                            new BufferedInputStream(Sound.class.getResourceAsStream("/sound/" + fileName)));
+            this.clip.open(audioInputStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }

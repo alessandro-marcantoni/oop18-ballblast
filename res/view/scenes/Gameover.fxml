@@ -82,8 +82,7 @@
 						<Font size="18.0" />
 					</font>
 				</Label>
-				<Label id="title" fx:id="user" text="GAMEOVER"
-					GridPane.columnIndex="1">
+				<Label id="title" text="GAMEOVER" GridPane.columnIndex="1">
 					<padding>
 						<Insets right="10.0" />
 					</padding>

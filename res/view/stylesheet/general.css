@@ -31,6 +31,7 @@
 
 #title {
 	-fx-font-size: 60px;
+	-fx-text-fill: rgb(24,124,192);
 	-fx-font-family: "Roboto";
 }
 	

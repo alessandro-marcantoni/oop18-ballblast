@@ -25,7 +25,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private final Map<PlayerTags, List<InputTypes>> inputs;
     private final View view;
     private final Model model;
-    private boolean stopped;
+    private boolean stopped; //NOPMD stopped is used locally.
     private boolean paused;
 
     /**

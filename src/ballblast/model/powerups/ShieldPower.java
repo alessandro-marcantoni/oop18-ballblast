@@ -5,7 +5,7 @@ import ballblast.model.components.ComponentTypes;
 import ballblast.model.gameobjects.AbstractGameObject;
 
 /**
- * The class representing the shield {@Link Power}.
+ * The class representing the shield {@link Power}.
  */
 public final class ShieldPower extends AbstractPower {
 
@@ -14,7 +14,7 @@ public final class ShieldPower extends AbstractPower {
     }
 
     @Override
-    public void performPower() {
+    protected void performPower() {
         this.getPlayer().getComponents().stream()
         .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
         .findFirst()

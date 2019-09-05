@@ -19,7 +19,7 @@ import ballblast.model.inputs.InputTypes;
 import ballblast.view.View;
 
 /**
- * The implementation of the Controller in the MVC architecture.
+ * The implementation of the {@link Controller} in the MVC architecture.
  */
 public class ControllerImpl implements Controller, GameLoopObserver {
 
@@ -32,7 +32,7 @@ public class ControllerImpl implements Controller, GameLoopObserver {
     private final LeaderboardManager lbManager;
 
     /**
-     * Create a new instance of Controller.
+     * Create a new instance of {@link Controller}.
      * 
      * @param model The model of the MVC architecture.
      * @param view  The view of the MVC architecture.

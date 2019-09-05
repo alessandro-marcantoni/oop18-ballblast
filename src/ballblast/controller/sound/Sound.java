@@ -2,12 +2,15 @@ package ballblast.controller.sound;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+
+import ballblast.controller.DirectoryManager;
 
 /**
  * Enumeration representing the game sounds.
@@ -25,16 +28,15 @@ public enum Sound {
     SHOT("shot.wav"),
 
     /**
-     * The bounce sound.
+     * The split sound.
      */
-    BOUNCE("bounce.wav"),
+    SPLIT("split.wav"),
 
     /**
-     * The powerup sound.
+     * The destroy sound.
      */
-    POWERUP("powerup.wav");
+    DESTROY("destroy.wav");
 
-    private static final String PATH = "res/sound/";
     private Clip clip;
 
     /**
@@ -44,14 +46,14 @@ public enum Sound {
         @Override
         public void handleSound(final SoundTypes sound) {
             switch (sound) {
-            case BOUNCE:
-                Sound.BOUNCE.playSound();
+            case SPLIT:
+                Sound.SPLIT.playSound();
                 break;
             case SHOT:
                 Sound.SHOT.playSound();
                 break;
-            case POWERUP:
-                Sound.SHOT.playSound();
+            case DESTROY:
+                Sound.DESTROY.playSound();
                 break;
             default:
                 break;
@@ -61,7 +63,8 @@ public enum Sound {
 
     Sound(final String fileName) {
         try {
-            final AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(PATH + fileName));
+            final AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
+                    new File("res" + DirectoryManager.SEPARATOR + "sound" + DirectoryManager.SEPARATOR + fileName));
             this.clip = AudioSystem.getClip();
             this.clip.open(audioInputStream);
         } catch (UnsupportedAudioFileException e) {

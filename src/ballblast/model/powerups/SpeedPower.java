@@ -9,20 +9,24 @@ import ballblast.model.gameobjects.Player;
  */
 public final class SpeedPower extends AbstractPower {
 
-    private static final int SPEED = 90;
+    private static final double ENHANCED_SPEED = 90;
 
     private SpeedPower() {
         super(PowerTypes.SPEED);
     }
 
     @Override
-    public void performPower() {
-        ((Player) this.getPlayer()).setSpeed(SPEED);
+    protected void performPower() {
+        this.setSpeed(ENHANCED_SPEED);
     }
 
     @Override
     protected void stopPerforming() {
-        ((Player) this.getPlayer()).setSpeed(Constants.PLAYER_SPEED);
+        this.setSpeed(Constants.PLAYER_SPEED);
+    }
+
+    private void setSpeed(final double speed) {
+        ((Player) this.getPlayer()).setSpeed(speed);
     }
 
     /**

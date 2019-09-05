@@ -13,6 +13,11 @@ public enum SoundTypes {
     /**
      * The player's shot.
      */
-    SHOT
+    SHOT,
+
+    /**
+     * A ball gets split.
+     */
+    SPLIT
 
 }

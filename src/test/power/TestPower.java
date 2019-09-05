@@ -1,38 +1,51 @@
 package test.power;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
-import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.Component;
+import ballblast.model.components.ComponentTypes;
+import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
+import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
-import ballblast.model.levels.BasicLevel;
-import ballblast.model.levels.Level;
-import ballblast.model.levels.SinglePlayerDecorator;
-import ballblast.model.physics.CollisionTag;
+import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
+import ballblast.model.powerups.Power;
+import ballblast.model.powerups.PowerFactory;
+
 /**
  * JUnit test for {@link Power}.
  */
 public class TestPower {
-    private static final Coordinate POSITION = new Coordinate(30, 30);
+    private static final Coordinate POSITION = new Coordinate(100, 100);
+    private static final Coordinate DEFAULT = new Coordinate(0, 0);
     private static final Vector2D VELOCITY = new Vector2D(0, 0);
+
+    private final GameObjectManager gameObjectManager = new GameObjectManager();
+    private final CollisionManager collisionManager = new SimpleCollisionManager();
+    private GameObject player;
+    private Power power;
+    private GameObject ball;
+
     /**
      * Gets the environment ready for the tests.
      */
     @Before
     public void initializeEnv() {
-        final Level level = new SinglePlayerDecorator(new BasicLevel());
-        final GameObject player = GameObjectFactory.createPlayer(level.getGameObjectManager(), null, PlayerTags.FIRST,
-                level.getCollisionManager(), VELOCITY, POSITION, null);
-        level.getGameObjectManager().getGameObjects().add(player);
-        final Component collisionComponent = new CollisionComponent(new SimpleCollisionManager(), CollisionTag.PLAYER);
-        collisionComponent.setParent(player);
-        System.out.println(level.getGameObjectManager().getGameObjects());
+        this.player = GameObjectFactory.createPlayer(this.gameObjectManager, new InputManager(), PlayerTags.FIRST,
+                this.collisionManager, VELOCITY, POSITION, null);
+        this.player.getComponents().stream()
+            .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
+            .findFirst()
+            .ifPresent(Component::enable);
     }
 
     /**
@@ -40,7 +53,29 @@ public class TestPower {
      */
     @Test
     public void testShieldPower() {
+        this.power = PowerFactory.createShieldPower(VELOCITY, DEFAULT, this.collisionManager);
+        this.power.activate(this.player);
+        this.ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
+                this.gameObjectManager, null);
+        this.ball.getComponents().stream()
+            .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
+            .findFirst()
+            .ifPresent(Component::enable);
+        this.collisionManager.checkLoop();
+        assertFalse(this.player.isDestroyed());
+        this.power.deactivate();
+        this.collisionManager.checkLoop();
+        assertTrue(this.player.isDestroyed());
+    }
 
+    /**
+     * Test SpeedPower.
+     */
+    @Test
+    public void speedPower() {
+        this.power = PowerFactory.createSpeedPower(VELOCITY, DEFAULT, this.collisionManager);
+        this.power.activate(this.player);
+        System.out.println(this.player.getVelocity());
     }
 
 }

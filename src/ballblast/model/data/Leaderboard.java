@@ -124,7 +124,7 @@ public class Leaderboard {
      * @return the empty record list.
      */
     public List<RecordData> initList() {
-        List<RecordData> list = Lists.newArrayList();
+        final List<RecordData> list = Lists.newArrayList();
         for (int i = 1; i <= MAX_SCORES; i++) {
             final RecordData rec = new RecordData();
             rec.setName("---");

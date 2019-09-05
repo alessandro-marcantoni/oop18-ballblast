@@ -1,7 +1,7 @@
 package ballblast.controller;
 
 /**
- * The interface representing the Observer in the Observer Pattern.
+ * The interface representing the Observer of a {@link GameLoop}.
  */
 public interface GameLoopObserver {
 

@@ -110,18 +110,4 @@ public class TestGameLoop {
         assertTrue(previousValue < this.testView.getCounter());
     }
 
-    /**
-     * Tests {@Link GameLoop} constant refresh rate.
-     */
-    @Test
-    public void testFrameRate() {
-        for (int i = 0; i < 10; i++) {
-            int previousValue = this.testView.getCounter();
-            this.waitOneSecond();
-            final int newValue = this.testView.getCounter();
-            System.out.println(newValue - previousValue);
-            previousValue = newValue;
-        }
-    }
-
 }

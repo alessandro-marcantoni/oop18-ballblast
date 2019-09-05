@@ -5,7 +5,7 @@ import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
 
 /**
- * The abstract class representing a {@Link Power}.
+ * The abstract class representing a {@link Power}.
  */
 public abstract class AbstractPower extends AbstractGameObject implements Power {
 
@@ -21,9 +21,9 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
     private double availableTime;
 
     /**
-     * Constructor for a generic {@Link Power}.
+     * Constructor for a generic {@link Power}.
      * 
-     * @param powerType The type of the {@Link Power}.
+     * @param powerType The type of the {@link Power}.
      */
     protected AbstractPower(final PowerTypes powerType) {
         super(GameObjectTypes.POWERUP);
@@ -44,11 +44,8 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
         }
     }
 
-    /**
-     * May be extended in subclasses.
-     */
     @Override
-    public void activate(final GameObject player) {
+    public final void activate(final GameObject player) {
         if (!this.isActive()) {
             this.active = true;
             this.player = player;
@@ -75,21 +72,21 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
     }
 
     /**
-     * The specific action performed by a {@Link Power}.
+     * The specific action performed by a {@link Power}.
      */
     protected abstract void performPower();
 
     /**
-     * Stops the performed action of the {@Link Power}.
+     * Stops the performed action of the {@link Power}.
      */
     protected abstract void stopPerforming();
 
     /**
-     * Returns the {@Link Player} who gets the {@Link Power}.
+     * Gets the {@link Player} who gets the {@link Power}.
      * 
-     * @return The {@Link Player} who gets the {@Link Power}.
+     * @return The {@link Player} who gets the {@link Power}.
      */
-    public GameObject getPlayer() {
+    protected GameObject getPlayer() {
         return this.player;
     }
 

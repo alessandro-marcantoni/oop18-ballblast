@@ -6,7 +6,7 @@ import ballblast.model.components.ShooterComponent;
 import ballblast.model.gameobjects.AbstractGameObject;
 
 /**
- * The class representing the double shot {@Link Power}.
+ * The class representing the double fire {@link Power}.
  */
 public final class DoubleFirePower extends AbstractPower {
 
@@ -17,19 +17,20 @@ public final class DoubleFirePower extends AbstractPower {
     }
 
     @Override
-    public void performPower() {
-        this.getPlayer().getComponents().stream()
-        .filter(c -> c.getType().equals(ComponentTypes.SHOOTER))
-        .findFirst()
-        .ifPresent(c -> ((ShooterComponent) c).setShotInterval(DOUBLE_SHOT_INTERVAL));
+    protected void performPower() {
+        this.setShotInterval(DOUBLE_SHOT_INTERVAL);
     }
 
     @Override
-    public void stopPerforming() {
+    protected void stopPerforming() {
+        this.setShotInterval(Constants.DEFAULT_SHOT_INTERVAL);
+    }
+
+    private void setShotInterval(final double shotInterval) {
         this.getPlayer().getComponents().stream()
         .filter(c -> c.getType().equals(ComponentTypes.SHOOTER))
         .findFirst()
-        .ifPresent(c -> ((ShooterComponent) c).setShotInterval(Constants.DEFAULT_SHOT_INTERVAL));
+        .ifPresent(c -> ((ShooterComponent) c).setShotInterval(shotInterval));
     }
 
     /**

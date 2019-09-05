@@ -11,10 +11,11 @@ import ballblast.model.physics.CollisionTag;
 import ballblast.model.physics.handlers.PowerCollisionHandler;
 
 /**
- * Implementation of the {@link PowerFactory} interface.
+ * Factory to create {@link Power}.
  */
 public final class PowerFactory {
-    private PowerFactory() { }
+    private PowerFactory() {
+    }
 
     /**
      * Creates a new {@link ShieldPower}.

@@ -33,11 +33,4 @@ public interface Power {
      */
     PowerTypes getPowerType();
 
-    /**
-     * Returns the {@link Player} who is using the power.
-     * 
-     * @return the {@link Player}.
-     */
-    GameObject getPlayer();
-
 }

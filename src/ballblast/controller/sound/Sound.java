@@ -2,7 +2,6 @@ package ballblast.controller.sound;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -35,7 +34,12 @@ public enum Sound {
     /**
      * The destroy sound.
      */
-    DESTROY("destroy.wav");
+    DESTROY("destroy.wav"),
+
+    /**
+     * The game over sound.
+     */
+    GAMEOVER("gameover.wav");
 
     private Clip clip;
 

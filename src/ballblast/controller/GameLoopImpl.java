@@ -45,7 +45,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     @Override
     public final void run() {
-        Sound.THEME.loopSound();
+        this.startTheme();
         this.stopped = false;
         long lastTime = System.currentTimeMillis();
         while (!this.isStopped()) {
@@ -62,7 +62,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
         }
         this.view.setGameOver(true);
         this.updateLeaderboard();
-        Sound.THEME.stopSound();
+        this.gameOverSound();
     }
 
     @Override
@@ -130,6 +130,15 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     private void render() {
         this.view.render();
+    }
+
+    private void startTheme() {
+        Sound.THEME.loopSound();
+    }
+
+    private void gameOverSound() {
+        Sound.THEME.stopSound();
+        Sound.GAMEOVER.playSound();
     }
 
 }

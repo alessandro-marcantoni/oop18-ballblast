@@ -69,7 +69,6 @@ public class UserManager {
             XMLFileManager.submitUser(userName, password);
             final UserData user = new UserData();
             user.setName(userName);
-            user.setPassword(password);
             try {
                 this.save(user);
                 return Optional.of(user);

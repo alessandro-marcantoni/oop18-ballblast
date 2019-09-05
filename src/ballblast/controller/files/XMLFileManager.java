@@ -12,6 +12,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -58,18 +59,17 @@ public final class XMLFileManager {
      */
     public static boolean checkUserPassword(final String userName, final String pwd)
             throws ParserConfigurationException, SAXException, IOException {
-        final Document doc = getDocument(DirectoryManager.getUserFile(userName));
-        final Node root = doc.getFirstChild();
-        final Node obj = root.getChildNodes().item(1);
-
-        final NodeList property = obj.getChildNodes();
-        for (int i = 0; i < property.getLength() - 1; i++) {
-            i++;
-            final Node field = property.item(i);
-            if (field.getAttributes().item(0).getNodeValue().equals("password")) {
-                final Node password = field.getChildNodes().item(1);
-                if (password.getTextContent().equals(pwd)) {
-                    return true;
+        final Document doc = getDocument(DirectoryManager.USERS_LIST_FILE);
+        final NodeList list = doc.getElementsByTagName("user");
+        for (int i = 0; i < list.getLength(); i++) {
+            Node node = list.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element user = (Element) node;
+                if (user.getAttribute("id").equals(userName)) {
+                    Element password = (Element) user.getElementsByTagName("password").item(0);
+                    if (password.getTextContent().equals(pwd)) {
+                        return true;
+                    }
                 }
             }
         }
@@ -115,25 +115,14 @@ public final class XMLFileManager {
      */
     public static void submitUser(final String userName, final String password)
             throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        int countUsers;
         final Document doc = getDocument(DirectoryManager.USERS_LIST_FILE);
         final Element root = doc.getDocumentElement();
-
-        if (!root.hasChildNodes()) {
-            countUsers = 1;
-        } else {
-            final Element lastUser = (Element) root.getLastChild();
-            countUsers = Integer.valueOf(lastUser.getAttribute("id")) + 1;
-        }
-
         final Element user = doc.createElement("user");
-        user.setAttribute("id", String.valueOf(countUsers));
+        final Attr id = doc.createAttribute("id");
+        id.setValue(userName);
+        user.setAttributeNode(id);
+        user.setIdAttributeNode(id, true);
         root.appendChild(user);
-
-        final Element name = doc.createElement("name");
-        name.appendChild(doc.createTextNode(userName));
-        user.appendChild(name);
-
         final Element pwd = doc.createElement("password");
         pwd.appendChild(doc.createTextNode(password));
         user.appendChild(pwd);

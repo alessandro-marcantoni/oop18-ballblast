@@ -8,7 +8,6 @@ import ballblast.model.data.GameDataManager.GameData;
 public class UserData {
 
     private String name;
-    private String password;
     private int globalScore;
     private int destroyedBalls;
     private int matchesPlayed;
@@ -41,15 +40,6 @@ public class UserData {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * Getter for the user password.
-     * 
-     * @return the password.
-     */
-    public String getPassword() {
-        return password;
     }
 
     /**
@@ -104,15 +94,6 @@ public class UserData {
      */
     public void setName(final String name) {
         this.name = name;
-    }
-
-    /**
-     * Setter for the user password.
-     * 
-     * @param pwd the password.
-     */
-    public void setPassword(final String pwd) {
-        this.password = pwd;
     }
 
     /**

@@ -55,6 +55,7 @@ public class TestPower {
     public void testShieldPower() {
         this.power = PowerFactory.createShieldPower(VELOCITY, DEFAULT, this.collisionManager);
         this.power.activate(this.player);
+        assertTrue(this.power.isActive());
         this.ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
                 this.gameObjectManager, null);
         this.ball.getComponents().stream()
@@ -64,18 +65,9 @@ public class TestPower {
         this.collisionManager.checkLoop();
         assertFalse(this.player.isDestroyed());
         this.power.deactivate();
+        assertFalse(this.power.isActive());
         this.collisionManager.checkLoop();
         assertTrue(this.player.isDestroyed());
-    }
-
-    /**
-     * Test SpeedPower.
-     */
-    @Test
-    public void speedPower() {
-        this.power = PowerFactory.createSpeedPower(VELOCITY, DEFAULT, this.collisionManager);
-        this.power.activate(this.player);
-        System.out.println(this.player.getVelocity());
     }
 
 }

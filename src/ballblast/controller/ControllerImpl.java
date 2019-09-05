@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
+
 import org.xml.sax.SAXException;
 import ballblast.controller.files.LeaderboardManager;
 import ballblast.controller.files.UserManager;
@@ -86,7 +88,7 @@ public class ControllerImpl implements Controller, GameLoopObserver {
 
     @Override
     public final boolean checkLoginUser(final String username, final String password)
-            throws ParserConfigurationException, SAXException, IOException {
+            throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         this.currentUser = this.userManager.login(username, password);
         return this.currentUser.isPresent();
     }

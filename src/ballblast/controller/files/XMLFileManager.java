@@ -11,12 +11,15 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import ballblast.controller.DirectoryManager;
@@ -56,22 +59,21 @@ public final class XMLFileManager {
      * @throws ParserConfigurationException Parser exception.
      * @throws SAXException                 SAX exception.
      * @throws IOException                  IO exception.
+     * @throws XPathExpressionException     XPathExpression exception.
      */
     public static boolean checkUserPassword(final String userName, final String pwd)
-            throws ParserConfigurationException, SAXException, IOException {
+            throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         final Document doc = getDocument(DirectoryManager.USERS_LIST_FILE);
-        final NodeList list = doc.getElementsByTagName("user");
-        for (int i = 0; i < list.getLength(); i++) {
-            final Node node = list.item(i);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                final Element user = (Element) node;
-                if (user.getAttribute("id").equals(userName)) {
-                    final Element password = (Element) user.getElementsByTagName("password").item(0);
-                    if (password.getTextContent().equals(pwd)) {
-                        return true;
-                    }
-                }
-            }
+
+        final XPath xpath = XPathFactory.newInstance().newXPath();
+        final XPathExpression expression = xpath.compile("//user[@id='" + userName + "']");
+
+        final Element root = (Element) expression.evaluate(doc, XPathConstants.NODE);
+        final Element user = (Element) root.cloneNode(true);
+
+        final Element password = (Element) user.getFirstChild();
+        if (password.getTextContent().equals(pwd)) {
+            return true;
         }
         return false;
     }
@@ -117,12 +119,14 @@ public final class XMLFileManager {
             throws ParserConfigurationException, IOException, TransformerException, SAXException {
         final Document doc = getDocument(DirectoryManager.USERS_LIST_FILE);
         final Element root = doc.getDocumentElement();
+
         final Element user = doc.createElement("user");
         final Attr id = doc.createAttribute("id");
         id.setValue(userName);
         user.setAttributeNode(id);
         user.setIdAttributeNode(id, true);
         root.appendChild(user);
+
         final Element pwd = doc.createElement("password");
         pwd.appendChild(doc.createTextNode(password));
         user.appendChild(pwd);

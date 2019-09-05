@@ -3,6 +3,8 @@ package ballblast.view.scenecontroller;
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
+
 import org.xml.sax.SAXException;
 import ballblast.controller.Controller;
 import ballblast.view.View;
@@ -54,9 +56,10 @@ public class LoginController extends AbstractSceneController {
      * @throws TransformerException         TransformerException
      * @throws IOException                  IOException
      * @throws ParserConfigurationException ParserConfigurationException
+     * @throws XPathExpressionException     XPathExpression exception
      */
     @FXML
-    public void userLogin() throws ParserConfigurationException, SAXException, IOException {
+    public void userLogin() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         if (checkTextField()) {
             if (this.getController().checkLoginUser(userTextField.getText(), pswTextField.getText())) {
                 this.nextScene();
@@ -129,7 +132,7 @@ public class LoginController extends AbstractSceneController {
         if (event.getCode() == KeyCode.ENTER) {
             try {
                 this.userLogin();
-            } catch (ParserConfigurationException | SAXException | IOException e) {
+            } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException e) {
                 e.printStackTrace();
             }
         }

@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 
@@ -32,9 +33,10 @@ public class UserManager {
      * @throws ParserConfigurationException Parser exception.
      * @throws SAXException                 SAX exception.
      * @throws IOException                  IO exception.
+     * @throws XPathExpressionException     XPathExpression exception
      */
     public Optional<UserData> login(final String userName, final String password)
-            throws ParserConfigurationException, SAXException, IOException {
+            throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName)))
                 && XMLFileManager.checkUserPassword(userName, password)) {
             try {

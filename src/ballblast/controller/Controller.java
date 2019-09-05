@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 
@@ -72,8 +73,9 @@ public interface Controller {
      * @throws IOException 
      * @throws SAXException 
      * @throws ParserConfigurationException 
+     * @throws XPathExpressionException 
      */
-    boolean checkLoginUser(String username, String password) throws ParserConfigurationException, SAXException, IOException;
+    boolean checkLoginUser(String username, String password) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException;
     /**
      * Checks if register is successful.
      * 

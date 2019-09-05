@@ -21,7 +21,7 @@ public class GameSelectionSceneController extends AbstractSubSceneController {
     * It is handled from JavaFX GameSelection.fxml file.
     */
     @FXML
-    final void startSurvivalMode() {
+    private void startSurvivalMode() { //NOPMD the method is injected by fxml.
         this.getController().startSurvivalMode();
         this.nextScene();
     }

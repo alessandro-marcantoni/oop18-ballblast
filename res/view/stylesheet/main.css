@@ -1,11 +1,11 @@
 @font-face {
 	-fx-font-family: Roboto;
-	src: url('Roboto.ttf');
+	src: url('roboto.ttf');
 }
 
 @font-face {
 	-fx-font-family: Lato;
-	src: url('Lato.ttf');
+	src: url('lato.ttf');
 }
 
 .root {

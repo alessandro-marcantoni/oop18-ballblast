@@ -24,7 +24,7 @@ public class TestGravity {
 
     private static final Coordinate POSITION = new Coordinate(100, 100);
     private static final Vector2D VELOCITY = new Vector2D(0, 0);
-    private static final long ELAPSED = 5;
+    private static final long ELAPSED = 10;
 
     private final GameObjectManager gameObjectManager = new GameObjectManager();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
@@ -56,10 +56,8 @@ public class TestGravity {
         assertEquals(this.ball.getVelocity(), VELOCITY);
         assertEquals(this.ball.getPosition(), POSITION);
         this.ball.update(ELAPSED);
-        //Vector2D newVelocity = ;
         assertEquals(this.ball.getVelocity(), VELOCITY.add(new Vector2D(this.gravity.multiply(ELAPSED))));
         assertEquals(this.ball.getPosition(), VELOCITY.multiply(ELAPSED).translate(this.ball.getPosition()));
-        System.out.println(this.ball.getPosition());
     }
 
 }

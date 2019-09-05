@@ -24,11 +24,12 @@ public class TestGravity {
 
     private static final Coordinate POSITION = new Coordinate(100, 100);
     private static final Vector2D VELOCITY = new Vector2D(0, 0);
-    private static final Vector2D GRAVITY = new Vector2D(0, 12);
+    private static final long ELAPSED = 5;
 
     private final GameObjectManager gameObjectManager = new GameObjectManager();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
     private GameObject ball;
+    private Vector2D gravity;
 
     /**
      * Initializes the needed objects.
@@ -37,6 +38,14 @@ public class TestGravity {
     public void initializeEnv() {
         this.ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
                 this.gameObjectManager, null);
+        this.ball.getComponents().stream()
+        .filter(c -> c.getType().equals(ComponentTypes.MOVEMENT) 
+                || c.getType().equals(ComponentTypes.GRAVITY))
+        .forEach(Component::enable);
+        this.ball.getComponents().stream()
+        .filter(c -> c.getType().equals(ComponentTypes.GRAVITY))
+        .findFirst()
+        .ifPresent(c -> this.gravity = ((GravityComponent) c).getGravity());
     }
 
     /**
@@ -44,16 +53,12 @@ public class TestGravity {
      */
     @Test
     public void testGravity() {
+        assertEquals(this.ball.getVelocity(), VELOCITY);
         assertEquals(this.ball.getPosition(), POSITION);
-        this.ball.getComponents().stream()
-            .filter(c -> c.getType().equals(ComponentTypes.MOVEMENT) 
-                    || c.getType().equals(ComponentTypes.GRAVITY))
-            .forEach(Component::enable);
-        this.ball.getComponents().stream()
-            .filter(c -> c.getType().equals(ComponentTypes.GRAVITY))
-            .findFirst().ifPresent(c -> ((GravityComponent) c).setGravity(GRAVITY)); 
-        this.ball.update(5);
-        System.out.println(this.ball.getVelocity());
+        this.ball.update(ELAPSED);
+        //Vector2D newVelocity = ;
+        assertEquals(this.ball.getVelocity(), VELOCITY.add(new Vector2D(this.gravity.multiply(ELAPSED))));
+        assertEquals(this.ball.getPosition(), VELOCITY.multiply(ELAPSED).translate(this.ball.getPosition()));
         System.out.println(this.ball.getPosition());
     }
 

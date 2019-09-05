@@ -1,10 +1,6 @@
 package ballblast.view.scenes;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,9 +31,8 @@ public final class SceneLoader {
      */
     public SceneWrapper getScene(final GameScenes scene) throws IOException {
         final FXMLLoader loader = new FXMLLoader();
-        final Path path = Paths.get(scene.getPath());
-        final Parent root = (Parent) loader.load(new FileInputStream(path.toFile()));
-        return new SceneWrapperImpl(new Scene(root), loader.getController());
+        final Parent parent = loader.load(SceneLoader.class.getResourceAsStream(scene.getPath()));
+        return new SceneWrapperImpl(new Scene(parent), loader.getController());
     }
 
 }

@@ -1,15 +1,11 @@
 package ballblast.controller.sound;
 
-import java.io.File;
 import java.io.IOException;
 
-import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
-import ballblast.controller.DirectoryManager;
 
 /**
  * Enumeration representing the game sounds.
@@ -67,15 +63,10 @@ public enum Sound {
 
     Sound(final String fileName) {
         try {
-            final AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
-                    new File("res" + DirectoryManager.SEPARATOR + "sound" + DirectoryManager.SEPARATOR + fileName));
             this.clip = AudioSystem.getClip();
-            this.clip.open(audioInputStream);
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
+            this.clip.open(AudioSystem.getAudioInputStream(
+                    Sound.class.getResourceAsStream("/sound/" + fileName)));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
     }

@@ -32,8 +32,8 @@ public class TestPower {
     private final GameObjectManager gameObjectManager = new GameObjectManager();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
     private GameObject player;
-    private Power power;
-    private GameObject ball;
+    private Power power; //NOPMD power is used locally.
+    private GameObject ball; //NOPMD ball is used locally.
 
     /**
      * Gets the environment ready for the tests.

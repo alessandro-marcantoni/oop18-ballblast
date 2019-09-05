@@ -72,10 +72,8 @@ public final class XMLFileManager {
         final Element user = (Element) root.cloneNode(true);
 
         final Element password = (Element) user.getFirstChild();
-        if (password.getTextContent().equals(pwd)) {
-            return true;
-        }
-        return false;
+
+        return password.getTextContent().equals(pwd);
     }
 
     /**

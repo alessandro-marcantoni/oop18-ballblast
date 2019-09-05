@@ -44,7 +44,7 @@ public class GameOverSceneController extends AbstractSubSceneController {
     * It is handled from JavaFX Gameover.fxml file.
     */
     @FXML
-    private void openNewGame() {
+    private void openNewGame() {  //NOPMD the method is injected by fxml.
         this.selection = GameScenes.GAME_MODE;
         this.nextScene();
     }
@@ -53,7 +53,7 @@ public class GameOverSceneController extends AbstractSubSceneController {
     * It is handled from JavaFX Gameover.fxml file.
     */
     @FXML
-    private void openLeaderboard() {
+    private void openLeaderboard() { //NOPMD the method is injected by fxml.
         this.selection = GameScenes.LEADERBOARD;
         this.nextScene();
     }

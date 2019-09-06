@@ -14,6 +14,14 @@ import ballblast.model.levels.GameStatus;
  */
 public interface Model {
     /**
+     * Default World's width.
+     */
+    double WORLD_WIDTH = 200;
+    /**
+     * Default World's height.
+     */
+    double WORLD_HEIGHT = 100;
+    /**
      * Starts new survival session.
      */
     void startSurvival();

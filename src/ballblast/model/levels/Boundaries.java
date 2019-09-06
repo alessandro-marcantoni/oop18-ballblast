@@ -2,7 +2,7 @@ package ballblast.model.levels;
 
 import org.locationtech.jts.geom.Coordinate;
 
-import ballblast.model.commons.Constants;
+import ballblast.model.Model;
 
 /**
  * Represents the game's boundaries.
@@ -26,8 +26,8 @@ public enum Boundaries {
     BOTTOM;
 
     private static final double VERTICAL_WALL_WIDTH = 5;
-    private static final double VERTICAL_WALL_HEIGHT = Constants.WORLD_HEIGHT;
-    private static final double HORIZONTAL_WALL_WIDTH = Constants.WORLD_WIDTH - 2 * VERTICAL_WALL_WIDTH;
+    private static final double VERTICAL_WALL_HEIGHT = Model.WORLD_HEIGHT;
+    private static final double HORIZONTAL_WALL_WIDTH = Model.WORLD_WIDTH - 2 * VERTICAL_WALL_WIDTH;
     private static final double HORIZONTAL_WALL_HEIGHT = VERTICAL_WALL_WIDTH;
 
     private Coordinate position;
@@ -41,7 +41,7 @@ public enum Boundaries {
 
         RIGHT.width = VERTICAL_WALL_WIDTH;
         RIGHT.height = VERTICAL_WALL_HEIGHT;
-        RIGHT.position = new Coordinate(Constants.WORLD_WIDTH - VERTICAL_WALL_WIDTH, 0);
+        RIGHT.position = new Coordinate(Model.WORLD_WIDTH - VERTICAL_WALL_WIDTH, 0);
 
         TOP.width = HORIZONTAL_WALL_WIDTH;
         TOP.height = HORIZONTAL_WALL_HEIGHT;
@@ -49,7 +49,7 @@ public enum Boundaries {
 
         BOTTOM.width = HORIZONTAL_WALL_WIDTH;
         BOTTOM.height = HORIZONTAL_WALL_HEIGHT;
-        BOTTOM.position = new Coordinate(VERTICAL_WALL_WIDTH, Constants.WORLD_HEIGHT - HORIZONTAL_WALL_HEIGHT);
+        BOTTOM.position = new Coordinate(VERTICAL_WALL_WIDTH, Model.WORLD_HEIGHT - HORIZONTAL_WALL_HEIGHT);
     }
 
     /**

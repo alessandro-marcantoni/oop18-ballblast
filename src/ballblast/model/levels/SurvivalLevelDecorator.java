@@ -6,7 +6,6 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.model.commons.Constants;
 import ballblast.model.commons.Utils;
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.BallTypes;
@@ -20,6 +19,7 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     private static final double ENABLE_TIME = 2;
     private static final int MIN_BALL_LIFE = 4;
     private static final int MAX_BALL_LIFE = 200;
+    private static final double BALL_SPAWN_TIME = 10;
     private static final Vector2D BALL_VELOCITY = Vector2D.create(8, 0);
 
     private static final double LIFE_MULTIPLIER = 0.25;
@@ -73,7 +73,7 @@ public class SurvivalLevelDecorator extends LevelDecorator {
         this.currentSpawnTime -= elapsed;
         if (this.currentSpawnTime <= 0) {
             this.spawnBall();
-            this.currentSpawnTime = Constants.BALL_SPAWN_TIME;
+            this.currentSpawnTime = BALL_SPAWN_TIME;
         }
     }
 

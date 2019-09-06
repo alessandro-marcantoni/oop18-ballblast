@@ -10,7 +10,7 @@ import ballblast.model.gameobjects.GameObjectTypes;
 public abstract class AbstractPower extends AbstractGameObject implements Power {
 
     private static final double AVAILABLE_TIME = 10;
-    private static final double LIFE_TIME = 5;
+    private static final double LIFE_TIME = 15;
     private static final double DEFAULT_HEIGHT = 6;
     private static final double DEFAULT_WIDTH = 6;
 

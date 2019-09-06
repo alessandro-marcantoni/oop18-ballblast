@@ -7,7 +7,6 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.model.commons.Constants;
 import ballblast.model.commons.Utils;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObject;
@@ -22,6 +21,8 @@ import ballblast.model.physics.SimpleCollisionManager;
  * that all levels share.
  */
 public final class BasicLevel implements Level {
+    private static final double POWER_SPAWN_TIME = 20.0;
+
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
@@ -38,7 +39,7 @@ public final class BasicLevel implements Level {
         this.collisionManager = new SimpleCollisionManager();
         this.inputManager = new InputManager();
         this.gameDataManager = new GameDataManager();
-        this.currentSpawnTime = Constants.POWER_SPAWN_TIME;
+        this.currentSpawnTime = POWER_SPAWN_TIME;
         this.createBoundaries();
     }
 
@@ -109,7 +110,7 @@ public final class BasicLevel implements Level {
         this.currentSpawnTime -= elapsed;
         if (this.currentSpawnTime <= 0) {
             this.spawnPowerUp();
-            this.currentSpawnTime = Constants.POWER_SPAWN_TIME;
+            this.currentSpawnTime = POWER_SPAWN_TIME;
         }
     }
 

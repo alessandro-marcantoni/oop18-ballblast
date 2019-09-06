@@ -1,7 +1,7 @@
 package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
-import ballblast.model.commons.Constants;
+import ballblast.model.Model;
 import ballblast.view.View;
 import ballblast.view.imageloader.ImageLoader;
 import ballblast.view.rendering.CanvasDrawer;
@@ -122,7 +122,7 @@ public class GUISceneController extends AbstractSceneController {
         gc.clearRect(0, 0, canvasWidth, canvasWidth);
         ImageSprite.renderBackground(gc, this.canvas.getWidth(), this.canvas.getHeight());
         gc.scale(1, -1);
-        gc.scale(canvasWidth / (Constants.WORLD_WIDTH), canvasHeight / Constants.WORLD_HEIGHT);
+        gc.scale(canvasWidth / (Model.WORLD_WIDTH), canvasHeight / Model.WORLD_HEIGHT);
     }
 
     // Resize the canvas proportionally when the app window is resized by the user.
@@ -130,7 +130,7 @@ public class GUISceneController extends AbstractSceneController {
         final double parentWidth = this.canvasContainer.getWidth();
         final double parentHeight = this.canvasContainer.getHeight();
         final double ratio = parentWidth / parentHeight;
-        final double expectedRatio = Constants.WORLD_WIDTH / Constants.WORLD_HEIGHT;
+        final double expectedRatio = Model.WORLD_WIDTH / Model.WORLD_HEIGHT;
 
         if (ratio < expectedRatio) {
             this.canvas.setWidth(parentWidth);

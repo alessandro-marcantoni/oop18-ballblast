@@ -1,6 +1,5 @@
 package ballblast.model.powerups;
 
-import ballblast.model.commons.Constants;
 import ballblast.model.components.ComponentTypes;
 import ballblast.model.components.ShooterComponent;
 import ballblast.model.gameobjects.AbstractGameObject;
@@ -23,7 +22,7 @@ public final class DoubleFirePower extends AbstractPower {
 
     @Override
     protected void stopPerforming() {
-        this.setShotInterval(Constants.DEFAULT_SHOT_INTERVAL);
+        this.setShotInterval(ShooterComponent.DEFAULT_SHOT_INTERVAL);
     }
 
     private void setShotInterval(final double shotInterval) {

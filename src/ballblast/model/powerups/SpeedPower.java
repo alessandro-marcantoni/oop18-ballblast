@@ -1,6 +1,5 @@
 package ballblast.model.powerups;
 
-import ballblast.model.commons.Constants;
 import ballblast.model.gameobjects.AbstractGameObject;
 import ballblast.model.gameobjects.Player;
 
@@ -10,6 +9,7 @@ import ballblast.model.gameobjects.Player;
 public final class SpeedPower extends AbstractPower {
 
     private static final double ENHANCED_SPEED = 90;
+    private double prevSpeed;
 
     private SpeedPower() {
         super(PowerTypes.SPEED);
@@ -17,12 +17,13 @@ public final class SpeedPower extends AbstractPower {
 
     @Override
     protected void performPower() {
+        this.prevSpeed = ((Player) this.getPlayer()).getSpeed();
         this.setSpeed(ENHANCED_SPEED);
     }
 
     @Override
     protected void stopPerforming() {
-        this.setSpeed(Constants.PLAYER_SPEED);
+        this.setSpeed(this.prevSpeed);
     }
 
     private void setSpeed(final double speed) {

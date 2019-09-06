@@ -1,22 +1,21 @@
 package ballblast.model.gameobjects;
 
 import com.google.common.base.MoreObjects;
-
-import ballblast.model.commons.Constants;
-
 /**
  * Represents a {@link Bullet} that can be shot by the {@link Player} to hit the
  * balls. It can collide only with {@link Wall}s and {@link Ball}s.
  *
  */
 public final class Bullet extends AbstractGameObject {
+    private static final double DEFAULT_WIDTH = 1.4;
+    private static final double DEFAUTL_HEIGHT = 2;
     /**
-     * Create a {@link Bullet} instance.
+     * Class constructor.
      */
     private Bullet() {
         super(GameObjectTypes.BULLET);
-        this.setHeight(Constants.BULLET_HEIGHT);
-        this.setWidth(Constants.BULLET_WIDTH);
+        this.setHeight(DEFAUTL_HEIGHT);
+        this.setWidth(DEFAULT_WIDTH);
     }
 
     @Override

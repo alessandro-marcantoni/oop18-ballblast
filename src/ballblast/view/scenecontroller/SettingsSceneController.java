@@ -1,7 +1,8 @@
 package ballblast.view.scenecontroller;
 
 import ballblast.controller.Controller;
-import ballblast.settings.FpsSet;
+import ballblast.settings.Framerates;
+import ballblast.settings.KeyCodeSet;
 import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
@@ -22,7 +23,7 @@ public class SettingsSceneController extends AbstractSubSceneController {
     private ToggleButton btnLRS;
 
     @FXML
-    private ComboBox<String> cbFPS;
+    private ComboBox<Integer> cbFPS;
 
     @FXML
     private CheckBox chkMusic;
@@ -30,9 +31,9 @@ public class SettingsSceneController extends AbstractSubSceneController {
     @FXML
     private CheckBox chkSound;
 
-//    private KeyCodeSet commands;
-//    private boolean isMusicOn = true;
-//    private boolean isEffectsOn = true;
+    private KeyCodeSet keyset;
+    private boolean isMusicOn = true;
+    private boolean isEffectsOn = true;
 
     @Override
     public final void init(final Controller controller, final View view) {
@@ -40,8 +41,8 @@ public class SettingsSceneController extends AbstractSubSceneController {
         final ToggleGroup group = new ToggleGroup();
         this.btnLRS.setToggleGroup(group);
         this.btnADC.setToggleGroup(group);
-//        btnLRS.selectedProperty().addListener(b -> this.setLRSCommands());
-//        btnADC.selectedProperty().addListener(b -> this.setADCCommands());
+        btnLRS.selectedProperty().addListener(b -> this.setLRSCommands());
+        btnADC.selectedProperty().addListener(b -> this.setADCCommands());
         this.btnLRS.setSelected(true); // Da sostituire con, verosimilmente...
 //        if (checkCommandInUse().equals(KeyCodeSet.SET_ONE)) {
 //            btnLRS.setSelected(true);
@@ -50,13 +51,13 @@ public class SettingsSceneController extends AbstractSubSceneController {
 //        }
 
         this.cbFPS.getItems().clear();
-        this.cbFPS.getItems().addAll(FpsSet.FPS_25.getFPS(), FpsSet.FPS_30.getFPS(),
-                                FpsSet.FPS_60.getFPS(), FpsSet.FPS_120.getFPS());
+        this.cbFPS.getItems().addAll(Framerates.FPS_30.getFPS(),
+                                Framerates.FPS_60.getFPS(), Framerates.FPS_120.getFPS());
         this.cbFPS.getSelectionModel().select(0); // Da sostituire con, verosimilmente...
 //        cbFPS.getSelectionModel().select(this.getController().getCurrentUser().getCurrentFPS().toString());
 
-//        chkMusic.selectedProperty().addListener(c -> this.setMusic());
-//        chkMusic.selectedProperty().addListener(c -> this.setSoundEffects());
+        chkMusic.selectedProperty().addListener(c -> this.setMusic());
+        chkMusic.selectedProperty().addListener(c -> this.setSoundEffects());
     }
 
 
@@ -70,41 +71,42 @@ public class SettingsSceneController extends AbstractSubSceneController {
         return GameScenes.MENU;
     }
 
-//    private void setLRSCommands() {
-//        if (btnLRS.isSelected() && !this.commands.equals(KeyCodeSet.SET_ONE)) {
-//            this.getController().getCurrentUser().setCommand(KeyCodeSet.SET_ONE);
-//        }
-//    }
+    private void setLRSCommands() {
+        if (btnLRS.isSelected() && !this.keyset.equals(KeyCodeSet.SET_ONE)) {
+//            this.getController().getCurrentUser().setKeySet(KeyCodeSet.SET_ONE);
+        }
+    }
 
-//    private void setADCCommands() {
-//        if (btnADC.isSelected() && !this.commands.equals(KeyCodeSet.SET_TWO)) {
-//            this.getController().getCurrentUser().setCommand(KeyCodeSet.SET_TWO);
-//        }
-//    }
+    private void setADCCommands() {
+        if (btnADC.isSelected() && !this.keyset.equals(KeyCodeSet.SET_TWO)) {
+//            this.getController().getCurrentUser().setKeySet(KeyCodeSet.SET_TWO);
+        }
+    }
 
-//    private KeyCodeSet checkCommandInUse() {
-//        KeyCodeSet command = this.getController().getCurrentUser().getCommand();
-//        this.commands = command;
-//        return command;
-//    }
+    private KeyCodeSet checkCommandInUse() {
+//        KeyCodeSet currentKeySet = this.getController().getCurrentUser().getKeySet();
+//        this.keyset = currentKeySet;
+//        return currentKeySet;
+        return null;
+    }
 
-//    private void setMusic() {
-//        if (this.isMusicOn) {
-//            this.isMusicOn = false;
+    private void setMusic() {
+        if (this.isMusicOn) {
+            this.isMusicOn = false;
 //            this.getController().getCurrentUser().setMusic(false);
-//        } else {
-//            this.isMusicOn = true;
+        } else {
+            this.isMusicOn = true;
 //            this.getController().getCurrentUser().setMusic(true);
-//        }
-//    }
+        }
+    }
 
-//    private void setSoundEffects() {
-//        if (this.isEffectsOn) {
-//        this.isEffectsOn = false;
+    private void setSoundEffects() {
+        if (this.isEffectsOn) {
+        this.isEffectsOn = false;
 //        this.getController().getCurrentUser().setSoundEffects(false);
-//        } else {
-//            this.isEffectsOn = true;
+        } else {
+            this.isEffectsOn = true;
 //            this.getController().getCurrentUser().setSoundEffects(true);
-//        }
-//    }
+        }
+    }
 }

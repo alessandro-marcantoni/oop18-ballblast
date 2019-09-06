@@ -11,25 +11,32 @@ public final class DoubleFirePower extends AbstractPower {
 
     private static final double DOUBLE_SHOT_INTERVAL = 0.055;
 
+    private double prevShotInterval;
+
     private DoubleFirePower() {
         super(PowerTypes.DOUBLEFIRE);
     }
 
     @Override
     protected void performPower() {
+        this.prevShotInterval = this.findShooter().getShotInterval();
         this.setShotInterval(DOUBLE_SHOT_INTERVAL);
     }
 
     @Override
     protected void stopPerforming() {
-        this.setShotInterval(ShooterComponent.DEFAULT_SHOT_INTERVAL);
+        this.setShotInterval(this.prevShotInterval);
     }
 
     private void setShotInterval(final double shotInterval) {
-        this.getPlayer().getComponents().stream()
-        .filter(c -> c.getType().equals(ComponentTypes.SHOOTER))
-        .findFirst()
-        .ifPresent(c -> ((ShooterComponent) c).setShotInterval(shotInterval));
+        this.findShooter().setShotInterval(shotInterval);
+    }
+
+    private ShooterComponent findShooter() {
+        return this.getPlayer().getComponents().stream()
+                .filter(c -> c.getType() == ComponentTypes.SHOOTER)
+                .map(c -> (ShooterComponent) c)
+                .findFirst().get();
     }
 
     /**

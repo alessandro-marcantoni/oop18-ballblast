@@ -49,7 +49,6 @@ public class SettingsSceneController extends AbstractSubSceneController {
 //        } else {
 //            btnADC.setSelected(true);
 //        }
-
         this.cbFPS.getItems().clear();
         this.cbFPS.getItems().addAll(Framerates.FPS_30.getFPS(),
                                 Framerates.FPS_60.getFPS(), Framerates.FPS_120.getFPS());

@@ -38,21 +38,21 @@ public class SettingsSceneController extends AbstractSubSceneController {
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
         final ToggleGroup group = new ToggleGroup();
-        btnLRS.setToggleGroup(group);
-        btnADC.setToggleGroup(group);
+        this.btnLRS.setToggleGroup(group);
+        this.btnADC.setToggleGroup(group);
 //        btnLRS.selectedProperty().addListener(b -> this.setLRSCommands());
 //        btnADC.selectedProperty().addListener(b -> this.setADCCommands());
-        btnLRS.setSelected(true); // Da sostituire con, verosimilmente...
+        this.btnLRS.setSelected(true); // Da sostituire con, verosimilmente...
 //        if (checkCommandInUse().equals(KeyCodeSet.SET_ONE)) {
 //            btnLRS.setSelected(true);
 //        } else {
 //            btnADC.setSelected(true);
 //        }
 
-        cbFPS = new ComboBox<>();
-        cbFPS.getItems().clear();
-        cbFPS.getItems().addAll(FpsSet.FPS_25.getFPS(), FpsSet.FPS_30.getFPS(), FpsSet.FPS_60.getFPS(), FpsSet.FPS_120.getFPS());
-        cbFPS.getSelectionModel().select(0); // Da sostituire con, verosimilmente...
+        this.cbFPS.getItems().clear();
+        this.cbFPS.getItems().addAll(FpsSet.FPS_25.getFPS(), FpsSet.FPS_30.getFPS(),
+                                FpsSet.FPS_60.getFPS(), FpsSet.FPS_120.getFPS());
+        this.cbFPS.getSelectionModel().select(0); // Da sostituire con, verosimilmente...
 //        cbFPS.getSelectionModel().select(this.getController().getCurrentUser().getCurrentFPS().toString());
 
 //        chkMusic.selectedProperty().addListener(c -> this.setMusic());

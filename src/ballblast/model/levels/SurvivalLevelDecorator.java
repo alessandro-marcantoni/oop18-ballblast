@@ -6,7 +6,6 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.model.commons.Utils;
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
@@ -50,10 +49,28 @@ public class SurvivalLevelDecorator extends LevelDecorator {
         }
     }
 
+    private void tryToEnable(final double elapsed) {
+        if (this.spawnedBall.isPresent()) {
+            this.currentEnableTime -= elapsed;
+            if (this.currentEnableTime <= 0) {
+                SpawnHelper.activeComponents(this.spawnedBall.get());
+                this.spawnedBall = Optional.empty();
+                currentEnableTime = ENABLE_TIME;
+            }
+        }
+    }
+
+    private void tryToSpawn(final double elapsed) {
+        this.currentSpawnTime -= elapsed;
+        if (this.currentSpawnTime <= 0) {
+            this.spawnBall();
+            this.currentSpawnTime = BALL_SPAWN_TIME;
+        }
+    }
 
     private void spawnBall() {
         this.spawnedBall = Optional.of(GameObjectFactory.createBall(
-                BallTypes.LARGE, this.calculateBallLife(), Utils.getRandomSpawnPosition(), BALL_VELOCITY, 
+                BallTypes.LARGE, this.calculateBallLife(), SpawnHelper.getRandomSpawnPosition(), BALL_VELOCITY, 
                 this.getCollisionManager(), this.getGameObjectManager(), this.getGameDataManager()));
         this.getGameObjectManager().addGameObjects(ImmutableList.of(this.spawnedBall.get()));
     }
@@ -67,24 +84,5 @@ public class SurvivalLevelDecorator extends LevelDecorator {
         final GameData gameData = this.getGameDataManager().getGameData();
         this.getGameDataManager()
                 .calculateScore((int) (gameData.getTime() + gameData.getDestroyedBalls() * SCORE_MULTIPLIER));
-    }
-
-    private void tryToSpawn(final double elapsed) {
-        this.currentSpawnTime -= elapsed;
-        if (this.currentSpawnTime <= 0) {
-            this.spawnBall();
-            this.currentSpawnTime = BALL_SPAWN_TIME;
-        }
-    }
-
-    private void tryToEnable(final double elapsed) {
-        if (this.spawnedBall.isPresent()) {
-            this.currentEnableTime -= elapsed;
-            if (this.currentEnableTime <= 0) {
-                Utils.activeComponents(this.spawnedBall.get());
-                this.spawnedBall = Optional.empty();
-                currentEnableTime = ENABLE_TIME;
-            }
-        }
     }
 }

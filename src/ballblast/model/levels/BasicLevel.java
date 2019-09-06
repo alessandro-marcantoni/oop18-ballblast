@@ -7,7 +7,6 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.model.commons.Utils;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
@@ -103,7 +102,7 @@ public final class BasicLevel implements Level {
 
     private void initGameObjectManager() {
         this.gameObjectManager.update(0);
-        this.gameObjectManager.getGameObjects().forEach(Utils::activeComponents);
+        this.gameObjectManager.getGameObjects().forEach(SpawnHelper::activeComponents);
     }
 
     private void tryToSpawn(final double elapsed) {
@@ -115,9 +114,8 @@ public final class BasicLevel implements Level {
     }
 
     private void spawnPowerUp() {
-        final GameObject power = ((GameObject) Utils.createRandomPower(
-                Vector2D.create(0, 0), Utils.getRandomSpawnPosition(), this.collisionManager));
-        Utils.activeComponents(power);
+        final GameObject power = ((GameObject) SpawnHelper.spawnRandomPower(Vector2D.create(0, 0), this.collisionManager));
+        SpawnHelper.activeComponents(power);
         this.getGameObjectManager().addGameObjects(ImmutableList.of(power));
     }
 }

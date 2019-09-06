@@ -10,6 +10,7 @@ public final class Player extends AbstractGameObject {
     private static final double DEFAULT_WIDTH = 6;
     private static final double DEFAULT_SPEED = 50;
     private double currentSpeed;
+    private boolean immune;
 
     /**
      * Class constructor.
@@ -37,6 +38,24 @@ public final class Player extends AbstractGameObject {
      */
     public double getSpeed() {
         return this.currentSpeed;
+    }
+
+    /**
+     * Check if the {@link Player} is immune.
+     * 
+     * @return true if the {@link Player} is immune, false otherwise.
+     */
+    public boolean isImmune() {
+        return this.immune;
+    }
+
+    /**
+     * Sets the {@link Player}'s immunity.
+     * 
+     * @param immune true if the {@link Player} is immune, false otherwise.
+     */
+    public void setImmune(final boolean immune) {
+        this.immune = immune;
     }
 
     @Override

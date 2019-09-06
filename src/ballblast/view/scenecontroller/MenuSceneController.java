@@ -68,13 +68,13 @@ public class MenuSceneController extends AbstractSceneController {
     @FXML
     private void openSettings() { //NOPMD the method is injected by fxml.
         // TODO
-//        this.settings = true;
-//        this.nextScene();
-        final Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("Work in progress...");
-        alert.setHeaderText(null);
-        alert.setContentText("Not implemented yet.");
-        alert.showAndWait();
+        this.selection = GameScenes.SETTINGS;
+        this.nextScene();
+//        final Alert alert = new Alert(AlertType.WARNING);
+//        alert.setTitle("Work in progress...");
+//        alert.setHeaderText(null);
+//        alert.setContentText("Not implemented yet.");
+//        alert.showAndWait();
     }
 
     /**

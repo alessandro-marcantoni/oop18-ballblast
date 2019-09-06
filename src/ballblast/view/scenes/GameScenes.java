@@ -18,10 +18,6 @@ public enum GameScenes {
      */
     MENU("/view/scenes/Menu.fxml"),
     /**
-     * The pause scene.
-     */
-    PAUSE("/view/scenes/Pause.fxml"),
-    /**
      * The settings scene.
      */
     SETTINGS("/view/scenes/Settings.fxml"),

@@ -7,15 +7,17 @@ package ballblast.commons;
  * @param <A> the first type of the input to the operation.
  * @param <B> the second type of the input to the operation.
  * @param <C> the third type of the input to the operation.
+ * @param <R> the the type of the result of the function.
  */
 @FunctionalInterface
-public interface TripleConsumer<A, B, C> {
+public interface TripleFunction<A, B, C, R> {
     /**
      * Performs this operation on the given argument.
      * 
      * @param a the first input argument.
      * @param b the second input argument.
      * @param c the third input argument.
+     * @return the function result.
      */
-    void accept(A a, B b, C c);
+    R apply(A a, B b, C c);
 }

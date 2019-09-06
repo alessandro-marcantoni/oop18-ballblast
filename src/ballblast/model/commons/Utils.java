@@ -10,6 +10,7 @@ import org.locationtech.jts.math.Vector2D;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
+import ballblast.commons.TripleFunction;
 import ballblast.model.Model;
 import ballblast.model.components.Component;
 import ballblast.model.gameobjects.GameObject;
@@ -29,11 +30,15 @@ public final class Utils {
     private static final double MIN_SPAWN_X = Boundaries.LEFT.getWidth() + SPAWN_OFFSET;
     private static final double MAX_SPAWN_X = Model.WORLD_WIDTH - Boundaries.RIGHT.getWidth() - SPAWN_OFFSET;
     private static final List<PowerTypes> POWERS = ImmutableList.copyOf(PowerTypes.values());
-    private static final Map<PowerTypes, PowerConsumer> POWER_MAP = ImmutableMap.of(
+    private static final Map<PowerTypes, TripleFunction<Vector2D, Coordinate, CollisionManager, Power>> POWER_MAP;
+
+    static {
+        POWER_MAP = ImmutableMap.of(
             PowerTypes.DOUBLEFIRE, PowerFactory::createDoubleFirePower,
-            PowerTypes.SPEED, PowerFactory::createSpeedPower,
-            PowerTypes.SHIELD, PowerFactory::createShieldPower
-    );
+            PowerTypes.SPEED,      PowerFactory::createSpeedPower,
+            PowerTypes.SHIELD,     PowerFactory::createShieldPower
+        );
+    }
 
     /**
      * Generates a random spawn position based on World dimensions.
@@ -64,10 +69,6 @@ public final class Utils {
     }
 
     private Utils() { }
-
-    private interface PowerConsumer {
-        Power apply(Vector2D v, Coordinate p, CollisionManager c);
-    }
 
     private static PowerTypes getRandomPowerType() {
         return POWERS.get(RANDOM.nextInt(POWERS.size()));

@@ -1,7 +1,6 @@
 package ballblast.model.powerups;
 
 import ballblast.model.gameobjects.AbstractGameObject;
-import ballblast.model.gameobjects.Player;
 
 /**
  * The class representing the speed {@Link Power}.
@@ -17,7 +16,7 @@ public final class SpeedPower extends AbstractPower {
 
     @Override
     protected void performPower() {
-        this.prevSpeed = ((Player) this.getPlayer()).getSpeed();
+        this.prevSpeed = this.getPlayer().getSpeed();
         this.setSpeed(ENHANCED_SPEED);
     }
 
@@ -27,7 +26,7 @@ public final class SpeedPower extends AbstractPower {
     }
 
     private void setSpeed(final double speed) {
-        ((Player) this.getPlayer()).setSpeed(speed);
+        this.getPlayer().setSpeed(speed);
     }
 
     /**
@@ -38,7 +37,7 @@ public final class SpeedPower extends AbstractPower {
         public final SpeedPower build() {
             return this.getGameObject();
         }
- 
+
         @Override
         protected final SpeedPower initGameObject() {
             return new SpeedPower();

@@ -34,8 +34,7 @@ public class PlayerCollisionHandler implements CollisionHandler {
     private void checkBoundLimit(final GameObject bound, final GameObject obj) {
         if (Boundaries.isRight(bound.getPosition())) {
             obj.setPosition(new Coordinate(bound.getPosition().getX() - obj.getWidth(), obj.getPosition().getY()));
-        }
-        if (Boundaries.isLeft(bound.getPosition())) {
+        } else if (Boundaries.isLeft(bound.getPosition())) {
             obj.setPosition(new Coordinate(bound.getPosition().getX() + bound.getWidth(), obj.getPosition().getY()));
         }
     }

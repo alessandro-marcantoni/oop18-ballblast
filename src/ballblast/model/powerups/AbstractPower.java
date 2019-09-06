@@ -3,6 +3,7 @@ package ballblast.model.powerups;
 import ballblast.model.gameobjects.AbstractGameObject;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectTypes;
+import ballblast.model.gameobjects.Player;
 
 /**
  * The abstract class representing a {@link Power}.
@@ -86,8 +87,8 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
      * 
      * @return The {@link Player} who gets the {@link Power}.
      */
-    protected GameObject getPlayer() {
-        return this.player;
+    protected Player getPlayer() {
+        return (Player) this.player;
     }
 
     private void checkLife() {

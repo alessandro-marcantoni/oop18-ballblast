@@ -54,7 +54,7 @@ public final class Player extends AbstractGameObject {
      * 
      * @param immune true if the {@link Player} is immune, false otherwise.
      */
-    public void setImmune(final boolean immune) {
+    public void setImmunity(final boolean immune) {
         this.immune = immune;
     }
 
@@ -79,6 +79,17 @@ public final class Player extends AbstractGameObject {
          */
         public Builder setSpeed(final double speed) {
             this.getGameObject().setSpeed(speed);
+            return this;
+        }
+
+        /**
+         * Sets the {@link Player}'s immunity.
+         * 
+         * @param immune true if the {@link Player} is immune, false otherwise.
+         * @return the concrete {@link Builder}.
+         */
+        public Builder setImmunity(final boolean immune) {
+            this.getGameObject().setImmunity(immune);
             return this;
         }
 

@@ -21,7 +21,7 @@ import ballblast.model.physics.SimpleCollisionManager;
  * that all levels share.
  */
 public final class BasicLevel implements Level {
-    private static final double POWER_SPAWN_TIME = 20.0;
+    private static final double POWER_SPAWN_TIME = 25.0;
 
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;

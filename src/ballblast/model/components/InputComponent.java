@@ -1,10 +1,10 @@
 package ballblast.model.components;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 import com.google.common.collect.ImmutableList;
 
+import ballblast.commons.Command;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
@@ -16,7 +16,7 @@ import ballblast.model.inputs.InputManager.PlayerTags;
 public class InputComponent extends AbstractComponent {
     private final InputManager inputManager;
     private final PlayerTags tag;
-    private List<Consumer<GameObject>> commands;
+    private List<Command<GameObject>> commands;
 
     /**
      * Class constructor.
@@ -56,12 +56,12 @@ public class InputComponent extends AbstractComponent {
      * 
      * @param list the {@link List} of {@link Command}s to be resolved.
      */
-    public final void receiveCommands(final List<Consumer<GameObject>> list) {
+    public final void receiveCommands(final List<Command<GameObject>> list) {
         this.commands = ImmutableList.copyOf(list);
     }
 
     private void resolveCommands() {
-        this.commands.forEach(c -> c.accept(this.getParent()));
+        this.commands.forEach(c -> c.execute(this.getParent()));
         this.emptyCommands();
     }
 

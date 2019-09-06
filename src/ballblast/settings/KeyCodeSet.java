@@ -37,7 +37,7 @@ public enum KeyCodeSet {
      * @return {@link KeyCode} used to move right.
      */
     public KeyCode getMoveRight() {
-        return moveRight;
+        return this.moveRight;
     }
 
     /**
@@ -45,7 +45,7 @@ public enum KeyCodeSet {
      * @return {@link KeyCode} used to move left.
      */
     public KeyCode getMoveLeft() {
-        return moveLeft;
+        return this.moveLeft;
     }
 
     /**
@@ -53,6 +53,6 @@ public enum KeyCodeSet {
      * @return {@link KeyCode} used to shoot.
      */
     public KeyCode getShoot() {
-        return shoot;
+        return this.shoot;
     }
 }

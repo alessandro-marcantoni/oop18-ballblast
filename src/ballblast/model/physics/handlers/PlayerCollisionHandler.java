@@ -6,7 +6,7 @@ import ballblast.model.gameobjects.GameObject;
 import ballblast.model.levels.Boundaries;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
-//import ballblast.model.powerups.Power;
+import ballblast.model.gameobjects.Player;
 
 /**
  * Represents the handler for the behavior of a {@link Player} after a
@@ -20,7 +20,9 @@ public class PlayerCollisionHandler implements CollisionHandler {
         switch (coll.getCollisionTag()) {
         case BALL:
             // Destroy the Player and finish the game session.
-            obj.destroy();
+            if (!((Player) obj).isImmune()) {
+                obj.destroy();
+            }
             break;
         case WALL:
             final GameObject boundary = coll.getAttachedGameObject();

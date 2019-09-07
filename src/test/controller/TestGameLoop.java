@@ -18,9 +18,11 @@ import ballblast.view.scenes.GameScenes;
  */
 public class TestGameLoop {
 
+    private static final int FPS = 60;
+
     private final Model testModel = new ModelImpl();
     private final TestView testView = new TestView();
-    private final GameLoopImpl gameLoop = new GameLoopImpl(testModel, testView);
+    private final GameLoopImpl gameLoop = new GameLoopImpl(testModel, testView, FPS);
 
     private class TestView implements View {
 

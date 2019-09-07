@@ -120,7 +120,7 @@ public class ControllerImpl implements Controller, GameLoopObserver {
     }
 
     private void createGameLoop() {
-        this.gameloop = new GameLoopImpl(this.model, view);
+        this.gameloop = new GameLoopImpl(this.model, this.view, this.currentUser.get().getFramesPerSecond());
         this.gameloop.addObserver(this);
     }
 }

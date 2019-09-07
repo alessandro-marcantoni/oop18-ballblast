@@ -17,6 +17,8 @@ import org.xml.sax.SAXException;
 
 import ballblast.controller.DirectoryManager;
 import ballblast.model.data.UserData;
+import ballblast.settings.Framerates;
+import ballblast.settings.KeyCodeSet;
 
 /**
  * The manager for handling {@link UserData}s.
@@ -71,6 +73,8 @@ public class UserManager {
             XMLFileManager.submitUser(userName, password);
             final UserData user = new UserData();
             user.setName(userName);
+            user.setFramesPerSecond(Framerates.FPS_30.getFPS());
+            user.setKeySetting(KeyCodeSet.SET_ONE.toString());
             try {
                 this.save(user);
                 return Optional.of(user);

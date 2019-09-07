@@ -19,13 +19,12 @@ import ballblast.view.View;
  */
 public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
-    private static final long DEFAULT_PERIOD = 15;
 
     private final List<GameLoopObserver> observers = new ArrayList<GameLoopObserver>();
     private final Map<PlayerTags, List<InputTypes>> inputs;
     private final View view;
     private final Model model;
-    private long frameRate = DEFAULT_PERIOD;
+    private final long frameRate;
     private boolean stopped;
     private boolean paused;
 

@@ -18,14 +18,14 @@ import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.Player;
 
 /**
- * Manages inputs and redirects them to the right {@link Player}.
+ * Manages inputs and redirects them to the right {@link Player} thanks {@link InputComponent}.
  */
 public class InputManager {
-    private static final Map<InputTypes, Command<GameObject>> COMMANDS_MAP;
+    private static final Map<InputTypes, Command> COMMANDS_MAP;
     private Map<PlayerTags, InputComponent> inputHandlers;
 
     static {
-        COMMANDS_MAP = ImmutableMap.<InputTypes, Command<GameObject>>builder()
+        COMMANDS_MAP = ImmutableMap.<InputTypes, Command>builder()
                 .put(InputTypes.SHOOT,             g -> findShooter(g).ifPresent(ShooterComponent::startShooting))
                 .put(InputTypes.STOP_SHOOTING,     g -> findShooter(g).ifPresent(ShooterComponent::stopShooting))
                 .put(InputTypes.MOVE_LEFT,         InputManager::moveLeft)
@@ -78,7 +78,7 @@ public class InputManager {
         this.inputHandlers.get(tag).receiveCommands(this.translateInputs(inputs));
     }
 
-    private List<Command<GameObject>> translateInputs(final List<InputTypes> toBeTranslated) {
+    private List<Command> translateInputs(final List<InputTypes> toBeTranslated) {
         return toBeTranslated.stream().map(i -> COMMANDS_MAP.get(i)).collect(ImmutableList.toImmutableList());
     }
 
@@ -109,6 +109,7 @@ public class InputManager {
         final Player player = ((Player) g);
         player.setVelocity(Vector2D.create(player.getSpeed(), 0));
     }
+
     /**
      * All possible {@link Player}s.
      */

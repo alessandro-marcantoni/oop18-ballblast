@@ -1,11 +1,17 @@
 package ballblast.model.physics.handlers;
 
+import java.util.Map;
+import java.util.function.BiConsumer;
+
 import org.locationtech.jts.geom.Coordinate;
+
+import com.google.common.collect.ImmutableMap;
 
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.levels.Boundaries;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
+import ballblast.model.physics.CollisionTag;
 import ballblast.model.gameobjects.Player;
 
 /**
@@ -14,26 +20,29 @@ import ballblast.model.gameobjects.Player;
  */
 public class PlayerCollisionHandler implements CollisionHandler {
 
+    private static final Map<CollisionTag, BiConsumer<Collidable, GameObject>> PLAYER_MAP;
+
+    static {
+        PLAYER_MAP = ImmutableMap.<CollisionTag, BiConsumer<Collidable, GameObject>>builder()
+                .put(CollisionTag.BALL, (coll, obj) -> {
+                    if (!((Player) obj).isImmune()) {
+                        obj.destroy();
+                    }
+                })
+                .put(CollisionTag.WALL, (coll, obj) -> {
+                    final GameObject boundary = coll.getAttachedGameObject();
+                    checkBoundLimit(boundary, obj);
+                })
+                .build();
+    }
+
     @Override
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Player object.
-        switch (coll.getCollisionTag()) {
-        case BALL:
-            // Destroy the Player and finish the game session.
-            if (!((Player) obj).isImmune()) {
-                obj.destroy();
-            }
-            break;
-        case WALL:
-            final GameObject boundary = coll.getAttachedGameObject();
-            this.checkBoundLimit(boundary, obj);
-            break;
-        default:
-            break;
-        }
+        PLAYER_MAP.get(coll.getCollisionTag()).accept(coll, obj);
     }
 
-    private void checkBoundLimit(final GameObject bound, final GameObject obj) {
+    private static void checkBoundLimit(final GameObject bound, final GameObject obj) {
         if (Boundaries.isRight(bound.getPosition())) {
             obj.setPosition(new Coordinate(bound.getPosition().getX() - obj.getWidth(), obj.getPosition().getY()));
         } else if (Boundaries.isLeft(bound.getPosition())) {

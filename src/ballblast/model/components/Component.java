@@ -24,6 +24,8 @@ public interface Component {
     void disable();
 
     /**
+     * Gets the {@link Component}'s type.
+     * 
      * @return the tag which defines the {@link ComponentType}.
      */
     ComponentTypes getType();

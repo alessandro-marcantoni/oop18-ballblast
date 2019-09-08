@@ -1,6 +1,7 @@
 package ballblast.model.gameobjects;
 
 import com.google.common.base.MoreObjects;
+
 /**
  * Represents the entity used by the user, who is able to move and shoot. When
  * hit by a ball it dies.

@@ -28,7 +28,7 @@ public abstract class AbstractGameObject implements GameObject {
     private CollisionHandler collisionHandler;
 
     /**
-     * Creates a AbstractGameObject instance.
+     * Class constructor.
      * 
      * @param type the type of {@link GameObject}.
      */
@@ -37,24 +37,6 @@ public abstract class AbstractGameObject implements GameObject {
         this.isAvailable = true;
         this.components = ImmutableList.of();
         this.position = ZERO;
-    }
-
-    /**
-     * Sets the {@link GameObject}'s height.
-     * 
-     * @param height the height of the {@link GameObject}.
-     */
-    protected void setHeight(final double height) {
-        this.height = height;
-    }
-
-    /**
-     * Sets the {@link GameObject}'s width.
-     * 
-     * @param width the width of the {@link GameObject}.
-     */
-    protected void setWidth(final double width) {
-        this.width = width;
     }
 
     @Override
@@ -98,9 +80,7 @@ public abstract class AbstractGameObject implements GameObject {
         this.components.forEach(Component::disable);
     }
 
-    /**
-     * Updates the state of the {@link GameObject}.
-     */
+    /** {@inheritDoc} */
     @Override
     public void update(final double elapsed) {
         components.forEach(c -> c.update(elapsed));
@@ -134,6 +114,24 @@ public abstract class AbstractGameObject implements GameObject {
     }
 
     /**
+     * Sets the {@link GameObject}'s height.
+     * 
+     * @param height the height of the {@link GameObject}.
+     */
+    protected void setHeight(final double height) {
+        this.height = height;
+    }
+
+    /**
+     * Sets the {@link GameObject}'s width.
+     * 
+     * @param width the width of the {@link GameObject}.
+     */
+    protected void setWidth(final double width) {
+        this.width = width;
+    }
+
+    /**
      * Sets the {@link CollisionHandler}.
      * 
      * @param handler the delegate {@link CollisionHandler} used to handle the
@@ -157,7 +155,7 @@ public abstract class AbstractGameObject implements GameObject {
         private final B builder;
 
         /**
-         * Creates an AbstractBuilder instance.
+         * Class constructor.
          */
         protected AbstractBuilder() {
             this.gameObject = initGameObject();

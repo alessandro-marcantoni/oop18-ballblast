@@ -114,7 +114,8 @@ public final class BasicLevel implements Level {
     }
 
     private void spawnPowerUp() {
-        final GameObject power = ((GameObject) SpawnHelper.spawnRandomPower(Vector2D.create(0, 0), this.collisionManager));
+        final GameObject power = (GameObject) SpawnHelper
+                .spawnRandomPower(Vector2D.create(0, 0), this.collisionManager);
         SpawnHelper.activeComponents(power);
         this.getGameObjectManager().addGameObjects(ImmutableList.of(power));
     }

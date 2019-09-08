@@ -74,7 +74,7 @@ public class ControllerImpl implements Controller, GameLoopObserver {
 
     @Override
     public final void receiveInput(final PlayerTags tag, final InputTypes input) {
-        this.gameloop.receiveInput(tag, input);
+        this.gameloop.addInput(tag, input);
     }
 
     @Override

@@ -6,7 +6,7 @@ import ballblast.model.inputs.InputManager;
 import ballblast.model.physics.CollisionManager;
 
 /**
- * Represents a level and it is responsible for the game logic.
+ * Represents a level and it used to implement the game logic.
  *
  */
 public interface Level {

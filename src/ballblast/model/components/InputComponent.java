@@ -5,7 +5,6 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 import ballblast.commons.Command;
-import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
 
@@ -16,7 +15,7 @@ import ballblast.model.inputs.InputManager.PlayerTags;
 public class InputComponent extends AbstractComponent {
     private final InputManager inputManager;
     private final PlayerTags tag;
-    private List<Command<GameObject>> commands;
+    private List<Command> toBeResolved;
 
     /**
      * Class constructor.
@@ -29,7 +28,7 @@ public class InputComponent extends AbstractComponent {
         super(ComponentTypes.INPUT);
         this.inputManager = inputManager;
         this.tag = tag;
-        this.commands = ImmutableList.of();
+        this.toBeResolved = ImmutableList.of();
     }
 
     @Override
@@ -52,20 +51,20 @@ public class InputComponent extends AbstractComponent {
     }
 
     /**
-     * Receives {@link Command}s to be resolved.
+     * Receives {@link Command}s to be resolved at the next update.
      * 
-     * @param list the {@link List} of {@link Command}s to be resolved.
+     * @param toBeResolved the {@link List} of {@link Command}s to be resolved.
      */
-    public final void receiveCommands(final List<Command<GameObject>> list) {
-        this.commands = ImmutableList.copyOf(list);
+    public final void receiveCommands(final List<Command> toBeResolved) {
+        this.toBeResolved = toBeResolved;
     }
 
     private void resolveCommands() {
-        this.commands.forEach(c -> c.execute(this.getParent()));
+        this.toBeResolved.forEach(c -> c.execute(this.getParent()));
         this.emptyCommands();
     }
 
     private void emptyCommands() {
-        this.commands = ImmutableList.of();
+        this.toBeResolved = ImmutableList.of();
     }
 }

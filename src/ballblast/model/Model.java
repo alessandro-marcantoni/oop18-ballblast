@@ -9,8 +9,9 @@ import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.levels.GameStatus;
 
 /**
- * It represents a macro class, containing the current {@link Level} and his {@link GameObject}s. 
- * It can be seen as an entry point because delegates its tasks to the Level class.
+ * It represents a macro class, containing the current {@link Level} and his
+ * {@link GameObject}s. It can be seen as an entry point because delegates its
+ * tasks to the {@link Level} class.
  */
 public interface Model {
     /**
@@ -21,8 +22,9 @@ public interface Model {
      * Default World's height.
      */
     double WORLD_HEIGHT = 100;
+
     /**
-     * Starts new survival session.
+     * Starts new survival level.
      */
     void startSurvival();
 

@@ -56,20 +56,20 @@ public class SplitterComponent extends AbstractComponent {
         ((Ball) this.getParent()).getBallType().getChild().ifPresent(this::addParentChilds);
     }
 
-    private GameObject generateChildBall(final BallTypes type, final int life, final double xVelocity,
-            final Coordinate position) {
-        final GameObject ball = GameObjectFactory.createBall(type, life, position,
-                Vector2D.create(xVelocity, Y_SPLIT_VELOCITY / 2), this.collisionManager, this.gameObjectManager,
-                this.gameDataManager);
-        ball.getComponents().forEach(Component::enable);
-        return ball;
-    }
-
     private void addParentChilds(final BallTypes type) {
         this.gameObjectManager.addGameObjects(ImmutableList.of(
                 this.generateChildBall(type, this.getChildLife(),  this.getChildXvelocity(), this.getChildPosition()),
                 this.generateChildBall(type, this.getChildLife(), -this.getChildXvelocity(), this.getChildPosition()))
         );
+    }
+
+    private GameObject generateChildBall(final BallTypes type, final int life, final double xVelocity,
+            final Coordinate position) {
+        final GameObject ball = GameObjectFactory.createBall(
+                type, life, position, Vector2D.create(xVelocity, Y_SPLIT_VELOCITY / 2), 
+                this.collisionManager, this.gameObjectManager, this.gameDataManager);
+        ball.getComponents().forEach(Component::enable);
+        return ball;
     }
 
     private double getChildXvelocity() {

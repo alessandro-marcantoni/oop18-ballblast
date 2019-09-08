@@ -89,18 +89,22 @@ public abstract class AbstractGameObject implements GameObject {
     @Override
     public final void addComponent(final Component component) {
         component.setParent(this);
-        this.components = ImmutableList.<Component>builder().addAll(this.components).add(component).build();
+        this.components = ImmutableList.<Component>builder()
+                .addAll(this.components)
+                .add(component)
+                .build();
     }
 
     @Override
     public final void removeComponent(final ComponentTypes type) {
-        this.components = this.components.stream().filter(c -> c.getType() != type)
+        this.components = this.components.stream()
+                .filter(c -> c.getType() != type)
                 .collect(ImmutableList.toImmutableList());
     }
 
     @Override
     public final List<Component> getComponents() {
-        return ImmutableList.copyOf(this.components);
+        return this.components;
     }
 
     @Override

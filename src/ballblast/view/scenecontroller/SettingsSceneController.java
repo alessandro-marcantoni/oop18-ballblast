@@ -6,6 +6,7 @@ import ballblast.settings.KeyCodeSet;
 import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleButton;
@@ -17,9 +18,11 @@ import javafx.scene.control.ToggleGroup;
  */
 public class SettingsSceneController extends AbstractSubSceneController {
 
-    private static final String KEYSET_ONE = "KEYSET_ONE";
-//    private static final String KEYSET_TWO = "KEYSET_TWO";
+    private static final String KEYSET_ONE = "SET_ONE";
+    private static final String KEYSET_TWO = "SET_TWO";
 
+    @FXML
+    private Button btnBackToMenu;
     @FXML
     private ToggleButton btnADC;
 
@@ -35,7 +38,7 @@ public class SettingsSceneController extends AbstractSubSceneController {
     @FXML
     private CheckBox chkSound;
 
-    private KeyCodeSet keyset;
+//    private KeyCodeSet keyset;
 //    private boolean isMusicOn = true;
 //    private boolean isEffectsOn = true;
 
@@ -47,11 +50,11 @@ public class SettingsSceneController extends AbstractSubSceneController {
         final ToggleGroup group = new ToggleGroup();
         this.btnLRS.setToggleGroup(group);
         this.btnADC.setToggleGroup(group);
-        btnLRS.selectedProperty().addListener(b -> this.setKeySetOne());
-        btnADC.selectedProperty().addListener(b -> this.setKeySetTwo());
+        btnLRS.setOnMouseClicked(b -> this.setKeySetOne());
+        btnADC.setOnMouseClicked(b -> this.setKeySetTwo());
         if (this.checkKeySetInUse().equals(KeyCodeSet.SET_ONE)) {
             btnLRS.setSelected(true);
-        } else if (this.checkKeySetInUse().equals(KeyCodeSet.SET_TWO)){
+        } else if (this.checkKeySetInUse().equals(KeyCodeSet.SET_TWO)) {
             btnADC.setSelected(true);
         }
 
@@ -84,16 +87,14 @@ public class SettingsSceneController extends AbstractSubSceneController {
     }
 
     private void setKeySetOne() {
-        if (btnLRS.isSelected() && !this.keyset.equals(KeyCodeSet.SET_ONE)) {
-//            this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_ONE.toString());
-            System.out.println("Sono in setKeySetOne");
-        }
+//        if (!this.keyset.equals(KeyCodeSet.SET_ONE)) {
+            this.getController().getCurrentUser().setKeySetting(KEYSET_ONE);
+//        }
     }
 
     private void setKeySetTwo() {
-//        if (btnADC.isSelected() && !this.keyset.equals(KeyCodeSet.SET_TWO)) {
-            this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_TWO.toString());
-            System.out.println("Sono in setKeySetTwo");
+//        if (this.keyset.equals(KeyCodeSet.SET_TWO)) {
+            this.getController().getCurrentUser().setKeySetting(KEYSET_TWO);
 //        }
     }
 

@@ -1,4 +1,5 @@
 package ballblast.model.inputs;
+
 /**
  * All possible input types.
  */

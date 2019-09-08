@@ -30,12 +30,12 @@ public interface GameLoop {
     void stopLoop();
 
     /**
-     * Receives inputs.
+     * Add input to be resolved at the next update.
      * 
      * @param tag   the tag which identifies the {@link Player}.
      * @param input the input to be resolved.
      */
-    void receiveInput(PlayerTags tag, InputTypes input);
+    void addInput(PlayerTags tag, InputTypes input);
 
     /**
      * Adds a new {@link Observer}.

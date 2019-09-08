@@ -84,7 +84,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     @Override
-    public final synchronized void receiveInput(final PlayerTags tag, final InputTypes input) {
+    public final synchronized void addInput(final PlayerTags tag, final InputTypes input) {
         this.inputs.get(tag).add(input);
     }
 

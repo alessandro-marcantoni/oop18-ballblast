@@ -5,7 +5,6 @@ import com.google.common.collect.ImmutableList;
 
 /**
  * Handles all {@link GameObject}s of a specific {@link Level}.
- *
  */
 public class GameObjectManager {
 
@@ -61,12 +60,16 @@ public class GameObjectManager {
                 .addAll(gameObjects)
                 .addAll(toBeAdded)
                 .build();
-        this.toBeAdded = ImmutableList.of();
+       this.emptyList();
     }
 
     private void removeDestoyedObjects() {
         this.gameObjects = gameObjects.stream()
                 .filter(g -> !g.isDestroyed())
                 .collect(ImmutableList.toImmutableList());
+    }
+
+    private void emptyList() {
+        this.toBeAdded = ImmutableList.of();
     }
 }

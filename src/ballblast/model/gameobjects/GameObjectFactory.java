@@ -23,8 +23,7 @@ import ballblast.model.physics.handlers.WallCollisionHandler;
  * Represents a factory used to instantiate new {@link GameObject}s.
  */
 public final class GameObjectFactory {
-    private GameObjectFactory() {
-    }
+    private GameObjectFactory() { }
 
     /**
      * Creates {@link Player} game object.

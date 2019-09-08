@@ -39,7 +39,9 @@ public class PlayerCollisionHandler implements CollisionHandler {
     @Override
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Player object.
-        PLAYER_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        if (PLAYER_MAP.containsKey(coll.getCollisionTag())) {
+            PLAYER_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        }
     }
 
     private static void checkBoundLimit(final GameObject bound, final GameObject obj) {

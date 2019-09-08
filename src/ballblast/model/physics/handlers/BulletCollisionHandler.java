@@ -28,7 +28,9 @@ public class BulletCollisionHandler implements CollisionHandler {
     @Override
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Bullet object.
-        BULLET_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        if (BULLET_MAP.containsKey(coll.getCollisionTag())) {
+            BULLET_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        }
     }
 
 }

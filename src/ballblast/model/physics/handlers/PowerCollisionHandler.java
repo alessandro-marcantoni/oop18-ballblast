@@ -41,7 +41,9 @@ public class PowerCollisionHandler implements CollisionHandler {
     @Override
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Power object.
-        POWER_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        if (POWER_MAP.containsKey(coll.getCollisionTag())) {
+            POWER_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        }
     }
 
     private static void stopFloor(final GameObject floor, final GameObject obj) {

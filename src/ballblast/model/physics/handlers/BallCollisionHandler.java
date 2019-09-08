@@ -46,14 +46,15 @@ public class BallCollisionHandler implements CollisionHandler {
                         obj.destroy();
                     }
                 })
-                .put(CollisionTag.PLAYER, (coll, obj) -> { })
                 .build();
     }
 
     @Override
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Ball object.
-        BALL_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        if (BALL_MAP.containsKey(coll.getCollisionTag())) {
+            BALL_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        }
     }
 
     private static void decrementLife(final GameObject ball, final int decrementBy) {

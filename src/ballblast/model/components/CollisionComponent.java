@@ -1,6 +1,5 @@
 package ballblast.model.components;
 
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.util.GeometricShapeFactory;
 
@@ -37,7 +36,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
     private Geometry generateCollisionBox() {
         final GameObject parent = this.getParent();
         final GeometricShapeFactory shapeFactory = new GeometricShapeFactory();
-        shapeFactory.setBase(new Coordinate(parent.getPosition().getX(), parent.getPosition().getY()));
+        shapeFactory.setBase(parent.getPosition());
         shapeFactory.setHeight(parent.getHeight());
         shapeFactory.setWidth(parent.getWidth());
         return parent.getType() == GameObjectTypes.BALL ? shapeFactory.createCircle() : shapeFactory.createRectangle();

@@ -27,8 +27,8 @@ public class ControllerImpl implements Controller, GameLoopObserver {
 
     private final Model model;
     private final View view;
-    private GameLoop gameloop; //NOPMD gameloop is used locally.
-    private Optional<UserData> currentUser; //NOPMD currentUser is used locally.
+    private GameLoop gameloop;
+    private Optional<UserData> currentUser;
     private final UserManager userManager;
     private final Leaderboard leaderboard;
     private final LeaderboardManager lbManager;
@@ -120,7 +120,7 @@ public class ControllerImpl implements Controller, GameLoopObserver {
     }
 
     private void createGameLoop() {
-        this.gameloop = new GameLoopImpl(this.model, view);
+        this.gameloop = new GameLoopImpl(this.model, this.view, this.currentUser.get().getFramesPerSecond());
         this.gameloop.addObserver(this);
     }
 }

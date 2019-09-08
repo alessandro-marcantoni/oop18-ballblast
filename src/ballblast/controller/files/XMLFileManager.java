@@ -65,8 +65,9 @@ public final class XMLFileManager {
             throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         final Document doc = getDocument(DirectoryManager.USERS_LIST_FILE);
 
-        final XPath xpath = XPathFactory.newInstance().newXPath();
-        final XPathExpression expression = xpath.compile("//user[@id='" + userName + "']");
+        final XPathFactory xPathFactory = XPathFactory.newInstance();
+        final XPath xPath = xPathFactory.newXPath();
+        final XPathExpression expression = xPath.compile("//user[@id='" + userName + "']");
 
         final Element root = (Element) expression.evaluate(doc, XPathConstants.NODE);
         final Element user = (Element) root.cloneNode(true);

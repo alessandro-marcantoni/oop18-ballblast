@@ -19,13 +19,13 @@ import ballblast.view.View;
  */
 public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
-    private static final long PERIOD = 15;
 
     private final List<GameLoopObserver> observers = new ArrayList<GameLoopObserver>();
     private final Map<PlayerTags, List<InputTypes>> inputs;
     private final View view;
     private final Model model;
-    private boolean stopped; //NOPMD stopped is used locally.
+    private final long frameRate;
+    private boolean stopped;
     private boolean paused;
 
     /**
@@ -33,13 +33,15 @@ public class GameLoopImpl extends Thread implements GameLoop {
      * 
      * @param view  the view to render on each frame.
      * @param model the model to update the world on each frame.
+     * @param frameRate the refresh rate of the loop.
      */
-    public GameLoopImpl(final Model model, final View view) {
+    public GameLoopImpl(final Model model, final View view, final int frameRate) {
         super();
         this.setName("Game Loop");
         this.setDaemon(true);
         this.view = view;
         this.model = model;
+        this.frameRate = (long) (1 / (frameRate * MS_TO_S));
         this.inputs = ImmutableMap.of(PlayerTags.FIRST, new ArrayList<>(), PlayerTags.SECOND, new ArrayList<>());
     }
 
@@ -98,9 +100,9 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     private void waitForNextFrame(final long current) {
         final long dt = System.currentTimeMillis() - current;
-        if (dt < PERIOD) {
+        if (dt < this.frameRate) {
             try {
-                Thread.sleep(PERIOD - dt);
+                Thread.sleep(this.frameRate - dt);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

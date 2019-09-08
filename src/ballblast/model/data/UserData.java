@@ -13,6 +13,8 @@ public class UserData {
     private int matchesPlayed;
     private double gameTime;
     private int spawnedBullets;
+    private int framesPerSecond;
+    private String keySetting;
 
     /**
      * Empty constructor to make this object serializable into xml file.
@@ -139,6 +141,42 @@ public class UserData {
      */
     public void setSpawnedBullets(final int spawnedBullets) {
         this.spawnedBullets = spawnedBullets;
+    }
+
+    /**
+     * Getter for the FPS to use in the game loop for this {@link UserData}.
+     * 
+     * @return the FPS setting value.
+     */
+    public int getFramesPerSecond() {
+        return framesPerSecond;
+    }
+
+    /**
+     * Setter for the FPS variable.
+     * 
+     * @param frames the value of FPS to set.
+     */
+    public void setFramesPerSecond(final int frames) {
+        this.framesPerSecond = frames;
+    }
+
+    /**
+     * Getter for the key code to play the game.
+     * 
+     * @return the key set of the current user.
+     */
+    public String getKeySetting() {
+        return keySetting;
+    }
+
+    /**
+     * Setter for the key code of the user.
+     * 
+     * @param keySetting the key code to set.
+     */
+    public void setKeySetting(final String keySetting) {
+        this.keySetting = keySetting;
     }
 
 }

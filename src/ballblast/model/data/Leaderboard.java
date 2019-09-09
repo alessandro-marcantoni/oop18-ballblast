@@ -2,10 +2,6 @@ package ballblast.model.data;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.common.collect.Lists;
@@ -16,9 +12,7 @@ import com.google.common.collect.Lists;
 public class Leaderboard {
 
     private static final int MAX_SCORES = 10;
-    private static final Comparator<RecordData> COMPARATOR = (o1, o2) -> {
-        return o2.getScore() - o1.getScore();
-    };
+    private static final Comparator<RecordData> COMPARATOR = (o1, o2) -> o2.getScore() - o1.getScore();
 
     private List<RecordData> recordList;
 
@@ -64,40 +58,6 @@ public class Leaderboard {
             }
         }
         return score > this.getRecords().max(COMPARATOR).get().getScore();
-    }
-
-    /**
-     * Getter for the highscore.
-     * 
-     * @return an {@link Optional} {@link RecordData} with the highest score, empty
-     *         if the record list has no records saved.
-     */
-    public Optional<RecordData> getHighScore() {
-        if (this.recordList.isEmpty()) {
-            return Optional.empty();
-        } else {
-            return this.getRecords().min(COMPARATOR);
-        }
-    }
-
-    /**
-     * Getter for the leaderboard under a map format.
-     * 
-     * @return the map of the {@link Leaderboard}.
-     */
-    public Map<Integer, String> getLeaderboard() {
-        final Map<Integer, String> map = this.getRecords()
-                .collect(Collectors.toMap(RecordData::getScore, RecordData::getName));
-        final Map<Integer, String> treeMap = new TreeMap<>(new Comparator<Integer>() {
-
-            @Override
-            public int compare(final Integer o1, final Integer o2) {
-                return o2.compareTo(o1);
-            }
-
-        });
-        treeMap.putAll(map);
-        return treeMap;
     }
 
     /**

@@ -1,9 +1,9 @@
-package ballblast.controller.sound;
+package ballblast.model.commons;
 
 /**
  * Enumeration representing the types of game events.
  */
-public enum SoundTypes {
+public enum EventTypes {
 
     /**
      * A ball gets destroyed.

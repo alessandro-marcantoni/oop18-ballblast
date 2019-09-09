@@ -50,6 +50,7 @@ public class SettingsSceneController extends AbstractSubSceneController {
         this.btnADC.setToggleGroup(group);
         btnLRS.setOnMouseClicked(b -> this.setKeySetOne());
         btnADC.setOnMouseClicked(b -> this.setKeySetTwo());
+
         if (this.checkKeySetInUse().equals(KeyCodeSet.SET_ONE)) {
             btnLRS.setSelected(true);
         } else if (this.checkKeySetInUse().equals(KeyCodeSet.SET_TWO)) {
@@ -64,7 +65,7 @@ public class SettingsSceneController extends AbstractSubSceneController {
             this.cbFPS.getSelectionModel().select(0);
         } else if (this.checkFramerateInUse().equals(Framerates.FPS_60)) {
             this.cbFPS.getSelectionModel().select(1);
-        } else {
+        } else if (this.checkFramerateInUse().equals(Framerates.FPS_120)) {
             this.cbFPS.getSelectionModel().select(2);
         }
         cbFPS.getSelectionModel().selectedItemProperty().addListener(c -> this.setFramerate());
@@ -125,10 +126,10 @@ public class SettingsSceneController extends AbstractSubSceneController {
     private void setMusic() {
 //        if (this.isMusicOn) {
 //            this.isMusicOn = false;
-//            this.getController().getCurrentUser().setMusic(false);
+//            this.getController().setMusic(false);
 //        } else {
 //            this.isMusicOn = true;
-//            this.getController().getCurrentUser().setMusic(true);
+//            this.getController().setMusic(true);
 //        }
       final Alert alert = new Alert(AlertType.WARNING);
       alert.setTitle("Work in progress...");
@@ -140,10 +141,10 @@ public class SettingsSceneController extends AbstractSubSceneController {
     private void setSoundEffects() {
 //        if (this.isEffectsOn) {
 //            this.isEffectsOn = false;
-//        this.getController().getCurrentUser().setSoundEffects(false);
+//        this.getController().setSoundEffects(false);
 //        } else {
 //            this.isEffectsOn = true;
-//            this.getController().getCurrentUser().setSoundEffects(true);
+//            this.getController().setSoundEffects(true);
 //        }
       final Alert alert = new Alert(AlertType.WARNING);
       alert.setTitle("Work in progress...");

@@ -18,9 +18,6 @@ import javafx.scene.control.ToggleGroup;
  */
 public class SettingsSceneController extends AbstractSubSceneController {
 
-    private static final String KEYSET_ONE = "SET_ONE";
-    private static final String KEYSET_TWO = "SET_TWO";
-
     @FXML
     private Button btnBackToMenu;
     @FXML
@@ -86,16 +83,17 @@ public class SettingsSceneController extends AbstractSubSceneController {
     }
 
     private void setKeySetOne() {
-            this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_ONE.toString());
+        this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_ONE.toString());
+//            this.getController().getCurrentUser().saveUser();
     }
 
     private void setKeySetTwo() {
-            this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_TWO.toString());
+        this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_TWO.toString());
     }
 
     private KeyCodeSet checkKeySetInUse() {
         KeyCodeSet currentKeySet;
-        if (this.getController().getCurrentUser().getKeySetting().equals(KEYSET_ONE)) {
+        if (this.getController().getCurrentUser().getKeySetting().equals(KeyCodeSet.SET_ONE.toString())) {
             currentKeySet = KeyCodeSet.SET_ONE;
         } else {
             currentKeySet = KeyCodeSet.SET_TWO;
@@ -116,36 +114,27 @@ public class SettingsSceneController extends AbstractSubSceneController {
     }
 
     private void setFramerate() {
-        this.getController().getCurrentUser().setFramesPerSecond(this.cbFPS.getSelectionModel().getSelectedItem().intValue());
+        this.getController().getCurrentUser()
+                .setFramesPerSecond(this.cbFPS.getSelectionModel().getSelectedItem().intValue());
     }
 
 //    private void setMusic() {
 //        if (this.isMusicOn) {
 //            this.isMusicOn = false;
 //            this.getController().getCurrentUser().setMusic(false);
-//            System.out.println("Sono in setMusic -- false");
 //        } else {
 //            this.isMusicOn = true;
 //            this.getController().getCurrentUser().setMusic(true);
-//            System.out.println("Sono in setMusic -- true");
 //        }
-//    }
-//
-//    private void setFPS() {
-//        final Integer selectedFPS = this.cbFPS.getSelectionModel().getSelectedItem();
-//        this.getController().getCurrentUser().setFramesPerSecond(selectedFPS);
-//        System.out.println("Sono in setFPS");
 //    }
 //
 //    private void setSoundEffects() {
 //        if (this.isEffectsOn) {
 //            this.isEffectsOn = false;
 //        this.getController().getCurrentUser().setSoundEffects(false);
-//            System.out.println("Sono in setSoundEffects -- false");
 //        } else {
 //            this.isEffectsOn = true;
 //            this.getController().getCurrentUser().setSoundEffects(true);
-//            System.out.println("Sono in setSoundEffects -- true");
 //        }
 //    }
 }

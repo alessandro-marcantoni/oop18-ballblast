@@ -27,7 +27,7 @@ public class BallCollisionHandler implements CollisionHandler {
     static {
         BALL_MAP = ImmutableMap.<CollisionTag, BiConsumer<Collidable, GameObject>>builder()
                 .put(CollisionTag.WALL,   BallCollisionHandler::ballCollidesWithWall)
-                .put(CollisionTag.BULLET, BallCollisionHandler::ballCollidesWithBullet)
+                .put(CollisionTag.BULLET, (c, g) -> ballCollidesWithBullet(g))
                 .build();
     }
 
@@ -58,9 +58,9 @@ public class BallCollisionHandler implements CollisionHandler {
         }
     }
 
-    private static void ballCollidesWithBullet(final Collidable coll, final GameObject obj) {
+    private static void ballCollidesWithBullet(final GameObject obj) {
         decrementLife(obj, DEC_LIFE);
-        if (((Ball) obj).getCurrentLife() <= 0) {
+        if (((Ball) obj).getCurrentLife() == 0) {
             obj.destroy();
         }
     }

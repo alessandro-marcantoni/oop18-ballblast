@@ -19,12 +19,10 @@ public class PausedState extends GUIState {
 
     static {
         PRESSED_INPUT_MAP = ImmutableMap.of(
-                KeyCode.P, g -> g.getGUI().setState(g.getGUI().getInGameState()),
-                KeyCode.ESCAPE, g -> g.getGUI().setState(g.getGUI().getInGameState()), 
-                KeyCode.Q, g -> {
-                    g.getGUI().getController().notifyGameOver();
-                    g.getGUI().nextScene();
-                });
+                KeyCode.P,      PausedState::translateResumeKeyCode,
+                KeyCode.ESCAPE, PausedState::translateResumeKeyCode, 
+                KeyCode.Q,      PausedState::translateQuitKeyCode
+        );
     }
 
     /**
@@ -61,6 +59,15 @@ public class PausedState extends GUIState {
     @Override
     public void onKeyReleased(final KeyEvent event) {
 
+    }
+
+    private static void translateQuitKeyCode(final GUIState g) {
+        g.getGUI().getController().notifyGameOver();
+        g.getGUI().nextScene();
+    }
+
+    private static void translateResumeKeyCode(final GUIState g) {
+        g.getGUI().setState(g.getGUI().getInGameState());
     }
 
 }

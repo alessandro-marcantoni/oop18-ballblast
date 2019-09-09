@@ -56,7 +56,7 @@ public class MenuSceneController extends AbstractSceneController {
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
         this.selection = GameScenes.MENU;
-        this.user.setText(this.getController().getCurrentUser().getName().toLowerCase(Locale.ENGLISH));
+        this.user.setText(this.getController().getCurrentUser().getName().toUpperCase(Locale.ENGLISH));
         this.balls.setText(String.valueOf(this.getController().getCurrentUser().getDestroyedBalls()));
         this.bullets.setText(String.valueOf(this.getController().getCurrentUser().getSpawnedBullets()));
         this.globalscore.setText(String.valueOf(this.getController().getCurrentUser().getGlobalScore()));

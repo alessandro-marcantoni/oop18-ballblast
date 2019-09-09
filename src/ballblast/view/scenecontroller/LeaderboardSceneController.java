@@ -5,6 +5,7 @@ package ballblast.view.scenecontroller;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import com.google.common.collect.Lists;
 import ballblast.controller.Controller;
@@ -105,7 +106,7 @@ public class LeaderboardSceneController extends AbstractSubSceneController {
                 score7label, score8label, score9label, score10label);
 
         for (int i = 0; i < 10; i++) {
-            users.get(i).setText(recordList.get(i).getName());
+            users.get(i).setText(recordList.get(i).getName().toUpperCase(Locale.ENGLISH));
             scores.get(i).setText(String.valueOf((recordList).get(i).getScore()));
         }
     }

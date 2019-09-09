@@ -39,8 +39,8 @@ public class UserManager {
      */
     public Optional<UserData> login(final String userName, final String password)
             throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
-        if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName)))
-                && XMLFileManager.checkUserPassword(userName, password)) {
+        if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName.toUpperCase())))
+                && XMLFileManager.checkUserPassword(userName.toLowerCase(), password)) {
             try {
                 return Optional.of(this.load(userName));
             } catch (IOException e) {
@@ -66,13 +66,13 @@ public class UserManager {
      */
     public Optional<UserData> register(final String userName, final String password)
             throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName)))) {
+        if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName.toUpperCase())))) {
             // UserName already exists -> choose an other one.
             return Optional.empty();
         } else {
-            XMLFileManager.submitUser(userName, password);
+            XMLFileManager.submitUser(userName.toLowerCase(), password);
             final UserData user = new UserData();
-            user.setName(userName);
+            user.setName(userName.toLowerCase());
             user.setFramesPerSecond(Framerates.FPS_30.getFPS());
             user.setKeySetting(KeyCodeSet.SET_ONE.toString());
             try {
@@ -101,7 +101,7 @@ public class UserManager {
     }
 
     private void save(final UserData user) throws IOException {
-        try (FileOutputStream fos = new FileOutputStream(DirectoryManager.getUserFile(user.getName()));
+        try (FileOutputStream fos = new FileOutputStream(DirectoryManager.getUserFile(user.getName().toUpperCase()));
                 XMLEncoder encoder = new XMLEncoder(fos)) {
             encoder.writeObject(user);
         } catch (IOException e) {
@@ -110,7 +110,7 @@ public class UserManager {
     }
 
     private UserData load(final String userName) throws IOException {
-        try (FileInputStream fis = new FileInputStream(DirectoryManager.getUserFile(userName));
+        try (FileInputStream fis = new FileInputStream(DirectoryManager.getUserFile(userName.toUpperCase()));
                 XMLDecoder decoder = new XMLDecoder(fis)) {
             return (UserData) decoder.readObject();
         } catch (IOException e) {

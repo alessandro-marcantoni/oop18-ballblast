@@ -38,7 +38,6 @@ public class SettingsSceneController extends AbstractSubSceneController {
     @FXML
     private CheckBox chkSound;
 
-//    private KeyCodeSet keyset;
 //    private boolean isMusicOn = true;
 //    private boolean isEffectsOn = true;
 
@@ -87,24 +86,18 @@ public class SettingsSceneController extends AbstractSubSceneController {
     }
 
     private void setKeySetOne() {
-//        if (!this.keyset.equals(KeyCodeSet.SET_ONE)) {
-            this.getController().getCurrentUser().setKeySetting(KEYSET_ONE);
-//        }
+            this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_ONE.toString());
     }
 
     private void setKeySetTwo() {
-//        if (this.keyset.equals(KeyCodeSet.SET_TWO)) {
-            this.getController().getCurrentUser().setKeySetting(KEYSET_TWO);
-//        }
+            this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_TWO.toString());
     }
 
     private KeyCodeSet checkKeySetInUse() {
         KeyCodeSet currentKeySet;
         if (this.getController().getCurrentUser().getKeySetting().equals(KEYSET_ONE)) {
-//            this.keyset = KeyCodeSet.SET_ONE;
             currentKeySet = KeyCodeSet.SET_ONE;
         } else {
-//            this.keyset = KeyCodeSet.SET_TWO;
             currentKeySet = KeyCodeSet.SET_TWO;
         }
         return currentKeySet;

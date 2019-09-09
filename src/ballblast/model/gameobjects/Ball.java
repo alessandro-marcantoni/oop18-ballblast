@@ -12,7 +12,7 @@ public final class Ball extends AbstractGameObject {
     private int currentLife;
 
     /**
-     * Creates a Ball instance.
+     * Class constructor.
      */
     private Ball() {
         super(GameObjectTypes.BALL);
@@ -54,13 +54,9 @@ public final class Ball extends AbstractGameObject {
         return this.ballType;
     }
 
-    /**
-     * Sets the initial {@link Ball}'s life.
-     * 
-     * @param life the initial {@link Ball}'s life.
-     */
     private void setInitialLife(final int life) {
         this.initialLife = life;
+        this.currentLife = life;
     }
 
     /**
@@ -98,7 +94,6 @@ public final class Ball extends AbstractGameObject {
          */
         public Builder setLife(final int life) {
             this.getGameObject().setInitialLife(life);
-            this.getGameObject().setCurrentLife(life);
             return this;
         }
 

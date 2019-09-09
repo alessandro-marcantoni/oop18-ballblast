@@ -25,29 +25,36 @@ public class PowerCollisionHandler implements CollisionHandler {
 
     static {
         POWER_MAP = ImmutableMap.<CollisionTag, BiConsumer<Collidable, GameObject>>builder()
-                .put(CollisionTag.PLAYER, (coll, obj) -> {
-                    obj.getComponents().forEach(Component::disable);
-                    ((Power) obj).activate(coll.getAttachedGameObject());
-                })
-                .put(CollisionTag.WALL, (coll, obj) -> {
-                    final GameObject floor = coll.getAttachedGameObject();
-                    stopFloor(floor, obj);
-                    obj.getComponents().stream().filter(c -> c.getType().equals(ComponentTypes.GRAVITY)
-                            || c.getType().equals(ComponentTypes.MOVEMENT)).forEach(Component::disable);
-                })
+                .put(CollisionTag.PLAYER, PowerCollisionHandler::powerCollidesWithPlayer)
+                .put(CollisionTag.WALL,   PowerCollisionHandler::powerCollidesWithWall)
                 .build();
     }
 
     @Override
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Power object.
-        POWER_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        if (POWER_MAP.containsKey(coll.getCollisionTag())) {
+            POWER_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        }
     }
 
     private static void stopFloor(final GameObject floor, final GameObject obj) {
         if (Boundaries.isFloor(floor.getPosition())) {
             obj.setPosition(new Coordinate(obj.getPosition().getX(), floor.getPosition().getY() - obj.getHeight()));
         }
+    }
+
+    private static void powerCollidesWithPlayer(final Collidable coll, final GameObject obj) {
+        obj.getComponents().forEach(Component::disable);
+        ((Power) obj).activate(coll.getAttachedGameObject());
+    }
+
+    private static void powerCollidesWithWall(final Collidable coll, final GameObject obj) {
+        final GameObject floor = coll.getAttachedGameObject();
+        stopFloor(floor, obj);
+        obj.getComponents().stream()
+                .filter(c -> c.getType().equals(ComponentTypes.GRAVITY) || c.getType().equals(ComponentTypes.MOVEMENT))
+                .forEach(Component::disable);
     }
 
 }

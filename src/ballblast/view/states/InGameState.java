@@ -1,11 +1,12 @@
 package ballblast.view.states;
 
 import java.util.Map;
+
 import com.google.common.collect.ImmutableMap;
 
-import ballblast.commons.Command;
 import ballblast.controller.Controller;
 import ballblast.model.inputs.InputTypes;
+import ballblast.settings.KeyCodeSet;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.view.scenecontroller.GUISceneController;
 import javafx.scene.input.KeyCode;
@@ -16,21 +17,8 @@ import javafx.scene.input.KeyEvent;
  * interacting with the game.
  */
 public class InGameState extends GUIState {
-    private static final Map<KeyCode, Command<GUIState>> PRESSED_INPUT_MAP;
-    private static final Map<KeyCode, Command<GUIState>> RELEASED_INPUT_MAP;
-
-    static {
-        PRESSED_INPUT_MAP = ImmutableMap.of(KeyCode.LEFT,
-                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.MOVE_LEFT), KeyCode.RIGHT,
-                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.MOVE_RIGHT), KeyCode.SPACE,
-                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.SHOOT), KeyCode.P,
-                g -> g.getGUI().setState(g.getGUI().getPausedState()), KeyCode.ESCAPE,
-                g -> g.getGUI().setState(g.getGUI().getPausedState()));
-        RELEASED_INPUT_MAP = ImmutableMap.of(KeyCode.LEFT,
-                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_MOVING_LEFT), KeyCode.RIGHT,
-                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_MOVING_RIGHT), KeyCode.SPACE,
-                g -> g.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING));
-    }
+    private final Map<KeyCode, KeyCodeProcessor> pressedInputMap;
+    private final Map<KeyCode, KeyCodeProcessor> releasedInputMap;
 
     /**
      * Initialize a new in game state.
@@ -40,6 +28,17 @@ public class InGameState extends GUIState {
      */
     public InGameState(final GUISceneController gui, final Controller controller) {
         super(gui, controller);
+        final KeyCodeSet keySet = KeyCodeSet.valueOf(controller.getCurrentUser().getKeySetting());
+        pressedInputMap = ImmutableMap.of(
+                keySet.getMoveLeft(),  () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.MOVE_LEFT), 
+                keySet.getMoveRight(), () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.MOVE_RIGHT), 
+                keySet.getShoot(),     () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.SHOOT), 
+                KeyCode.P,             () -> this.translateKeyCode(), 
+                KeyCode.ESCAPE,        () -> this.translateKeyCode());
+        releasedInputMap = ImmutableMap.of(
+                keySet.getMoveLeft(),  () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.STOP_MOVING_LEFT), 
+                keySet.getMoveRight(), () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.STOP_MOVING_RIGHT), 
+                keySet.getShoot(),     () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.STOP_SHOOTING));
     }
 
     @Override
@@ -48,22 +47,33 @@ public class InGameState extends GUIState {
 
     @Override
     public final void onStateExit() {
-        this.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_MOVING_RIGHT);
-        this.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_MOVING_LEFT);
-        this.getController().receiveInput(PlayerTags.FIRST, InputTypes.STOP_SHOOTING);
+        this.releasedInputMap.forEach((k, f) -> f.process());
     }
 
     @Override
     public final void onKeyPressed(final KeyEvent event) {
-        if (PRESSED_INPUT_MAP.containsKey(event.getCode())) {
-            PRESSED_INPUT_MAP.get(event.getCode()).execute(this);
+        if (pressedInputMap.containsKey(event.getCode())) {
+            pressedInputMap.get(event.getCode()).process();
         }
     }
 
     @Override
     public final void onKeyReleased(final KeyEvent event) {
-        if (RELEASED_INPUT_MAP.containsKey(event.getCode())) {
-            RELEASED_INPUT_MAP.get(event.getCode()).execute(this);
+        if (releasedInputMap.containsKey(event.getCode())) {
+            releasedInputMap.get(event.getCode()).process();
         }
+    }
+
+    private void translateKeyCode(final PlayerTags tag, final InputTypes input) {
+        this.getController().receiveInput(tag, input);
+    }
+
+    private void translateKeyCode() {
+        this.getGUI().setState(this.getGUI().getPausedState());
+    }
+
+    @FunctionalInterface
+    private interface KeyCodeProcessor {
+        void process();
     }
 }

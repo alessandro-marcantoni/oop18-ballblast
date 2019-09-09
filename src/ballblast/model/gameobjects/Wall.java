@@ -7,6 +7,7 @@ import com.google.common.base.MoreObjects;
  * boundaries.
  */
 public final class Wall extends AbstractGameObject {
+
     /**
      * Class constructor.
      */
@@ -31,6 +32,7 @@ public final class Wall extends AbstractGameObject {
         public final Wall build() {
             return this.getGameObject();
         }
+
         /**
          * Sets the {@link Wall}'s height.
          * 

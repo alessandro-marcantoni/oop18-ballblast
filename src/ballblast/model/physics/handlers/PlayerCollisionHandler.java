@@ -24,22 +24,17 @@ public class PlayerCollisionHandler implements CollisionHandler {
 
     static {
         PLAYER_MAP = ImmutableMap.<CollisionTag, BiConsumer<Collidable, GameObject>>builder()
-                .put(CollisionTag.BALL, (coll, obj) -> {
-                    if (!((Player) obj).isImmune()) {
-                        obj.destroy();
-                    }
-                })
-                .put(CollisionTag.WALL, (coll, obj) -> {
-                    final GameObject boundary = coll.getAttachedGameObject();
-                    checkBoundLimit(boundary, obj);
-                })
+                .put(CollisionTag.BALL, PlayerCollisionHandler::playerCollidesWithBall)
+                .put(CollisionTag.WALL, PlayerCollisionHandler::playerCollidesWithWall)
                 .build();
     }
 
     @Override
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Player object.
-        PLAYER_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        if (PLAYER_MAP.containsKey(coll.getCollisionTag())) {
+            PLAYER_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+        }
     }
 
     private static void checkBoundLimit(final GameObject bound, final GameObject obj) {
@@ -48,5 +43,16 @@ public class PlayerCollisionHandler implements CollisionHandler {
         } else if (Boundaries.isLeft(bound.getPosition())) {
             obj.setPosition(new Coordinate(bound.getPosition().getX() + bound.getWidth(), obj.getPosition().getY()));
         }
+    }
+
+    private static void playerCollidesWithBall(final Collidable coll, final GameObject obj) {
+        if (!((Player) obj).isImmune()) {
+            obj.destroy();
+        }
+    }
+
+    private static void playerCollidesWithWall(final Collidable coll, final GameObject obj) {
+        final GameObject boundary = coll.getAttachedGameObject();
+        checkBoundLimit(boundary, obj);
     }
 }

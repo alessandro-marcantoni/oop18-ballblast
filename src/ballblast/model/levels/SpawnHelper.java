@@ -19,7 +19,7 @@ import ballblast.model.powerups.PowerFactory;
 import ballblast.model.powerups.PowerTypes;
 
 /**
- * Contains some useful methods used by more than one class.
+ * Contains some helper methods used by multiple level decorations.
  */
 public final class SpawnHelper {
     private static final Random RANDOM = new Random();

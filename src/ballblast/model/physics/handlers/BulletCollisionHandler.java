@@ -20,8 +20,8 @@ public class BulletCollisionHandler implements CollisionHandler {
 
     static {
         BULLET_MAP = ImmutableMap.<CollisionTag, BiConsumer<Collidable, GameObject>>builder()
-                .put(CollisionTag.BALL, (coll, obj) -> obj.destroy())
-                .put(CollisionTag.WALL, (coll, obj) -> obj.destroy())
+                .put(CollisionTag.BALL, BulletCollisionHandler::bulletCollision)
+                .put(CollisionTag.WALL, BulletCollisionHandler::bulletCollision)
                 .build();
     }
 
@@ -31,6 +31,10 @@ public class BulletCollisionHandler implements CollisionHandler {
         if (BULLET_MAP.containsKey(coll.getCollisionTag())) {
             BULLET_MAP.get(coll.getCollisionTag()).accept(coll, obj);
         }
+    }
+
+    private static void bulletCollision(final Collidable coll, final GameObject obj) {
+        obj.destroy();
     }
 
 }

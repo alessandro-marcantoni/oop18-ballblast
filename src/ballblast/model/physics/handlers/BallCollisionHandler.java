@@ -26,26 +26,8 @@ public class BallCollisionHandler implements CollisionHandler {
 
     static {
         BALL_MAP = ImmutableMap.<CollisionTag, BiConsumer<Collidable, GameObject>>builder()
-                .put(CollisionTag.WALL, (coll, obj) -> {
-                    final Coordinate boundaryPos = coll.getAttachedGameObject().getPosition();
-                    if (Boundaries.isFloor(boundaryPos)) {
-                        obj.setPosition(new Coordinate(obj.getPosition().getX(),
-                                Boundaries.BOTTOM.getPosition().getY() - obj.getHeight()));
-                        Bounce.floorBounce(obj);
-                    } else if (Boundaries.isRoof(boundaryPos)) {
-                        obj.setPosition(new Coordinate(obj.getPosition().getX(),
-                                Boundaries.TOP.getPosition().getY() + Boundaries.TOP.getHeight()));
-                        Bounce.floorBounce(obj);
-                    } else {
-                        Bounce.wallBounce(obj);
-                    }
-                })
-                .put(CollisionTag.BULLET, (coll, obj) -> {
-                    decrementLife(obj, DEC_LIFE);
-                    if (((Ball) obj).getCurrentLife() <= 0) {
-                        obj.destroy();
-                    }
-                })
+                .put(CollisionTag.WALL,   BallCollisionHandler::ballCollidesWithWall)
+                .put(CollisionTag.BULLET, BallCollisionHandler::ballCollidesWithBullet)
                 .build();
     }
 
@@ -59,5 +41,27 @@ public class BallCollisionHandler implements CollisionHandler {
 
     private static void decrementLife(final GameObject ball, final int decrementBy) {
         ((Ball) ball).setCurrentLife(((Ball) ball).getCurrentLife() - decrementBy);
+    }
+
+    private static void ballCollidesWithWall(final Collidable coll, final GameObject obj) {
+        final Coordinate boundaryPos = coll.getAttachedGameObject().getPosition();
+        if (Boundaries.isFloor(boundaryPos)) {
+            obj.setPosition(
+                    new Coordinate(obj.getPosition().getX(), Boundaries.BOTTOM.getPosition().getY() - obj.getHeight()));
+            Bounce.floorBounce(obj);
+        } else if (Boundaries.isRoof(boundaryPos)) {
+            obj.setPosition(new Coordinate(obj.getPosition().getX(),
+                    Boundaries.TOP.getPosition().getY() + Boundaries.TOP.getHeight()));
+            Bounce.floorBounce(obj);
+        } else {
+            Bounce.wallBounce(obj);
+        }
+    }
+
+    private static void ballCollidesWithBullet(final Collidable coll, final GameObject obj) {
+        decrementLife(obj, DEC_LIFE);
+        if (((Ball) obj).getCurrentLife() <= 0) {
+            obj.destroy();
+        }
     }
 }

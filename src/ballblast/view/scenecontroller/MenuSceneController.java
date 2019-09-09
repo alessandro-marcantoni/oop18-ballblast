@@ -69,7 +69,7 @@ public class MenuSceneController extends AbstractSceneController {
      * It is handled from JavaFX GameSelection.fxml file.
      */
     @FXML
-    protected void openGameMode() { //NOPMD the method is injected by fxml.
+    private void openGameMode() { //NOPMD the method is injected by fxml.
         this.selection = GameScenes.GAME_MODE;
         this.nextScene();
     }

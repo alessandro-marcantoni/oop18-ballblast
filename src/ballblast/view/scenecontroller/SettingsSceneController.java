@@ -6,6 +6,8 @@ import ballblast.settings.KeyCodeSet;
 import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -68,8 +70,8 @@ public class SettingsSceneController extends AbstractSubSceneController {
         cbFPS.getSelectionModel().selectedItemProperty().addListener(c -> this.setFramerate());
 
         // Check box for music settings.
-//        chkMusic.selectedProperty().addListener(c -> this.setMusic());
-//        chkSound.selectedProperty().addListener(c -> this.setSoundEffects());
+        chkMusic.selectedProperty().addListener(c -> this.setMusic());
+        chkSound.selectedProperty().addListener(c -> this.setSoundEffects());
     }
 
     @Override
@@ -84,11 +86,12 @@ public class SettingsSceneController extends AbstractSubSceneController {
 
     private void setKeySetOne() {
         this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_ONE.toString());
-//            this.getController().getCurrentUser().saveUser();
+            this.getController().updateStats();
     }
 
     private void setKeySetTwo() {
         this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_TWO.toString());
+        this.getController().updateStats();
     }
 
     private KeyCodeSet checkKeySetInUse() {
@@ -116,9 +119,10 @@ public class SettingsSceneController extends AbstractSubSceneController {
     private void setFramerate() {
         this.getController().getCurrentUser()
                 .setFramesPerSecond(this.cbFPS.getSelectionModel().getSelectedItem().intValue());
+        this.getController().updateStats();
     }
 
-//    private void setMusic() {
+    private void setMusic() {
 //        if (this.isMusicOn) {
 //            this.isMusicOn = false;
 //            this.getController().getCurrentUser().setMusic(false);
@@ -126,9 +130,14 @@ public class SettingsSceneController extends AbstractSubSceneController {
 //            this.isMusicOn = true;
 //            this.getController().getCurrentUser().setMusic(true);
 //        }
-//    }
-//
-//    private void setSoundEffects() {
+      final Alert alert = new Alert(AlertType.WARNING);
+      alert.setTitle("Work in progress...");
+      alert.setHeaderText(null);
+      alert.setContentText("Not implemented yet.");
+      alert.showAndWait();
+    }
+
+    private void setSoundEffects() {
 //        if (this.isEffectsOn) {
 //            this.isEffectsOn = false;
 //        this.getController().getCurrentUser().setSoundEffects(false);
@@ -136,5 +145,10 @@ public class SettingsSceneController extends AbstractSubSceneController {
 //            this.isEffectsOn = true;
 //            this.getController().getCurrentUser().setSoundEffects(true);
 //        }
-//    }
+      final Alert alert = new Alert(AlertType.WARNING);
+      alert.setTitle("Work in progress...");
+      alert.setHeaderText(null);
+      alert.setContentText("Not implemented yet.");
+      alert.showAndWait();
+    }
 }

@@ -116,6 +116,11 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         this.leaderboard.addRecord(currentUser.get().getName(), this.model.getGameData().getScore());
         this.lbManager.saveSurvivalLeaderboard(leaderboard);
         this.currentUser.get().addGameData(this.model.getGameData());
+        this.updateStats();
+    }
+
+    @Override
+    public final void updateStats() {
         this.userManager.updateUserData(this.currentUser.get());
     }
 
@@ -123,4 +128,5 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         this.gameloop = new GameLoopImpl(this.model, this.view, this.currentUser.get().getFramesPerSecond());
         this.gameloop.addObserver(this);
     }
+
 }

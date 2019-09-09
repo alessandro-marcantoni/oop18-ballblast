@@ -5,6 +5,7 @@ import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -29,12 +30,36 @@ public class MenuSceneController extends AbstractSceneController {
 
     @FXML
     private Button quitBtn;
+
+    @FXML
+    private Label time;
+
+    @FXML
+    private Label globalscore;
+
+    @FXML
+    private Label matches;
+
+    @FXML
+    private Label bullets;
+
+    @FXML
+    private Label balls;
+
+    @FXML
+    private Label user;
     private GameScenes selection;
 
     @Override
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
         this.selection = GameScenes.MENU;
+        this.user.setText(this.getController().getCurrentUser().getName().toUpperCase());
+        this.balls.setText(String.valueOf(this.getController().getCurrentUser().getDestroyedBalls()));
+        this.bullets.setText(String.valueOf(this.getController().getCurrentUser().getSpawnedBullets()));
+        this.globalscore.setText(String.valueOf(this.getController().getCurrentUser().getGlobalScore()));
+        this.matches.setText(String.valueOf(this.getController().getCurrentUser().getMatchesPlayed()));
+        this.time.setText(String.valueOf(Double.valueOf(this.getController().getCurrentUser().getGameTime()).intValue()));
     }
     /**
      * Open the game mode selection scene.
@@ -68,11 +93,6 @@ public class MenuSceneController extends AbstractSceneController {
         // TODO
         this.selection = GameScenes.SETTINGS;
         this.nextScene();
-//        final Alert alert = new Alert(AlertType.WARNING);
-//        alert.setTitle("Work in progress...");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Not implemented yet.");
-//        alert.showAndWait();
     }
 
     /**

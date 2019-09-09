@@ -102,4 +102,8 @@ public interface Controller {
      * @return the {@link Leaderboard}.
      */
     Leaderboard getLeaderboard();
+    /**
+     * Updates the user stats.
+     */
+    void updateStats();
 }

@@ -24,7 +24,7 @@ public class PlayerCollisionHandler implements CollisionHandler {
 
     static {
         PLAYER_MAP = ImmutableMap.<CollisionTag, BiConsumer<Collidable, GameObject>>builder()
-                .put(CollisionTag.BALL, PlayerCollisionHandler::playerCollidesWithBall)
+                .put(CollisionTag.BALL, (c, g) -> playerCollidesWithBall(g))
                 .put(CollisionTag.WALL, PlayerCollisionHandler::playerCollidesWithWall)
                 .build();
     }
@@ -45,7 +45,7 @@ public class PlayerCollisionHandler implements CollisionHandler {
         }
     }
 
-    private static void playerCollidesWithBall(final Collidable coll, final GameObject obj) {
+    private static void playerCollidesWithBall(final GameObject obj) {
         if (!((Player) obj).isImmune()) {
             obj.destroy();
         }

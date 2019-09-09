@@ -33,8 +33,8 @@ public class InGameState extends GUIState {
                 keySet.getMoveLeft(),  () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.MOVE_LEFT), 
                 keySet.getMoveRight(), () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.MOVE_RIGHT), 
                 keySet.getShoot(),     () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.SHOOT), 
-                KeyCode.P,             () -> this.translateKeyCode(), 
-                KeyCode.ESCAPE,        () -> this.translateKeyCode());
+                KeyCode.P,             () -> this.translatePauseKeyCode(), 
+                KeyCode.ESCAPE,        () -> this.translatePauseKeyCode());
         releasedInputMap = ImmutableMap.of(
                 keySet.getMoveLeft(),  () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.STOP_MOVING_LEFT), 
                 keySet.getMoveRight(), () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.STOP_MOVING_RIGHT), 
@@ -52,15 +52,15 @@ public class InGameState extends GUIState {
 
     @Override
     public final void onKeyPressed(final KeyEvent event) {
-        if (pressedInputMap.containsKey(event.getCode())) {
-            pressedInputMap.get(event.getCode()).process();
+        if (this.pressedInputMap.containsKey(event.getCode())) {
+            this.pressedInputMap.get(event.getCode()).process();
         }
     }
 
     @Override
     public final void onKeyReleased(final KeyEvent event) {
-        if (releasedInputMap.containsKey(event.getCode())) {
-            releasedInputMap.get(event.getCode()).process();
+        if (this.releasedInputMap.containsKey(event.getCode())) {
+            this.releasedInputMap.get(event.getCode()).process();
         }
     }
 
@@ -68,11 +68,10 @@ public class InGameState extends GUIState {
         this.getController().receiveInput(tag, input);
     }
 
-    private void translateKeyCode() {
+    private void translatePauseKeyCode() {
         this.getGUI().setState(this.getGUI().getPausedState());
     }
 
-    @FunctionalInterface
     private interface KeyCodeProcessor {
         void process();
     }

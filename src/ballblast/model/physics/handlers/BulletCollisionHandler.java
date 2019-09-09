@@ -1,7 +1,7 @@
 package ballblast.model.physics.handlers;
 
 import java.util.Map;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -16,10 +16,10 @@ import ballblast.model.physics.CollisionTag;
  */
 public class BulletCollisionHandler implements CollisionHandler {
 
-    private static final Map<CollisionTag, BiConsumer<Collidable, GameObject>> BULLET_MAP;
+    private static final Map<CollisionTag, Consumer<GameObject>> BULLET_MAP;
 
     static {
-        BULLET_MAP = ImmutableMap.<CollisionTag, BiConsumer<Collidable, GameObject>>builder()
+        BULLET_MAP = ImmutableMap.<CollisionTag, Consumer<GameObject>>builder()
                 .put(CollisionTag.BALL, BulletCollisionHandler::bulletCollision)
                 .put(CollisionTag.WALL, BulletCollisionHandler::bulletCollision)
                 .build();
@@ -29,11 +29,11 @@ public class BulletCollisionHandler implements CollisionHandler {
     public final void execute(final Collidable coll, final GameObject obj) {
         // obj is a Bullet object.
         if (BULLET_MAP.containsKey(coll.getCollisionTag())) {
-            BULLET_MAP.get(coll.getCollisionTag()).accept(coll, obj);
+            BULLET_MAP.get(coll.getCollisionTag()).accept(obj);
         }
     }
 
-    private static void bulletCollision(final Collidable coll, final GameObject obj) {
+    private static void bulletCollision(final GameObject obj) {
         obj.destroy();
     }
 

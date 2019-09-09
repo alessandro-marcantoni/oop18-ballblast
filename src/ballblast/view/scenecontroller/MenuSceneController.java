@@ -1,5 +1,7 @@
 package ballblast.view.scenecontroller;
 
+import java.util.Locale;
+
 import ballblast.controller.Controller;
 import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;
@@ -54,12 +56,12 @@ public class MenuSceneController extends AbstractSceneController {
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
         this.selection = GameScenes.MENU;
-        this.user.setText(this.getController().getCurrentUser().getName().toUpperCase());
+        this.user.setText(this.getController().getCurrentUser().getName().toLowerCase(Locale.ENGLISH));
         this.balls.setText(String.valueOf(this.getController().getCurrentUser().getDestroyedBalls()));
         this.bullets.setText(String.valueOf(this.getController().getCurrentUser().getSpawnedBullets()));
         this.globalscore.setText(String.valueOf(this.getController().getCurrentUser().getGlobalScore()));
         this.matches.setText(String.valueOf(this.getController().getCurrentUser().getMatchesPlayed()));
-        this.time.setText(String.valueOf(Double.valueOf(this.getController().getCurrentUser().getGameTime()).intValue()));
+        this.time.setText(String.valueOf((int) this.getController().getCurrentUser().getGameTime()));
     }
     /**
      * Open the game mode selection scene.

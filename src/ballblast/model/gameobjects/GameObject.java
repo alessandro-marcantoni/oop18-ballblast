@@ -10,7 +10,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
 /**
- * Represent a general entity of the game.
+ * Represent a general game's entity.
  */
 public interface GameObject {
     /**

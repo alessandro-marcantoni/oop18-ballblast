@@ -2,10 +2,10 @@ package ballblast.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.MultimapBuilder;
 
 import ballblast.controller.sound.Sound;
 import ballblast.model.Model;
@@ -21,7 +21,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
 
     private final List<GameLoopObserver> observers = new ArrayList<GameLoopObserver>();
-    private final Map<PlayerTags, List<InputTypes>> inputs;
+    private final ListMultimap<PlayerTags, InputTypes> inputs;
     private final View view;
     private final Model model;
     private final long frameRate;
@@ -42,7 +42,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
         this.view = view;
         this.model = model;
         this.frameRate = (long) (1 / (frameRate * MS_TO_S));
-        this.inputs = ImmutableMap.of(PlayerTags.FIRST, new ArrayList<>(), PlayerTags.SECOND, new ArrayList<>());
+        this.inputs = MultimapBuilder.treeKeys().arrayListValues().build();
     }
 
     @Override
@@ -84,8 +84,8 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     @Override
-    public final synchronized void receiveInput(final PlayerTags tag, final InputTypes input) {
-        this.inputs.get(tag).add(input);
+    public final synchronized void addInput(final PlayerTags tag, final InputTypes input) {
+        this.inputs.put(tag, input);
     }
 
     @Override
@@ -110,12 +110,8 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     private synchronized void processInput() {
-        this.inputs.forEach((k, v) -> {
-            if (!v.isEmpty()) {
-                this.model.resolveInputs(k, ImmutableList.copyOf(v));
-                v.clear();
-            }
-        });
+        this.inputs.keySet().forEach(k -> this.model.resolveInputs(k, ImmutableList.copyOf(this.inputs.get(k))));
+        this.inputs.clear();
     }
 
     private boolean isStopped() {

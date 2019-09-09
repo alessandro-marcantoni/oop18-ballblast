@@ -28,7 +28,7 @@ public abstract class AbstractGameObject implements GameObject {
     private CollisionHandler collisionHandler;
 
     /**
-     * Creates a AbstractGameObject instance.
+     * Class constructor.
      * 
      * @param type the type of {@link GameObject}.
      */
@@ -37,24 +37,6 @@ public abstract class AbstractGameObject implements GameObject {
         this.isAvailable = true;
         this.components = ImmutableList.of();
         this.position = ZERO;
-    }
-
-    /**
-     * Sets the {@link GameObject}'s height.
-     * 
-     * @param height the height of the {@link GameObject}.
-     */
-    protected void setHeight(final double height) {
-        this.height = height;
-    }
-
-    /**
-     * Sets the {@link GameObject}'s width.
-     * 
-     * @param width the width of the {@link GameObject}.
-     */
-    protected void setWidth(final double width) {
-        this.width = width;
     }
 
     @Override
@@ -98,9 +80,7 @@ public abstract class AbstractGameObject implements GameObject {
         this.components.forEach(Component::disable);
     }
 
-    /**
-     * Updates the state of the {@link GameObject}.
-     */
+    /** {@inheritDoc} */
     @Override
     public void update(final double elapsed) {
         components.forEach(c -> c.update(elapsed));
@@ -109,18 +89,22 @@ public abstract class AbstractGameObject implements GameObject {
     @Override
     public final void addComponent(final Component component) {
         component.setParent(this);
-        this.components = ImmutableList.<Component>builder().addAll(this.components).add(component).build();
+        this.components = ImmutableList.<Component>builder()
+                .addAll(this.components)
+                .add(component)
+                .build();
     }
 
     @Override
     public final void removeComponent(final ComponentTypes type) {
-        this.components = this.components.stream().filter(c -> c.getType() != type)
+        this.components = this.components.stream()
+                .filter(c -> c.getType() != type)
                 .collect(ImmutableList.toImmutableList());
     }
 
     @Override
     public final List<Component> getComponents() {
-        return ImmutableList.copyOf(this.components);
+        return this.components;
     }
 
     @Override
@@ -131,6 +115,24 @@ public abstract class AbstractGameObject implements GameObject {
     @Override
     public final void handleCollision(final Collidable collidable) {
         this.collisionHandler.execute(collidable, this);
+    }
+
+    /**
+     * Sets the {@link GameObject}'s height.
+     * 
+     * @param height the height of the {@link GameObject}.
+     */
+    protected void setHeight(final double height) {
+        this.height = height;
+    }
+
+    /**
+     * Sets the {@link GameObject}'s width.
+     * 
+     * @param width the width of the {@link GameObject}.
+     */
+    protected void setWidth(final double width) {
+        this.width = width;
     }
 
     /**
@@ -157,7 +159,7 @@ public abstract class AbstractGameObject implements GameObject {
         private final B builder;
 
         /**
-         * Creates an AbstractBuilder instance.
+         * Class constructor.
          */
         protected AbstractBuilder() {
             this.gameObject = initGameObject();

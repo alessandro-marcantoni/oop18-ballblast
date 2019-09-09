@@ -1,17 +1,18 @@
 package ballblast.commons;
 
+import ballblast.model.gameobjects.GameObject;
+
 /**
  * It is used to wrap a request under an object as command and passed to invoker
- * object, followion the Command pattern.
+ * object, following the Command pattern.
  *
- * @param <T> the type of the object used to execute the command.
  */
 @FunctionalInterface
-public interface Command<T> {
+public interface Command {
     /**
      * Executes the command.
      * 
-     * @param t the object used to handle this command.
+     * @param gameObject the {@link GameObject} which handles the command.
      */
-    void execute(T t);
+    void execute(GameObject gameObject);
 }

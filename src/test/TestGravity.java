@@ -37,7 +37,7 @@ public class TestGravity {
     @Before
     public void initializeEnv() {
         this.ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
-                this.gameObjectManager, null);
+                this.gameObjectManager, null, null);
         this.ball.getComponents().stream()
         .filter(c -> c.getType().equals(ComponentTypes.MOVEMENT) 
                 || c.getType().equals(ComponentTypes.GRAVITY))

@@ -60,6 +60,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
                 // In order to lock the frame rate.
                 this.waitForNextFrame(current);
             }
+            this.processSounds();
             lastTime = current;
         }
         this.view.setGameOver(true);
@@ -137,6 +138,10 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private void gameOverSound() {
         Sound.THEME.stopSound();
         Sound.GAMEOVER.playSound();
+    }
+
+    private void processSounds() {
+        Sound.HANDLER.handleAll(this.model.getGameEvents());
     }
 
 }

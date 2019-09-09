@@ -1,4 +1,4 @@
-package ballblast.model.commons;
+package ballblast.commons.events;
 
 /**
  * Enumeration representing the types of game events.

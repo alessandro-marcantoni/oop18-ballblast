@@ -7,8 +7,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import ballblast.model.commons.EventTypes;
-import ballblast.model.commons.EventHandler;
+import ballblast.commons.events.EventHandler;
+import ballblast.commons.events.EventTypes;
 
 /**
  * Enumeration representing the game sounds.

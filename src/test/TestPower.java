@@ -41,7 +41,7 @@ public class TestPower {
     @Before
     public void initializeEnv() {
         this.player = GameObjectFactory.createPlayer(this.gameObjectManager, new InputManager(), PlayerTags.FIRST,
-                this.collisionManager, VELOCITY, POSITION, null);
+                this.collisionManager, VELOCITY, POSITION, null, null);
         this.player.getComponents().stream()
             .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
             .findFirst()
@@ -57,7 +57,7 @@ public class TestPower {
         this.power.activate(this.player);
         assertTrue(this.power.isActive());
         this.ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
-                this.gameObjectManager, null);
+                this.gameObjectManager, null, null);
         this.ball.getComponents().stream()
             .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
             .findFirst()

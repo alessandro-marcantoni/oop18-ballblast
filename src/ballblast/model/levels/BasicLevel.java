@@ -1,5 +1,6 @@
 package ballblast.model.levels;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
+import ballblast.commons.events.EventTypes;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectFactory;
@@ -26,6 +28,7 @@ public final class BasicLevel implements Level {
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
     private final GameDataManager gameDataManager;
+    private final List<EventTypes> events;
     private GameStatus gameStatus;
     private double currentSpawnTime;
 
@@ -38,6 +41,7 @@ public final class BasicLevel implements Level {
         this.collisionManager = new SimpleCollisionManager();
         this.inputManager = new InputManager();
         this.gameDataManager = new GameDataManager();
+        this.events = new ArrayList<>();
         this.currentSpawnTime = POWER_SPAWN_TIME;
         this.createBoundaries();
     }
@@ -86,6 +90,11 @@ public final class BasicLevel implements Level {
     @Override
     public GameDataManager getGameDataManager() {
         return this.gameDataManager;
+    }
+
+    @Override
+    public List<EventTypes> getGameEvents() {
+        return this.events;
     }
 
     private void createBoundaries() {

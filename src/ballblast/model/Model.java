@@ -2,6 +2,7 @@ package ballblast.model;
 
 import java.util.List;
 
+import ballblast.commons.events.EventTypes;
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputTypes;
@@ -60,7 +61,14 @@ public interface Model {
     /**
      * Gets the game data (score, time, destroyed balls ecc..).
      * 
-     * @return The {@link GameData}.
+     * @return the {@link GameData}.
      */
     GameData getGameData();
+
+    /**
+     * Gets the game's events.
+     * 
+     * @return the game's events.
+     */
+    List<EventTypes> getGameEvents();
 }

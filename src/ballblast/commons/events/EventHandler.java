@@ -1,4 +1,4 @@
-package ballblast.model.commons;
+package ballblast.commons.events;
 
 import java.util.List;
 

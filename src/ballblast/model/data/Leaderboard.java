@@ -52,11 +52,6 @@ public class Leaderboard {
      * @return true if the score is an high score.
      */
     private boolean isRecord(final int score) {
-        for (final RecordData rec : recordList) {
-            if (rec.getScore() == score) {
-                return false;
-            }
-        }
         return score > this.getRecords().max(COMPARATOR).get().getScore();
     }
 

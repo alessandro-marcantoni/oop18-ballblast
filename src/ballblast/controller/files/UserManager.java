@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Locale;
 import java.util.Optional;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -25,6 +26,7 @@ import ballblast.settings.KeyCodeSet;
  */
 public class UserManager {
 
+    private static final String SPACE = "\\s+";
     /**
      * Tries to login a user.
      * 
@@ -39,8 +41,10 @@ public class UserManager {
      */
     public Optional<UserData> login(final String userName, final String password)
             throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
-        if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName.toUpperCase())))
-                && XMLFileManager.checkUserPassword(userName.toLowerCase(), password)) {
+        final String upperName = userName.replaceAll(SPACE, "").toUpperCase(Locale.ENGLISH);
+        final String lowerName = userName.replaceAll(SPACE, "").toLowerCase(Locale.ENGLISH);
+        if (Files.exists(Paths.get(DirectoryManager.getUserFile(upperName)))
+                && XMLFileManager.checkUserPassword(lowerName, password)) {
             try {
                 return Optional.of(this.load(userName));
             } catch (IOException e) {
@@ -66,13 +70,15 @@ public class UserManager {
      */
     public Optional<UserData> register(final String userName, final String password)
             throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        if (Files.exists(Paths.get(DirectoryManager.getUserFile(userName.toUpperCase())))) {
+        final String upperName = userName.replaceAll(SPACE, "").toUpperCase(Locale.ENGLISH);
+        final String lowerName = userName.replaceAll(SPACE, "").toLowerCase(Locale.ENGLISH);
+        if (Files.exists(Paths.get(DirectoryManager.getUserFile(upperName)))) {
             // UserName already exists -> choose an other one.
             return Optional.empty();
         } else {
-            XMLFileManager.submitUser(userName.toLowerCase(), password);
+            XMLFileManager.submitUser(lowerName, password);
             final UserData user = new UserData();
-            user.setName(userName.toLowerCase());
+            user.setName(lowerName);
             user.setFramesPerSecond(Framerates.FPS_30.getFPS());
             user.setKeySetting(KeyCodeSet.SET_ONE.toString());
             try {
@@ -101,7 +107,8 @@ public class UserManager {
     }
 
     private void save(final UserData user) throws IOException {
-        try (FileOutputStream fos = new FileOutputStream(DirectoryManager.getUserFile(user.getName().toUpperCase()));
+        final String upperName = user.getName().replaceAll(SPACE, "").toUpperCase(Locale.ENGLISH);
+        try (FileOutputStream fos = new FileOutputStream(DirectoryManager.getUserFile(upperName));
                 XMLEncoder encoder = new XMLEncoder(fos)) {
             encoder.writeObject(user);
         } catch (IOException e) {
@@ -110,7 +117,8 @@ public class UserManager {
     }
 
     private UserData load(final String userName) throws IOException {
-        try (FileInputStream fis = new FileInputStream(DirectoryManager.getUserFile(userName.toUpperCase()));
+        final String upperName = userName.replaceAll(SPACE, "").toUpperCase(Locale.ENGLISH);
+        try (FileInputStream fis = new FileInputStream(DirectoryManager.getUserFile(upperName));
                 XMLDecoder decoder = new XMLDecoder(fis)) {
             return (UserData) decoder.readObject();
         } catch (IOException e) {

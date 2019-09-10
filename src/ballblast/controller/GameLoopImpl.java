@@ -31,8 +31,8 @@ public class GameLoopImpl extends Thread implements GameLoop {
     /**
      * Creates a new game loop instance.
      * 
-     * @param view  the view to render on each frame.
-     * @param model the model to update the world on each frame.
+     * @param view      the view to render on each frame.
+     * @param model     the model to update the world on each frame.
      * @param frameRate the refresh rate of the loop.
      */
     public GameLoopImpl(final Model model, final View view, final int frameRate) {
@@ -47,7 +47,6 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     @Override
     public final void run() {
-        this.startTheme();
         this.stopped = false;
         long lastTime = System.currentTimeMillis();
         while (!this.isStopped()) {
@@ -57,10 +56,10 @@ public class GameLoopImpl extends Thread implements GameLoop {
                 final long elapsed = current - lastTime;
                 this.updateGame(elapsed * MS_TO_S);
                 this.render();
+                this.processSounds(this.model);
                 // In order to lock the frame rate.
                 this.waitForNextFrame(current);
             }
-            this.processSounds();
             lastTime = current;
         }
         this.view.setGameOver(true);
@@ -131,17 +130,19 @@ public class GameLoopImpl extends Thread implements GameLoop {
         this.view.render();
     }
 
-    private void startTheme() {
-        Sound.THEME.loopSound();
-    }
-
-    private void gameOverSound() {
+    /**
+     * Performs the game over sound.
+     */
+    protected void gameOverSound() {
         Sound.THEME.stopSound();
-        Sound.GAMEOVER.playSound();
     }
 
-    private void processSounds() {
-        Sound.HANDLER.handleAll(this.model.getGameEvents());
+    /**
+     * Processes the sound effects.
+     * 
+     * @param model The {@link Model}.
+     */
+    protected void processSounds(final Model model) {
     }
 
 }

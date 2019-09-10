@@ -35,8 +35,6 @@ public class TestPower {
     private final CollisionManager collisionManager = new SimpleCollisionManager();
     private final PowerFactory factory = new PowerFactoryImpl();
     private GameObject player;
-    private Power power;
-    private GameObject ball;
 
     /**
      * Gets the environment ready for the tests.
@@ -56,22 +54,23 @@ public class TestPower {
      */
     @Test
     public void testShieldPower() {
+        Power power;
         do {
-            this.power = this.factory.createPower(VELOCITY, DEFAULT, this.collisionManager);
-        } while (!(this.power instanceof ShieldPower));
-        System.out.println(this.power.toString());
-        this.power.activate(this.player);
-        assertTrue(this.power.isActive());
-        this.ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
+            power = this.factory.createPower(VELOCITY, DEFAULT, this.collisionManager);
+        } while (!(power instanceof ShieldPower));
+        System.out.println(power.toString());
+        power.activate(this.player);
+        assertTrue(power.isActive());
+        final GameObject ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
                 this.gameObjectManager, null, null);
-        this.ball.getComponents().stream()
+        ball.getComponents().stream()
             .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
             .findFirst()
             .ifPresent(Component::enable);
         this.collisionManager.checkLoop();
         assertFalse(this.player.isDestroyed());
-        this.power.deactivate();
-        assertFalse(this.power.isActive());
+        power.deactivate();
+        assertFalse(power.isActive());
         this.collisionManager.checkLoop();
         assertTrue(this.player.isDestroyed());
     }

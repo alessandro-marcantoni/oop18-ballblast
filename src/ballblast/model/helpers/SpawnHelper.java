@@ -1,4 +1,4 @@
-package ballblast.model.levels;
+package ballblast.model.helpers;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
@@ -6,6 +6,7 @@ import org.locationtech.jts.math.Vector2D;
 import ballblast.model.Model;
 import ballblast.model.components.Component;
 import ballblast.model.gameobjects.GameObject;
+import ballblast.model.levels.Boundaries;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.powerups.Power;
 import ballblast.model.powerups.PowerFactory;

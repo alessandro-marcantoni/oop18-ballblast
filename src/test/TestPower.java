@@ -1,4 +1,4 @@
-package test;
+package test.power;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,8 +20,6 @@ import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
 import ballblast.model.powerups.Power;
 import ballblast.model.powerups.PowerFactory;
-import ballblast.model.powerups.PowerFactoryImpl;
-import ballblast.model.powerups.ShieldPower;
 
 /**
  * JUnit test for {@link Power}.
@@ -33,10 +31,9 @@ public class TestPower {
 
     private final GameObjectManager gameObjectManager = new GameObjectManager();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
-    private final PowerFactory factory = new PowerFactoryImpl();
     private GameObject player;
-    private Power power;
-    private GameObject ball;
+    private Power power; //NOPMD power is used locally.
+    private GameObject ball; //NOPMD ball is used locally.
 
     /**
      * Gets the environment ready for the tests.
@@ -44,7 +41,7 @@ public class TestPower {
     @Before
     public void initializeEnv() {
         this.player = GameObjectFactory.createPlayer(this.gameObjectManager, new InputManager(), PlayerTags.FIRST,
-                this.collisionManager, VELOCITY, POSITION, null, null);
+                this.collisionManager, VELOCITY, POSITION, null);
         this.player.getComponents().stream()
             .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
             .findFirst()
@@ -56,14 +53,11 @@ public class TestPower {
      */
     @Test
     public void testShieldPower() {
-        do {
-            this.power = this.factory.createPower(VELOCITY, DEFAULT, this.collisionManager);
-        } while (!(this.power instanceof ShieldPower));
-        System.out.println(this.power.toString());
+        this.power = PowerFactory.createShieldPower(VELOCITY, DEFAULT, this.collisionManager);
         this.power.activate(this.player);
         assertTrue(this.power.isActive());
         this.ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
-                this.gameObjectManager, null, null);
+                this.gameObjectManager, null);
         this.ball.getComponents().stream()
             .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
             .findFirst()

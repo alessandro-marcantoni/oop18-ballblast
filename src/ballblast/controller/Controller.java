@@ -102,8 +102,25 @@ public interface Controller {
      * @return the {@link Leaderboard}.
      */
     Leaderboard getLeaderboard();
+
     /**
      * Updates the user stats.
      */
     void updateStats();
+
+    /**
+     * Switches on and off the music.
+     * 
+     * @param isMusicOn True if the music must be turned on. False otherwise.
+     */
+    void setMusic(boolean isMusicOn);
+
+    /**
+     * Switches on and off the sound effects.
+     * 
+     * @param isSoundOn True if the sound effects must be turned on. False
+     *                  otherwise.
+     */
+    void setSoundEffects(boolean isSoundOn);
+
 }

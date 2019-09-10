@@ -72,6 +72,7 @@ public class InGameState extends GUIState {
         this.getGUI().setState(this.getGUI().getPausedState());
     }
 
+    /*Functional interface used to translate a KeyCode in its corresponding action*/
     private interface KeyCodeProcessor {
         void process();
     }

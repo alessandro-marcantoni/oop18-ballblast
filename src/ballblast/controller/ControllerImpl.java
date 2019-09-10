@@ -27,11 +27,13 @@ public class ControllerImpl implements Controller, GameLoopObserver {
 
     private final Model model;
     private final View view;
-    private GameLoop gameloop;
-    private Optional<UserData> currentUser;
     private final UserManager userManager;
     private final Leaderboard leaderboard;
     private final LeaderboardManager lbManager;
+    private GameLoop gameloop;
+    private Optional<UserData> currentUser;
+    private boolean isMusicOn;
+    private boolean isSoundOn;
 
     /**
      * Create a new instance of {@link Controller}.
@@ -47,6 +49,8 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         this.currentUser = Optional.empty();
         this.lbManager = new LeaderboardManager();
         this.leaderboard = this.lbManager.loadSurvivalLeaderboard().get();
+        this.isMusicOn = true;
+        this.isSoundOn = true;
         Sound.loadSounds();
     }
 
@@ -55,6 +59,7 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         this.createGameLoop();
         this.model.startSurvival();
         this.gameloop.start();
+        this.startMusic();
     }
 
     @Override
@@ -124,9 +129,29 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         this.userManager.updateUserData(this.currentUser.get());
     }
 
+    @Override
+    public final void setMusic(final boolean isMusicOn) {
+        this.isMusicOn = isMusicOn;
+    }
+
+    @Override
+    public final void setSoundEffects(final boolean isSoundOn) {
+        this.isSoundOn = isSoundOn;
+    }
+
     private void createGameLoop() {
-        this.gameloop = new GameLoopImpl(this.model, this.view, this.currentUser.get().getFramesPerSecond());
+        if (this.isSoundOn) {
+            this.gameloop = new SoundGameLoop(this.model, this.view, this.currentUser.get().getFramesPerSecond());
+        } else {
+            this.gameloop = new GameLoopImpl(this.model, this.view, this.currentUser.get().getFramesPerSecond());
+        }
         this.gameloop.addObserver(this);
+    }
+
+    private void startMusic() {
+        if (this.isMusicOn) {
+            Sound.THEME.loopSound();
+        }
     }
 
 }

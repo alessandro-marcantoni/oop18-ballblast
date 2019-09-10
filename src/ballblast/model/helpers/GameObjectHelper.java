@@ -1,4 +1,4 @@
-package ballblast.model.gameobjects;
+package ballblast.model.helpers;
 
 import java.util.List;
 
@@ -13,6 +13,12 @@ import ballblast.model.components.MovementComponent;
 import ballblast.model.components.ShooterComponent;
 import ballblast.model.components.SplitterComponent;
 import ballblast.model.data.GameDataManager;
+import ballblast.model.gameobjects.Ball;
+import ballblast.model.gameobjects.BallTypes;
+import ballblast.model.gameobjects.Bullet;
+import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.gameobjects.Player;
+import ballblast.model.gameobjects.Wall;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.physics.CollisionManager;
@@ -25,8 +31,8 @@ import ballblast.model.physics.handlers.WallCollisionHandler;
 /**
  * Represents a factory used to instantiate new {@link GameObject}s.
  */
-public final class GameObjectFactory {
-    private GameObjectFactory() { }
+public final class GameObjectHelper {
+    private GameObjectHelper() { }
 
     /**
      * Creates {@link Player} game object.
@@ -39,9 +45,9 @@ public final class GameObjectFactory {
      * @param velocity          the {@link Player}'s velocity.
      * @param position          the {@link Player},s position.
      * @param events            the game event list.
-     * @return the {@link GameObject} created.
+     * @return the {@link Player} created.
      */
-    public static GameObject createPlayer(final GameObjectManager gameObjectManager, final InputManager inputManager,
+    public static Player createPlayer(final GameObjectManager gameObjectManager, final InputManager inputManager,
             final PlayerTags tag, final CollisionManager collisionManager, final Vector2D velocity, 
             final Coordinate position, final GameDataManager gameDataManager, final List<EventTypes> events) {
         return new Player.Builder()
@@ -63,9 +69,9 @@ public final class GameObjectFactory {
      * @param width            the {@link Wall}'s width.
      * @param velocity         the {@link Wall}'s velocity.
      * @param position         the {@link Wall}'s position.
-     * @return the {@link GameObject} created.
+     * @return the {@link Wall} created.
      */
-    public static GameObject createWall(final double height, final double width, final Coordinate position,
+    public static Wall createWall(final double height, final double width, final Coordinate position,
             final Vector2D velocity, final CollisionManager collisionManager) {
         return new Wall.Builder()
                 .setHeight(height)
@@ -83,9 +89,9 @@ public final class GameObjectFactory {
      * @param collisionManager the {@link CollisionManager}.
      * @param position         the {@link Bullet}'s position.
      * @param velocity         the {@link Bullet}'s velocity.
-     * @return the {@link GameObject} created.
+     * @return the {@link Bullet} created.
      */
-    public static GameObject createBullet(final Coordinate position, final Vector2D velocity,
+    public static Bullet createBullet(final Coordinate position, final Vector2D velocity,
             final CollisionManager collisionManager) {
         return new Bullet.Builder()
                 .setPosition(position)
@@ -107,9 +113,9 @@ public final class GameObjectFactory {
      * @param position          the {@link Ball}'s position.
      * @param velocity          the {@link Ball}'s velocity.
      * @param events            the game event list.
-     * @return the {@link GameObject created}.
+     * @return the {@link Ball created}.
      */
-    public static GameObject createBall(final BallTypes ballType, final int life, final Coordinate position,
+    public static Ball createBall(final BallTypes ballType, final int life, final Coordinate position,
             final Vector2D velocity, final CollisionManager collisionManager, final GameObjectManager gameObjectManager, 
             final GameDataManager gameDataManager, final List<EventTypes> events) {
         return new Ball.Builder()

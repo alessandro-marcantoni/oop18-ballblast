@@ -10,8 +10,9 @@ import com.google.common.collect.ImmutableList;
 import ballblast.commons.events.EventTypes;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.helpers.GameObjectHelper;
+import ballblast.model.helpers.SpawnHelper;
 import ballblast.model.physics.CollisionManager;
 
 /**
@@ -19,6 +20,7 @@ import ballblast.model.physics.CollisionManager;
  */
 public class ShooterComponent extends AbstractComponent {
     private static final double DEFAULT_SHOT_INTERVAL = 0.15;
+    private static final Coordinate BULLET_OFFSET = new Coordinate(2.3, 2);
     private static final Vector2D BULLET_VELOCITY = Vector2D.create(0, -50);
 
     private final GameObjectManager gameObjectManager;
@@ -94,18 +96,18 @@ public class ShooterComponent extends AbstractComponent {
     }
 
     private void shoot(final GameObject bullet) {
-        bullet.getComponents().forEach(Component::enable);
+        SpawnHelper.activeComponents(bullet);
         this.gameObjectManager.addGameObjects(ImmutableList.of(bullet));
         this.gameDataManager.incrementSpawnedBullets();
     }
 
     private GameObject spawnBullet() {
-        return GameObjectFactory.createBullet(this.getSpawnPosition(), BULLET_VELOCITY, collisionManager);
+        return GameObjectHelper.createBullet(this.getSpawnPosition(), BULLET_VELOCITY, collisionManager);
     }
 
     private Coordinate getSpawnPosition() {
-        final double middleY = this.getParent().getPosition().getY() - 1;
-        final double middleX = this.getParent().getPosition().getX() + (this.getParent().getWidth() / 2 - 0.7);
+        final double middleY = this.getParent().getPosition().getY() - BULLET_OFFSET.getY();
+        final double middleX = this.getParent().getPosition().getX() + BULLET_OFFSET.getX();
         return new Coordinate(middleX, middleY);
     }
 

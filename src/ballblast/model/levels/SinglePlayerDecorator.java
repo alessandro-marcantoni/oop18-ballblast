@@ -7,7 +7,7 @@ import com.google.common.collect.ImmutableList;
 
 import ballblast.model.Model;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectFactory;
+import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.inputs.InputManager.PlayerTags;
 
 /**
@@ -42,7 +42,7 @@ public class SinglePlayerDecorator extends LevelDecorator {
     }
 
     private GameObject createPlayer() {
-        return GameObjectFactory.createPlayer(
+        return GameObjectHelper.createPlayer(
                 this.getGameObjectManager(), this.getInputManager(), PlayerTags.FIRST, 
                 this.getCollisionManager(), Vector2D.create(0, 0), PLAYER_POSITION, 
                 this.getGameDataManager(), this.getGameEvents());

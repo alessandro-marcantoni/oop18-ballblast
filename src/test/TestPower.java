@@ -12,8 +12,8 @@ import ballblast.model.components.Component;
 import ballblast.model.components.ComponentTypes;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.physics.CollisionManager;
@@ -40,7 +40,7 @@ public class TestPower {
      */
     @Before
     public void initializeEnv() {
-        this.player = GameObjectFactory.createPlayer(this.gameObjectManager, new InputManager(), PlayerTags.FIRST,
+        this.player = GameObjectHelper.createPlayer(this.gameObjectManager, new InputManager(), PlayerTags.FIRST,
                 this.collisionManager, VELOCITY, POSITION, null, null);
         this.player.getComponents().stream()
             .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
@@ -56,7 +56,7 @@ public class TestPower {
         this.power = PowerFactory.createShieldPower(VELOCITY, DEFAULT, this.collisionManager);
         this.power.activate(this.player);
         assertTrue(this.power.isActive());
-        this.ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
+        this.ball = GameObjectHelper.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
                 this.gameObjectManager, null, null);
         this.ball.getComponents().stream()
             .filter(c -> c.getType().equals(ComponentTypes.COLLISION))

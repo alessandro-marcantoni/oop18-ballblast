@@ -1,4 +1,4 @@
-package test.power;
+package test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,7 +12,7 @@ import ballblast.model.components.Component;
 import ballblast.model.components.ComponentTypes;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectFactory;
+import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
@@ -20,6 +20,8 @@ import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
 import ballblast.model.powerups.Power;
 import ballblast.model.powerups.PowerFactory;
+import ballblast.model.powerups.PowerFactoryImpl;
+import ballblast.model.powerups.ShieldPower;
 
 /**
  * JUnit test for {@link Power}.
@@ -31,21 +33,18 @@ public class TestPower {
 
     private final GameObjectManager gameObjectManager = new GameObjectManager();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
+    private final PowerFactory factory = new PowerFactoryImpl();
     private GameObject player;
-    private Power power; //NOPMD power is used locally.
-    private GameObject ball; //NOPMD ball is used locally.
 
     /**
      * Gets the environment ready for the tests.
      */
     @Before
     public void initializeEnv() {
-        this.player = GameObjectFactory.createPlayer(this.gameObjectManager, new InputManager(), PlayerTags.FIRST,
-                this.collisionManager, VELOCITY, POSITION, null);
-        this.player.getComponents().stream()
-            .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
-            .findFirst()
-            .ifPresent(Component::enable);
+        this.player = GameObjectHelper.createPlayer(this.gameObjectManager, new InputManager(), PlayerTags.FIRST,
+                this.collisionManager, VELOCITY, POSITION, null, null);
+        this.player.getComponents().stream().filter(c -> c.getType().equals(ComponentTypes.COLLISION)).findFirst()
+                .ifPresent(Component::enable);
     }
 
     /**
@@ -53,19 +52,20 @@ public class TestPower {
      */
     @Test
     public void testShieldPower() {
-        this.power = PowerFactory.createShieldPower(VELOCITY, DEFAULT, this.collisionManager);
-        this.power.activate(this.player);
-        assertTrue(this.power.isActive());
-        this.ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
-                this.gameObjectManager, null);
-        this.ball.getComponents().stream()
-            .filter(c -> c.getType().equals(ComponentTypes.COLLISION))
-            .findFirst()
-            .ifPresent(Component::enable);
+        Power power;
+        do {
+            power = this.factory.createPower(VELOCITY, DEFAULT, this.collisionManager);
+        } while (!(power instanceof ShieldPower));
+        power.activate(this.player);
+        assertTrue(power.isActive());
+        final GameObject ball = GameObjectHelper.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY,
+                this.collisionManager, this.gameObjectManager, null, null);
+        ball.getComponents().stream().filter(c -> c.getType().equals(ComponentTypes.COLLISION)).findFirst()
+                .ifPresent(Component::enable);
         this.collisionManager.checkLoop();
         assertFalse(this.player.isDestroyed());
-        this.power.deactivate();
-        assertFalse(this.power.isActive());
+        power.deactivate();
+        assertFalse(power.isActive());
         this.collisionManager.checkLoop();
         assertTrue(this.player.isDestroyed());
     }

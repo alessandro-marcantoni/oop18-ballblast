@@ -43,20 +43,17 @@ public class SettingsSceneController extends AbstractSubSceneController {
     @Override
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
-
         // Buttons for key set settings.
         final ToggleGroup group = new ToggleGroup();
         this.btnLRS.setToggleGroup(group);
         this.btnADC.setToggleGroup(group);
         btnLRS.setOnMouseClicked(b -> this.setKeySetOne());
         btnADC.setOnMouseClicked(b -> this.setKeySetTwo());
-
         if (this.checkKeySetInUse().equals(KeyCodeSet.SET_ONE)) {
             btnLRS.setSelected(true);
         } else if (this.checkKeySetInUse().equals(KeyCodeSet.SET_TWO)) {
             btnADC.setSelected(true);
         }
-
         // Combo box for FPS settings.
         this.cbFPS.getItems().clear();
         this.cbFPS.getItems().addAll(Framerates.FPS_30.getFPS(), Framerates.FPS_60.getFPS(),
@@ -69,7 +66,6 @@ public class SettingsSceneController extends AbstractSubSceneController {
             this.cbFPS.getSelectionModel().select(2);
         }
         cbFPS.getSelectionModel().selectedItemProperty().addListener(c -> this.setFramerate());
-
         // Check box for music settings.
         chkMusic.selectedProperty().addListener(c -> this.setMusic());
         chkSound.selectedProperty().addListener(c -> this.setSoundEffects());

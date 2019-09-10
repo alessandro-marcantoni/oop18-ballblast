@@ -77,8 +77,6 @@ public class ImageSprite implements Sprite, Renderer {
         } else if (this.gameObject.getType().equals(GameObjectTypes.BALL)
                 && (((Ball) this.gameObject).getCurrentLife() <= 0)) {
             this.renderFireworks(gc, gameObjectWidth, gameObjectHeight);
-
-//            ImageLoader.getLoader().removeBall();
         }
     }
 

@@ -21,8 +21,8 @@ import ballblast.model.levels.SinglePlayerDecorator;
 
 class TestInputs {
     private static final double SAMPLE_ELAPSED = 1;
-    private static final Vector2D LEFT_VELOCITY = Vector2D.create(-45, 0);
-    private static final Vector2D RIGHT_VELOCITY = Vector2D.create(45, 0);
+    private static final Vector2D LEFT_VELOCITY = Vector2D.create(-50, 0);
+    private static final Vector2D RIGHT_VELOCITY = Vector2D.create(50, 0);
     private GameObject player;
     private Level level;
     private InputManager inputManager;

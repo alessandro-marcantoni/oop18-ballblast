@@ -17,8 +17,8 @@ import javafx.scene.input.KeyEvent;
  * interacting with the game.
  */
 public class InGameState extends GUIState {
-    private final Map<KeyCode, KeyCodeProcessor> pressedInputMap;
-    private final Map<KeyCode, KeyCodeProcessor> releasedInputMap;
+    private final Map<KeyCode, KeyCodeTranslator> pressedInputMap;
+    private final Map<KeyCode, KeyCodeTranslator> releasedInputMap;
 
     /**
      * Initialize a new in game state.
@@ -47,20 +47,20 @@ public class InGameState extends GUIState {
 
     @Override
     public final void onStateExit() {
-        this.releasedInputMap.forEach((k, f) -> f.process());
+        this.releasedInputMap.forEach((k, f) -> f.translate());
     }
 
     @Override
     public final void onKeyPressed(final KeyEvent event) {
         if (this.pressedInputMap.containsKey(event.getCode())) {
-            this.pressedInputMap.get(event.getCode()).process();
+            this.pressedInputMap.get(event.getCode()).translate();
         }
     }
 
     @Override
     public final void onKeyReleased(final KeyEvent event) {
         if (this.releasedInputMap.containsKey(event.getCode())) {
-            this.releasedInputMap.get(event.getCode()).process();
+            this.releasedInputMap.get(event.getCode()).translate();
         }
     }
 
@@ -72,7 +72,8 @@ public class InGameState extends GUIState {
         this.getGUI().setState(this.getGUI().getPausedState());
     }
 
-    private interface KeyCodeProcessor {
-        void process();
+    //Functional interface used to translate a keyCode to its corresponding action.
+    private interface KeyCodeTranslator {
+        void translate();
     }
 }

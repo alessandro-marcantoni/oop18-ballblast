@@ -15,6 +15,7 @@ import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.model.helpers.GameObjectHelper;
+import ballblast.model.helpers.SpawnHelper;
 import ballblast.model.physics.CollisionManager;
 
 /**
@@ -76,7 +77,7 @@ public class SplitterComponent extends AbstractComponent {
         final GameObject ball = GameObjectHelper.createBall(
                 type, life, pos, Vector2D.create(xVel, Y_SPLIT_VELOCITY / 2), 
                 this.collisionManager, this.gameObjectManager, this.gameDataManager, this.events);
-        ball.getComponents().forEach(Component::enable);
+        SpawnHelper.activeComponents(ball);
         return ball;
     }
 

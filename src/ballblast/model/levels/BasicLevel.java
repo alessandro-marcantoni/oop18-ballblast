@@ -13,6 +13,7 @@ import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.helpers.GameObjectHelper;
+import ballblast.model.helpers.SpawnHelper;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;

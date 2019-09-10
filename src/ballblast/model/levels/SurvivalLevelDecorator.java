@@ -10,6 +10,7 @@ import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.helpers.GameObjectHelper;
+import ballblast.model.helpers.SpawnHelper;
 
 /**
  * Represents a concrete implementation of {@link LevelDecorator}.
@@ -20,7 +21,6 @@ public class SurvivalLevelDecorator extends LevelDecorator {
     private static final int MAX_BALL_LIFE = 200;
     private static final double BALL_SPAWN_TIME = 10;
     private static final Vector2D BALL_VELOCITY = Vector2D.create(8, 0);
-
     private static final double LIFE_MULTIPLIER = 0.25;
     private static final double SCORE_MULTIPLIER = 0.8;
 

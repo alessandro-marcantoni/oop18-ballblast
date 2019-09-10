@@ -12,8 +12,8 @@ import ballblast.model.components.ComponentTypes;
 import ballblast.model.components.GravityComponent;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
 
@@ -36,7 +36,7 @@ public class TestGravity {
      */
     @Before
     public void initializeEnv() {
-        this.ball = GameObjectFactory.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
+        this.ball = GameObjectHelper.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
                 this.gameObjectManager, null, null);
         this.ball.getComponents().stream()
         .filter(c -> c.getType().equals(ComponentTypes.MOVEMENT) 

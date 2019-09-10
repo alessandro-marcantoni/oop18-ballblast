@@ -11,8 +11,9 @@ import com.google.common.collect.ImmutableList;
 import ballblast.commons.events.EventTypes;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.helpers.GameObjectHelper;
+import ballblast.model.helpers.SpawnHelper;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
@@ -105,7 +106,7 @@ public final class BasicLevel implements Level {
     }
 
     private GameObject convertToWall(final Boundaries b) {
-        return GameObjectFactory.createWall(b.getHeight(), b.getWidth(), 
+        return GameObjectHelper.createWall(b.getHeight(), b.getWidth(), 
                 b.getPosition(), Vector2D.create(0, 0), this.collisionManager);
     }
 

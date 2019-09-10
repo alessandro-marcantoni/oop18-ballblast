@@ -12,9 +12,10 @@ import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectFactory;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.GameObjectTypes;
+import ballblast.model.helpers.GameObjectHelper;
+import ballblast.model.helpers.SpawnHelper;
 import ballblast.model.physics.CollisionManager;
 
 /**
@@ -73,10 +74,10 @@ public class SplitterComponent extends AbstractComponent {
     }
 
     private GameObject generateChildBall(final BallTypes type, final int life, final double xVel, final Coordinate pos) {
-        final GameObject ball = GameObjectFactory.createBall(
+        final GameObject ball = GameObjectHelper.createBall(
                 type, life, pos, Vector2D.create(xVel, Y_SPLIT_VELOCITY / 2), 
                 this.collisionManager, this.gameObjectManager, this.gameDataManager, this.events);
-        ball.getComponents().forEach(Component::enable);
+        SpawnHelper.activeComponents(ball);
         return ball;
     }
 

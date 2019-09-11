@@ -32,8 +32,8 @@ public class ControllerImpl implements Controller, GameLoopObserver {
     private final LeaderboardManager lbManager;
     private GameLoop gameloop;
     private Optional<UserData> currentUser;
-    private boolean isMusicOn;
-    private boolean isSoundOn;
+    private boolean musicStatus;
+    private boolean soundStatus;
 
     /**
      * Create a new instance of {@link Controller}.
@@ -49,8 +49,8 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         this.currentUser = Optional.empty();
         this.lbManager = new LeaderboardManager();
         this.leaderboard = this.lbManager.loadSurvivalLeaderboard().get();
-        this.isMusicOn = true;
-        this.isSoundOn = true;
+        this.musicStatus = true;
+        this.soundStatus = true;
         Sound.loadSounds();
     }
 
@@ -131,16 +131,16 @@ public class ControllerImpl implements Controller, GameLoopObserver {
 
     @Override
     public final void setMusic(final boolean isMusicOn) {
-        this.isMusicOn = isMusicOn;
+        this.musicStatus = isMusicOn;
     }
 
     @Override
     public final void setSoundEffects(final boolean isSoundOn) {
-        this.isSoundOn = isSoundOn;
+        this.soundStatus = isSoundOn;
     }
 
     private void createGameLoop() {
-        if (this.isSoundOn) {
+        if (this.soundStatus) {
             this.gameloop = new SoundGameLoop(this.model, this.view, this.currentUser.get().getFramesPerSecond());
         } else {
             this.gameloop = new GameLoopImpl(this.model, this.view, this.currentUser.get().getFramesPerSecond());
@@ -149,19 +149,19 @@ public class ControllerImpl implements Controller, GameLoopObserver {
     }
 
     private void startMusic() {
-        if (this.isMusicOn) {
+        if (this.musicStatus) {
             Sound.THEME.loopSound();
         }
     }
 
     @Override
     public final boolean isMusicOn() {
-        return this.isMusicOn;
+        return this.musicStatus;
     }
 
     @Override
-    public final boolean isSoundEffectOn() {
-        return this.isSoundOn;
+    public final boolean isSoundOn() {
+        return this.soundStatus;
     }
 
 }

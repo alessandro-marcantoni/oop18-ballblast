@@ -88,7 +88,7 @@ public class SettingsSceneController extends AbstractSubSceneController {
         } else {
             chkMusic.setSelected(true);
         }
-        if (this.getController().isSoundEffectOn()) {
+        if (this.getController().isSoundOn()) {
             chkSound.setSelected(false);
         } else {
             chkSound.setSelected(true);
@@ -143,7 +143,7 @@ public class SettingsSceneController extends AbstractSubSceneController {
     }
 
     private void setSoundEffects() {
-        if (this.getController().isSoundEffectOn()) {
+        if (this.getController().isSoundOn()) {
         this.getController().setSoundEffects(false);
         } else {
             this.getController().setSoundEffects(true);

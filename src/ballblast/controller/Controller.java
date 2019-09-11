@@ -136,6 +136,6 @@ public interface Controller {
      * 
      * @return True if music is on. False otherwise.
      */
-    boolean isSoundEffectOn();
+    boolean isSoundOn();
 
 }

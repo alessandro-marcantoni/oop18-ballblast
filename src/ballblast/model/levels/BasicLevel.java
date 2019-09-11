@@ -15,6 +15,7 @@ import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.helpers.SpawnHelper;
 import ballblast.model.inputs.InputManager;
+import ballblast.model.inputs.InputManagerImpl;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
 
@@ -40,7 +41,7 @@ public final class BasicLevel implements Level {
         this.gameStatus = GameStatus.PAUSE;
         this.gameObjectManager = new GameObjectManager();
         this.collisionManager = new SimpleCollisionManager();
-        this.inputManager = new InputManager();
+        this.inputManager = new InputManagerImpl();
         this.gameDataManager = new GameDataManager();
         this.events = new ArrayList<>();
         this.currentSpawnTime = POWER_SPAWN_TIME;

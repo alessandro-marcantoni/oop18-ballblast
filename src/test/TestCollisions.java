@@ -30,6 +30,7 @@ import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.model.gameobjects.Player;
 import ballblast.model.helpers.GameObjectHelper;
+import ballblast.model.inputs.InputManagerImpl;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.inputs.InputTypes;
@@ -45,7 +46,7 @@ public class TestCollisions {
 
     private static final CollisionManager COLLISION_MANAGER = new SimpleCollisionManager();
     private static final GameObjectManager GAME_OBJECT_MANAGER = new GameObjectManager();
-    private static final InputManager INPUT_MANAGER = new InputManager();
+    private static final InputManager INPUT_MANAGER = new InputManagerImpl();
     private static final GameDataManager GAME_DATA_MANAGER = new GameDataManager();
     private static final Coordinate DEFAULT_POSITION = new Coordinate(0, 0);
     private static final Vector2D DEFAULT_VELOCITY = new Vector2D(0, 0);
@@ -207,7 +208,7 @@ public class TestCollisions {
     public void testStop() {
         final Level lvl = DEFAULT_LEVEL;
         lvl.start();
-        lvl.getInputManager().processInputs(InputManager.PlayerTags.FIRST, ImmutableList.of(InputTypes.MOVE_RIGHT));
+        lvl.getInputManager().processInputs(InputManagerImpl.PlayerTags.FIRST, ImmutableList.of(InputTypes.MOVE_RIGHT));
         final int steps = 50;
         final double elapsed = 0.1;
         final GameObject player = lvl.getGameObjectManager().getGameObjects().stream()

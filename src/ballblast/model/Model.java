@@ -37,7 +37,7 @@ public interface Model {
     List<GameObject> getGameObjects();
 
     /**
-     * Resolves the received inputs inside the {@link InputManager}.
+     * Resolves the received inputs inside the {@link InputManagerImpl}.
      * 
      * @param tag    the {@link PlayerTags}.
      * @param inputs the {@link List} of inputs to be resolved.

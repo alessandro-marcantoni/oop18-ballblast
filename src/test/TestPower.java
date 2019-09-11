@@ -14,7 +14,7 @@ import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.gameobjects.GameObjectManager;
-import ballblast.model.inputs.InputManager;
+import ballblast.model.inputs.InputManagerImpl;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
@@ -41,7 +41,7 @@ public class TestPower {
      */
     @Before
     public void initializeEnv() {
-        this.player = GameObjectHelper.createPlayer(this.gameObjectManager, new InputManager(), PlayerTags.FIRST,
+        this.player = GameObjectHelper.createPlayer(this.gameObjectManager, new InputManagerImpl(), PlayerTags.FIRST,
                 this.collisionManager, VELOCITY, POSITION, null, null);
         this.player.getComponents().stream().filter(c -> c.getType().equals(ComponentTypes.COLLISION)).findFirst()
                 .ifPresent(Component::enable);

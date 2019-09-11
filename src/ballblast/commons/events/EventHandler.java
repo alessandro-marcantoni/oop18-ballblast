@@ -3,24 +3,27 @@ package ballblast.commons.events;
 import java.util.List;
 
 /**
- * Interface representing an handler of {@link EventTypes}.
+ * 
+ * Interface representing an handler of events.
+ * 
+ * @param <X> The type of event to be handled.
  */
+
 @FunctionalInterface
-public interface EventHandler {
+public interface EventHandler<X> {
+    /**
+     * Handles an event.
+     * 
+     * @param event The events to be handled.
+     */
+    void handleEvent(X event);
 
     /**
-     * Handles an {@link EventTypes}.
+     * Handles all the available events.
      * 
-     * @param event The {@link EventTypes} to be handled.
+     * @param events The list of events.
      */
-    void handleEvent(EventTypes event);
-
-    /**
-     * Handles all the available {@link EventTypes}.
-     * 
-     * @param events The list of {@link EventTypes}.
-     */
-    default void handleAll(List<EventTypes> events) {
+    default void handleAll(List<X> events) {
         events.forEach(this::handleEvent);
     }
 

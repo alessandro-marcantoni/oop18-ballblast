@@ -45,7 +45,7 @@ public enum Sound {
     /**
      * 
      */
-    public static final EventHandler HANDLER = new EventHandler() {
+    public static final EventHandler<EventTypes> HANDLER = new EventHandler<EventTypes>() {
         @Override
         public void handleEvent(final EventTypes event) {
             switch (event) {

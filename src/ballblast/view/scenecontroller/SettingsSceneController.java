@@ -42,6 +42,7 @@ public class SettingsSceneController extends AbstractSubSceneController {
         final ToggleGroup group = new ToggleGroup();
         this.btnLRS.setToggleGroup(group);
         this.btnADC.setToggleGroup(group);
+        this.initializeBoxs();
         btnLRS.setOnMouseClicked(b -> this.setKeySetOne());
         btnADC.setOnMouseClicked(b -> this.setKeySetTwo());
         // Combo box for framerate selection.
@@ -50,7 +51,6 @@ public class SettingsSceneController extends AbstractSubSceneController {
         chkMusic.selectedProperty().addListener(c -> this.setMusic());
         chkSound.selectedProperty().addListener(c -> this.setSoundEffects());
 
-        this.initializeBoxs();
 
     }
 

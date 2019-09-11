@@ -35,7 +35,6 @@ public class SettingsSceneController extends AbstractSubSceneController {
     @FXML
     private CheckBox chkSound;
 
-
     @Override
     public final void init(final Controller controller, final View view) {
         super.init(controller, view);
@@ -45,14 +44,14 @@ public class SettingsSceneController extends AbstractSubSceneController {
         this.btnADC.setToggleGroup(group);
         btnLRS.setOnMouseClicked(b -> this.setKeySetOne());
         btnADC.setOnMouseClicked(b -> this.setKeySetTwo());
-
-        this.initializeBoxs();
         // Combo box for framerate selection.
         cbFPS.getSelectionModel().selectedItemProperty().addListener(c -> this.setFramerate());
         // Check box for music settings.
-
         chkMusic.selectedProperty().addListener(c -> this.setMusic());
         chkSound.selectedProperty().addListener(c -> this.setSoundEffects());
+
+        this.initializeBoxs();
+
     }
 
     @Override
@@ -98,7 +97,7 @@ public class SettingsSceneController extends AbstractSubSceneController {
 
     private void setKeySetOne() {
         this.getController().getCurrentUser().setKeySetting(KeyCodeSet.SET_ONE.toString());
-            this.getController().updateStats();
+        this.getController().updateStats();
     }
 
     private void setKeySetTwo() {
@@ -144,7 +143,7 @@ public class SettingsSceneController extends AbstractSubSceneController {
 
     private void setSoundEffects() {
         if (this.getController().isSoundOn()) {
-        this.getController().setSoundEffects(false);
+            this.getController().setSoundEffects(false);
         } else {
             this.getController().setSoundEffects(true);
         }

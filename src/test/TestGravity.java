@@ -13,6 +13,7 @@ import ballblast.model.components.GravityComponent;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.gameobjects.GameObjectManagerImpl;
 import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
@@ -26,7 +27,7 @@ public class TestGravity {
     private static final Vector2D VELOCITY = new Vector2D(0, 0);
     private static final long ELAPSED = 10;
 
-    private final GameObjectManager gameObjectManager = new GameObjectManager();
+    private final GameObjectManager gameObjectManager = new GameObjectManagerImpl();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
     private final GameObject ball = GameObjectHelper.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
             this.gameObjectManager, null, null);

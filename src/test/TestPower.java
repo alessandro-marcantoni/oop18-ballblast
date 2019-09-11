@@ -14,6 +14,7 @@ import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.gameobjects.GameObjectManagerImpl;
 import ballblast.model.inputs.InputManagerImpl;
 import ballblast.model.inputs.InputManager.PlayerTags;
 import ballblast.model.physics.CollisionManager;
@@ -31,7 +32,7 @@ public class TestPower {
     private static final Coordinate DEFAULT = new Coordinate(0, 0);
     private static final Vector2D VELOCITY = new Vector2D(0, 0);
 
-    private final GameObjectManager gameObjectManager = new GameObjectManager();
+    private final GameObjectManager gameObjectManager = new GameObjectManagerImpl();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
     private final PowerFactory factory = new PowerFactoryImpl();
     private GameObject player;

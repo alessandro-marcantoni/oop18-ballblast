@@ -27,6 +27,7 @@ import ballblast.model.gameobjects.Ball;
 import ballblast.model.gameobjects.BallTypes;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.gameobjects.GameObjectManagerImpl;
 import ballblast.model.gameobjects.GameObjectTypes;
 import ballblast.model.gameobjects.Player;
 import ballblast.model.helpers.GameObjectHelper;
@@ -45,7 +46,7 @@ import ballblast.model.physics.SimpleCollisionManager;
 public class TestCollisions {
 
     private static final CollisionManager COLLISION_MANAGER = new SimpleCollisionManager();
-    private static final GameObjectManager GAME_OBJECT_MANAGER = new GameObjectManager();
+    private static final GameObjectManager GAME_OBJECT_MANAGER = new GameObjectManagerImpl();
     private static final InputManager INPUT_MANAGER = new InputManagerImpl();
     private static final GameDataManager GAME_DATA_MANAGER = new GameDataManager();
     private static final Coordinate DEFAULT_POSITION = new Coordinate(0, 0);

@@ -18,7 +18,7 @@ import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.Player;
 
 /**
- * Manages inputs and redirects them to the right {@link Player} thanks {@link InputComponent}.
+ * Concrete {@link InputManager} implementation.
  */
 public class InputManagerImpl implements InputManager {
     private static final Map<InputTypes, Command> COMMANDS_MAP;

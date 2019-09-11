@@ -6,8 +6,6 @@ import ballblast.settings.KeyCodeSet;
 import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -37,8 +35,6 @@ public class SettingsSceneController extends AbstractSubSceneController {
     @FXML
     private CheckBox chkSound;
 
-//    private boolean isMusicOn = true;
-//    private boolean isEffectsOn = true;
 
     @Override
     public final void init(final Controller controller, final View view) {
@@ -49,24 +45,12 @@ public class SettingsSceneController extends AbstractSubSceneController {
         this.btnADC.setToggleGroup(group);
         btnLRS.setOnMouseClicked(b -> this.setKeySetOne());
         btnADC.setOnMouseClicked(b -> this.setKeySetTwo());
-        if (this.checkKeySetInUse().equals(KeyCodeSet.SET_ONE)) {
-            btnLRS.setSelected(true);
-        } else if (this.checkKeySetInUse().equals(KeyCodeSet.SET_TWO)) {
-            btnADC.setSelected(true);
-        }
-        // Combo box for FPS settings.
-        this.cbFPS.getItems().clear();
-        this.cbFPS.getItems().addAll(Framerates.FPS_30.getFPS(), Framerates.FPS_60.getFPS(),
-                Framerates.FPS_120.getFPS());
-        if (this.checkFramerateInUse().equals(Framerates.FPS_30)) {
-            this.cbFPS.getSelectionModel().select(0);
-        } else if (this.checkFramerateInUse().equals(Framerates.FPS_60)) {
-            this.cbFPS.getSelectionModel().select(1);
-        } else if (this.checkFramerateInUse().equals(Framerates.FPS_120)) {
-            this.cbFPS.getSelectionModel().select(2);
-        }
+
+        this.initializeBoxs();
+        // Combo box for framerate selection.
         cbFPS.getSelectionModel().selectedItemProperty().addListener(c -> this.setFramerate());
         // Check box for music settings.
+
         chkMusic.selectedProperty().addListener(c -> this.setMusic());
         chkSound.selectedProperty().addListener(c -> this.setSoundEffects());
     }
@@ -79,6 +63,37 @@ public class SettingsSceneController extends AbstractSubSceneController {
     @Override
     protected final GameScenes getPreviousScene() {
         return GameScenes.MENU;
+    }
+
+    private void initializeBoxs() {
+        if (this.checkKeySetInUse().equals(KeyCodeSet.SET_ONE)) {
+            btnLRS.setSelected(true);
+        } else if (this.checkKeySetInUse().equals(KeyCodeSet.SET_TWO)) {
+            btnADC.setSelected(true);
+        }
+
+        this.cbFPS.getItems().clear();
+        this.cbFPS.getItems().addAll(Framerates.FPS_30.getFPS(), Framerates.FPS_60.getFPS(),
+                Framerates.FPS_120.getFPS());
+        if (this.checkFramerateInUse().equals(Framerates.FPS_30)) {
+            this.cbFPS.getSelectionModel().select(0);
+        } else if (this.checkFramerateInUse().equals(Framerates.FPS_60)) {
+            this.cbFPS.getSelectionModel().select(1);
+        } else if (this.checkFramerateInUse().equals(Framerates.FPS_120)) {
+            this.cbFPS.getSelectionModel().select(2);
+        }
+
+        if (this.getController().isMusicOn()) {
+            chkMusic.setSelected(false);
+        } else {
+            chkMusic.setSelected(true);
+        }
+        if (this.getController().isSoundEffectOn()) {
+            chkSound.setSelected(false);
+        } else {
+            chkSound.setSelected(true);
+        }
+
     }
 
     private void setKeySetOne() {
@@ -120,32 +135,18 @@ public class SettingsSceneController extends AbstractSubSceneController {
     }
 
     private void setMusic() {
-//        if (this.isMusicOn) {
-//            this.isMusicOn = false;
-//            this.getController().setMusic(false);
-//        } else {
-//            this.isMusicOn = true;
-//            this.getController().setMusic(true);
-//        }
-      final Alert alert = new Alert(AlertType.WARNING);
-      alert.setTitle("Work in progress...");
-      alert.setHeaderText(null);
-      alert.setContentText("Not implemented yet.");
-      alert.showAndWait();
+        if (this.getController().isMusicOn()) {
+            this.getController().setMusic(false);
+        } else {
+            this.getController().setMusic(true);
+        }
     }
 
     private void setSoundEffects() {
-//        if (this.isEffectsOn) {
-//            this.isEffectsOn = false;
-//        this.getController().setSoundEffects(false);
-//        } else {
-//            this.isEffectsOn = true;
-//            this.getController().setSoundEffects(true);
-//        }
-      final Alert alert = new Alert(AlertType.WARNING);
-      alert.setTitle("Work in progress...");
-      alert.setHeaderText(null);
-      alert.setContentText("Not implemented yet.");
-      alert.showAndWait();
+        if (this.getController().isSoundEffectOn()) {
+        this.getController().setSoundEffects(false);
+        } else {
+            this.getController().setSoundEffects(true);
+        }
     }
 }

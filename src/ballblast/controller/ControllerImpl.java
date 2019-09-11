@@ -154,4 +154,14 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         }
     }
 
+    @Override
+    public final boolean isMusicOn() {
+        return this.isMusicOn;
+    }
+
+    @Override
+    public final boolean isSoundEffectOn() {
+        return this.isSoundOn;
+    }
+
 }

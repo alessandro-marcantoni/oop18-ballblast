@@ -70,24 +70,27 @@ public interface Controller {
      * @param username The user name.
      * @param password The password.
      * @return True if the login is successful. False otherwise.
-     * @throws IOException 
-     * @throws SAXException 
-     * @throws ParserConfigurationException 
-     * @throws XPathExpressionException 
+     * @throws IOException IOException
+     * @throws SAXException SAXException
+     * @throws ParserConfigurationException ParserConfigurationException
+     * @throws XPathExpressionException XPathExpressionException
      */
-    boolean checkLoginUser(String username, String password) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException;
+    boolean checkLoginUser(String username, String password)
+            throws ParserConfigurationException, SAXException, IOException, XPathExpressionException;
+
     /**
      * Checks if registration is successful.
      * 
      * @param username The user name.
      * @param password The password.
      * @return True if the registration is successful. False otherwise.
-     * @throws SAXException 
-     * @throws TransformerException 
-     * @throws IOException 
-     * @throws ParserConfigurationException 
+     * @throws SAXException SAXException
+     * @throws TransformerException TransformerException
+     * @throws IOException IOException
+     * @throws ParserConfigurationException ParserConfigurationException
      */
-    boolean checkRegisterUser(String username, String password) throws ParserConfigurationException, IOException, TransformerException, SAXException;
+    boolean checkRegisterUser(String username, String password)
+            throws ParserConfigurationException, IOException, TransformerException, SAXException;
 
     /**
      * Gets the current user.
@@ -122,5 +125,17 @@ public interface Controller {
      *                  otherwise.
      */
     void setSoundEffects(boolean isSoundOn);
+
+    /**
+     * 
+     * @return True if music is on. False otherwise.
+     */
+    boolean isMusicOn();
+
+    /**
+     * 
+     * @return True if music is on. False otherwise.
+     */
+    boolean isSoundEffectOn();
 
 }

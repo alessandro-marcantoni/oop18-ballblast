@@ -28,7 +28,8 @@ public class TestGravity {
 
     private final GameObjectManager gameObjectManager = new GameObjectManager();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
-    private GameObject ball;
+    private final GameObject ball = GameObjectHelper.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
+            this.gameObjectManager, null, null);
     private Vector2D gravity;
 
     /**
@@ -36,16 +37,14 @@ public class TestGravity {
      */
     @Before
     public void initializeEnv() {
-        this.ball = GameObjectHelper.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
-                this.gameObjectManager, null, null);
         this.ball.getComponents().stream()
-        .filter(c -> c.getType().equals(ComponentTypes.MOVEMENT) 
-                || c.getType().equals(ComponentTypes.GRAVITY))
-        .forEach(Component::enable);
+                                 .filter(c -> c.getType().equals(ComponentTypes.MOVEMENT) 
+                                         || c.getType().equals(ComponentTypes.GRAVITY))
+                                 .forEach(Component::enable);
         this.ball.getComponents().stream()
-        .filter(c -> c.getType().equals(ComponentTypes.GRAVITY))
-        .findFirst()
-        .ifPresent(c -> this.gravity = ((GravityComponent) c).getGravity());
+                                 .filter(c -> c.getType().equals(ComponentTypes.GRAVITY))
+                                 .findFirst()
+                                 .ifPresent(c -> this.gravity = ((GravityComponent) c).getGravity());
     }
 
     /**

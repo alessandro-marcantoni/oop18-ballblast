@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableList;
 import ballblast.model.Model;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.helpers.GameObjectHelper;
-import ballblast.model.inputs.InputManager.PlayerTags;
+import ballblast.model.inputs.InputManager.PlayerTag;
 
 /**
  * Represents a decorator for levels which add the player object and ends when
@@ -43,9 +43,9 @@ public class SinglePlayerDecorator extends LevelDecorator {
 
     private GameObject createPlayer() {
         return GameObjectHelper.createPlayer(
-                this.getGameObjectManager(), this.getInputManager(), PlayerTags.FIRST, 
+                this.getGameObjectManager(), this.getInputManager(), PlayerTag.FIRST, 
                 this.getCollisionManager(), Vector2D.create(0, 0), PLAYER_POSITION, 
-                this.getGameDataManager(), this.getGameEvents());
+                this.getGameDataManager(), this.getGameEventManager());
     }
 
     private void checkGameOver() {

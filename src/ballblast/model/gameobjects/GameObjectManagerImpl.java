@@ -1,5 +1,6 @@
 package ballblast.model.gameobjects;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -15,8 +16,8 @@ public class GameObjectManagerImpl implements GameObjectManager {
      * Creates a new instance of GameObjectManager.
      */
     public GameObjectManagerImpl() {
-        this.gameObjects = ImmutableList.of();
-        this.toBeAdded = ImmutableList.of();
+        this.gameObjects = Collections.emptyList();
+        this.toBeAdded = Collections.emptyList();
     }
 
     @Override
@@ -58,6 +59,6 @@ public class GameObjectManagerImpl implements GameObjectManager {
     }
 
     private void emptyList() {
-        this.toBeAdded = ImmutableList.of();
+        this.toBeAdded = Collections.emptyList();
     }
 }

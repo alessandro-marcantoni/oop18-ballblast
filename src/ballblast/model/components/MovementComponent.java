@@ -10,7 +10,7 @@ public class MovementComponent extends AbstractComponent {
      * Class constructor.
      */
     public MovementComponent() {
-        super(ComponentTypes.MOVEMENT);
+        super(ComponentType.MOVEMENT);
     }
 
     @Override

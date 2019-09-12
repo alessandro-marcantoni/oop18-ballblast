@@ -1,6 +1,5 @@
 package ballblast.model.levels;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,8 +7,9 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.commons.events.EventTypes;
 import ballblast.model.data.GameDataManager;
+import ballblast.model.events.GameEventManager;
+import ballblast.model.events.GameEventManagerImpl;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.GameObjectManagerImpl;
@@ -31,7 +31,7 @@ public final class BasicLevel implements Level {
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
     private final GameDataManager gameDataManager;
-    private final List<EventTypes> events;
+    private final GameEventManager gameEventManager;
     private GameStatus gameStatus;
     private double currentSpawnTime;
 
@@ -44,7 +44,7 @@ public final class BasicLevel implements Level {
         this.collisionManager = new SimpleCollisionManager();
         this.inputManager = new InputManagerImpl();
         this.gameDataManager = new GameDataManager();
-        this.events = new ArrayList<>();
+        this.gameEventManager = new GameEventManagerImpl();
         this.currentSpawnTime = POWER_SPAWN_TIME;
         this.createBoundaries();
     }
@@ -96,18 +96,19 @@ public final class BasicLevel implements Level {
     }
 
     @Override
-    public List<EventTypes> getGameEvents() {
-        return this.events;
+    public GameEventManager getGameEventManager() {
+        return this.gameEventManager;
     }
 
+
     private void createBoundaries() {
-        final List<GameObject> boundaries = Arrays.stream(Boundaries.values())
+        final List<GameObject> boundaries = Arrays.stream(Boundary.values())
                 .map(this::convertToWall)
                 .collect(ImmutableList.toImmutableList());
         this.gameObjectManager.addGameObjects(boundaries);
     }
 
-    private GameObject convertToWall(final Boundaries b) {
+    private GameObject convertToWall(final Boundary b) {
         return GameObjectHelper.createWall(b.getHeight(), b.getWidth(), 
                 b.getPosition(), Vector2D.create(0, 0), this.collisionManager);
     }

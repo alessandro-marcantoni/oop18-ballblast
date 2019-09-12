@@ -3,7 +3,7 @@ package ballblast.view.rendering;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectTypes;
+import ballblast.model.gameobjects.GameObjectType;
 import ballblast.view.imageloader.ImageLoader;
 import ballblast.view.imageloader.ImagePath;
 import javafx.geometry.VPos;
@@ -11,7 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import ballblast.model.gameobjects.Ball;
-import ballblast.model.gameobjects.BallTypes;
+import ballblast.model.gameobjects.BallType;
 
 /**
  * 
@@ -72,9 +72,9 @@ public class ImageSprite implements Sprite, Renderer {
                 this.image.getWidth(), this.image.getHeight(), this.getGameObjectPosition().getX(),
                 this.getGameObjectPosition().getY(), this.getGameObjectWidth(), this.getGameObjectHeight());
 
-        if (this.gameObject.getType().equals(GameObjectTypes.BALL) && ((Ball) this.gameObject).getCurrentLife() > 0) {
+        if (this.gameObject.getType().equals(GameObjectType.BALL) && ((Ball) this.gameObject).getCurrentLife() > 0) {
             drawLife();
-        } else if (this.gameObject.getType().equals(GameObjectTypes.BALL)
+        } else if (this.gameObject.getType().equals(GameObjectType.BALL)
                 && (((Ball) this.gameObject).getCurrentLife() <= 0)) {
             this.renderFireworks(gc, gameObjectWidth, gameObjectHeight);
         }
@@ -202,13 +202,13 @@ public class ImageSprite implements Sprite, Renderer {
      */
     public void drawLife() {
         // Set the font
-        if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.LARGE.getDiameter())) {
+        if (((Ball) this.gameObject).getBallType().getDiameter() == (BallType.LARGE.getDiameter())) {
             this.gc.setFont(FONT_LARGE);
             this.usingFont = FONT_LARGE;
-        } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.MEDIUM.getDiameter())) {
+        } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallType.MEDIUM.getDiameter())) {
             this.gc.setFont(FONT_MEDIUM);
             this.usingFont = FONT_MEDIUM;
-        } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallTypes.SMALL.getDiameter())) {
+        } else if (((Ball) this.gameObject).getBallType().getDiameter() == (BallType.SMALL.getDiameter())) {
             this.gc.setFont(FONT_SMALL);
             this.usingFont = FONT_SMALL;
         }

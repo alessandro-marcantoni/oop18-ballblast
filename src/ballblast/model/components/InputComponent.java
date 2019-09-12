@@ -6,7 +6,7 @@ import com.google.common.collect.ImmutableList;
 
 import ballblast.commons.Command;
 import ballblast.model.inputs.InputManager;
-import ballblast.model.inputs.InputManager.PlayerTags;
+import ballblast.model.inputs.InputManager.PlayerTag;
 
 /**
  * Makes a {@link GameObject} controllable through the use of inputs (for
@@ -14,18 +14,18 @@ import ballblast.model.inputs.InputManager.PlayerTags;
  */
 public class InputComponent extends AbstractComponent {
     private final InputManager inputManager;
-    private final PlayerTags tag;
+    private final PlayerTag tag;
     private List<Command> toBeResolved;
 
     /**
      * Class constructor.
      * 
      * @param inputManager the {@link InputManager} used to received inputs.
-     * @param tag          the {@link PlayerTags} used to identifies the
+     * @param tag          the {@link PlayerTag} used to identifies the
      *                     {@link InputComponent} inside the {@link InputManager}.
      */
-    public InputComponent(final InputManager inputManager, final PlayerTags tag) {
-        super(ComponentTypes.INPUT);
+    public InputComponent(final InputManager inputManager, final PlayerTag tag) {
+        super(ComponentType.INPUT);
         this.inputManager = inputManager;
         this.tag = tag;
         this.toBeResolved = ImmutableList.of();

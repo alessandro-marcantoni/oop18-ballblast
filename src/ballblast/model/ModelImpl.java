@@ -2,13 +2,11 @@ package ballblast.model;
 
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
-
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.inputs.InputManager.PlayerTags;
-import ballblast.model.inputs.InputTypes;
+import ballblast.model.inputs.InputManager.PlayerTag;
+import ballblast.model.inputs.InputType;
 import ballblast.model.levels.BasicLevel;
 import ballblast.model.levels.GameStatus;
 import ballblast.model.levels.Level;
@@ -33,7 +31,7 @@ public final class ModelImpl implements Model {
     }
 
     @Override
-    public void resolveInputs(final PlayerTags tag, final List<InputTypes> inputs) {
+    public void resolveInputs(final PlayerTag tag, final List<InputType> inputs) {
         this.currentLevel.getInputManager().processInputs(tag, inputs);
     }
 
@@ -53,9 +51,7 @@ public final class ModelImpl implements Model {
     }
 
     @Override
-    public List<EventTypes> getGameEvents() {
-        final List<EventTypes> copy = ImmutableList.copyOf(this.currentLevel.getGameEvents());
-        this.currentLevel.getGameEvents().clear();
-        return copy;
+    public List<EventType> getGameEvents() {
+        return this.currentLevel.getGameEventManager().getGameEvents();
     }
 }

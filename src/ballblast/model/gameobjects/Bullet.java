@@ -15,7 +15,7 @@ public final class Bullet extends AbstractGameObject {
      * Class constructor.
      */
     private Bullet() {
-        super(GameObjectTypes.BULLET);
+        super(GameObjectType.BULLET);
         this.setHeight(DEFAUTL_HEIGHT);
         this.setWidth(DEFAULT_WIDTH);
     }

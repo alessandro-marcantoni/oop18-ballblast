@@ -1,6 +1,6 @@
 package ballblast.model.physics.handlers;
 
-import ballblast.model.levels.Boundaries;
+import ballblast.model.levels.Boundary;
 
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -45,13 +45,13 @@ public class BallCollisionHandler implements CollisionHandler {
 
     private static void ballCollidesWithWall(final Collidable coll, final GameObject obj) {
         final Coordinate boundaryPos = coll.getAttachedGameObject().getPosition();
-        if (Boundaries.isFloor(boundaryPos)) {
+        if (Boundary.isFloor(boundaryPos)) {
             obj.setPosition(
-                    new Coordinate(obj.getPosition().getX(), Boundaries.BOTTOM.getPosition().getY() - obj.getHeight()));
+                    new Coordinate(obj.getPosition().getX(), Boundary.BOTTOM.getPosition().getY() - obj.getHeight()));
             Bounce.floorBounce(obj);
-        } else if (Boundaries.isRoof(boundaryPos)) {
+        } else if (Boundary.isRoof(boundaryPos)) {
             obj.setPosition(new Coordinate(obj.getPosition().getX(),
-                    Boundaries.TOP.getPosition().getY() + Boundaries.TOP.getHeight()));
+                    Boundary.TOP.getPosition().getY() + Boundary.TOP.getHeight()));
             Bounce.floorBounce(obj);
         } else {
             Bounce.wallBounce(obj);

@@ -6,7 +6,7 @@ import java.util.function.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectTypes;
+import ballblast.model.gameobjects.GameObjectType;
 import ballblast.view.rendering.gameobject.RendererFactory;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,15 +16,15 @@ import javafx.util.Pair;
  * A canvas drawer.
  */
 public class CanvasDrawer {
-    private static final Map<GameObjectTypes, Function<Pair<Sprite, GameObject>, Renderer>> RENDERER_MAP;
+    private static final Map<GameObjectType, Function<Pair<Sprite, GameObject>, Renderer>> RENDERER_MAP;
     private final Canvas canvas;
 
     static {
-        RENDERER_MAP = ImmutableMap.of(GameObjectTypes.BALL,
-                p -> RendererFactory.createBallRenderer(p.getKey(), p.getValue()), GameObjectTypes.BULLET,
-                p -> RendererFactory.createBulletRenderer(p.getKey(), p.getValue()), GameObjectTypes.PLAYER,
-                p -> RendererFactory.createPlayerRenderer(p.getKey(), p.getValue()), GameObjectTypes.WALL,
-                p -> RendererFactory.createWallRenderer(p.getKey(), p.getValue()), GameObjectTypes.POWERUP,
+        RENDERER_MAP = ImmutableMap.of(GameObjectType.BALL,
+                p -> RendererFactory.createBallRenderer(p.getKey(), p.getValue()), GameObjectType.BULLET,
+                p -> RendererFactory.createBulletRenderer(p.getKey(), p.getValue()), GameObjectType.PLAYER,
+                p -> RendererFactory.createPlayerRenderer(p.getKey(), p.getValue()), GameObjectType.WALL,
+                p -> RendererFactory.createWallRenderer(p.getKey(), p.getValue()), GameObjectType.POWERUP,
                 p -> RendererFactory.createPowerUpRenderer(p.getKey(), p.getValue()));
     }
 

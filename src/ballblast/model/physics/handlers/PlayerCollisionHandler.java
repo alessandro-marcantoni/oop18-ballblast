@@ -8,7 +8,7 @@ import org.locationtech.jts.geom.Coordinate;
 import com.google.common.collect.ImmutableMap;
 
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.levels.Boundaries;
+import ballblast.model.levels.Boundary;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
 import ballblast.model.physics.CollisionTag;
@@ -38,9 +38,9 @@ public class PlayerCollisionHandler implements CollisionHandler {
     }
 
     private static void checkBoundLimit(final GameObject bound, final GameObject obj) {
-        if (Boundaries.isRight(bound.getPosition())) {
+        if (Boundary.isRight(bound.getPosition())) {
             obj.setPosition(new Coordinate(bound.getPosition().getX() - obj.getWidth(), obj.getPosition().getY()));
-        } else if (Boundaries.isLeft(bound.getPosition())) {
+        } else if (Boundary.isLeft(bound.getPosition())) {
             obj.setPosition(new Coordinate(bound.getPosition().getX() + bound.getWidth(), obj.getPosition().getY()));
         }
     }

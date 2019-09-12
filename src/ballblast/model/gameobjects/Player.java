@@ -17,7 +17,7 @@ public final class Player extends AbstractGameObject {
      * Class constructor.
      */
     private Player() {
-        super(GameObjectTypes.PLAYER);
+        super(GameObjectType.PLAYER);
         this.setHeight(DEFAULT_HEIGHT);
         this.setWidth(DEFAULT_WIDTH);
         this.currentSpeed = DEFAULT_SPEED;

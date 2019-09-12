@@ -7,7 +7,7 @@ import ballblast.model.gameobjects.GameObject;
  * behavior that all components share.
  */
 public abstract class AbstractComponent implements Component {
-    private final ComponentTypes type;
+    private final ComponentType type;
     private GameObject parent;
     private boolean isAvailable;
 
@@ -16,7 +16,7 @@ public abstract class AbstractComponent implements Component {
      * 
      * @param type the type of a specific {@link Component}.
      */
-    public AbstractComponent(final ComponentTypes type) {
+    public AbstractComponent(final ComponentType type) {
         this.type = type;
     }
 
@@ -36,7 +36,7 @@ public abstract class AbstractComponent implements Component {
     }
 
     @Override
-    public final ComponentTypes getType() {
+    public final ComponentType getType() {
         return type;
     }
 

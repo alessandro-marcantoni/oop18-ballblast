@@ -1,14 +1,13 @@
 package ballblast.model.components;
 
-import java.util.List;
-
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 import ballblast.model.data.GameDataManager;
+import ballblast.model.events.GameEventManager;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.helpers.GameObjectHelper;
@@ -26,7 +25,7 @@ public class ShooterComponent extends AbstractComponent {
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final GameDataManager gameDataManager;
-    private final List<EventTypes> events;
+    private final GameEventManager eventManager;
     private boolean isShooting;
     private double shotInterval;
     private double currentShotInterval;
@@ -40,17 +39,17 @@ public class ShooterComponent extends AbstractComponent {
      *                          {@link Bullet}'s {@link CollisionComponent}.
      * @param gameDataManager   the {@link GameDataManager} used to increment the
      *                          spawned bullets counter.
-     * @param events            the game event list.
+     * @param eventManager      the {@link GameEventManager}.
      */
     public ShooterComponent(final GameObjectManager gameObjectManager, final CollisionManager collisionManager,
-            final GameDataManager gameDataManager, final List<EventTypes> events) {
-        super(ComponentTypes.SHOOTER);
+            final GameDataManager gameDataManager, final GameEventManager eventManager) {
+        super(ComponentType.SHOOTER);
         this.gameObjectManager = gameObjectManager;
         this.collisionManager = collisionManager;
         this.gameDataManager = gameDataManager;
         this.isShooting = false;
         this.shotInterval = DEFAULT_SHOT_INTERVAL;
-        this.events = events;
+        this.eventManager = eventManager;
     }
 
     @Override
@@ -58,7 +57,7 @@ public class ShooterComponent extends AbstractComponent {
         if (this.isEnabled() && this.isShooting && this.currentShotInterval <= 0) {
             this.shoot(this.spawnBullet());
             this.currentShotInterval = this.shotInterval;
-            this.events.add(EventTypes.SHOT);
+            this.eventManager.addGameEvent(EventType.SHOT);
         }
         this.currentShotInterval -= elapsed;
     }

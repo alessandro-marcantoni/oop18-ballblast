@@ -1,5 +1,6 @@
 package ballblast.model.inputs;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,7 +12,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import ballblast.commons.Command;
-import ballblast.model.components.ComponentTypes;
+import ballblast.model.components.ComponentType;
 import ballblast.model.components.InputComponent;
 import ballblast.model.components.ShooterComponent;
 import ballblast.model.gameobjects.GameObject;
@@ -21,17 +22,17 @@ import ballblast.model.gameobjects.Player;
  * Concrete {@link InputManager} implementation.
  */
 public class InputManagerImpl implements InputManager {
-    private static final Map<InputTypes, Command> COMMANDS_MAP;
-    private Map<PlayerTags, InputComponent> inputHandlers;
+    private static final Map<InputType, Command> COMMANDS;
+    private Map<PlayerTag, InputComponent> inputHandlers;
 
     static {
-        COMMANDS_MAP = ImmutableMap.<InputTypes, Command>builder()
-                .put(InputTypes.SHOOT,             g -> findShooter(g).ifPresent(ShooterComponent::startShooting))
-                .put(InputTypes.STOP_SHOOTING,     g -> findShooter(g).ifPresent(ShooterComponent::stopShooting))
-                .put(InputTypes.MOVE_LEFT,         InputManagerImpl::moveLeft)
-                .put(InputTypes.MOVE_RIGHT,        InputManagerImpl::moveRight)
-                .put(InputTypes.STOP_MOVING_LEFT,  InputManagerImpl::stopMovingLeft)
-                .put(InputTypes.STOP_MOVING_RIGHT, InputManagerImpl::stopMovingRight)
+        COMMANDS = ImmutableMap.<InputType, Command>builder()
+                .put(InputType.SHOOT,             g -> findShooter(g).ifPresent(ShooterComponent::startShooting))
+                .put(InputType.STOP_SHOOTING,     g -> findShooter(g).ifPresent(ShooterComponent::stopShooting))
+                .put(InputType.MOVE_LEFT,         InputManagerImpl::moveLeft)
+                .put(InputType.MOVE_RIGHT,        InputManagerImpl::moveRight)
+                .put(InputType.STOP_MOVING_LEFT,  InputManagerImpl::stopMovingLeft)
+                .put(InputType.STOP_MOVING_RIGHT, InputManagerImpl::stopMovingRight)
                 .build();
     }
 
@@ -39,36 +40,36 @@ public class InputManagerImpl implements InputManager {
      * Class constructor.
      */
     public InputManagerImpl() {
-        this.inputHandlers = ImmutableMap.of();
+        this.inputHandlers = Collections.emptyMap();
     }
 
     @Override
-    public final void addInputHandler(final PlayerTags tag, final InputComponent inputComponent) {
-        this.inputHandlers = ImmutableMap.<PlayerTags, InputComponent>builder()
+    public final void addInputHandler(final PlayerTag tag, final InputComponent inputComponent) {
+        this.inputHandlers = ImmutableMap.<PlayerTag, InputComponent>builder()
                 .putAll(this.inputHandlers)
                 .put(tag, inputComponent)
                 .build();
     }
 
     @Override
-    public final void removeInputHandler(final PlayerTags tag) {
+    public final void removeInputHandler(final PlayerTag tag) {
         this.inputHandlers = this.inputHandlers.entrySet().stream()
                 .filter(e -> e.getKey() != tag)
                 .collect(ImmutableMap.toImmutableMap(Entry::getKey, Entry::getValue));
     }
 
     @Override
-    public final void processInputs(final PlayerTags tag, final List<InputTypes> inputs) {
+    public final void processInputs(final PlayerTag tag, final List<InputType> inputs) {
         this.inputHandlers.get(tag).receiveCommands(this.translateInputs(inputs));
     }
 
-    private List<Command> translateInputs(final List<InputTypes> toBeTranslated) {
-        return toBeTranslated.stream().map(i -> COMMANDS_MAP.get(i)).collect(ImmutableList.toImmutableList());
+    private List<Command> translateInputs(final List<InputType> toBeTranslated) {
+        return toBeTranslated.stream().map(i -> COMMANDS.get(i)).collect(ImmutableList.toImmutableList());
     }
 
     private static Optional<ShooterComponent> findShooter(final GameObject g) {
         return g.getComponents().stream()
-                .filter(c -> c.getType() == ComponentTypes.SHOOTER)
+                .filter(c -> c.getType() == ComponentType.SHOOTER)
                 .map(c -> (ShooterComponent) c).findFirst();
     }
 

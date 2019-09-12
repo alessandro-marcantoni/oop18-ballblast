@@ -60,7 +60,7 @@ public class BallCollisionHandler implements CollisionHandler {
 
     private static void ballCollidesWithBullet(final GameObject obj) {
         decrementLife(obj, DEC_LIFE);
-        if (((Ball) obj).getCurrentLife() == 0) {
+        if (((Ball) obj).getCurrentLife() <= 0) {
             obj.destroy();
         }
     }

@@ -9,8 +9,8 @@ import com.google.common.collect.MultimapBuilder;
 
 import ballblast.controller.sound.Sound;
 import ballblast.model.Model;
-import ballblast.model.inputs.InputManager.PlayerTags;
-import ballblast.model.inputs.InputTypes;
+import ballblast.model.inputs.InputManager.PlayerTag;
+import ballblast.model.inputs.InputType;
 import ballblast.model.levels.GameStatus;
 import ballblast.view.View;
 
@@ -21,7 +21,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
 
     private final List<GameLoopObserver> observers = new ArrayList<GameLoopObserver>();
-    private final ListMultimap<PlayerTags, InputTypes> inputs;
+    private final ListMultimap<PlayerTag, InputType> inputs;
     private final View view;
     private final Model model;
     private final long frameRate;
@@ -84,7 +84,7 @@ public class GameLoopImpl extends Thread implements GameLoop {
     }
 
     @Override
-    public final synchronized void addInput(final PlayerTags tag, final InputTypes input) {
+    public final synchronized void addInput(final PlayerTag tag, final InputType input) {
         this.inputs.put(tag, input);
     }
 

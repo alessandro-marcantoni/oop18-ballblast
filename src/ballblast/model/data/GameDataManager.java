@@ -108,7 +108,7 @@ public class GameDataManager {
          * 
          * @param destroyedBalls the new value to be set.
          */
-        protected void setDestroyedBalls(final int destroyedBalls) {
+        private void setDestroyedBalls(final int destroyedBalls) {
             this.destroyedBalls = destroyedBalls;
         }
 
@@ -117,7 +117,7 @@ public class GameDataManager {
          * 
          * @param spawnedBullets the new value to be set.
          */
-        protected void setSpawnedBullets(final int spawnedBullets) {
+        private void setSpawnedBullets(final int spawnedBullets) {
             this.spawnedBullets = spawnedBullets;
         }
 
@@ -126,7 +126,7 @@ public class GameDataManager {
          * 
          * @param score the new value to be set.
          */
-        protected void setScore(final int score) {
+        private void setScore(final int score) {
             this.score = score;
         }
 
@@ -135,7 +135,7 @@ public class GameDataManager {
          * 
          * @param gameTime the new value to be set.
          */
-        protected void setGameTime(final double gameTime) {
+        private void setGameTime(final double gameTime) {
             this.gameTime = gameTime;
         }
     }

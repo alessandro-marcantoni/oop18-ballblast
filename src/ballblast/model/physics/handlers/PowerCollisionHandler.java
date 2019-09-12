@@ -8,9 +8,9 @@ import org.locationtech.jts.geom.Coordinate;
 import com.google.common.collect.ImmutableMap;
 
 import ballblast.model.components.Component;
-import ballblast.model.components.ComponentTypes;
+import ballblast.model.components.ComponentType;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.levels.Boundaries;
+import ballblast.model.levels.Boundary;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
 import ballblast.model.physics.CollisionTag;
@@ -39,7 +39,7 @@ public class PowerCollisionHandler implements CollisionHandler {
     }
 
     private static void stopFloor(final GameObject floor, final GameObject obj) {
-        if (Boundaries.isFloor(floor.getPosition())) {
+        if (Boundary.isFloor(floor.getPosition())) {
             obj.setPosition(new Coordinate(obj.getPosition().getX(), floor.getPosition().getY() - obj.getHeight()));
         }
     }
@@ -53,7 +53,7 @@ public class PowerCollisionHandler implements CollisionHandler {
         final GameObject floor = coll.getAttachedGameObject();
         stopFloor(floor, obj);
         obj.getComponents().stream()
-                .filter(c -> c.getType().equals(ComponentTypes.GRAVITY) || c.getType().equals(ComponentTypes.MOVEMENT))
+                .filter(c -> c.getType().equals(ComponentType.GRAVITY) || c.getType().equals(ComponentType.MOVEMENT))
                 .forEach(Component::disable);
     }
 

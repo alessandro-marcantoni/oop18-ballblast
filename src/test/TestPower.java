@@ -9,13 +9,14 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
 import ballblast.model.components.Component;
-import ballblast.model.components.ComponentTypes;
-import ballblast.model.gameobjects.BallTypes;
+import ballblast.model.components.ComponentType;
+import ballblast.model.gameobjects.BallType;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.gameobjects.GameObjectManager;
-import ballblast.model.inputs.InputManager;
-import ballblast.model.inputs.InputManager.PlayerTags;
+import ballblast.model.gameobjects.GameObjectManagerImpl;
+import ballblast.model.inputs.InputManagerImpl;
+import ballblast.model.inputs.InputManager.PlayerTag;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
 import ballblast.model.powerups.Power;
@@ -31,7 +32,7 @@ public class TestPower {
     private static final Coordinate DEFAULT = new Coordinate(0, 0);
     private static final Vector2D VELOCITY = new Vector2D(0, 0);
 
-    private final GameObjectManager gameObjectManager = new GameObjectManager();
+    private final GameObjectManager gameObjectManager = new GameObjectManagerImpl();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
     private final PowerFactory factory = new PowerFactoryImpl();
     private GameObject player;
@@ -41,9 +42,9 @@ public class TestPower {
      */
     @Before
     public void initializeEnv() {
-        this.player = GameObjectHelper.createPlayer(this.gameObjectManager, new InputManager(), PlayerTags.FIRST,
+        this.player = GameObjectHelper.createPlayer(this.gameObjectManager, new InputManagerImpl(), PlayerTag.FIRST,
                 this.collisionManager, VELOCITY, POSITION, null, null);
-        this.player.getComponents().stream().filter(c -> c.getType().equals(ComponentTypes.COLLISION)).findFirst()
+        this.player.getComponents().stream().filter(c -> c.getType().equals(ComponentType.COLLISION)).findFirst()
                 .ifPresent(Component::enable);
     }
 
@@ -58,9 +59,9 @@ public class TestPower {
         } while (!(power instanceof ShieldPower));
         power.activate(this.player);
         assertTrue(power.isActive());
-        final GameObject ball = GameObjectHelper.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY,
+        final GameObject ball = GameObjectHelper.createBall(BallType.LARGE, 1, POSITION, VELOCITY,
                 this.collisionManager, this.gameObjectManager, null, null);
-        ball.getComponents().stream().filter(c -> c.getType().equals(ComponentTypes.COLLISION)).findFirst()
+        ball.getComponents().stream().filter(c -> c.getType().equals(ComponentType.COLLISION)).findFirst()
                 .ifPresent(Component::enable);
         this.collisionManager.checkLoop();
         assertFalse(this.player.isDestroyed());

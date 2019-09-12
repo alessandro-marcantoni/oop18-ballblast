@@ -1,75 +1,30 @@
 package ballblast.model.gameobjects;
 
 import java.util.List;
-import com.google.common.collect.ImmutableList;
 
 /**
  * Handles all {@link GameObject}s of a specific {@link Level}.
  */
-public class GameObjectManager {
-
-    private List<GameObject> gameObjects;
-    private List<GameObject> toBeAdded;
-
-    /**
-     * Creates a new instance of GameObjectManager.
-     */
-    public GameObjectManager() {
-        this.gameObjects = ImmutableList.of();
-        this.toBeAdded = ImmutableList.of();
-    }
+public interface GameObjectManager {
 
     /**
      * Updates the status of every {@link GameObject}.
      * 
      * @param elapsed the time elapsed since last update.
      */
-    public void update(final double elapsed) {
-        this.gameObjects.forEach(o -> o.update(elapsed));
-        this.joinGameObjects();
-        this.removeDestoyedObjects();
-    }
+    void update(double elapsed);
 
     /**
      * Adds a {@link GameObject} {@link List}.
      * 
      * @param gameObjects the {@link GameObject} {@link List} to be added.
      */
-    public void addGameObjects(final List<GameObject> gameObjects) {
-        this.toBeAdded = ImmutableList.<GameObject>builder()
-                .addAll(toBeAdded)
-                .addAll(gameObjects)
-                .build();
-    }
+    void addGameObjects(List<GameObject> gameObjects);
 
     /**
      * Gets the {@link List} containing all {@link GameObject}s.
      * 
      * @return a defensive copy of the {@link List} containing all {@link GameObject}s.
      */
-    public List<GameObject> getGameObjects() {
-        return ImmutableList.copyOf(this.gameObjects);
-    }
-
-    /*
-     * Concatenates the main {@link GameObject} {@link List} with the {@link
-     * GameObject} {@link List} to be added.
-     */
-    private void joinGameObjects() {
-        this.gameObjects = ImmutableList.<GameObject>builder()
-                .addAll(gameObjects)
-                .addAll(toBeAdded)
-                .build();
-       this.emptyList();
-    }
-
-    private void removeDestoyedObjects() {
-        this.gameObjects = gameObjects.stream()
-                .filter(g -> !g.isDestroyed())
-                .collect(ImmutableList.toImmutableList());
-    }
-
-    private void emptyList() {
-        this.toBeAdded = ImmutableList.of();
-    }
+    List<GameObject> getGameObjects();
 }

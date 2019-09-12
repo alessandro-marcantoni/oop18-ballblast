@@ -1,7 +1,7 @@
 package ballblast.controller;
 
-import ballblast.model.inputs.InputTypes;
-import ballblast.model.inputs.InputManager.PlayerTags;
+import ballblast.model.inputs.InputType;
+import ballblast.model.inputs.InputManager.PlayerTag;
 
 /**
  * Represents the loop that takes commands from the user, updates the game world
@@ -35,7 +35,7 @@ public interface GameLoop {
      * @param tag   the tag which identifies the {@link Player}.
      * @param input the input to be resolved.
      */
-    void addInput(PlayerTags tag, InputTypes input);
+    void addInput(PlayerTag tag, InputType input);
 
     /**
      * Adds a new {@link Observer}.

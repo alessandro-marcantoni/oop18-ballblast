@@ -2,11 +2,11 @@ package ballblast.model;
 
 import java.util.List;
 
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.inputs.InputTypes;
-import ballblast.model.inputs.InputManager.PlayerTags;
+import ballblast.model.inputs.InputType;
+import ballblast.model.inputs.InputManager.PlayerTag;
 import ballblast.model.levels.GameStatus;
 
 /**
@@ -37,12 +37,12 @@ public interface Model {
     List<GameObject> getGameObjects();
 
     /**
-     * Resolves the received inputs inside the {@link InputManager}.
+     * Resolves the received inputs inside the {@link InputManagerImpl}.
      * 
-     * @param tag    the {@link PlayerTags}.
+     * @param tag    the {@link PlayerTag}.
      * @param inputs the {@link List} of inputs to be resolved.
      */
-    void resolveInputs(PlayerTags tag, List<InputTypes> inputs);
+    void resolveInputs(PlayerTag tag, List<InputType> inputs);
 
     /**
      * Updates the game.
@@ -70,5 +70,5 @@ public interface Model {
      * 
      * @return the game's events.
      */
-    List<EventTypes> getGameEvents();
+    List<EventType> getGameEvents();
 }

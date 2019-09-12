@@ -9,7 +9,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectTypes;
+import ballblast.model.gameobjects.GameObjectType;
 import ballblast.model.levels.BasicLevel;
 import ballblast.model.levels.GameStatus;
 import ballblast.model.levels.Level;
@@ -73,12 +73,12 @@ class TestLevel {
 
     private Optional<GameObject> findPlayer(final Level level) {
         return level.getGameObjectManager().getGameObjects().stream()
-                .filter(g -> g.getType() == GameObjectTypes.PLAYER).findFirst();
+                .filter(g -> g.getType() == GameObjectType.PLAYER).findFirst();
     }
 
     private Optional<GameObject> findBall(final Level level) {
         return level.getGameObjectManager().getGameObjects().stream()
-            .filter(g -> g.getType() == GameObjectTypes.BALL).findFirst();
+            .filter(g -> g.getType() == GameObjectType.BALL).findFirst();
     }
 
     private long getCollidablesCount(final Level level) {

@@ -5,9 +5,9 @@ import java.util.Map;
 import com.google.common.collect.ImmutableMap;
 
 import ballblast.controller.Controller;
-import ballblast.model.inputs.InputTypes;
+import ballblast.model.inputs.InputType;
 import ballblast.settings.KeyCodeSet;
-import ballblast.model.inputs.InputManager.PlayerTags;
+import ballblast.model.inputs.InputManager.PlayerTag;
 import ballblast.view.scenecontroller.GUISceneController;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -30,15 +30,15 @@ public class InGameState extends GUIState {
         super(gui, controller);
         final KeyCodeSet keySet = KeyCodeSet.valueOf(controller.getCurrentUser().getKeySetting());
         pressedInputMap = ImmutableMap.of(
-                keySet.getMoveLeft(),  () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.MOVE_LEFT), 
-                keySet.getMoveRight(), () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.MOVE_RIGHT), 
-                keySet.getShoot(),     () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.SHOOT), 
+                keySet.getMoveLeft(),  () -> this.translateKeyCode(PlayerTag.FIRST, InputType.MOVE_LEFT), 
+                keySet.getMoveRight(), () -> this.translateKeyCode(PlayerTag.FIRST, InputType.MOVE_RIGHT), 
+                keySet.getShoot(),     () -> this.translateKeyCode(PlayerTag.FIRST, InputType.SHOOT), 
                 KeyCode.P,             () -> this.translatePauseKeyCode(), 
                 KeyCode.ESCAPE,        () -> this.translatePauseKeyCode());
         releasedInputMap = ImmutableMap.of(
-                keySet.getMoveLeft(),  () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.STOP_MOVING_LEFT), 
-                keySet.getMoveRight(), () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.STOP_MOVING_RIGHT), 
-                keySet.getShoot(),     () -> this.translateKeyCode(PlayerTags.FIRST, InputTypes.STOP_SHOOTING));
+                keySet.getMoveLeft(),  () -> this.translateKeyCode(PlayerTag.FIRST, InputType.STOP_MOVING_LEFT), 
+                keySet.getMoveRight(), () -> this.translateKeyCode(PlayerTag.FIRST, InputType.STOP_MOVING_RIGHT), 
+                keySet.getShoot(),     () -> this.translateKeyCode(PlayerTag.FIRST, InputType.STOP_SHOOTING));
     }
 
     @Override
@@ -64,7 +64,7 @@ public class InGameState extends GUIState {
         }
     }
 
-    private void translateKeyCode(final PlayerTags tag, final InputTypes input) {
+    private void translateKeyCode(final PlayerTag tag, final InputType input) {
         this.getController().receiveInput(tag, input);
     }
 
@@ -72,7 +72,9 @@ public class InGameState extends GUIState {
         this.getGUI().setState(this.getGUI().getPausedState());
     }
 
-    /*Functional interface used to translate a KeyCode in its corresponding action*/
+    /**
+     * Functional interface used to translate a KeyCode in its corresponding action.
+     */
     private interface KeyCodeProcessor {
         void process();
     }

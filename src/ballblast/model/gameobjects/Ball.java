@@ -7,7 +7,7 @@ import com.google.common.base.MoreObjects;
  * Implements the GameObject {@link Ball}.
  */
 public final class Ball extends AbstractGameObject {
-    private BallTypes ballType;
+    private BallType ballType;
     private int initialLife;
     private int currentLife;
 
@@ -15,7 +15,7 @@ public final class Ball extends AbstractGameObject {
      * Class constructor.
      */
     private Ball() {
-        super(GameObjectTypes.BALL);
+        super(GameObjectType.BALL);
     }
 
     /**
@@ -50,7 +50,7 @@ public final class Ball extends AbstractGameObject {
      * 
      * @return the {@link Ball}'s type.
      */
-    public BallTypes getBallType() {
+    public BallType getBallType() {
         return this.ballType;
     }
 
@@ -64,7 +64,7 @@ public final class Ball extends AbstractGameObject {
      * 
      * @param ballType the {@link Ball}'s type.
      */
-    private void setBallTypes(final BallTypes ballType) {
+    private void setBallTypes(final BallType ballType) {
         this.ballType = ballType;
         this.setHeight(ballType.getDiameter());
         this.setWidth(ballType.getDiameter());
@@ -103,7 +103,7 @@ public final class Ball extends AbstractGameObject {
          * @param ballType the {@link Ball}'s type.
          * @return the {@link Builder}.
          */
-        public Builder setBallType(final BallTypes ballType) {
+        public Builder setBallType(final BallType ballType) {
             this.getGameObject().setBallTypes(ballType);
             return this;
         }

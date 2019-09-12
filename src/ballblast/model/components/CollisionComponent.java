@@ -6,7 +6,7 @@ import org.locationtech.jts.util.GeometricShapeFactory;
 import com.google.common.base.MoreObjects;
 
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectTypes;
+import ballblast.model.gameobjects.GameObjectType;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.Collision;
 import ballblast.model.physics.CollisionManager;
@@ -28,7 +28,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
      *            type.
      */
     public CollisionComponent(final CollisionManager man, final CollisionTag tag) {
-        super(ComponentTypes.COLLISION);
+        super(ComponentType.COLLISION);
         this.collisionTag = tag;
         this.manager = man;
     }
@@ -39,7 +39,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable 
         shapeFactory.setBase(parent.getPosition());
         shapeFactory.setHeight(parent.getHeight());
         shapeFactory.setWidth(parent.getWidth());
-        return parent.getType() == GameObjectTypes.BALL ? shapeFactory.createCircle() : shapeFactory.createRectangle();
+        return parent.getType() == GameObjectType.BALL ? shapeFactory.createCircle() : shapeFactory.createRectangle();
     }
 
     @Override

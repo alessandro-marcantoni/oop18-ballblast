@@ -5,7 +5,7 @@ import java.util.Optional;
 /**
  * All different types of {@link Ball}.
  */
-public enum BallTypes {
+public enum BallType {
     /**
      * small.
      */
@@ -19,7 +19,7 @@ public enum BallTypes {
      */
     LARGE(16);
 
-    private BallTypes child;
+    private BallType child;
     private double diameter;
 
     static {
@@ -29,21 +29,21 @@ public enum BallTypes {
     }
 
     /**
-     * Create a {@link BallTypes} instance.
+     * Create a {@link BallType} instance.
      * 
      * @param diameter the diameter of the {@link Ball}.
      */
-    BallTypes(final double diameter) {
+    BallType(final double diameter) {
         this.diameter = diameter;
     }
 
     /**
-     * Gets the {@link Optional} represents the {@link BallTypes} to split into.
+     * Gets the {@link Optional} represents the {@link BallType} to split into.
      * 
      * @return an empty {@link Optional} if the {@link Ball} is not divisible, an
-     *         {@link BallTypes} otherwise.
+     *         {@link BallType} otherwise.
      */
-    public Optional<BallTypes> getChild() {
+    public Optional<BallType> getChild() {
         return Optional.ofNullable(child);
     }
 

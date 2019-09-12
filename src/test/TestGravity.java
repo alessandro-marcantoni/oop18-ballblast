@@ -8,11 +8,12 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
 import ballblast.model.components.Component;
-import ballblast.model.components.ComponentTypes;
+import ballblast.model.components.ComponentType;
 import ballblast.model.components.GravityComponent;
-import ballblast.model.gameobjects.BallTypes;
+import ballblast.model.gameobjects.BallType;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
+import ballblast.model.gameobjects.GameObjectManagerImpl;
 import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.SimpleCollisionManager;
@@ -26,9 +27,10 @@ public class TestGravity {
     private static final Vector2D VELOCITY = new Vector2D(0, 0);
     private static final long ELAPSED = 10;
 
-    private final GameObjectManager gameObjectManager = new GameObjectManager();
+    private final GameObjectManager gameObjectManager = new GameObjectManagerImpl();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
-    private GameObject ball;
+    private final GameObject ball = GameObjectHelper.createBall(BallType.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
+            this.gameObjectManager, null, null);
     private Vector2D gravity;
 
     /**
@@ -36,16 +38,14 @@ public class TestGravity {
      */
     @Before
     public void initializeEnv() {
-        this.ball = GameObjectHelper.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
-                this.gameObjectManager, null, null);
         this.ball.getComponents().stream()
-        .filter(c -> c.getType().equals(ComponentTypes.MOVEMENT) 
-                || c.getType().equals(ComponentTypes.GRAVITY))
-        .forEach(Component::enable);
+                                 .filter(c -> c.getType().equals(ComponentType.MOVEMENT) 
+                                         || c.getType().equals(ComponentType.GRAVITY))
+                                 .forEach(Component::enable);
         this.ball.getComponents().stream()
-        .filter(c -> c.getType().equals(ComponentTypes.GRAVITY))
-        .findFirst()
-        .ifPresent(c -> this.gravity = ((GravityComponent) c).getGravity());
+                                 .filter(c -> c.getType().equals(ComponentType.GRAVITY))
+                                 .findFirst()
+                                 .ifPresent(c -> this.gravity = ((GravityComponent) c).getGravity());
     }
 
     /**

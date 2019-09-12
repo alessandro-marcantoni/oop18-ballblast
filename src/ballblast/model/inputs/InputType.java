@@ -3,7 +3,7 @@ package ballblast.model.inputs;
 /**
  * All possible input types.
  */
-public enum InputTypes {
+public enum InputType {
     /**
      * Moves left.
      */

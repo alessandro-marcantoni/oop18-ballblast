@@ -13,8 +13,8 @@ import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.data.Leaderboard;
 import ballblast.model.data.UserData;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.inputs.InputManager.PlayerTags;
-import ballblast.model.inputs.InputTypes;
+import ballblast.model.inputs.InputManager.PlayerTag;
+import ballblast.model.inputs.InputType;
 
 /**
  * Represents the Controller in the MVC pattern.
@@ -48,7 +48,7 @@ public interface Controller {
      * @param tag   the tag which identifies the {@link Player}.
      * @param input the input to be resolved.
      */
-    void receiveInput(PlayerTags tag, InputTypes input);
+    void receiveInput(PlayerTag tag, InputType input);
 
     /**
      * Returns the list of active {@link GameObjects} to be rendered.

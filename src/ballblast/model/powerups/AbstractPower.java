@@ -2,7 +2,7 @@ package ballblast.model.powerups;
 
 import ballblast.model.gameobjects.AbstractGameObject;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.gameobjects.GameObjectTypes;
+import ballblast.model.gameobjects.GameObjectType;
 import ballblast.model.gameobjects.Player;
 
 /**
@@ -27,7 +27,7 @@ public abstract class AbstractPower extends AbstractGameObject implements Power 
      * @param powerType The type of the {@link Power}.
      */
     protected AbstractPower(final PowerTypes powerType) {
-        super(GameObjectTypes.POWERUP);
+        super(GameObjectType.POWERUP);
         this.powerType = powerType;
         this.setHeight(DEFAULT_HEIGHT);
         this.setWidth(DEFAULT_WIDTH);

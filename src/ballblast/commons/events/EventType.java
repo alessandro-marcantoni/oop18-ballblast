@@ -3,7 +3,7 @@ package ballblast.commons.events;
 /**
  * Enumeration representing the types of game events.
  */
-public enum EventTypes {
+public enum EventType {
 
     /**
      * A ball gets destroyed.

@@ -1,9 +1,7 @@
 package ballblast.model.levels;
 
-import java.util.List;
-
-import ballblast.commons.events.EventTypes;
 import ballblast.model.data.GameDataManager;
+import ballblast.model.events.GameEventManager;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.inputs.InputManager;
 import ballblast.model.physics.CollisionManager;
@@ -68,9 +66,9 @@ public interface Level {
     GameDataManager getGameDataManager();
 
     /**
-     * Gets the game's events.
+     * Gets the {@link GameEventManager}.
      * 
-     * @return the game's events.
+     * @return the {@link GameEventManager}.
      */
-    List<EventTypes> getGameEvents();
+    GameEventManager getGameEventManager();
 }

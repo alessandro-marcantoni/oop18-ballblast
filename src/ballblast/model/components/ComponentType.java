@@ -3,7 +3,7 @@ package ballblast.model.components;
 /**
  * All types of {@link Component} which can be used.
  */
-public enum ComponentTypes {
+public enum ComponentType {
     /**
      * InputComponent.
      */

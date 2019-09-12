@@ -1,6 +1,6 @@
 package ballblast.model.powerups;
 
-import ballblast.model.components.ComponentTypes;
+import ballblast.model.components.ComponentType;
 import ballblast.model.components.ShooterComponent;
 import ballblast.model.gameobjects.AbstractGameObject;
 
@@ -34,7 +34,7 @@ public final class DoubleFirePower extends AbstractPower {
 
     private ShooterComponent findShooter() {
         return this.getPlayer().getComponents().stream()
-                .filter(c -> c.getType() == ComponentTypes.SHOOTER)
+                .filter(c -> c.getType() == ComponentType.SHOOTER)
                 .map(c -> (ShooterComponent) c)
                 .findFirst().get();
     }

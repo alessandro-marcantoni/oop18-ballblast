@@ -12,7 +12,7 @@ public final class Wall extends AbstractGameObject {
      * Class constructor.
      */
     private Wall() {
-        super(GameObjectTypes.WALL);
+        super(GameObjectType.WALL);
     }
 
     @Override

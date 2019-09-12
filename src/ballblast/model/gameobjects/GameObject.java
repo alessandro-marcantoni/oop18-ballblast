@@ -1,7 +1,7 @@
 package ballblast.model.gameobjects;
 
 import ballblast.model.components.Component;
-import ballblast.model.components.ComponentTypes;
+import ballblast.model.components.ComponentType;
 import ballblast.model.physics.Collidable;
 
 import java.util.List;
@@ -86,7 +86,7 @@ public interface GameObject {
      * 
      * @param type {@link Component} to be removed.
      */
-    void removeComponent(ComponentTypes type);
+    void removeComponent(ComponentType type);
 
     /**
      * Gets the {@link List} of all components attached to the {@link GameObject}.
@@ -97,11 +97,11 @@ public interface GameObject {
     List<Component> getComponents();
 
     /**
-     * Gets the {@link GameObjectTypes}.
+     * Gets the {@link GameObjectType}.
      * 
-     * @return the tag which specifies the {@link GameObjectTypes}.
+     * @return the tag which specifies the {@link GameObjectType}.
      */
-    GameObjectTypes getType();
+    GameObjectType getType();
 
     /**
      * Handles an incoming {@link Collision}.

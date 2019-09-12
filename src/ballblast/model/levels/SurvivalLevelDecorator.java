@@ -7,7 +7,7 @@ import org.locationtech.jts.math.Vector2D;
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.data.GameDataManager.GameData;
-import ballblast.model.gameobjects.BallTypes;
+import ballblast.model.gameobjects.BallType;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.helpers.SpawnHelper;
@@ -70,7 +70,7 @@ public class SurvivalLevelDecorator extends LevelDecorator {
 
     private void spawnBall() {
         this.spawnedBall = Optional.of(GameObjectHelper.createBall(
-                BallTypes.LARGE, this.calculateBallLife(), SpawnHelper.getRandomSpawnPosition(), BALL_VELOCITY, 
+                BallType.LARGE, this.calculateBallLife(), SpawnHelper.getRandomSpawnPosition(), BALL_VELOCITY, 
                 this.getCollisionManager(), this.getGameObjectManager(), this.getGameDataManager(), this.getGameEvents()));
         this.getGameObjectManager().addGameObjects(ImmutableList.of(this.spawnedBall.get()));
     }

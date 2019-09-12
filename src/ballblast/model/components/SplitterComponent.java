@@ -7,13 +7,13 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.Ball;
-import ballblast.model.gameobjects.BallTypes;
+import ballblast.model.gameobjects.BallType;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
-import ballblast.model.gameobjects.GameObjectTypes;
+import ballblast.model.gameobjects.GameObjectType;
 import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.helpers.SpawnHelper;
 import ballblast.model.physics.CollisionManager;
@@ -26,7 +26,7 @@ public class SplitterComponent extends AbstractComponent {
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final GameDataManager gameDataManager;
-    private final List<EventTypes> events;
+    private final List<EventType> events;
 
     /**
      * Class constructor.
@@ -40,8 +40,8 @@ public class SplitterComponent extends AbstractComponent {
      * @param events            the game event list.
      */
     public SplitterComponent(final GameObjectManager gameObjectManager, final CollisionManager collisionManager,
-            final GameDataManager gameDataManager, final List<EventTypes> events) {
-        super(ComponentTypes.SPLITTER);
+            final GameDataManager gameDataManager, final List<EventType> events) {
+        super(ComponentType.SPLITTER);
         this.gameObjectManager = gameObjectManager;
         this.collisionManager = collisionManager;
         this.gameDataManager = gameDataManager;
@@ -50,8 +50,8 @@ public class SplitterComponent extends AbstractComponent {
 
     @Override
     public final void update(final double elapsed) {
-        if (this.getParent().isDestroyed() && this.getParent().getType() == GameObjectTypes.BALL) {
-            this.events.add(EventTypes.DESTROY);
+        if (this.getParent().isDestroyed() && this.getParent().getType() == GameObjectType.BALL) {
+            this.events.add(EventType.DESTROY);
             this.tryToSplitParent();
             this.gameDataManager.incrementDestroyedBalls();
         }
@@ -65,15 +65,15 @@ public class SplitterComponent extends AbstractComponent {
         ((Ball) this.getParent()).getBallType().getChild().ifPresent(this::addParentChilds);
     }
 
-    private void addParentChilds(final BallTypes type) {
+    private void addParentChilds(final BallType type) {
         this.gameObjectManager.addGameObjects(ImmutableList.of(
                 this.generateChildBall(type, this.getChildLife(),  this.getChildXvelocity(), this.getChildPosition()),
                 this.generateChildBall(type, this.getChildLife(), -this.getChildXvelocity(), this.getChildPosition()))
         );
-        this.events.add(EventTypes.SPLIT);
+        this.events.add(EventType.SPLIT);
     }
 
-    private GameObject generateChildBall(final BallTypes type, final int life, final double xVel, final Coordinate pos) {
+    private GameObject generateChildBall(final BallType type, final int life, final double xVel, final Coordinate pos) {
         final GameObject ball = GameObjectHelper.createBall(
                 type, life, pos, Vector2D.create(xVel, Y_SPLIT_VELOCITY / 2), 
                 this.collisionManager, this.gameObjectManager, this.gameDataManager, this.events);

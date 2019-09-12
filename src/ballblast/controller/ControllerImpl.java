@@ -16,8 +16,8 @@ import ballblast.model.data.GameDataManager.GameData;
 import ballblast.model.data.Leaderboard;
 import ballblast.model.data.UserData;
 import ballblast.model.gameobjects.GameObject;
-import ballblast.model.inputs.InputManager.PlayerTags;
-import ballblast.model.inputs.InputTypes;
+import ballblast.model.inputs.InputManager.PlayerTag;
+import ballblast.model.inputs.InputType;
 import ballblast.view.View;
 
 /**
@@ -78,7 +78,7 @@ public class ControllerImpl implements Controller, GameLoopObserver {
     }
 
     @Override
-    public final void receiveInput(final PlayerTags tag, final InputTypes input) {
+    public final void receiveInput(final PlayerTag tag, final InputType input) {
         this.gameloop.addInput(tag, input);
     }
 

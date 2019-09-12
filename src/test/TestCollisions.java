@@ -14,27 +14,27 @@ import org.locationtech.jts.math.Vector2D;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.Component;
-import ballblast.model.components.ComponentTypes;
+import ballblast.model.components.ComponentType;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.levels.BasicLevel;
-import ballblast.model.levels.Boundaries;
+import ballblast.model.levels.Boundary;
 import ballblast.model.levels.Level;
 import ballblast.model.levels.SinglePlayerDecorator;
 import ballblast.model.gameobjects.Ball;
-import ballblast.model.gameobjects.BallTypes;
+import ballblast.model.gameobjects.BallType;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.GameObjectManagerImpl;
-import ballblast.model.gameobjects.GameObjectTypes;
+import ballblast.model.gameobjects.GameObjectType;
 import ballblast.model.gameobjects.Player;
 import ballblast.model.helpers.GameObjectHelper;
 import ballblast.model.inputs.InputManagerImpl;
 import ballblast.model.inputs.InputManager;
-import ballblast.model.inputs.InputManager.PlayerTags;
-import ballblast.model.inputs.InputTypes;
+import ballblast.model.inputs.InputManager.PlayerTag;
+import ballblast.model.inputs.InputType;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.CollisionTag;
@@ -52,7 +52,7 @@ public class TestCollisions {
     private static final Coordinate DEFAULT_POSITION = new Coordinate(0, 0);
     private static final Vector2D DEFAULT_VELOCITY = new Vector2D(0, 0);
     private static final Level DEFAULT_LEVEL = new SinglePlayerDecorator(new BasicLevel());
-    private static final List<EventTypes> LIST = Lists.newArrayList();
+    private static final List<EventType> LIST = Lists.newArrayList();
 
     /**
      * Tests {@link CollisionComponent}s.
@@ -61,7 +61,7 @@ public class TestCollisions {
     public void testCollisionComponent() {
         final Component collisionComponent = new CollisionComponent(COLLISION_MANAGER, CollisionTag.PLAYER);
         final Player player = (Player) GameObjectHelper.createPlayer(GAME_OBJECT_MANAGER, INPUT_MANAGER,
-                PlayerTags.FIRST, COLLISION_MANAGER, DEFAULT_VELOCITY, DEFAULT_POSITION, GAME_DATA_MANAGER, LIST);
+                PlayerTag.FIRST, COLLISION_MANAGER, DEFAULT_VELOCITY, DEFAULT_POSITION, GAME_DATA_MANAGER, LIST);
         collisionComponent.setParent(player);
 
         assertEquals(((CollisionComponent) collisionComponent).toString(), "CollisionComponent{AttachedTo=PLAYER}");
@@ -77,14 +77,14 @@ public class TestCollisions {
         final CollisionManager manager = new SimpleCollisionManager();
         final int ballLife = 24;
         GameObjectHelper
-                .createPlayer(GAME_OBJECT_MANAGER, INPUT_MANAGER, PlayerTags.FIRST, manager, DEFAULT_VELOCITY,
+                .createPlayer(GAME_OBJECT_MANAGER, INPUT_MANAGER, PlayerTag.FIRST, manager, DEFAULT_VELOCITY,
                         DEFAULT_POSITION, GAME_DATA_MANAGER, LIST)
-                .getComponents().stream().filter(c -> c.getType() == ComponentTypes.COLLISION).findFirst().get()
+                .getComponents().stream().filter(c -> c.getType() == ComponentType.COLLISION).findFirst().get()
                 .enable();
         GameObjectHelper
-                .createBall(BallTypes.SMALL, ballLife, DEFAULT_POSITION, DEFAULT_VELOCITY, manager,
+                .createBall(BallType.SMALL, ballLife, DEFAULT_POSITION, DEFAULT_VELOCITY, manager,
                         GAME_OBJECT_MANAGER, GAME_DATA_MANAGER, LIST)
-                .getComponents().stream().filter(c -> c.getType() == ComponentTypes.COLLISION).findFirst().get()
+                .getComponents().stream().filter(c -> c.getType() == ComponentType.COLLISION).findFirst().get()
                 .enable();
 
         assertEquals(manager.getCollidables().size(), 2);
@@ -111,8 +111,8 @@ public class TestCollisions {
         final int ballLife = 1;
         final int pos = 25;
         final GameObject player = GameObjectHelper.createPlayer(GAME_OBJECT_MANAGER, INPUT_MANAGER,
-                PlayerTags.FIRST, manager, DEFAULT_VELOCITY, DEFAULT_POSITION, GAME_DATA_MANAGER, LIST);
-        final GameObject ball = GameObjectHelper.createBall(BallTypes.SMALL, ballLife, DEFAULT_POSITION,
+                PlayerTag.FIRST, manager, DEFAULT_VELOCITY, DEFAULT_POSITION, GAME_DATA_MANAGER, LIST);
+        final GameObject ball = GameObjectHelper.createBall(BallType.SMALL, ballLife, DEFAULT_POSITION,
                 DEFAULT_VELOCITY, manager, GAME_OBJECT_MANAGER, GAME_DATA_MANAGER, LIST);
         final GameObject bullet = GameObjectHelper.createBullet(new Coordinate(pos, pos), DEFAULT_VELOCITY, manager);
 
@@ -143,7 +143,7 @@ public class TestCollisions {
         assertEquals(manager.getCollidables().size(), 0);
 
         // Game objects destroyed, have to create a new ones.
-        final GameObject balls = GameObjectHelper.createBall(BallTypes.SMALL, ballLife + 1, DEFAULT_POSITION,
+        final GameObject balls = GameObjectHelper.createBall(BallType.SMALL, ballLife + 1, DEFAULT_POSITION,
                 DEFAULT_VELOCITY, manager, GAME_OBJECT_MANAGER, GAME_DATA_MANAGER, LIST);
         final GameObject bullets = GameObjectHelper.createBullet(new Coordinate(pos, pos), DEFAULT_VELOCITY, manager);
 
@@ -178,9 +178,9 @@ public class TestCollisions {
         final double y = 5;
         final int neg = -1;
         final CollisionManager manager = new SimpleCollisionManager();
-        final GameObject ball = GameObjectHelper.createBall(BallTypes.SMALL, ballLife, Boundaries.BOTTOM.getPosition(),
+        final GameObject ball = GameObjectHelper.createBall(BallType.SMALL, ballLife, Boundary.BOTTOM.getPosition(),
                 Vector2D.create(new Coordinate(x, y)), manager, GAME_OBJECT_MANAGER, GAME_DATA_MANAGER, LIST);
-        final GameObject wall = GameObjectHelper.createWall(x, y, Boundaries.BOTTOM.getPosition(), DEFAULT_VELOCITY,
+        final GameObject wall = GameObjectHelper.createWall(x, y, Boundary.BOTTOM.getPosition(), DEFAULT_VELOCITY,
                 manager);
 
         ball.getComponents().forEach(c -> c.enable());
@@ -191,8 +191,8 @@ public class TestCollisions {
         assertEquals(Double.valueOf(ball.getVelocity().getY()), Double.valueOf(y * neg));
         assertEquals(Double.valueOf(ball.getVelocity().getX()), Double.valueOf(x));
 
-        ball.setPosition(Boundaries.LEFT.getPosition());
-        wall.setPosition(Boundaries.LEFT.getPosition());
+        ball.setPosition(Boundary.LEFT.getPosition());
+        wall.setPosition(Boundary.LEFT.getPosition());
 
         manager.checkLoop();
         // Expected wall bounce.
@@ -209,16 +209,16 @@ public class TestCollisions {
     public void testStop() {
         final Level lvl = DEFAULT_LEVEL;
         lvl.start();
-        lvl.getInputManager().processInputs(InputManagerImpl.PlayerTags.FIRST, ImmutableList.of(InputTypes.MOVE_RIGHT));
+        lvl.getInputManager().processInputs(InputManagerImpl.PlayerTag.FIRST, ImmutableList.of(InputType.MOVE_RIGHT));
         final int steps = 50;
         final double elapsed = 0.1;
         final GameObject player = lvl.getGameObjectManager().getGameObjects().stream()
-                .filter(obj -> obj.getType() == GameObjectTypes.PLAYER).findFirst().get();
+                .filter(obj -> obj.getType() == GameObjectType.PLAYER).findFirst().get();
 
         for (int i = 0; i < steps; i++) {
             final Coordinate pos = player.getPosition();
             lvl.update(elapsed);
-            assertTrue(pos.getX() <= Boundaries.RIGHT.getPosition().getX());
+            assertTrue(pos.getX() <= Boundary.RIGHT.getPosition().getX());
         }
     }
 }

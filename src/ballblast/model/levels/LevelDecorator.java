@@ -2,7 +2,7 @@ package ballblast.model.levels;
 
 import java.util.List;
 
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.inputs.InputManager;
@@ -94,7 +94,7 @@ public abstract class LevelDecorator implements Level {
      * Standard implementation delegates to innerLevel.
      */
     @Override
-    public List<EventTypes> getGameEvents() {
+    public List<EventType> getGameEvents() {
         return this.innerLevel.getGameEvents();
     }
 }

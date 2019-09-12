@@ -16,14 +16,14 @@ public interface InputManager {
      * @param inputComponent the {@link InputComponent} of a specific
      *                       {@link Player}.
      */
-    void addInputHandler(PlayerTags tag, InputComponent inputComponent);
+    void addInputHandler(PlayerTag tag, InputComponent inputComponent);
 
     /**
-     * Removes a inputHandler associated with a specific {@link PlayerTags}.
+     * Removes a inputHandler associated with a specific {@link PlayerTag}.
      * 
      * @param tag the tag which identifies the inputhandler to be removed.
      */
-    void removeInputHandler(PlayerTags tag);
+    void removeInputHandler(PlayerTag tag);
 
     /**
      * Translates received inputs into {@link Command}s and sends them to the right
@@ -32,12 +32,12 @@ public interface InputManager {
      * @param tag    the tag which identifes the right {@link Player}.
      * @param inputs the inputs to be translated.
      */
-    void processInputs(PlayerTags tag, List<InputTypes> inputs);
+    void processInputs(PlayerTag tag, List<InputType> inputs);
 
     /**
      * All possible {@link Player}s.
      */
-    enum PlayerTags {
+    enum PlayerTag {
         /**
          * First.
          */

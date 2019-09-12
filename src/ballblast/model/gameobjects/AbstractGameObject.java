@@ -7,7 +7,7 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 import ballblast.model.components.Component;
-import ballblast.model.components.ComponentTypes;
+import ballblast.model.components.ComponentType;
 import ballblast.model.physics.Collidable;
 import ballblast.model.physics.CollisionHandler;
 
@@ -18,7 +18,7 @@ import ballblast.model.physics.CollisionHandler;
  */
 public abstract class AbstractGameObject implements GameObject {
     private static final Coordinate ZERO = new Coordinate(0, 0);
-    private final GameObjectTypes type;
+    private final GameObjectType type;
     private Coordinate position;
     private boolean isAvailable;
     private List<Component> components;
@@ -32,7 +32,7 @@ public abstract class AbstractGameObject implements GameObject {
      * 
      * @param type the type of {@link GameObject}.
      */
-    protected AbstractGameObject(final GameObjectTypes type) {
+    protected AbstractGameObject(final GameObjectType type) {
         this.type = type;
         this.isAvailable = true;
         this.components = ImmutableList.of();
@@ -96,7 +96,7 @@ public abstract class AbstractGameObject implements GameObject {
     }
 
     @Override
-    public final void removeComponent(final ComponentTypes type) {
+    public final void removeComponent(final ComponentType type) {
         this.components = this.components.stream()
                 .filter(c -> c.getType() != type)
                 .collect(ImmutableList.toImmutableList());
@@ -108,7 +108,7 @@ public abstract class AbstractGameObject implements GameObject {
     }
 
     @Override
-    public final GameObjectTypes getType() {
+    public final GameObjectType getType() {
         return this.type;
     }
 

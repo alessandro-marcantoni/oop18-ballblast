@@ -8,9 +8,9 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
 import ballblast.model.components.Component;
-import ballblast.model.components.ComponentTypes;
+import ballblast.model.components.ComponentType;
 import ballblast.model.components.GravityComponent;
-import ballblast.model.gameobjects.BallTypes;
+import ballblast.model.gameobjects.BallType;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.GameObjectManagerImpl;
@@ -29,7 +29,7 @@ public class TestGravity {
 
     private final GameObjectManager gameObjectManager = new GameObjectManagerImpl();
     private final CollisionManager collisionManager = new SimpleCollisionManager();
-    private final GameObject ball = GameObjectHelper.createBall(BallTypes.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
+    private final GameObject ball = GameObjectHelper.createBall(BallType.LARGE, 1, POSITION, VELOCITY, this.collisionManager,
             this.gameObjectManager, null, null);
     private Vector2D gravity;
 
@@ -39,11 +39,11 @@ public class TestGravity {
     @Before
     public void initializeEnv() {
         this.ball.getComponents().stream()
-                                 .filter(c -> c.getType().equals(ComponentTypes.MOVEMENT) 
-                                         || c.getType().equals(ComponentTypes.GRAVITY))
+                                 .filter(c -> c.getType().equals(ComponentType.MOVEMENT) 
+                                         || c.getType().equals(ComponentType.GRAVITY))
                                  .forEach(Component::enable);
         this.ball.getComponents().stream()
-                                 .filter(c -> c.getType().equals(ComponentTypes.GRAVITY))
+                                 .filter(c -> c.getType().equals(ComponentType.GRAVITY))
                                  .findFirst()
                                  .ifPresent(c -> this.gravity = ((GravityComponent) c).getGravity());
     }

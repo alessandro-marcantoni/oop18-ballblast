@@ -5,7 +5,7 @@ import java.util.List;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
 
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.GravityComponent;
 import ballblast.model.components.InputComponent;
@@ -14,13 +14,13 @@ import ballblast.model.components.ShooterComponent;
 import ballblast.model.components.SplitterComponent;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.Ball;
-import ballblast.model.gameobjects.BallTypes;
+import ballblast.model.gameobjects.BallType;
 import ballblast.model.gameobjects.Bullet;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.Player;
 import ballblast.model.gameobjects.Wall;
 import ballblast.model.inputs.InputManager;
-import ballblast.model.inputs.InputManager.PlayerTags;
+import ballblast.model.inputs.InputManager.PlayerTag;
 import ballblast.model.physics.CollisionManager;
 import ballblast.model.physics.CollisionTag;
 import ballblast.model.physics.handlers.BallCollisionHandler;
@@ -40,7 +40,7 @@ public final class GameObjectHelper {
      * @param gameObjectManager the {@link GameObjectManager}.
      * @param inputManager      the {@link InputManager}.
      * @param gameDataManager   the {@link GameDataManager}.
-     * @param tag               the {@link PlayerTags}.
+     * @param tag               the {@link PlayerTag}.
      * @param collisionManager  the {@link CollisionManager}.
      * @param velocity          the {@link Player}'s velocity.
      * @param position          the {@link Player},s position.
@@ -48,8 +48,8 @@ public final class GameObjectHelper {
      * @return the {@link Player} created.
      */
     public static Player createPlayer(final GameObjectManager gameObjectManager, final InputManager inputManager,
-            final PlayerTags tag, final CollisionManager collisionManager, final Vector2D velocity, 
-            final Coordinate position, final GameDataManager gameDataManager, final List<EventTypes> events) {
+            final PlayerTag tag, final CollisionManager collisionManager, final Vector2D velocity, 
+            final Coordinate position, final GameDataManager gameDataManager, final List<EventType> events) {
         return new Player.Builder()
                 .setVelocity(velocity)
                 .setPosition(position)
@@ -108,16 +108,16 @@ public final class GameObjectHelper {
      * @param collisionManager  the {@link CollisionManager}.
      * @param gameObjectManager the {@link GameObjectManager}.
      * @param gameDataManager   the {@link GameDataManager}.
-     * @param ballType          the {@link BallTypes}.
+     * @param ballType          the {@link BallType}.
      * @param life              the {@link Ball}'s life.
      * @param position          the {@link Ball}'s position.
      * @param velocity          the {@link Ball}'s velocity.
      * @param events            the game event list.
      * @return the {@link Ball created}.
      */
-    public static Ball createBall(final BallTypes ballType, final int life, final Coordinate position,
+    public static Ball createBall(final BallType ballType, final int life, final Coordinate position,
             final Vector2D velocity, final CollisionManager collisionManager, final GameObjectManager gameObjectManager, 
-            final GameDataManager gameDataManager, final List<EventTypes> events) {
+            final GameDataManager gameDataManager, final List<EventType> events) {
         return new Ball.Builder()
                 .setBallType(ballType)
                 .setLife(life)

@@ -15,7 +15,7 @@ public class GravityComponent extends AbstractComponent {
      * Creates a new GravityComponent instance.
      */
     public GravityComponent() {
-        super(ComponentTypes.GRAVITY);
+        super(ComponentType.GRAVITY);
     }
 
     @Override

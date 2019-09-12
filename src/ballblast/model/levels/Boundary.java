@@ -7,7 +7,7 @@ import ballblast.model.Model;
 /**
  * Represents the game's boundaries.
  */
-public enum Boundaries {
+public enum Boundary {
     /**
      * the left boundary.
      */
@@ -59,7 +59,7 @@ public enum Boundaries {
      * @return true if it's the floor position, false otherwise.
      */
     public static boolean isFloor(final Coordinate boundaryPosition) {
-        return boundaryPosition.equals(Boundaries.BOTTOM.getPosition());
+        return boundaryPosition.equals(Boundary.BOTTOM.getPosition());
     }
 
     /**
@@ -69,7 +69,7 @@ public enum Boundaries {
      * @return true if it's the roof position, false otherwise.
      */
     public static boolean isRoof(final Coordinate boundaryPosition) {
-        return boundaryPosition.equals(Boundaries.TOP.getPosition());
+        return boundaryPosition.equals(Boundary.TOP.getPosition());
     }
 
     /**
@@ -79,7 +79,7 @@ public enum Boundaries {
      * @return true if it's the right position, false otherwise.
      */
     public static boolean isRight(final Coordinate boundaryPosition) {
-        return boundaryPosition.equals(Boundaries.RIGHT.getPosition());
+        return boundaryPosition.equals(Boundary.RIGHT.getPosition());
     }
 
     /**
@@ -89,7 +89,7 @@ public enum Boundaries {
      * @return true if it's the left position, false otherwise.
      */
     public static boolean isLeft(final Coordinate boundaryPosition) {
-        return boundaryPosition.equals(Boundaries.LEFT.getPosition());
+        return boundaryPosition.equals(Boundary.LEFT.getPosition());
     }
 
     /**

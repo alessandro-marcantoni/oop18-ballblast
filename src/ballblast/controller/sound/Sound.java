@@ -8,7 +8,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import ballblast.commons.events.EventHandler;
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 
 /**
  * Enumeration representing the game sounds.
@@ -45,9 +45,9 @@ public enum Sound {
     /**
      * 
      */
-    public static final EventHandler<EventTypes> HANDLER = new EventHandler<EventTypes>() {
+    public static final EventHandler<EventType> HANDLER = new EventHandler<EventType>() {
         @Override
-        public void handleEvent(final EventTypes event) {
+        public void handleEvent(final EventType event) {
             switch (event) {
             case SPLIT:
                 Sound.SPLIT.playSound();

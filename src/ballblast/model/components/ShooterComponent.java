@@ -7,7 +7,7 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
@@ -26,7 +26,7 @@ public class ShooterComponent extends AbstractComponent {
     private final GameObjectManager gameObjectManager;
     private final CollisionManager collisionManager;
     private final GameDataManager gameDataManager;
-    private final List<EventTypes> events;
+    private final List<EventType> events;
     private boolean isShooting;
     private double shotInterval;
     private double currentShotInterval;
@@ -43,8 +43,8 @@ public class ShooterComponent extends AbstractComponent {
      * @param events            the game event list.
      */
     public ShooterComponent(final GameObjectManager gameObjectManager, final CollisionManager collisionManager,
-            final GameDataManager gameDataManager, final List<EventTypes> events) {
-        super(ComponentTypes.SHOOTER);
+            final GameDataManager gameDataManager, final List<EventType> events) {
+        super(ComponentType.SHOOTER);
         this.gameObjectManager = gameObjectManager;
         this.collisionManager = collisionManager;
         this.gameDataManager = gameDataManager;
@@ -58,7 +58,7 @@ public class ShooterComponent extends AbstractComponent {
         if (this.isEnabled() && this.isShooting && this.currentShotInterval <= 0) {
             this.shoot(this.spawnBullet());
             this.currentShotInterval = this.shotInterval;
-            this.events.add(EventTypes.SHOT);
+            this.events.add(EventType.SHOT);
         }
         this.currentShotInterval -= elapsed;
     }

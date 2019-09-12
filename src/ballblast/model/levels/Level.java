@@ -2,7 +2,7 @@ package ballblast.model.levels;
 
 import java.util.List;
 
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.inputs.InputManager;
@@ -72,5 +72,5 @@ public interface Level {
      * 
      * @return the game's events.
      */
-    List<EventTypes> getGameEvents();
+    List<EventType> getGameEvents();
 }

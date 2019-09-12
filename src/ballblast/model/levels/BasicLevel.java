@@ -8,7 +8,7 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.commons.events.EventTypes;
+import ballblast.commons.events.EventType;
 import ballblast.model.data.GameDataManager;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
@@ -31,7 +31,7 @@ public final class BasicLevel implements Level {
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
     private final GameDataManager gameDataManager;
-    private final List<EventTypes> events;
+    private final List<EventType> events;
     private GameStatus gameStatus;
     private double currentSpawnTime;
 
@@ -96,18 +96,29 @@ public final class BasicLevel implements Level {
     }
 
     @Override
-    public List<EventTypes> getGameEvents() {
+    public List<EventType> getGameEvents() {
         return this.events;
+        /*
+         * List<EventType> events = this.events;
+         * this.events =  Collections.emptyList()
+         * return events;
+         */
     }
 
+    /*
+     * public void addGameEvent() {
+     *   new ImmutableList<>.builder().copyO(
+     * }
+     */
+
     private void createBoundaries() {
-        final List<GameObject> boundaries = Arrays.stream(Boundaries.values())
+        final List<GameObject> boundaries = Arrays.stream(Boundary.values())
                 .map(this::convertToWall)
                 .collect(ImmutableList.toImmutableList());
         this.gameObjectManager.addGameObjects(boundaries);
     }
 
-    private GameObject convertToWall(final Boundaries b) {
+    private GameObject convertToWall(final Boundary b) {
         return GameObjectHelper.createWall(b.getHeight(), b.getWidth(), 
                 b.getPosition(), Vector2D.create(0, 0), this.collisionManager);
     }

@@ -28,7 +28,7 @@ public interface Component {
      * 
      * @return the tag which defines the {@link ComponentType}.
      */
-    ComponentTypes getType();
+    ComponentType getType();
 
     /**
      * Sets the {@link Component}'s parent.

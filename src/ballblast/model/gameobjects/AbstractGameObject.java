@@ -1,5 +1,6 @@
 package ballblast.model.gameobjects;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.locationtech.jts.geom.Coordinate;
@@ -35,7 +36,7 @@ public abstract class AbstractGameObject implements GameObject {
     protected AbstractGameObject(final GameObjectType type) {
         this.type = type;
         this.isAvailable = true;
-        this.components = ImmutableList.of();
+        this.components = Collections.emptyList();
         this.position = ZERO;
     }
 

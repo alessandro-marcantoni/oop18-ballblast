@@ -51,7 +51,6 @@ public class SettingsSceneController extends AbstractSubSceneController {
         chkMusic.selectedProperty().addListener(c -> this.setMusic());
         chkSound.selectedProperty().addListener(c -> this.setSoundEffects());
 
-
     }
 
     @Override

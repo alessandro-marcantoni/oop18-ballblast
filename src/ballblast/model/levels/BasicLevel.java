@@ -1,6 +1,5 @@
 package ballblast.model.levels;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,8 +7,9 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 
-import ballblast.commons.events.EventType;
 import ballblast.model.data.GameDataManager;
+import ballblast.model.events.GameEventManager;
+import ballblast.model.events.GameEventManagerImpl;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.gameobjects.GameObjectManager;
 import ballblast.model.gameobjects.GameObjectManagerImpl;
@@ -31,7 +31,7 @@ public final class BasicLevel implements Level {
     private final CollisionManager collisionManager;
     private final InputManager inputManager;
     private final GameDataManager gameDataManager;
-    private final List<EventType> events;
+    private final GameEventManager gameEventManager;
     private GameStatus gameStatus;
     private double currentSpawnTime;
 
@@ -44,7 +44,7 @@ public final class BasicLevel implements Level {
         this.collisionManager = new SimpleCollisionManager();
         this.inputManager = new InputManagerImpl();
         this.gameDataManager = new GameDataManager();
-        this.events = new ArrayList<>();
+        this.gameEventManager = new GameEventManagerImpl();
         this.currentSpawnTime = POWER_SPAWN_TIME;
         this.createBoundaries();
     }
@@ -96,20 +96,10 @@ public final class BasicLevel implements Level {
     }
 
     @Override
-    public List<EventType> getGameEvents() {
-        return this.events;
-        /*
-         * List<EventType> events = this.events;
-         * this.events =  Collections.emptyList()
-         * return events;
-         */
+    public GameEventManager getGameEventManager() {
+        return this.gameEventManager;
     }
 
-    /*
-     * public void addGameEvent() {
-     *   new ImmutableList<>.builder().copyO(
-     * }
-     */
 
     private void createBoundaries() {
         final List<GameObject> boundaries = Arrays.stream(Boundary.values())

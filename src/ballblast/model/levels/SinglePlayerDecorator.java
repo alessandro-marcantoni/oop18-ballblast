@@ -45,7 +45,7 @@ public class SinglePlayerDecorator extends LevelDecorator {
         return GameObjectHelper.createPlayer(
                 this.getGameObjectManager(), this.getInputManager(), PlayerTag.FIRST, 
                 this.getCollisionManager(), Vector2D.create(0, 0), PLAYER_POSITION, 
-                this.getGameDataManager(), this.getGameEvents());
+                this.getGameDataManager(), this.getGameEventManager());
     }
 
     private void checkGameOver() {

@@ -15,9 +15,9 @@ import ballblast.model.levels.GameStatus;
 import ballblast.view.View;
 
 /**
- * Represents a game loop that starts in a new thread.
+ * Represents a generic {@link GameLoop} that starts in a new thread.
  */
-public class GameLoopImpl extends Thread implements GameLoop {
+public abstract class AbstractGameLoop extends Thread implements GameLoop {
     private static final double MS_TO_S = 0.001;
 
     private final List<GameLoopObserver> observers = new ArrayList<GameLoopObserver>();
@@ -31,11 +31,11 @@ public class GameLoopImpl extends Thread implements GameLoop {
     /**
      * Creates a new game loop instance.
      * 
-     * @param view      the view to render on each frame.
-     * @param model     the model to update the world on each frame.
-     * @param frameRate the refresh rate of the loop.
+     * @param view      The view to render on each frame.
+     * @param model     The model to update the world on each frame.
+     * @param frameRate The refresh rate of the loop.
      */
-    public GameLoopImpl(final Model model, final View view, final int frameRate) {
+    public AbstractGameLoop(final Model model, final View view, final int frameRate) {
         super();
         this.setName("Game Loop");
         this.setDaemon(true);
@@ -98,6 +98,20 @@ public class GameLoopImpl extends Thread implements GameLoop {
         this.observers.forEach(GameLoopObserver::updateLeaderboard);
     }
 
+    /**
+     * Stops the theme.
+     */
+    protected void gameOverSound() {
+        Sound.THEME.stopSound();
+    }
+
+    /**
+     * Processes the sound effects.
+     * 
+     * @param model The {@link Model}.
+     */
+    protected abstract void processSounds(Model model);
+
     private void waitForNextFrame(final long current) {
         final long dt = System.currentTimeMillis() - current;
         if (dt < this.frameRate) {
@@ -128,21 +142,6 @@ public class GameLoopImpl extends Thread implements GameLoop {
 
     private void render() {
         this.view.render();
-    }
-
-    /**
-     * Performs the game over sound.
-     */
-    protected void gameOverSound() {
-        Sound.THEME.stopSound();
-    }
-
-    /**
-     * Processes the sound effects.
-     * 
-     * @param model The {@link Model}.
-     */
-    protected void processSounds(final Model model) {
     }
 
 }

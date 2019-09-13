@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ballblast.controller.Controller;
-import ballblast.controller.GameLoopImpl;
+import ballblast.controller.SimpleGameLoop;
 import ballblast.model.Model;
 import ballblast.model.ModelImpl;
 import ballblast.view.View;
@@ -22,7 +22,7 @@ public class TestGameLoop {
 
     private final Model testModel = new ModelImpl();
     private final TestView testView = new TestView();
-    private final GameLoopImpl gameLoop = new GameLoopImpl(testModel, testView, FPS);
+    private final SimpleGameLoop gameLoop = new SimpleGameLoop(testModel, testView, FPS);
 
     private class TestView implements View {
 

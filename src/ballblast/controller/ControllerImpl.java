@@ -9,6 +9,8 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 import ballblast.controller.files.LeaderboardManager;
+import ballblast.controller.files.SimpleLeaderboardManager;
+import ballblast.controller.files.SimpleUserManager;
 import ballblast.controller.files.UserManager;
 import ballblast.controller.sound.Sound;
 import ballblast.model.Model;
@@ -45,9 +47,9 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         DirectoryManager.setupApplication();
         this.model = model;
         this.view = view;
-        this.userManager = new UserManager();
+        this.userManager = new SimpleUserManager();
         this.currentUser = Optional.empty();
-        this.lbManager = new LeaderboardManager();
+        this.lbManager = new SimpleLeaderboardManager();
         this.leaderboard = this.lbManager.loadSurvivalLeaderboard().get();
         this.musicStatus = true;
         this.soundStatus = true;

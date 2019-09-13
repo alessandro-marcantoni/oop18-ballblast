@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import org.locationtech.jts.math.Vector2D;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
-import ballblast.commons.Command;
 import ballblast.model.components.ComponentType;
 import ballblast.model.components.InputComponent;
 import ballblast.model.components.ShooterComponent;
@@ -22,11 +22,11 @@ import ballblast.model.gameobjects.Player;
  * Concrete {@link InputManager} implementation.
  */
 public class InputManagerImpl implements InputManager {
-    private static final Map<InputType, Command> COMMANDS;
+    private static final Map<InputType, Consumer<GameObject>> COMMANDS;
     private Map<PlayerTag, InputComponent> inputHandlers;
 
     static {
-        COMMANDS = ImmutableMap.<InputType, Command>builder()
+        COMMANDS = ImmutableMap.<InputType, Consumer<GameObject>>builder()
                 .put(InputType.SHOOT,             g -> findShooter(g).ifPresent(ShooterComponent::startShooting))
                 .put(InputType.STOP_SHOOTING,     g -> findShooter(g).ifPresent(ShooterComponent::stopShooting))
                 .put(InputType.MOVE_LEFT,         InputManagerImpl::moveLeft)
@@ -63,7 +63,7 @@ public class InputManagerImpl implements InputManager {
         this.inputHandlers.get(tag).receiveCommands(this.translateInputs(inputs));
     }
 
-    private List<Command> translateInputs(final List<InputType> toBeTranslated) {
+    private List<Consumer<GameObject>> translateInputs(final List<InputType> toBeTranslated) {
         return toBeTranslated.stream().map(i -> COMMANDS.get(i)).collect(ImmutableList.toImmutableList());
     }
 

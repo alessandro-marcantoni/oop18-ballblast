@@ -139,6 +139,16 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         this.soundStatus = isSoundOn;
     }
 
+    @Override
+    public final boolean isMusicOn() {
+        return this.musicStatus;
+    }
+    
+    @Override
+    public final boolean isSoundOn() {
+        return this.soundStatus;
+    }
+
     private void createGameLoop() {
         this.gameloop = this.soundStatus
                 ? new SoundGameLoop(this.model, this.view, this.currentUser.get().getFramesPerSecond())
@@ -150,16 +160,6 @@ public class ControllerImpl implements Controller, GameLoopObserver {
         if (this.musicStatus) {
             Sound.THEME.loopSound();
         }
-    }
-
-    @Override
-    public final boolean isMusicOn() {
-        return this.musicStatus;
-    }
-
-    @Override
-    public final boolean isSoundOn() {
-        return this.soundStatus;
     }
 
 }

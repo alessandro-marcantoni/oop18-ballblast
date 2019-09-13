@@ -9,7 +9,7 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 
-import ballblast.model.data.GameDataManager.GameData;
+import ballblast.model.data.GameData;
 import ballblast.model.data.Leaderboard;
 import ballblast.model.data.UserData;
 import ballblast.model.gameobjects.GameObject;

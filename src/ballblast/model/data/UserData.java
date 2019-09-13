@@ -1,7 +1,5 @@
 package ballblast.model.data;
 
-import ballblast.model.data.GameDataManager.GameData;
-
 /**
  * The class that represents the information of a User.
  */

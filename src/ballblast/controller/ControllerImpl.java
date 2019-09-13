@@ -12,7 +12,7 @@ import ballblast.controller.files.LeaderboardManager;
 import ballblast.controller.files.UserManager;
 import ballblast.controller.sound.Sound;
 import ballblast.model.Model;
-import ballblast.model.data.GameDataManager.GameData;
+import ballblast.model.data.GameData;
 import ballblast.model.data.Leaderboard;
 import ballblast.model.data.UserData;
 import ballblast.model.gameobjects.GameObject;

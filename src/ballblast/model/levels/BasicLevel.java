@@ -8,6 +8,7 @@ import org.locationtech.jts.math.Vector2D;
 import com.google.common.collect.ImmutableList;
 
 import ballblast.model.data.GameDataManager;
+import ballblast.model.data.SimpleGameDataManager;
 import ballblast.model.events.GameEventManager;
 import ballblast.model.events.GameEventManagerImpl;
 import ballblast.model.gameobjects.GameObject;
@@ -43,7 +44,7 @@ public final class BasicLevel implements Level {
         this.gameObjectManager = new GameObjectManagerImpl();
         this.collisionManager = new SimpleCollisionManager();
         this.inputManager = new InputManagerImpl();
-        this.gameDataManager = new GameDataManager();
+        this.gameDataManager = new SimpleGameDataManager();
         this.gameEventManager = new GameEventManagerImpl();
         this.currentSpawnTime = POWER_SPAWN_TIME;
         this.createBoundaries();

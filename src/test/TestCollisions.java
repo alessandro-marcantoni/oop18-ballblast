@@ -16,6 +16,7 @@ import ballblast.model.components.CollisionComponent;
 import ballblast.model.components.Component;
 import ballblast.model.components.ComponentType;
 import ballblast.model.data.GameDataManager;
+import ballblast.model.data.SimpleGameDataManager;
 import ballblast.model.events.GameEventManager;
 import ballblast.model.events.GameEventManagerImpl;
 import ballblast.model.levels.BasicLevel;
@@ -47,7 +48,7 @@ public class TestCollisions {
     private static final CollisionManager COLLISION_MANAGER = new SimpleCollisionManager();
     private static final GameObjectManager GAME_OBJECT_MANAGER = new GameObjectManagerImpl();
     private static final InputManager INPUT_MANAGER = new InputManagerImpl();
-    private static final GameDataManager GAME_DATA_MANAGER = new GameDataManager();
+    private static final GameDataManager GAME_DATA_MANAGER = new SimpleGameDataManager();
     private static final Coordinate DEFAULT_POSITION = new Coordinate(0, 0);
     private static final Vector2D DEFAULT_VELOCITY = new Vector2D(0, 0);
     private static final Level DEFAULT_LEVEL = new SinglePlayerDecorator(new BasicLevel());

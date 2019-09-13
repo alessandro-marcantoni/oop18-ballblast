@@ -40,8 +40,9 @@ public abstract class AbstractComponent implements Component {
         return type;
     }
 
+    /** {@inheritDoc} */
     @Override
-    public final void setParent(final GameObject parent) {
+    public void setParent(final GameObject parent) {
         this.parent = parent;
     }
 

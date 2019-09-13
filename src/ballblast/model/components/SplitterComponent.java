@@ -51,9 +51,17 @@ public class SplitterComponent extends AbstractComponent {
 
     @Override
     public final void update(final double elapsed) {
-        if (this.getParent().isDestroyed() && this.getParent().getType() == GameObjectType.BALL) {
+        if (this.getParent().isDestroyed()) {
             this.tryToSplitParent();
             this.gameDataManager.incrementDestroyedBalls();
+        }
+    }
+
+    @Override
+    public final void setParent(final GameObject parent) {
+        super.setParent(parent);
+        if (this.getParent().getType() != GameObjectType.BALL) {
+            throw new IllegalStateException("parent's type must be BALL");
         }
     }
 

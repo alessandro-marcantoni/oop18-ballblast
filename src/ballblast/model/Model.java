@@ -3,7 +3,7 @@ package ballblast.model;
 import java.util.List;
 
 import ballblast.commons.events.EventType;
-import ballblast.model.data.GameDataManager.GameData;
+import ballblast.model.data.GameData;
 import ballblast.model.gameobjects.GameObject;
 import ballblast.model.inputs.InputType;
 import ballblast.model.inputs.InputManager.PlayerTag;

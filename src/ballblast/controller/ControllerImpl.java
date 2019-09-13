@@ -143,7 +143,7 @@ public class ControllerImpl implements Controller, GameLoopObserver {
     public final boolean isMusicOn() {
         return this.musicStatus;
     }
-    
+
     @Override
     public final boolean isSoundOn() {
         return this.soundStatus;

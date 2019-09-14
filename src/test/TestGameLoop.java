@@ -24,42 +24,6 @@ public class TestGameLoop {
     private final TestView testView = new TestView();
     private final SimpleGameLoop gameLoop = new SimpleGameLoop(testModel, testView, FPS);
 
-    private class TestView implements View {
-
-        private int counter;
-
-        @Override
-        public void launch(final Controller controller) {
-        }
-
-        @Override
-        public void render() {
-            this.counter++;
-        }
-
-        private int getCounter() {
-            return this.counter;
-        }
-
-        @Override
-        public void loadScene(final GameScenes scene) {
-        }
-
-        @Override
-        public void setGameOver(final boolean gameover) {
-            // TODO Auto-generated method stub
-        }
-
-    }
-
-    private void waitOneSecond() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Starts the gameLoop.
      */
@@ -110,6 +74,42 @@ public class TestGameLoop {
         this.gameLoop.resumeLoop(); 
         this.waitOneSecond();
         assertTrue(previousValue < this.testView.getCounter());
+    }
+
+    private class TestView implements View {
+
+        private int counter;
+
+        @Override
+        public void launch(final Controller controller) {
+        }
+
+        @Override
+        public void render() {
+            this.counter++;
+        }
+
+        private int getCounter() {
+            return this.counter;
+        }
+
+        @Override
+        public void loadScene(final GameScenes scene) {
+        }
+
+        @Override
+        public void setGameOver(final boolean gameover) {
+            // TODO Auto-generated method stub
+        }
+
+    }
+
+    private void waitOneSecond() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

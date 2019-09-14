@@ -34,23 +34,6 @@ public final class XMLFileManager {
     }
 
     /**
-     * The getter for the {@link Document} to modify.
-     * 
-     * @param path the route path of the file.
-     * @return the file converted in a document format.
-     * @throws ParserConfigurationException Parser exception.
-     * @throws SAXException                 SAX exception.
-     * @throws IOException                  IO exception.
-     */
-    public static Document getDocument(final String path)
-            throws ParserConfigurationException, SAXException, IOException {
-        final File file = new File(path);
-        final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        final DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        return documentBuilder.parse(file);
-    }
-
-    /**
      * Check if the input password of the user is correct.
      * 
      * @param userName the user name.
@@ -137,6 +120,14 @@ public final class XMLFileManager {
 
         final StreamResult result = new StreamResult(new File(DirectoryManager.USERS_LIST_FILE));
         transformer.transform(source, result);
+    }
+
+    private static Document getDocument(final String path)
+            throws ParserConfigurationException, SAXException, IOException {
+        final File file = new File(path);
+        final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        final DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        return documentBuilder.parse(file);
     }
 
 }

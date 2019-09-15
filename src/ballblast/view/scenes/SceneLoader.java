@@ -6,9 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
- * 
  * A simple implementation of {@link SceneLoader} interface.
- *
  */
 public final class SceneLoader {
 

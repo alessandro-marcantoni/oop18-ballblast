@@ -8,6 +8,7 @@ import ballblast.view.scenes.SceneLoader;
 import ballblast.view.scenes.SceneWrapper;
 import javafx.application.Platform;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -38,6 +39,7 @@ public class ViewImpl implements View {
     public final void launch(final Controller controller) {
         this.controller = controller;
         this.stage.setTitle(GAME_TITLE);
+        this.stage.getIcons().add(new Image(ViewImpl.class.getResourceAsStream("/view/icon.png")));
         this.stage.setMinHeight(MIN_HEIGHT);
         this.stage.setMinWidth(MIN_WIDTH);
         this.stage.setMaximized(true);

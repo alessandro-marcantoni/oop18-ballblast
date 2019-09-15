@@ -2,10 +2,14 @@ package ballblast.controller.sound;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.util.Map;
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+
+import com.google.common.collect.ImmutableMap;
 
 import ballblast.commons.events.EventHandler;
 import ballblast.commons.events.EventType;
@@ -40,29 +44,21 @@ public enum Sound {
      */
     GAMEOVER("gameover.wav");
 
+    private static final Map<EventType, Sound> SOUND_MAP;
     private Clip clip;
 
+    static {
+        SOUND_MAP = ImmutableMap.of(
+                EventType.SPLIT,        Sound.SPLIT,
+                EventType.DESTROY,      Sound.DESTROY,
+                EventType.SHOT,         Sound.SHOT
+        );
+    }
+
     /**
-     * 
+     * Handler of {@link EventType}.
      */
-    public static final EventHandler<EventType> HANDLER = new EventHandler<EventType>() {
-        @Override
-        public void handleEvent(final EventType event) {
-            switch (event) {
-            case SPLIT:
-                Sound.SPLIT.playSound();
-                break;
-            case SHOT:
-                Sound.SHOT.playSound();
-                break;
-            case DESTROY:
-                Sound.DESTROY.playSound();
-                break;
-            default:
-                break;
-            }
-        }
-    };
+    public static final EventHandler<EventType> HANDLER = e -> SOUND_MAP.get(e).playSound();
 
     Sound(final String fileName) {
         try {

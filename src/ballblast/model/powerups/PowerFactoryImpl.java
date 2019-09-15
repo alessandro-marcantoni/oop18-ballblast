@@ -36,7 +36,7 @@ public final class PowerFactoryImpl implements PowerFactory {
 
     @Override
     public Power createPower(final Vector2D velocity, final Coordinate position, final CollisionManager collisionManager) {
-        return POWER_MAP.get(getRandomPowerType()).apply(velocity, position, collisionManager);
+        return POWER_MAP.get(this.getRandomPowerType()).apply(velocity, position, collisionManager);
     }
 
     private static Power createShieldPower(final Vector2D velocity, final Coordinate position,
@@ -75,7 +75,7 @@ public final class PowerFactoryImpl implements PowerFactory {
                 .build();
     }
 
-    private static PowerTypes getRandomPowerType() {
+    private PowerTypes getRandomPowerType() {
         return POWERS.get(RANDOM.nextInt(POWERS.size()));
     }
 

@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 
 /**
  * A simple image loader with caching.
- * 
  */
 public class ImageLoader {
     private static final ImageLoader SINGLETON = new ImageLoader();

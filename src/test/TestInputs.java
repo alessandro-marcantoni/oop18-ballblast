@@ -19,6 +19,9 @@ import ballblast.model.levels.BasicLevel;
 import ballblast.model.levels.Level;
 import ballblast.model.levels.SinglePlayerDecorator;
 
+/**
+ * Junit test for {@link Level}.
+ */
 class TestInputs {
     private static final double SAMPLE_ELAPSED = 1;
     private static final Vector2D LEFT_VELOCITY = Vector2D.create(-50, 0);
@@ -27,6 +30,9 @@ class TestInputs {
     private Level level;
     private InputManager inputManager;
 
+    /**
+     * Gets the environment ready for the tests.
+     */
     @BeforeEach
     public void startUp() {
         this.level = new SinglePlayerDecorator(new BasicLevel());
@@ -35,6 +41,9 @@ class TestInputs {
         this.player = this.findPlayer();
     }
 
+    /**
+     * Test the {@link Player} movement using {@link MovementComponent} and {@link InputComponent}.
+     */
     @Test
     public void testMovementInput() {
         // 1) Input test (Move left).
@@ -59,6 +68,9 @@ class TestInputs {
         assertEquals(expectedPosition, this.player.getPosition());
     }
 
+    /**
+     * Test the {@link Player} shooting thanks {@link ShooterComponent}.
+     */
     @Test
     public void testShootInput() {
         this.inputManager.processInputs(PlayerTag.FIRST, ImmutableList.of(InputType.SHOOT));
@@ -78,6 +90,9 @@ class TestInputs {
         assertEquals(expectedSpawnedBall, this.countBullets());
     }
 
+    /**
+     * Test the {@link Player} shooting and movement together.
+     */
     @Test
     public void testShootAndMovementInput() {
         // 1) Move Left and Shoot.

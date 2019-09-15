@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ballblast.controller.Controller;
-import ballblast.controller.GameLoopImpl;
+import ballblast.controller.SimpleGameLoop;
 import ballblast.model.Model;
 import ballblast.model.ModelImpl;
 import ballblast.view.View;
@@ -22,43 +22,7 @@ public class TestGameLoop {
 
     private final Model testModel = new ModelImpl();
     private final TestView testView = new TestView();
-    private final GameLoopImpl gameLoop = new GameLoopImpl(testModel, testView, FPS);
-
-    private class TestView implements View {
-
-        private int counter;
-
-        @Override
-        public void launch(final Controller controller) {
-        }
-
-        @Override
-        public void render() {
-            this.counter++;
-        }
-
-        private int getCounter() {
-            return this.counter;
-        }
-
-        @Override
-        public void loadScene(final GameScenes scene) {
-        }
-
-        @Override
-        public void setGameOver(final boolean gameover) {
-            // TODO Auto-generated method stub
-        }
-
-    }
-
-    private void waitOneSecond() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+    private final SimpleGameLoop gameLoop = new SimpleGameLoop(testModel, testView, FPS);
 
     /**
      * Starts the gameLoop.
@@ -110,6 +74,42 @@ public class TestGameLoop {
         this.gameLoop.resumeLoop(); 
         this.waitOneSecond();
         assertTrue(previousValue < this.testView.getCounter());
+    }
+
+    private class TestView implements View {
+
+        private int counter;
+
+        @Override
+        public void launch(final Controller controller) {
+        }
+
+        @Override
+        public void render() {
+            this.counter++;
+        }
+
+        private int getCounter() {
+            return this.counter;
+        }
+
+        @Override
+        public void loadScene(final GameScenes scene) {
+        }
+
+        @Override
+        public void setGameOver(final boolean gameover) {
+            // TODO Auto-generated method stub
+        }
+
+    }
+
+    private void waitOneSecond() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

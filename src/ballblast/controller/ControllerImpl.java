@@ -154,7 +154,7 @@ public class ControllerImpl implements Controller, GameLoopObserver {
     private void createGameLoop() {
         this.gameloop = this.soundStatus
                 ? new SoundGameLoop(this.model, this.view, this.currentUser.get().getFramesPerSecond())
-                : new GameLoopImpl(this.model, this.view, this.currentUser.get().getFramesPerSecond());
+                : new SimpleGameLoop(this.model, this.view, this.currentUser.get().getFramesPerSecond());
         this.gameloop.addObserver(this);
     }
 

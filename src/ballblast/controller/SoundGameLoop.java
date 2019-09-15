@@ -7,7 +7,7 @@ import ballblast.view.View;
 /**
  * A {@link GameLoop} with sound effects.
  */
-public class SoundGameLoop extends GameLoopImpl {
+public class SoundGameLoop extends AbstractGameLoop {
 
     /**
      * Creates a new instance of {@link GameLoop} with sound effects.
@@ -20,7 +20,11 @@ public class SoundGameLoop extends GameLoopImpl {
         super(model, view, frameRate);
     }
 
-    @Override
+    /**
+     * Processes the sound effects.
+     * 
+     * @param model The model who sends the sound events.
+     */
     protected final void processSounds(final Model model) {
         Sound.HANDLER.handleAll(model.getGameEvents());
     }

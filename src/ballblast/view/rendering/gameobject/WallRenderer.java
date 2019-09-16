@@ -10,10 +10,10 @@ import ballblast.view.rendering.Sprite;
  */
 public class WallRenderer extends GameObjectRenderer<Wall> {
     /**
-     * Creates a new {@link Wall} Renderer given its {@link Wall}{@link GameObject}.
+     * Creates a new {@link Wall} Renderer given its {@link Wall} GameObject.
      * 
      * @param sprite     The {@link Sprite} used to render.
-     * @param gameObject The {@link Wall} {@link GameObject}.
+     * @param gameObject The {@link Wall} GameObject.
      */
     public WallRenderer(final Sprite sprite, final Wall gameObject) {
         super(sprite, gameObject);

@@ -55,7 +55,7 @@ public final class DirectoryManager {
      * Static method that get user file.
      * 
      * @param userName name of the user.
-     * @return the file with the {@link UserData}.
+     * @return the file with the UserData.
      */
     public static String getUserFile(final String userName) {
         return USERS_DIR + SEPARATOR + userName + ".xml";

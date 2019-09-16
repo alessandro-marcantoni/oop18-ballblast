@@ -14,7 +14,7 @@ public class SceneWrapperImpl implements SceneWrapper {
     /**
      * 
      * @param scene      the {@link Scene} to wrap to.
-     * @param controller the {@link SceneController}.
+     * @param controller the {@link AbstractSceneController}.
      */
     public SceneWrapperImpl(final Scene scene, final AbstractSceneController controller) {
         this.scene = scene;

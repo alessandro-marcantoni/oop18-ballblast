@@ -23,10 +23,10 @@ public interface UserManager {
      * @param password the user password.
      * @return an {@link Optional} {@link UserData} object, empty if the login
      *         failed.
-     * @throws XPathExpressionException 
-     * @throws IOException 
-     * @throws SAXException 
-     * @throws ParserConfigurationException 
+     * @throws XPathExpressionException XPathExpressionException 
+     * @throws IOException IOException
+     * @throws SAXException SAXException
+     * @throws ParserConfigurationException ParserConfigurationException 
      */
     Optional<UserData> login(String userName, String password) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException;
 

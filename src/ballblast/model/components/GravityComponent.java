@@ -3,7 +3,7 @@ package ballblast.model.components;
 import org.locationtech.jts.math.Vector2D;
 
 /**
- * Adds the ability to move and update the position of a {@link GameObject}
+ * Adds the ability to move and update the position of a GameObject
  * based on gravity.
  */
 public class GravityComponent extends AbstractComponent {

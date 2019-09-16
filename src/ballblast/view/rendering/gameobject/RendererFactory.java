@@ -64,7 +64,7 @@ public final class RendererFactory {
      * 
      * @param sprite     the {@link Sprite}.
      * @param gameObject the {@link GameObject} to be rendered.
-     * @return the {@link Renderer} used to render a {@link Power}.
+     * @return the {@link Renderer} used to render a {@link AbstractPower}.
      */
     public static Renderer createPowerUpRenderer(final Sprite sprite, final GameObject gameObject) {
         return new PowerUpRenderer(sprite, (AbstractPower) gameObject);

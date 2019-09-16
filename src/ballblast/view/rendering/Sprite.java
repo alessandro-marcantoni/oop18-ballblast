@@ -3,7 +3,6 @@ package ballblast.view.rendering;
 import java.io.FileNotFoundException;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.math.Vector2D;
-
 import ballblast.view.imageloader.ImagePath;
 import javafx.scene.image.Image;
 
@@ -78,7 +77,7 @@ public interface Sprite extends Renderer {
 
     /**
      * Sets the width on the screen of the sprite, according to the
-     * {@link GameObject} width.
+     * GameObject width.
      * 
      * @param width the new width.
      */
@@ -87,7 +86,7 @@ public interface Sprite extends Renderer {
     /**
      * 
      * Sets the width on the screen of the sprite, according to the
-     * {@link GameObject} height.
+     * GameObject height.
      * 
      * @param height the new height.
      */
@@ -95,7 +94,7 @@ public interface Sprite extends Renderer {
 
     /**
      * Sets the position on the screen of the sprite, according to the
-     * {@link GameObject} position.
+     * GameObject position.
      * 
      * @param position the new position
      */
@@ -103,19 +102,19 @@ public interface Sprite extends Renderer {
 
     /**
      * 
-     * @return the position of the {@link GameObject}.
+     * @return the position of the GameObject.
      */
     Coordinate getGameObjectPosition();
 
     /**
      * 
-     * @return the width of the {@link GameObject}.
+     * @return the width of the GameObject.
      */
     double getGameObjectWidth();
 
     /**
      * 
-     * @return the height of the {@link GameObject}.
+     * @return the height of the GameObject.
      */
     double getGameObjectHeight();
 

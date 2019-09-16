@@ -11,7 +11,7 @@ import ballblast.model.physics.CollisionHandler;
 import ballblast.model.physics.CollisionTag;
 
 /**
- * Represents the handler for the behavior of a {@link Bullet} after a
+ * Represents the handler for the behavior of a Bullet after a
  * collision.
  */
 public class BulletCollisionHandler implements CollisionHandler {

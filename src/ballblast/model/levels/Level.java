@@ -12,7 +12,7 @@ import ballblast.model.physics.CollisionManager;
  */
 public interface Level {
     /**
-     * Enables all {@link GameObject}s.
+     * Enables all GameObjects.
      */
     void start();
 

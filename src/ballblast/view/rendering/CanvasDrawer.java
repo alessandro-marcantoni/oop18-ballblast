@@ -36,7 +36,7 @@ public class CanvasDrawer {
     }
 
     /**
-     * @param gameObjects A list of {@link gameObject}s.
+     * @param gameObjects A list of {@link GameObject}s.
      */
     public void draw(final List<GameObject> gameObjects) {
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();

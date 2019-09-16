@@ -3,7 +3,7 @@ package ballblast.model.gameobjects;
 import java.util.List;
 
 /**
- * Handles all {@link GameObject}s of a specific {@link Level}.
+ * Handles all {@link GameObject}s of a specific Level.
  */
 public interface GameObjectManager {
 

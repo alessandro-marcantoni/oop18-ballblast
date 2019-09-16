@@ -3,7 +3,7 @@ package ballblast.model.powerups;
 import ballblast.model.gameobjects.AbstractGameObject;
 
 /**
- * The class representing the speed {@Link Power}.
+ * The class representing the speed Link Power.
  */
 public final class SpeedPower extends AbstractPower {
 

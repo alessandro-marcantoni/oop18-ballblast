@@ -10,9 +10,9 @@ import ballblast.model.inputs.InputManager.PlayerTag;
 import ballblast.model.levels.GameStatus;
 
 /**
- * It represents a macro class, containing the current {@link Level} and his
+ * It represents a macro class, containing the current Level and his
  * {@link GameObject}s. It can be seen as an entry point because delegates its
- * tasks to the {@link Level} class.
+ * tasks to the Level class.
  */
 public interface Model {
     /**
@@ -37,7 +37,7 @@ public interface Model {
     List<GameObject> getGameObjects();
 
     /**
-     * Resolves the received inputs inside the {@link InputManagerImpl}.
+     * Resolves the received inputs inside the InputManager.
      * 
      * @param tag    the {@link PlayerTag}.
      * @param inputs the {@link List} of inputs to be resolved.

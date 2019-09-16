@@ -15,7 +15,7 @@ public interface SceneWrapper {
 
     /**
      * 
-     * @return the {@link SceneController}.
+     * @return the SceneController.
      */
     AbstractSceneController getController();
 }

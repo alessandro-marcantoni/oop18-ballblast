@@ -34,9 +34,9 @@ public class ShooterComponent extends AbstractComponent {
      * Class constructor.
      * 
      * @param gameObjectManager the {@link GameObjectManager} used to add
-     *                          {@link Bullet}s.
+     *                          Bullets.
      * @param collisionManager  the {@link CollisionManager} used to create the
-     *                          {@link Bullet}'s {@link CollisionComponent}.
+     *                          Bullet's {@link CollisionComponent}.
      * @param gameDataManager   the {@link GameDataManager} used to increment the
      *                          spawned bullets counter.
      * @param eventManager      the {@link GameEventManager}.

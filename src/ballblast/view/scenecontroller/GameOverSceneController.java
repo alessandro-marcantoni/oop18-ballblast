@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 /**
- * The {@link SceneController} for the game over scene.
+ * The SceneController for the game over scene.
  *
  */
 public class GameOverSceneController extends AbstractSubSceneController {

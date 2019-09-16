@@ -7,7 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 /**
- * The {@link SceneController} for the game mode selection scene.
+ * The SceneController for the game mode selection scene.
  * 
  */
 public class GameSelectionSceneController extends AbstractSubSceneController {

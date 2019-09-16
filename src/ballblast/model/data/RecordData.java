@@ -34,7 +34,7 @@ public class RecordData {
     }
 
     /**
-     * Setter for the {@RecordData} user name.
+     * Setter for the {@link RecordData} user name.
      * 
      * @param name the user name who submit the record.
      */
@@ -43,7 +43,7 @@ public class RecordData {
     }
 
     /**
-     * Setter for the {@RecordData} user score.
+     * Setter for the {@link RecordData} user score.
      * 
      * @param score the score of the record.
      */

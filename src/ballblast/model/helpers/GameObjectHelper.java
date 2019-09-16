@@ -28,7 +28,7 @@ import ballblast.model.physics.handlers.PlayerCollisionHandler;
 import ballblast.model.physics.handlers.WallCollisionHandler;
 
 /**
- * Represents a factory used to instantiate new {@link GameObject}s.
+ * Represents a factory used to instantiate new GameObjects.
  */
 public final class GameObjectHelper {
     private GameObjectHelper() { }

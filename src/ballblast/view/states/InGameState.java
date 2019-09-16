@@ -23,7 +23,7 @@ public class InGameState extends GUIState {
     /**
      * Initialize a new in game state.
      * 
-     * @param gui        The {@link GUISceneContrller}.
+     * @param gui        The GUISceneContrller.
      * @param controller The {@link Controller} of the game.
      */
     public InGameState(final GUISceneController gui, final Controller controller) {

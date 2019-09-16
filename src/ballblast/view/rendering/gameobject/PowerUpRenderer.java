@@ -6,13 +6,13 @@ import ballblast.view.imageloader.ImagePath;
 import ballblast.view.rendering.Sprite;
 
 /**
- * 
+ * A renderer for {@link AbstractPower} GameObject.
  */
 public class PowerUpRenderer extends GameObjectRenderer<AbstractPower> {
     /**
      * 
      * @param sprite     the {@link Sprite} used to render.
-     * @param gameObject the {@link Power} {@link GameObject}.
+     * @param gameObject the {@link AbstractPower} GameObject.
      */
     public PowerUpRenderer(final Sprite sprite, final AbstractPower gameObject) {
         super(sprite, gameObject);

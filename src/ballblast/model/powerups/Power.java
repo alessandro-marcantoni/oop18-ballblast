@@ -10,7 +10,7 @@ public interface Power {
     /**
      * Activates the power on a specific player.
      * 
-     * @param player The {@link Player} who gets the power.
+     * @param player The Player who gets the power.
      */
     void activate(GameObject player);
 

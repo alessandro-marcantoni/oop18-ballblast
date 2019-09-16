@@ -6,7 +6,7 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * 
- * The {@link SceneController} for the first main scene.
+ * The SceneController for the first main scene.
  * 
  */
 public class MainSceneController extends AbstractSceneController {

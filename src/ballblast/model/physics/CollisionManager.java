@@ -9,7 +9,7 @@ import java.util.List;
 public interface CollisionManager {
 
     /**
-     * The main method to check if there are collision between {@link GameObject}s.
+     * The main method to check if there are collision between GameObjects.
      */
     void checkLoop();
 

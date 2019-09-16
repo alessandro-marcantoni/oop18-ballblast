@@ -88,7 +88,7 @@ public final class XMLFileManager {
     }
 
     /**
-     * Add a new {@link UserData} informations to the users list file..
+     * Add a new UserData informations to the users list file..
      * 
      * @param userName the user name to add in the file.
      * @param password the password associated with the user.

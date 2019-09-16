@@ -7,15 +7,15 @@ import ballblast.view.rendering.Sprite;
 
 /**
  * 
- * A renderer for {@link Bullet} {@link GameObject}.
+ * A renderer for {@link Bullet} GameObject.
  */
 public class BulletRenderer extends GameObjectRenderer<Bullet> {
     /**
      * Constructor which creates a new {@link Bullet} Renderer given its
-     * {@link Bullet} {@link GameObject}.
+     * {@link Bullet} GameObject.
      * 
      * @param sprite     The {@link Sprite} used to render.
-     * @param gameObject The {@link Bullet} {@link GameObject}.
+     * @param gameObject The {@link Bullet} GameObject.
      */
     public BulletRenderer(final Sprite sprite, final Bullet gameObject) {
         super(sprite, gameObject);

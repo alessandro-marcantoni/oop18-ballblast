@@ -103,7 +103,7 @@ public class TestCollisions {
     }
 
     /**
-     * Tests {@link CollisionHandler}s objects.
+     * Tests CollisionHandlers objects.
      */
     @Test
     public void testCollisionHandler() {

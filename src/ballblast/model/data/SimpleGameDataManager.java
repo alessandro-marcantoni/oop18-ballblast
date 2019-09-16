@@ -1,7 +1,7 @@
 package ballblast.model.data;
 
 /**
- * Concrete imlementation of {@link GameDataManage}.
+ * Concrete implementation of {@link GameDataManager}.
  */
 public class SimpleGameDataManager implements GameDataManager {
     private final GameData gameData;

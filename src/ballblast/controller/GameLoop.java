@@ -32,21 +32,21 @@ public interface GameLoop {
     /**
      * Add input to be resolved at the next update.
      * 
-     * @param tag   the tag which identifies the {@link Player}.
+     * @param tag   the tag which identifies the Player.
      * @param input the input to be resolved.
      */
     void addInput(PlayerTag tag, InputType input);
 
     /**
-     * Adds a new {@link Observer}.
+     * Adds a new Observer.
      * 
-     * @param observer The {@link Observer} to be added.
+     * @param observer The Observer to be added.
      */
     void addObserver(GameLoopObserver observer);
 
     /**
-     * Notifies the {@link Observer} when the game ends and it needs to update the
-     * {@link Leaderboard}.
+     * Notifies the Observer when the game ends and it needs to update the
+     * Leaderboard.
      */
     void updateLeaderboard();
 }

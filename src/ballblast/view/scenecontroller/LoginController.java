@@ -21,7 +21,7 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * 
- * The {@link SceneController} for login scene.
+ * The SceneController for login scene.
  * 
  */
 public class LoginController extends AbstractSceneController {
@@ -54,7 +54,6 @@ public class LoginController extends AbstractSceneController {
 
     /**
      * @throws SAXException                 SAXException
-     * @throws TransformerException         TransformerException
      * @throws IOException                  IOException
      * @throws ParserConfigurationException ParserConfigurationException
      * @throws XPathExpressionException     XPathExpression exception

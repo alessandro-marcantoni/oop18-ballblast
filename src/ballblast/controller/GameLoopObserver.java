@@ -6,7 +6,7 @@ package ballblast.controller;
 public interface GameLoopObserver {
 
     /**
-     * Updates the {@link Leaderboard}.
+     * Updates the Leaderboard.
      */
     void updateLeaderboard();
 

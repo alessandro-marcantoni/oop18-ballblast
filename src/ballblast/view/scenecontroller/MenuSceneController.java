@@ -13,7 +13,7 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * 
- * The {@link SceneController} for the main menu scene.
+ * The SceneController for the main menu scene.
  * 
  */
 public class MenuSceneController extends AbstractSceneController {

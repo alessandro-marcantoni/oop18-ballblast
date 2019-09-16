@@ -5,40 +5,40 @@ package ballblast.view.imageloader;
  */
 public enum ImagePath {
     /**
-     * The image for {@link Ball}. String empty to use randomColor in the
+     * The image for Ball. String empty to use randomColor in the
      * {@link ImageLoader}.
      */
     BALL(""),
     /**
-     * The image for {@link Player}.
+     * The image for Player.
      */
     PLAYER("/view/players/cannon.png"),
     /**
-     * The image for {@link Bullet}.
+     * The image for Bullet.
      */
     BULLET("/view/bullets/bullet.png"),
     /**
-     * The image for speed {@link Power}.
+     * The image for speed Power.
      */
     POWERUP_SPEED("/view/powers/speed.png"),
     /**
-     * The image for shield {@link Power}.
+     * The image for shield Power.
      */
     POWERUP_SHIELD("/view/powers/shield.png"),
     /**
-     * The image for double fire {@link Power}.
+     * The image for double fire Power.
      */
     POWERUP_DOUBLEFIRE("/view/powers/doublefire.png"),
     /**
-     * The image for {@link Wall} horizontal.
+     * The image for Wall horizontal.
      */
     WALL_FLOOR("/view/walls/wall_floor.png"),
     /**
-     * The image for {@link Wall} roof.
+     * The image for Wall roof.
      */
     WALL_ROOF("/view/walls/wall_roof.png"),
     /**
-     * The image for {@link Wall} vertical.
+     * The image for Wall vertical.
      */
     WALL_VERTICAL("/view/walls/wall_vertical.png"),
     /**

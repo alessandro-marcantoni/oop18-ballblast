@@ -6,14 +6,13 @@ import ballblast.view.imageloader.ImagePath;
 import ballblast.view.rendering.Sprite;
 
 /**
- * 
- * 
+ * A renderer for {@link Player} GameObject.
  */
 public class PlayerRenderer extends GameObjectRenderer<Player> {
     /**
      * 
      * @param sprite     The {@link Sprite} used to render.
-     * @param gameObject The {@link Player} {@link GameObject}
+     * @param gameObject The {@link Player} GameObject
      */
     public PlayerRenderer(final Sprite sprite, final Player gameObject) {
         super(sprite, gameObject);

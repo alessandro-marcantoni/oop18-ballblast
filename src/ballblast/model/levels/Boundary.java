@@ -53,7 +53,7 @@ public enum Boundary {
     }
 
     /**
-     * Check if is the BOTTOM {@Link Boundaries}' position.
+     * Check if is the BOTTOM Boundaries' position.
      * 
      * @param boundaryPosition the position to be checked.
      * @return true if it's the floor position, false otherwise.
@@ -63,7 +63,7 @@ public enum Boundary {
     }
 
     /**
-     * Check if is the TOP {@Link Boundaries}' position.
+     * Check if is the TOP Boundaries' position.
      * 
      * @param boundaryPosition the position to be checked.
      * @return true if it's the roof position, false otherwise.
@@ -73,7 +73,7 @@ public enum Boundary {
     }
 
     /**
-     * Check if is the RIGHT {@Link Boundaries}' position.
+     * Check if is the RIGHT Boundaries' position.
      * 
      * @param boundaryPosition the position to be checked.
      * @return true if it's the right position, false otherwise.
@@ -83,7 +83,7 @@ public enum Boundary {
     }
 
     /**
-     * Check if is the LEFT {@Link Boundaries}' position.
+     * Check if is the LEFT Boundaries' position.
      * 
      * @param boundaryPosition the position to be checked.
      * @return true if it's the left position, false otherwise.

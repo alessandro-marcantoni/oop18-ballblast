@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * 
- * The {@link SceneController} for manual scene.
+ * The SceneController for manual scene.
  * 
  */
 

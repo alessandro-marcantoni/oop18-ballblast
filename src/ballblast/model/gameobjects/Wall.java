@@ -3,7 +3,7 @@ package ballblast.model.gameobjects;
 import com.google.common.base.MoreObjects;
 
 /**
- * Represents a {@link Wall} object used to create the {@link Level}'s
+ * Represents a {@link Wall} object used to create the Level's
  * boundaries.
  */
 public final class Wall extends AbstractGameObject {

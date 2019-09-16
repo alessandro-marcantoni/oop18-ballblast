@@ -44,14 +44,14 @@ public interface GameObject {
     /**
      * Gets the GameObject position.
      * 
-     * @return {@link Point2d} of the {@link GameObject}.
+     * @return {@link Coordinate} of the {@link GameObject}.
      */
     Coordinate getPosition();
 
     /**
      * Sets the {@link GameObject}'s position.
      * 
-     * @param position the new {@link Point2d} of the {@link GameObject}.
+     * @param position the new {@link Coordinate} of the {@link GameObject}.
      */
     void setPosition(Coordinate position);
 
@@ -104,7 +104,7 @@ public interface GameObject {
     GameObjectType getType();
 
     /**
-     * Handles an incoming {@link Collision}.
+     * Handles an incoming Collision.
      * 
      * @param collidable the other {@link Collidable}.
      */

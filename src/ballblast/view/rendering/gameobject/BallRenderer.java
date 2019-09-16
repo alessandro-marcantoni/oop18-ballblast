@@ -7,13 +7,13 @@ import ballblast.view.rendering.Sprite;
 
 /**
  * 
- * A renderer for {@link Ball} {@link GameObject}.
+ * A renderer for {@link Ball} GameObject.
  * 
  */
 public class BallRenderer extends GameObjectRenderer<Ball> {
     /**
      * @param sprite     the {@link Sprite} used to render.
-     * @param gameObject the {@link Ball} {@link @link GameObject}.
+     * @param gameObject the {@link Ball} GameObject.
      */
     public BallRenderer(final Sprite sprite, final Ball gameObject) {
         super(sprite, gameObject);

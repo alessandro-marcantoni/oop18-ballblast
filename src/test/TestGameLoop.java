@@ -14,7 +14,7 @@ import ballblast.view.View;
 import ballblast.view.scenes.GameScenes;
 
 /**
- * JUnit test for {@Link GameLoop}.
+ * JUnit test for GameLoop.
  */
 public class TestGameLoop {
 
@@ -34,7 +34,7 @@ public class TestGameLoop {
     }
 
     /**
-     * Tests {@Link GameLoop} start.
+     * Tests GameLoop start.
      */
     @Test
     public void testStart() {
@@ -42,7 +42,7 @@ public class TestGameLoop {
     }
 
     /**
-     * Tests {@Link GameLoop} update.
+     * Tests GameLoop update.
      */
     @Test
     public void testLoop() {
@@ -52,7 +52,7 @@ public class TestGameLoop {
     }
 
     /**
-     * Tests {@Link GameLoop} pause feature.
+     * Tests GameLoop pause feature.
      */
     @Test
     public void testPause() {
@@ -64,7 +64,7 @@ public class TestGameLoop {
     }
 
     /**
-     * Tests {@Link GameLoop} resume feature.
+     * Tests GameLoop resume feature.
      */
     @Test
     public void testResume() {

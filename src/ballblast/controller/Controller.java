@@ -42,16 +42,16 @@ public interface Controller {
     void notifyGameOver();
 
     /**
-     * Sends an input to be resolved the next update by the right {@link Player} to
+     * Sends an input to be resolved the next update by the right Player to
      * the {@link Controller}.
      * 
-     * @param tag   the tag which identifies the {@link Player}.
+     * @param tag   the tag which identifies the Player.
      * @param input the input to be resolved.
      */
     void receiveInput(PlayerTag tag, InputType input);
 
     /**
-     * Returns the list of active {@link GameObjects} to be rendered.
+     * Returns the list of active {@link GameObject}s to be rendered.
      * 
      * @return A list of {@link GameObject}.
      */

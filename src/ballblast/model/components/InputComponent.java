@@ -51,9 +51,9 @@ public class InputComponent extends AbstractComponent {
     }
 
     /**
-     * Receives {@link Command}s to be resolved at the next update.
+     * Receives commands to be resolved at the next update.
      * 
-     * @param list the {@link List} of {@link Command}s to be resolved.
+     * @param list the {@link List} of commands to be resolved.
      */
     public final void receiveCommands(final List<Consumer<GameObject>> list) {
         this.toBeResolved = list;
